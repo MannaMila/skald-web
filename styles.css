@@ -820,6 +820,7 @@ h3 {
 
 .shot-mount img {
   width: 100%;
+  height: auto;
   aspect-ratio: 16 / 9;
   object-fit: cover;
 }
