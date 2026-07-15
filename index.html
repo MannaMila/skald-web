@@ -1,26 +1,28 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#f2e6cf">
     <meta name="color-scheme" content="light">
-    <meta name="description" content="Read all 24 books of the Odyssey, compare the original Greek with nine historical translations, explore art and catalogued works, and keep the complete reading library on your device.">
-    <link rel="canonical" href="https://skald.mannamila.com">
+    <meta name="description" content="Read all 24 books of Homer's Odyssey at three telling depths, compare the original Greek with nine historical public-domain translations, and explore the voyage, glossary, and museum art.">
+    <link rel="canonical" href="https://skald.mannamila.com/">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="MannaMila">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Skald: Odyssey">
     <meta property="og:title" content="Skald: Odyssey — One Odyssey. A shelf of ways through.">
-    <meta property="og:description" content="Read, compare, explore, share, and follow the Odyssey into museums. The complete reading library is ready even in airplane mode.">
-    <meta property="og:url" content="https://skald.mannamila.com">
+    <meta property="og:description" content="All 24 books, three telling depths, the original Greek, nine historical translations, the voyage, and museum art. Built for Android, iPhone, and iPad. See current availability.">
+    <meta property="og:url" content="https://skald.mannamila.com/">
     <meta property="og:image" content="https://skald.mannamila.com/assets/skald-odyssey-og.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Skald: Odyssey shown as a vellum reading edition with Greek, art, and museum context.">
+    <meta property="og:image:alt" content="Skald: Odyssey presented as a vellum reading edition with Greek text, historical art, and museum context.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Skald: Odyssey">
-    <meta name="twitter:description" content="One Odyssey. A shelf of ways through — on your device, even in airplane mode.">
+    <meta name="twitter:description" content="One Odyssey. A shelf of ways through. Built for Android, iPhone, and iPad. See current availability.">
     <meta name="twitter:image" content="https://skald.mannamila.com/assets/skald-odyssey-og.jpg">
-    <title>Skald: Odyssey — Read, Compare, Explore</title>
+    <meta name="twitter:image:alt" content="Skald: Odyssey presented as a vellum reading edition with Greek text, historical art, and museum context.">
+    <title>Skald: Odyssey — One Odyssey. A Shelf of Ways Through.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
@@ -31,248 +33,285 @@
 
     <header class="site-header" data-header>
       <div class="header-inner">
-        <a class="brand" href="../" aria-label="MannaMila home">
+        <a class="brand" href="https://www.mannamila.com/" aria-label="MannaMila home">
           <span class="brand-studio">MannaMila</span>
           <span class="brand-product">Skald: <em>Odyssey</em></span>
         </a>
 
         <nav class="site-nav" aria-label="Landing page">
-          <a href="#read">Read</a>
-          <a href="#compare">Compare</a>
-          <a href="#art">Art</a>
-          <a href="#museums">Museums</a>
-          <a href="#offline">Offline</a>
+          <a href="#inside">Inside</a>
+          <a href="#translations">Greek &amp; translations</a>
+          <a href="#journey">Journey</a>
+          <a href="#faq">Questions</a>
         </nav>
 
-        <a class="button button-small" href="mailto:support@mannamila.com?subject=Skald%3A%20Odyssey%20Android%20beta">Join the beta</a>
+        <a class="button button-small" data-waitlist-link href="#waitlist">Join the waitlist</a>
       </div>
     </header>
 
     <main id="main-content">
-      <section class="hero section" id="read" data-section="read">
+      <section class="hero section" data-section="inside" aria-labelledby="hero-title">
         <div class="hero-copy reveal">
-          <p class="eyebrow">Read it. Compare it. Follow it further.</p>
-          <h1>One <em>Odyssey.</em><br>A shelf of ways through.</h1>
-          <p class="hero-dek">Read all 24 books, catch up on any book in one minute, pair the Greek with nine historical translations, open the art where it meets the text, and turn the museum trail into a real visit.</p>
-          <p class="hero-offline"><span aria-hidden="true">✦</span> The reading library lives on your device—ready even in airplane mode.</p>
-          <div class="hero-actions">
-            <a class="button" href="mailto:support@mannamila.com?subject=Skald%3A%20Odyssey%20Android%20beta">Join the Android beta</a>
-            <a class="text-link" href="#possibilities">See what Skald can do <span aria-hidden="true">↓</span></a>
+          <p class="eyebrow">Skald Odyssey</p>
+          <h1 id="hero-title">One <em>Odyssey.</em><br>A shelf of ways through.</h1>
+          <p class="hero-dek">Read all 24 books through source-grounded 1-, 5-, or 20-minute telling depths, explore the original Greek beside nine historical public-domain translations, and follow the journey through the map, fleet, glossary, and museum art.</p>
+
+          <div class="availability-card" data-availability-region aria-live="polite">
+            <p class="availability-copy" data-availability-copy>Coming soon to Android, iPhone, and iPad. Currently under store review.</p>
+            <div class="store-links" data-store-links hidden>
+              <a class="store-link" data-store-link="android" href="#waitlist" hidden>Get it on Google Play</a>
+              <a class="store-link" data-store-link="ios" href="#waitlist" hidden>Download on the App Store</a>
+            </div>
           </div>
-          <p class="microcopy">$9.99 one time at launch <span aria-hidden="true">·</span> No subscription</p>
+
+          <div class="hero-actions">
+            <a class="button" data-waitlist-link href="#waitlist">Join the launch waitlist</a>
+            <a class="text-link" href="#inside">See what’s inside <span aria-hidden="true">↓</span></a>
+          </div>
+          <p class="microcopy"><strong>One-time purchase.</strong> No subscription, ads, app account, or in-app purchases.</p>
         </div>
 
-        <div class="hero-visual reveal reveal-delay" id="art">
+        <div class="hero-visual reveal reveal-delay">
           <div class="odyssey-glyph" aria-hidden="true">Ὀδύσσεια</div>
           <figure class="shot-card shot-card-phone">
-            <img src="./assets/reader-art.webp" width="1080" height="1920" alt="Skald reader open to “The Cyclops,” with J. M. W. Turner’s 1829 painting “Ulysses deriding Polyphemus” shown where the scene enters the text." fetchpriority="high">
-            <figcaption>Art opens at the moment it enters the story.</figcaption>
+            <img src="./assets/reader-art.webp" width="1080" height="1920" alt="Skald reader open to The Cyclops, with J. M. W. Turner's painting Ulysses deriding Polyphemus shown beside the text." fetchpriority="high">
+            <figcaption>Art opens where it enters the story.</figcaption>
           </figure>
-          <div class="stat-card stat-card-art">
-            <strong>157</strong>
-            <span>art images</span>
-          </div>
-          <div class="stat-card stat-card-moments">
-            <strong>265</strong>
-            <span>in-text placements</span>
-          </div>
+          <p class="margin-note margin-note-top" aria-hidden="true">All 24 books</p>
+          <p class="margin-note margin-note-bottom" aria-hidden="true">Read · compare · explore</p>
         </div>
       </section>
 
-      <section class="possibilities section section-narrow" id="possibilities" aria-labelledby="possibilities-title">
+      <section class="inside section section-narrow" id="inside" data-section="inside" aria-labelledby="inside-title">
         <div class="section-heading reveal">
-          <p class="eyebrow">Six ways in</p>
-          <h2 id="possibilities-title">The poem stays the same.<br><em>What you can do with it changes.</em></h2>
+          <p class="eyebrow">The complete Odyssey, built for exploration</p>
+          <h2 id="inside-title">Keep the poem whole.<br><em>Choose your way in.</em></h2>
         </div>
 
-        <ol class="possibility-grid">
-          <li class="possibility-card reveal">
+        <ul class="proof-strip reveal" aria-label="What is included in Skald">
+          <li><strong>24</strong><span>books</span></li>
+          <li><strong>3</strong><span>telling depths</span></li>
+          <li><strong>9</strong><span>historical translations</span></li>
+          <li><strong>1</strong><span>original Greek text</span></li>
+        </ul>
+
+        <div class="feature-grid">
+          <article class="feature-card reveal">
             <span class="card-number">01</span>
             <h3>Read</h3>
-            <p>The complete journey across all 24 books.</p>
-          </li>
-          <li class="possibility-card reveal">
+            <p>Move through the complete journey, from Athena’s first intervention to the long-awaited homecoming.</p>
+          </article>
+          <article class="feature-card reveal">
             <span class="card-number">02</span>
-            <h3>Catch up</h3>
-            <p>Get the shape of a book in one minute; add detail at five or twenty.</p>
-          </li>
-          <li class="possibility-card reveal">
-            <span class="card-number">03</span>
             <h3>Compare</h3>
-            <p>Keep the Greek beside a retelling or historical translation and switch without losing your place.</p>
-          </li>
-          <li class="possibility-card reveal">
+            <p>Set the original Greek beside a short telling or historical translation and switch without losing your place.</p>
+          </article>
+          <article class="feature-card reveal">
+            <span class="card-number">03</span>
+            <h3>Follow</h3>
+            <p>Trace the voyage, keep track of the fleet, and use the glossary when a person, place, or idea needs context.</p>
+          </article>
+          <article class="feature-card reveal">
             <span class="card-number">04</span>
-            <h3>Explore</h3>
-            <p>Open art where it enters the poem and follow its provenance.</p>
-          </li>
-          <li class="possibility-card reveal">
-            <span class="card-number">05</span>
-            <h3>Share</h3>
-            <p>Open the share sheet with an art image, its story context, and a catalog link when available.</p>
-          </li>
-          <li class="possibility-card reveal">
-            <span class="card-number">06</span>
-            <h3>Visit</h3>
-            <p>Browse 152 catalogued works across 47 institutions and plan what to see.</p>
-          </li>
-        </ol>
+            <h3>Look closer</h3>
+            <p>Open public-domain museum art where it meets the poem, with the work’s credit and source kept close.</p>
+          </article>
+        </div>
       </section>
 
       <div class="thread-stage">
         <div class="thread-line" aria-hidden="true"><span data-thread-progress></span></div>
 
-        <section class="comparison section" id="compare" data-section="compare" aria-labelledby="comparison-title">
-          <div class="comparison-intro reveal">
-            <p class="eyebrow">Books we admire</p>
-            <h2 id="comparison-title">What a book fixes.<br><em>What Skald keeps open.</em></h2>
-            <p>A beautiful edition is worth owning. Skald serves a different role: it keeps the text, Greek, art, maps, and museum trail connected while you read.</p>
+        <section class="depth-section section" id="depth" data-section="inside" aria-labelledby="depth-title">
+          <div class="depth-intro reveal">
+            <p class="eyebrow">Choose how deeply to read</p>
+            <h2 id="depth-title">The moment changes.<br><em>The source stays underneath.</em></h2>
+            <p>Start with the shape of a book, settle into its scenes, or take the longer way through. Each telling depth stays grounded in the same edition-locked source rather than becoming a different story.</p>
           </div>
-
-          <div class="book-grid">
-            <article class="book-card reveal">
-              <p class="catalog-label">Illustrated edition</p>
-              <h3>Folio Society<br><em>Emily Wilson</em></h3>
-              <dl>
-                <div><dt>Translation</dt><dd>1</dd></div>
-                <div><dt>Illustrations</dt><dd>8</dd></div>
-                <div><dt>Colored maps</dt><dd>8</dd></div>
-              </dl>
-              <a href="https://www.foliosociety.com/usa/odys-the-odyssey" target="_blank" rel="noreferrer">Official edition <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
-            </article>
-
-            <article class="book-card reveal">
-              <p class="catalog-label">Facing-page edition</p>
-              <h3>Loeb Classical<br><em>Library</em></h3>
-              <dl>
-                <div><dt>Volumes</dt><dd>2</dd></div>
-                <div><dt>Original Greek</dt><dd>Yes</dd></div>
-                <div><dt>English editions beside it</dt><dd>1</dd></div>
-              </dl>
-              <p class="source-links"><a href="https://www.hup.harvard.edu/books/9780674995611" target="_blank" rel="noreferrer">Vol. I<span class="sr-only"> (opens in a new tab)</span></a> <span aria-hidden="true">·</span> <a href="https://www.hup.harvard.edu/books/9780674995628" target="_blank" rel="noreferrer">Vol. II <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></p>
-            </article>
-
-            <article class="book-card reveal">
-              <p class="catalog-label">Graphic reinterpretation</p>
-              <h3>Gareth Hinds<br><em>Graphic Novel</em></h3>
-              <dl>
-                <div><dt>Pages</dt><dd>256</dd></div>
-                <div><dt>Visual interpretations</dt><dd>1</dd></div>
-                <div><dt>Format</dt><dd>Graphic</dd></div>
-              </dl>
-              <a href="https://www.candlewick.com/9781536254525/the-odyssey-a-graphic-novel-deluxe-edition/" target="_blank" rel="noreferrer">Official edition <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
-            </article>
-          </div>
-
-          <article class="skald-comparison reveal">
-            <div>
-              <p class="catalog-label">Connected, on-device edition</p>
-              <h3>Skald: <em>Odyssey</em></h3>
-            </div>
-            <ul>
-              <li><strong>9</strong> historical translations</li>
-              <li><strong>3</strong> retelling lengths</li>
-              <li><strong>157</strong> art images</li>
-              <li><strong>152</strong> catalogued works</li>
-              <li><strong>1</strong> Greek dictionary</li>
-            </ul>
-          </article>
-
-          <blockquote class="comparison-conclusion reveal">
-            <p>A printed edition makes its choices once. Skald lets you switch, align, highlight, map, open, and share—without leaving your place.</p>
-          </blockquote>
+          <ol class="depth-grid">
+            <li class="depth-card reveal">
+              <span class="depth-time">1</span>
+              <div><h3>Find your place</h3><p>The central movement of a book, ready when you need to return quickly.</p></div>
+            </li>
+            <li class="depth-card reveal">
+              <span class="depth-time">5</span>
+              <div><h3>Follow the scenes</h3><p>More turns, people, and consequences while keeping the path clear.</p></div>
+            </li>
+            <li class="depth-card reveal">
+              <span class="depth-time">20</span>
+              <div><h3>Take the long way</h3><p>A fuller source-grounded telling made for a sustained reading session.</p></div>
+            </li>
+          </ol>
+          <p class="fine-print reveal">The labels describe telling depth and are not guarantees of an exact reading time.</p>
         </section>
 
-        <section class="proof proof-greek section" id="greek" data-section="compare" aria-labelledby="greek-title">
+        <section class="proof proof-greek section" id="translations" data-section="translations" aria-labelledby="translations-title">
           <div class="proof-copy reveal">
-            <p class="eyebrow">Beyond fixed facing pages</p>
-            <h2 id="greek-title">Greek beside the reading <em>you chose.</em></h2>
-            <p>A printed Greek-English edition can pair the Greek with one English translation. In Greek view, Skald lets you change between a retelling and any of nine historical editions while the panes track the corresponding passage.</p>
-            <p>Tap a passage in a full translation to highlight its mapped Greek lines, or tap a Greek word for the on-device dictionary.</p>
+            <p class="eyebrow">The Greek, and nine historical ways forward</p>
+            <h2 id="translations-title">Read beside the original.<br><em>Change the voice.</em></h2>
+            <p>Keep the original Greek beside the reading you chose. Move among six English translations and historical editions in Spanish, French, and German while the corresponding passage stays aligned.</p>
+            <p>Tap a passage to find its Greek lines, or tap a Greek word for the on-device glossary.</p>
           </div>
 
           <figure class="landscape-shot reveal reveal-delay">
             <div class="shot-mount">
-              <img src="./assets/greek-split.webp" width="1920" height="1080" loading="lazy" alt="Skald split reader with an English retelling aligned beside the original Greek text.">
-              <ul class="proof-list shot-stats">
-                <li><span>9</span> complete historical translations</li>
-                <li><span>4</span> languages</li>
-                <li><span>12,107</span> Greek lines</li>
-              </ul>
+              <img src="./assets/greek-split.webp" width="1920" height="1080" loading="lazy" alt="Skald split reader with an English telling aligned beside the original Greek text.">
             </div>
             <figcaption>Scroll either pane. The other follows.</figcaption>
           </figure>
         </section>
 
-        <section class="offline section" id="offline" data-section="offline" aria-labelledby="offline-title">
-          <div class="offline-ticket reveal">
-            <div class="offline-main">
-              <p class="eyebrow">Ready for airplane mode</p>
-              <h2 id="offline-title">Books travel well.<br><em>Skald does too.</em></h2>
-              <p>All 24 books, three retelling lengths, nine historical translations, the original Greek and dictionary, art, maps, museum guide, and your saved place are installed with Skald.</p>
-              <p class="offline-emphasis">From takeoff to landing, no connection is needed to read or explore.</p>
-            </div>
-            <div class="offline-stub">
-              <span class="plane-mark" aria-hidden="true">✈</span>
-              <strong>No signal<br>required</strong>
-              <span>to read</span>
-            </div>
+        <section class="proof proof-journey section" id="journey" data-section="journey" aria-labelledby="journey-title">
+          <div class="proof-copy reveal">
+            <p class="eyebrow">Follow the journey</p>
+            <h2 id="journey-title">A voyage you can trace.<br><em>A fleet you can remember.</em></h2>
+            <p>The map connects places to episodes. The fleet helps names, ships, and losses remain legible across the long journey. The glossary keeps people, places, and terms within reach.</p>
+            <p>These are reading tools, not distractions: open one when you need it, then return to the same place in the poem.</p>
           </div>
-          <p class="offline-note reveal">Opening external catalog or reference pages—or completing a share through an online service—requires connectivity. Disclosed analytics and diagnostics transmit when connectivity is available, but never gate reading.</p>
+          <figure class="landscape-shot journey-shot reveal reveal-delay">
+            <div class="shot-mount">
+              <img src="./assets/nostos-route.webp" width="1600" height="1200" loading="lazy" alt="Skald voyage map tracing Odysseus's route from Troy across the Mediterranean and back to Ithaca.">
+            </div>
+            <figcaption>Trace the long route toward home without leaving the reader.</figcaption>
+          </figure>
         </section>
 
-        <section class="proof proof-museum section" id="museums" data-section="museums" aria-labelledby="museum-title">
+        <section class="proof proof-museum section" id="art" data-section="journey" aria-labelledby="art-title">
           <div class="proof-copy reveal">
-            <p class="eyebrow">See it in real life</p>
-            <h2 id="museum-title">Read the scene.<br><em>Then stand before it.</em></h2>
-            <p>Browse works shaped by the <em>Odyssey</em>, see where they are held, and use the in-app snapshot to plan what might be on view.</p>
-            <p>When connected, check the linked institution or reference page before visiting—or share an art card onward.</p>
-            <p class="snapshot-note">26 marked on view in the July 2026 snapshot.</p>
+            <p class="eyebrow">See the Odyssey through museum art</p>
+            <h2 id="art-title">Read the scene.<br><em>Then look closer.</em></h2>
+            <p>Public-domain works appear beside the moments that shaped them. Open a work for its title, artist, date, holding institution, and source.</p>
+            <p>Museum availability changes, so Skald links outward when connected and asks you to confirm with the institution before planning a visit.</p>
           </div>
 
           <figure class="landscape-shot landscape-shot-museum reveal reveal-delay">
             <div class="shot-mount">
-              <img src="./assets/museum-guide.webp" width="1920" height="1080" loading="lazy" alt="Skald museum guide listing Odyssey-related artworks, their museums, cities, and on-view status.">
-              <ul class="proof-list shot-stats">
-                <li><span>152</span> catalogued works</li>
-                <li><span>47</span> institutions</li>
-                <li><span>38</span> cities</li>
-              </ul>
+              <img src="./assets/museum-guide.webp" width="1920" height="1080" loading="lazy" alt="Skald museum guide showing Odyssey-related artworks with their museums and cities.">
             </div>
-            <figcaption>A museum trail, carried beside the text.</figcaption>
+            <figcaption>A museum trail carried beside the text.</figcaption>
           </figure>
+        </section>
+
+        <section class="offline section" id="offline" data-section="inside" aria-labelledby="offline-title">
+          <div class="offline-ticket reveal">
+            <div class="offline-main">
+              <p class="eyebrow">Keep reading offline</p>
+              <h2 id="offline-title">Books travel well.<br><em>Skald does too.</em></h2>
+              <p>The reading library—including all 24 books, three telling depths, nine historical translations, the original Greek, glossary, maps, and bundled art—lives on your device.</p>
+              <p class="offline-emphasis">Read, compare, and find your place without a connection.</p>
+            </div>
+            <div class="offline-stub">
+              <span class="plane-mark" aria-hidden="true">✦</span>
+              <strong>Reading<br>stays ready</strong>
+              <span>offline</span>
+            </div>
+          </div>
+          <p class="offline-note reveal">Opening external museum, catalog, or reference pages—and completing a share through an online service—requires connectivity. Disclosed analytics and diagnostics send when a connection is available but never gate reading.</p>
         </section>
       </div>
 
-      <aside class="edition-note section section-narrow reveal" aria-labelledby="edition-note-title">
-        <p class="eyebrow">An honest edition</p>
-        <h2 id="edition-note-title">What is in Skald—and what is not.</h2>
+      <section class="edition-note section section-narrow reveal" id="edition" aria-labelledby="edition-title">
+        <p class="eyebrow">Why there is no single fixed edition</p>
+        <h2 id="edition-title">A printed edition makes its choices once.</h2>
+        <blockquote>
+          <p>Skald lets you switch, align, highlight, map, open, and share—without losing your place.</p>
+        </blockquote>
         <div class="edition-note-grid">
-          <p>Skald includes nine historical translations dated 1616–1919, not modern licensed translations. The modern editions above are comparisons only.</p>
-          <p>Historical artworks retain their credits; generated scene studies are labeled. Museum availability is a dated snapshot; check the linked institution or reference page before visiting.</p>
-          <p>Your exact reading place and preferences stay on your device. Required analytics and diagnostics are explained in the privacy policy.</p>
+          <div><h3>Historical, not newly licensed</h3><p>Skald includes nine historical public-domain translations, not modern licensed translations.</p></div>
+          <div><h3>Source-grounded</h3><p>Each telling is tied to a documented source span rather than blended from unrelated editions.</p></div>
+          <div><h3>Independent</h3><p>Skald is independently published and is not affiliated with a film studio, publisher, museum, or modern translator.</p></div>
         </div>
-      </aside>
+        <p class="audience-note">Made for curious adults and general readers. A parent or caregiver can also use Skald for shared reading; it is not a child-directed app. Initial availability is planned for the United States, Canada, Australia, and New Zealand.</p>
+      </section>
+
+      <section class="waitlist-section" id="waitlist" data-section="waitlist" aria-labelledby="waitlist-title">
+        <div class="waitlist-inner">
+          <div class="waitlist-copy reveal">
+            <p class="eyebrow">Hear when Skald launches</p>
+            <h2 id="waitlist-title">Join the voyage.</h2>
+            <p>Choose Android, iPhone, or iPad and we’ll send occasional launch and platform-availability updates—nothing else.</p>
+            <ul class="waitlist-promises">
+              <li>No account required</li>
+              <li>At most one update per month, plus your platform’s availability notice</li>
+              <li>Unsubscribe at any time</li>
+            </ul>
+            <p class="privacy-note">Your waitlist response is separate from the Skald app. Read the <a href="./waitlist-privacy/">Waitlist Privacy Notice</a>.</p>
+          </div>
+          <div class="form-mount reveal reveal-delay" data-waitlist-container>
+            <div class="form-placeholder" data-waitlist-placeholder>
+              <p class="form-kicker">Launch updates</p>
+              <h3>The signup form is being prepared.</h3>
+              <p>It will open here before the page is published.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq section section-narrow" id="faq" data-section="faq" aria-labelledby="faq-title">
+        <div class="faq-heading reveal">
+          <p class="eyebrow">Questions before you set sail</p>
+          <h2 id="faq-title">A few clear answers.</h2>
+        </div>
+        <div class="faq-list reveal">
+          <details>
+            <summary>Is the whole <em>Odyssey</em> included?</summary>
+            <p>Yes. Skald includes all 24 books, not a sampler or a selection of famous episodes.</p>
+          </details>
+          <details>
+            <summary>What do the 1-, 5-, and 20-minute labels mean?</summary>
+            <p>They mark three levels of telling depth: a quick return to the shape of a book, a fuller sequence of scenes, and a sustained source-grounded telling. They are not exact reading-time guarantees.</p>
+          </details>
+          <details>
+            <summary>Which translations are included?</summary>
+            <p>Nine historical public-domain translations: six in English and one each in Spanish, French, and German. Skald does not include modern licensed translations.</p>
+          </details>
+          <details>
+            <summary>Can I read the original Greek?</summary>
+            <p>Yes. You can place the Greek beside a telling or translation, follow corresponding passages, and open the on-device Greek glossary.</p>
+          </details>
+          <details>
+            <summary>Does Skald work offline?</summary>
+            <p>The bundled reading library and reading tools work offline. External catalog and reference pages, online sharing services, analytics, and diagnostics need a connection.</p>
+          </details>
+          <details>
+            <summary>Is this a subscription?</summary>
+            <p>No. Skald is planned as a one-time purchase with no subscription, advertising, app account, or in-app purchases.</p>
+          </details>
+          <details>
+            <summary>When and where will Skald be available?</summary>
+            <p data-availability-faq>Android, iPhone, and iPad are currently under store review. Initial availability is planned for the United States, Canada, Australia, and New Zealand.</p>
+          </details>
+          <details>
+            <summary>What will the waitlist email me?</summary>
+            <p>Only occasional Skald launch, platform-availability, and major product news. You can unsubscribe whenever you like.</p>
+          </details>
+          <details>
+            <summary>Who publishes Skald?</summary>
+            <p>MannaMila LLC publishes Skald independently. It is not affiliated with a film studio, publisher, museum, or modern translator.</p>
+          </details>
+        </div>
+      </section>
 
       <section class="final-cta" aria-labelledby="final-cta-title">
         <div class="final-cta-inner reveal">
-          <p class="eyebrow">Skald: Odyssey for Android</p>
+          <p class="eyebrow" data-availability-kicker>Coming to Android, iPhone, and iPad</p>
           <h2 id="final-cta-title">Carry the long way home.</h2>
-          <p>Nine translations. Three reading lengths. Art, Greek, maps, and museums. One device.</p>
-          <a class="button button-light" href="mailto:support@mannamila.com?subject=Skald%3A%20Odyssey%20Android%20beta">Join the Android beta</a>
-          <p class="microcopy microcopy-light">$9.99 one time at launch <span aria-hidden="true">·</span> No subscription</p>
+          <p>All 24 books. Three telling depths. Greek, historical translations, maps, art, and museums.</p>
+          <a class="button button-light" data-waitlist-link href="#waitlist">Join the launch waitlist</a>
+          <p class="microcopy microcopy-light">One-time purchase <span aria-hidden="true">·</span> No subscription, ads, app account, or in-app purchases</p>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
       <div>
-        <a class="footer-brand" href="../">MannaMila</a>
+        <a class="footer-brand" href="https://www.mannamila.com/">MannaMila</a>
         <span>Playful, practical software.</span>
       </div>
       <nav aria-label="Footer">
-        <a href="./privacy/">Privacy</a>
-        <a href="mailto:support@mannamila.com">Support</a>
+        <a href="./privacy/">App privacy</a>
+        <a href="./waitlist-privacy/">Waitlist privacy</a>
+        <a href="./support/">Support</a>
         <a href="#main-content">Back to top ↑</a>
       </nav>
     </footer>
