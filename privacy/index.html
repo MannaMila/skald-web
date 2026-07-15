@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Privacy policy for Skald: Odyssey, an Odyssey reader app by MannaMila LLC">
-    <link rel="canonical" href="https://www.mannamila.com/skald/privacy">
+    <link rel="canonical" href="https://skald.mannamila.com/privacy/">
     <title>Skald: Odyssey — Privacy Policy | MannaMila LLC</title>
     <style>
       :root {
@@ -93,6 +93,13 @@
         border: 1px solid rgba(217, 184, 111, 0.22);
         border-radius: 4px;
       }
+      nav.back-links {
+        margin-top: 2.6rem;
+        padding-top: 1.4rem;
+        border-top: 1px solid var(--line);
+        font-size: 0.92rem;
+      }
+      nav.back-links a { margin-right: 1.5rem; }
     </style>
   </head>
   <body>
@@ -101,8 +108,8 @@
     <h1>Skald: Odyssey — Privacy Policy</h1>
     <p class="meta">
       <strong>Effective date:</strong> 2026-07-09<br>
-      <strong>Last updated:</strong> 2026-07-13<br>
-      <strong>Canonical URL:</strong> <a href="https://www.mannamila.com/skald/privacy">https://www.mannamila.com/skald/privacy</a>
+      <strong>Last updated:</strong> 2026-07-14<br>
+      <strong>Canonical URL:</strong> <a href="https://skald.mannamila.com/privacy/">https://skald.mannamila.com/privacy/</a>
     </p>
 
     <h2>Who we are</h2>
@@ -112,26 +119,30 @@
     <h2>The short version</h2>
     <ul>
       <li><strong>No accounts or sign-in.</strong> You do not give us your name, email address, or other contact information to use Skald: Odyssey.</li>
-      <li><strong>Skald: Odyssey stores your saved place and reading preferences locally.</strong> We have no server that syncs the app's local state. Separately, the product events described below report the work, chapter, tier, and coarse progress milestones.</li>
-      <li><strong>We use required product analytics (Amplitude) and crash diagnostics (Sentry).</strong> These are active in the published app and disclosed here and in the app's About &amp; Privacy screen; on iOS, collection begins after you acknowledge the first-run data notice. Collection includes pseudonymous app-interaction events, a random install identifier, and technical crash/diagnostic data. It does <strong>not</strong> include your name, contacts, precise GPS location, or story passages as free text.</li>
+      <li><strong>Skald: Odyssey stores your saved place and reading preferences locally.</strong> We have no server that syncs the app's local state. Platform-level encrypted backup or device-transfer features may preserve that local state as described below. Separately, the product events described below report the work, chapter, tier, and coarse progress milestones.</li>
+      <li><strong>We use required product analytics (Amplitude) and crash diagnostics (Sentry).</strong> These are active in the published app and disclosed here and in the app's About &amp; Privacy screen. On Android, collection begins when the app starts; on iPhone and iPad, collection begins after you acknowledge the first-run data notice. Collection includes pseudonymous app-interaction events, a random install identifier, and technical crash/diagnostic data. It does <strong>not</strong> include your name, contacts, precise GPS location, or story passages as free text.</li>
       <li><strong>We do not show ads, sell your data, or track you across other apps or the web.</strong></li>
       <li>Analytics and diagnostics are part of the published app and do not have an in-app opt-out. See <a href="#your-choices">Your choices</a>.</li>
     </ul>
 
+    <h2>The launch and availability list is separate</h2>
+    <p>This policy covers the Skald app on Android, iPhone, and iPad. If you choose to join the website's optional launch and platform-availability list, that response is separate from the app and is covered by the <a href="../waitlist-privacy/">Waitlist Privacy Notice</a>. Joining the list does not create a Skald account or connect an email address to app reading activity.</p>
+
     <h2>What we collect</h2>
 
     <h3>Local resume state and settings</h3>
-    <p>Skald: Odyssey stores your exact saved place in a story and current reading settings (such as the selected story length/tier, translation, and reading options) in standard private Android app storage. The app does not sync or back up this local state: <code>allowBackup=false</code> is reinforced by explicit exclusions for every cloud-backup and device-transfer domain. Separately, the telemetry below can report some reading choices and coarse progress milestones, but not the exact local resume position or the local state file. Uninstalling the app removes the local state.</p>
+    <p>Skald: Odyssey stores your exact saved place in a story and current reading settings (such as the selected story length/tier, translation, and reading options) in the app's private on-device storage. The app has no account, server, or app-operated cloud sync for this state. Android explicitly disables cloud backup and device transfer for it. On iPhone and iPad, Apple's encrypted device or iCloud backup and device-transfer features may preserve app-container data according to your Apple settings. Separately, the telemetry below can report some reading choices and coarse progress milestones, but not the exact local resume position or the local state file. Clearing Android app data or uninstalling the app removes the active local copy; restoring a platform backup may restore a backed-up copy.</p>
 
     <h3>Required product-analytics events (Amplitude)</h3>
     <p>To understand which features are useful and where the experience can improve, the app sends <strong>product-analytics events</strong> to <strong>Amplitude</strong>, a third-party analytics processor. These events describe <strong>actions and app state</strong>, for example: opening the app or the library, selecting a book or chapter, starting or completing a story, switching story length (tier) or translation, and opening in-story helpers (such as glossary or image popovers).</p>
     <p>The events are designed to be non-identifying. They contain things like the work/episode being read, the selected tier, coarse progress <strong>buckets</strong> (e.g. "20–29%"), and a <strong>pseudonymous</strong> install marker — not your name and not the passages you read as free text.</p>
-    <p>Along with these events, Amplitude receives a random <strong>install-level identifier</strong> used to link events from the same installation and understand usage over time (for example, whether a feature is used more than once on that installation). We use this only for product analytics. The identifier is generated by Skald: Odyssey, is not an Android advertising ID, and changes when the app is uninstalled and installed again.</p>
-    <p>Amplitude may also receive the network IP address used to deliver the request and may use it to infer an approximate region. Skald: Odyssey does not request Android location permission, collect GPS coordinates, or send precise location.</p>
+    <p>Along with these events, Amplitude receives a random <strong>install-level identifier</strong> used to link events from the same installation and understand usage over time (for example, whether a feature is used more than once on that installation). We use this only for product analytics. The identifier is generated by Skald: Odyssey, is neither an Android advertising ID nor Apple's Identifier for Advertisers (IDFA), and normally changes when the app is uninstalled and installed again. Restoring app data from a platform backup may restore the prior identifier.</p>
+    <p>Amplitude may also receive the network IP address used to deliver the request and may use it to infer an approximate region. Skald: Odyssey does not request Android location permission or use Apple's Core Location APIs, collect GPS coordinates, or send precise location.</p>
     <p><strong>Purpose:</strong> to measure feature usage and improve the app. <strong>We do not use this data for advertising, and we do not sell or rent it.</strong></p>
 
     <h3>Required crash and diagnostic data (Sentry)</h3>
     <p>The published app uses <strong>Sentry</strong> for crash reports and technical diagnostic data, such as an error, stack trace, app version, and device/OS characteristics. This helps us find and fix failures. Skald: Odyssey clears user/request fields and does not intentionally attach story passages, contact information, or a user account. Each event carries the same pseudonymous Analytics ID used by Amplitude in a searchable <code>skald_install_id</code> tag solely so we can locate both processors' records when you request deletion. Sentry data is not used for advertising and is not sold.</p>
+    <p>On Apple's App Privacy label, the pseudonymous install identifier, product interaction, approximate region inferred by the processor, and crash/diagnostic records are declared as <strong>linked to the device or installation</strong> because the same random Analytics ID can associate those records. They are not linked to a name or app account, and they are not used for cross-app tracking.</p>
 
     <h2>What we do NOT collect</h2>
     <p>We do <strong>not</strong> collect any of the following:</p>
@@ -164,8 +175,8 @@
     <h2>Data security and encryption</h2>
     <ul>
       <li>Analytics and crash data are sent over <strong>encrypted HTTPS connections</strong> to Amplitude and Sentry. The app does not permit cleartext (unencrypted) network traffic.</li>
-      <li>On-device reading progress and preferences are stored in the app's private storage and are <strong>not</strong> copied off the device.</li>
-      <li>The app requests no location, camera, microphone, contacts, storage, or advertising-ID permissions. Its only Android platform permission that grants an external capability is <strong>INTERNET</strong>; Android tooling also adds a self-scoped signature permission used only to keep dynamic receivers non-exported.</li>
+      <li>On-device reading progress and preferences are stored in the app's private storage and are not sent to MannaMila. Platform-level encrypted backup or device-transfer features may preserve them as described above.</li>
+      <li>The app requests no location, camera, microphone, contacts, photos, storage, tracking, or advertising-ID access. Android grants only <strong>INTERNET</strong> as an external capability; Android tooling also adds a self-scoped signature permission used only to keep dynamic receivers non-exported. The iOS app declares no location, camera, microphone, contacts, photos, or tracking entitlement or usage description.</li>
     </ul>
 
     <h2>Data retention</h2>
@@ -178,7 +189,7 @@
 
     <h2 id="your-choices">Your choices</h2>
     <ul>
-      <li><strong>On-device data:</strong> clear the app's storage in Android Settings, or uninstall Skald: Odyssey, to remove all locally stored progress and preferences.</li>
+      <li><strong>On-device data:</strong> on Android, clear the app's storage in Settings or uninstall it. On iPhone or iPad, uninstall Skald: Odyssey. A later platform backup restore may restore a backed-up copy unless you also remove that backup through the platform's backup controls.</li>
       <li><strong>Analytics and diagnostics:</strong> these are required parts of the published app and there is no in-app opt-out. The About &amp; Privacy screen shows a copyable <strong>Analytics ID</strong>. Email that ID to <strong>privacy@mannamila.com</strong> to request deletion of the associated Amplitude analytics and Sentry diagnostic records. We cannot locate the data by your name because Skald: Odyssey does not send your name.</li>
     </ul>
 
@@ -192,7 +203,13 @@
     <p><strong>MannaMila LLC</strong></p>
     <p>Privacy and data requests: <strong>privacy@mannamila.com</strong><br>
     Product support: <strong>support@mannamila.com</strong></p>
-    <p>For a processor-data deletion request, include the Analytics ID shown in the app's About &amp; Privacy screen. For other questions, include the device platform (Android) and app version where relevant.</p>
+    <p>For a processor-data deletion request, include the Analytics ID shown in the app's About &amp; Privacy screen. For other questions, include the device platform (Android, iPhone, or iPad) and app version where relevant.</p>
+
+    <nav class="back-links" aria-label="Related pages">
+      <a href="../">&larr; Skald: Odyssey</a>
+      <a href="../waitlist-privacy/">Waitlist privacy</a>
+      <a href="../support/">Support</a>
+    </nav>
     </main>
   </body>
 </html>

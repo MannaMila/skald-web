@@ -4,11 +4,189 @@ if (supportsIntersectionObserver) {
   document.documentElement.classList.add("enhanced");
 }
 
-// When rendered inside a host page (e.g. the Google Sites embed at
-// mannamila.com/skald), drop the standalone header/chrome so it reads as one page.
 if (new URLSearchParams(window.location.search).has("embed")) {
   document.documentElement.classList.add("embed");
 }
+
+const REVIEW_AVAILABILITY = Object.freeze({
+  android: { state: "review", storeUrl: null },
+  ios: { state: "review", storeUrl: null },
+  lastVerifiedAt: null,
+});
+
+const platformRules = {
+  android: {
+    hostname: "play.google.com",
+    pathPrefix: "/store/apps/details",
+  },
+  ios: {
+    hostname: "apps.apple.com",
+    pathPrefix: "/",
+  },
+};
+
+const normalizePlatform = (platform, name) => {
+  if (!platform || platform.state !== "available") {
+    return REVIEW_AVAILABILITY[name];
+  }
+
+  try {
+    const url = new URL(platform.storeUrl);
+    const rules = platformRules[name];
+    const trusted =
+      url.protocol === "https:" &&
+      url.hostname === rules.hostname &&
+      url.pathname.startsWith(rules.pathPrefix);
+
+    return trusted
+      ? { state: "available", storeUrl: url.toString() }
+      : REVIEW_AVAILABILITY[name];
+  } catch {
+    return REVIEW_AVAILABILITY[name];
+  }
+};
+
+const normalizeAvailability = (value) => ({
+  android: normalizePlatform(value?.android, "android"),
+  ios: normalizePlatform(value?.ios, "ios"),
+  lastVerifiedAt: typeof value?.lastVerifiedAt === "string" ? value.lastVerifiedAt : null,
+});
+
+const availabilityCopy = (availability) => {
+  const androidAvailable = availability.android.state === "available";
+  const iosAvailable = availability.ios.state === "available";
+
+  if (androidAvailable && iosAvailable) {
+    return {
+      status: "Available now on Android, iPhone, and iPad.",
+      faq: "Skald is available on Android, iPhone, and iPad in the United States, Canada, Australia, and New Zealand.",
+      kicker: "Available on Android, iPhone, and iPad",
+      waitlist: "Get occasional Skald updates",
+    };
+  }
+
+  if (androidAvailable) {
+    return {
+      status: "Available now on Android. iPhone and iPad are coming soon.",
+      faq: "Skald is available on Android. iPhone and iPad are still under store review. Initial availability is in the United States, Canada, Australia, and New Zealand.",
+      kicker: "Available on Android · iPhone and iPad coming soon",
+      waitlist: "Get iPhone and iPad updates",
+    };
+  }
+
+  if (iosAvailable) {
+    return {
+      status: "Available now on iPhone and iPad. Android is coming soon.",
+      faq: "Skald is available on iPhone and iPad. Android is still under store review. Initial availability is in the United States, Canada, Australia, and New Zealand.",
+      kicker: "Available on iPhone and iPad · Android coming soon",
+      waitlist: "Get Android updates",
+    };
+  }
+
+  return {
+    status: "Coming soon to Android, iPhone, and iPad. Currently under store review.",
+    faq: "Android, iPhone, and iPad are currently under store review. Initial availability is planned for the United States, Canada, Australia, and New Zealand.",
+    kicker: "Coming to Android, iPhone, and iPad",
+    waitlist: "Join the launch waitlist",
+  };
+};
+
+const applyAvailability = (value) => {
+  const availability = normalizeAvailability(value);
+  const copy = availabilityCopy(availability);
+  const status = document.querySelector("[data-availability-copy]");
+  const faq = document.querySelector("[data-availability-faq]");
+  const kicker = document.querySelector("[data-availability-kicker]");
+  const storeLinks = document.querySelector("[data-store-links]");
+  const androidLink = document.querySelector('[data-store-link="android"]');
+  const iosLink = document.querySelector('[data-store-link="ios"]');
+
+  if (status) status.textContent = copy.status;
+  if (faq) faq.textContent = copy.faq;
+  if (kicker) kicker.textContent = copy.kicker;
+
+  document.querySelectorAll("[data-waitlist-link]").forEach((link) => {
+    link.textContent = copy.waitlist;
+  });
+
+  for (const [link, platform] of [
+    [androidLink, availability.android],
+    [iosLink, availability.ios],
+  ]) {
+    if (!link) continue;
+    const available = platform.state === "available";
+    link.hidden = !available;
+    if (available) link.href = platform.storeUrl;
+  }
+
+  if (storeLinks) {
+    storeLinks.hidden =
+      availability.android.state !== "available" && availability.ios.state !== "available";
+  }
+};
+
+const loadAvailability = () =>
+  fetch("./availability.json", { cache: "no-store" })
+    .then((response) => {
+      if (!response.ok) throw new Error("Availability configuration was not available.");
+      return response.json();
+    })
+    .then(applyAvailability)
+    .catch(() => applyAvailability(REVIEW_AVAILABILITY));
+
+const publicFormUrl = (value) => {
+  if (typeof value !== "string" || value.includes("REPLACE_WITH_PUBLIC_FORM_ID")) return null;
+
+  try {
+    const url = new URL(value);
+    if (url.protocol !== "https:" || url.hostname !== "docs.google.com") return null;
+    if (!url.pathname.startsWith("/forms/")) return null;
+    return url;
+  } catch {
+    return null;
+  }
+};
+
+const mountWaitlist = (config) => {
+  const mount = document.querySelector("[data-waitlist-container]");
+  const configuredUrl = publicFormUrl(config?.waitlistFormUrl);
+  if (!mount || !configuredUrl) return;
+
+  const externalUrl = new URL(configuredUrl);
+  externalUrl.searchParams.delete("embedded");
+
+  const embeddedUrl = new URL(configuredUrl);
+  embeddedUrl.searchParams.set("embedded", "true");
+
+  const frame = document.createElement("iframe");
+  frame.className = "form-frame";
+  frame.src = embeddedUrl.toString();
+  frame.title = "Join the Skald: Odyssey launch and availability updates list";
+  frame.loading = "lazy";
+  frame.referrerPolicy = "strict-origin-when-cross-origin";
+
+  const fallback = document.createElement("p");
+  fallback.className = "form-fallback";
+  fallback.append("If the form does not load, ");
+
+  const fallbackLink = document.createElement("a");
+  fallbackLink.href = externalUrl.toString();
+  fallbackLink.target = "_blank";
+  fallbackLink.rel = "noreferrer";
+  fallbackLink.textContent = "open it in a new tab";
+  fallback.append(fallbackLink, ".");
+
+  mount.replaceChildren(frame, fallback);
+};
+
+const loadWaitlist = () =>
+  fetch("./site-config.json", { cache: "no-store" })
+    .then((response) => {
+      if (!response.ok) throw new Error("Site configuration was not available.");
+      return response.json();
+    })
+    .then(mountWaitlist)
+    .catch(() => undefined);
 
 const header = document.querySelector("[data-header]");
 const threadStage = document.querySelector(".thread-stage");
@@ -69,7 +247,10 @@ if (supportsIntersectionObserver) {
 
       const sectionName = visible.target.dataset.section;
       navLinks.forEach((link, name) => {
-        link.classList.toggle("is-current", name === sectionName);
+        const current = name === sectionName;
+        link.classList.toggle("is-current", current);
+        if (current) link.setAttribute("aria-current", "true");
+        else link.removeAttribute("aria-current");
       });
     },
     { rootMargin: "-25% 0px -55%", threshold: [0.05, 0.2, 0.5] },
@@ -80,3 +261,5 @@ if (supportsIntersectionObserver) {
 
 window.addEventListener("resize", updateScrollDetails, { passive: true });
 updateScrollDetails();
+loadAvailability();
+loadWaitlist();

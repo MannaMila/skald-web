@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "MannaMila/mannamila-web",
+  "sourceCommit": "830d8923abd4990caad491601b170613aeb2119d",
+  "sourcePath": "skald",
+  "sourceTreeDirty": false,
+  "files": {
+    "app.js": "e9d5f3d31118692a11b3b6a83dfe4147c05baf40e40117e55328416c86f0112d",
+    "assets/greek-split.webp": "bbf03a048d50ac73d057881426c7dbb0646fa0e91b60d81c2d9179e3f62b8c2f",
+    "assets/museum-guide.webp": "1a865c5e2ee7a3eca7f53047115144b7c3dc87b28f4580d01760cff6e00ee4f4",
+    "assets/nostos-route.webp": "e46602750f8a9afbc87c78c3c5e2182a4a01fa5b04c7c5f7e57a48990debc167",
+    "assets/reader-art.webp": "90f22b1e2f61b4ca894ee3722a11575aacf4e600820f76736d8ccfb3e08ff239",
+    "assets/skald-odyssey-og.jpg": "f2cd22477c056d74c86ddd7b5ba17b7f33b067b320b53b72750c770a756d4dbe",
+    "availability.json": "390df9e0372944d4a464dc9646b92f49d78a983153ef3a0632ab2a9847d9d943",
+    "index.html": "3bb7101dd7699028a6b90d80c57bb5cb5986664ff5bc23eb650d504ceb34585e",
+    "privacy/index.html": "ebc1ead843b3749b2a500c665ecffc300c81731a8b2d032f00c03c8bda91486e",
+    "site-config.json": "5a3ce851a44c363234edb963780ddbb901bced8fd67ad54ada7114b2c6681162",
+    "styles.css": "614e9939c98ab60b504c194c24bd914b1cb35f813f2d69203029cf87771ae4af",
+    "support/index.html": "904e62bf394c41916cead379f23ca42d1e0b12502c1b1a3ed8ad21fe00af05de",
+    "waitlist-privacy/index.html": "cdd76d59f3f32402854ec4614361265af5a020a643d6abb49533655a98d31e6f"
+  }
+}
