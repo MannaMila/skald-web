@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sourceRepository": "MannaMila/mannamila-web",
-  "sourceCommit": "9ef226c0f3c805667cbe76a93283f14311087114",
+  "sourceCommit": "b13c0e4c550486eac84f442e37164aec3c7b98ae",
   "sourcePath": "skald",
   "sourceTreeDirty": false,
   "files": {
@@ -15,7 +15,7 @@
     "assets/skald-odyssey-og.jpg": "f2cd22477c056d74c86ddd7b5ba17b7f33b067b320b53b72750c770a756d4dbe",
     "availability.json": "59eb1f9f284b19c23d736439e3ba940ceb8a54a6e1211b40bf16b738b9a7c140",
     "index.html": "ba3cffd3820386cca67838af61132d623e55f98f7424f4d0e53d30a2fa248555",
-    "privacy/index.html": "33303f23f901526a2982f3b74f7d55d0824be237e7905250fc23a9a251151637",
+    "privacy/index.html": "c6843d8da6b39630e802795121f46105ebc47f46b3346cd85af9f857701f79d8",
     "site-config.json": "1ec7b518040819292a291f6e306e3957856c4c206f40f0b5a4b7f561c8b7badb",
     "styles.css": "b5d8cc0d229fa67115289bc139d6b5697f2ee474fa350dfcdcc2c97635e58122",
     "support/index.html": "56ada4f473c7b449a8e5a3864213984487231c2704fb236e8ac91b563d431b0d",
