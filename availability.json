@@ -1,11 +1,11 @@
 {
   "android": {
-    "state": "review",
-    "storeUrl": null
+    "state": "available",
+    "storeUrl": "https://play.google.com/store/apps/details?id=com.mannamila.skald"
   },
   "ios": {
-    "state": "review",
-    "storeUrl": null
+    "state": "available",
+    "storeUrl": "https://apps.apple.com/us/app/skald-odyssey/id6790579937"
   },
-  "lastVerifiedAt": "2026-07-15T15:38:48-04:00"
+  "lastVerifiedAt": "2026-07-22T23:51:30-04:00"
 }

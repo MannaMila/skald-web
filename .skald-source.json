@@ -1,22 +1,25 @@
 {
   "schemaVersion": 1,
   "sourceRepository": "MannaMila/mannamila-web",
-  "sourceCommit": "830d8923abd4990caad491601b170613aeb2119d",
+  "sourceCommit": "9ef226c0f3c805667cbe76a93283f14311087114",
   "sourcePath": "skald",
   "sourceTreeDirty": false,
   "files": {
-    "app.js": "e9d5f3d31118692a11b3b6a83dfe4147c05baf40e40117e55328416c86f0112d",
+    "app.js": "5c6417ff99868dc8826b9763a0c349c290b2207f7c706f832c80d45d6450aeb3",
+    "assets/app-store-badge.svg": "a26fc5b38380272c92e9019a2eb8b45542a66814b3e2b203772db8904b9fb99f",
+    "assets/google-play-badge.png": "f72611e2df8e88204009fd896d05d5e8e83c77009c63943bbffa169559934849",
     "assets/greek-split.webp": "bbf03a048d50ac73d057881426c7dbb0646fa0e91b60d81c2d9179e3f62b8c2f",
     "assets/museum-guide.webp": "1a865c5e2ee7a3eca7f53047115144b7c3dc87b28f4580d01760cff6e00ee4f4",
     "assets/nostos-route.webp": "e46602750f8a9afbc87c78c3c5e2182a4a01fa5b04c7c5f7e57a48990debc167",
     "assets/reader-art.webp": "90f22b1e2f61b4ca894ee3722a11575aacf4e600820f76736d8ccfb3e08ff239",
     "assets/skald-odyssey-og.jpg": "f2cd22477c056d74c86ddd7b5ba17b7f33b067b320b53b72750c770a756d4dbe",
-    "availability.json": "390df9e0372944d4a464dc9646b92f49d78a983153ef3a0632ab2a9847d9d943",
-    "index.html": "3bb7101dd7699028a6b90d80c57bb5cb5986664ff5bc23eb650d504ceb34585e",
-    "privacy/index.html": "ebc1ead843b3749b2a500c665ecffc300c81731a8b2d032f00c03c8bda91486e",
-    "site-config.json": "5a3ce851a44c363234edb963780ddbb901bced8fd67ad54ada7114b2c6681162",
-    "styles.css": "614e9939c98ab60b504c194c24bd914b1cb35f813f2d69203029cf87771ae4af",
-    "support/index.html": "904e62bf394c41916cead379f23ca42d1e0b12502c1b1a3ed8ad21fe00af05de",
-    "waitlist-privacy/index.html": "cdd76d59f3f32402854ec4614361265af5a020a643d6abb49533655a98d31e6f"
+    "availability.json": "59eb1f9f284b19c23d736439e3ba940ceb8a54a6e1211b40bf16b738b9a7c140",
+    "index.html": "ba3cffd3820386cca67838af61132d623e55f98f7424f4d0e53d30a2fa248555",
+    "privacy/index.html": "33303f23f901526a2982f3b74f7d55d0824be237e7905250fc23a9a251151637",
+    "site-config.json": "1ec7b518040819292a291f6e306e3957856c4c206f40f0b5a4b7f561c8b7badb",
+    "styles.css": "b5d8cc0d229fa67115289bc139d6b5697f2ee474fa350dfcdcc2c97635e58122",
+    "support/index.html": "56ada4f473c7b449a8e5a3864213984487231c2704fb236e8ac91b563d431b0d",
+    "updates-privacy/index.html": "b4363d3277c1789767a5434dd3e666d316aed4afb4b33b2fb8b58cc279ca7ac6",
+    "waitlist-privacy/index.html": "dadfb43e3840f4bfd739f8eacc323a1a2cf7ee66c6ef8c9066bed50c03ced139"
   }
 }

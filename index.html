@@ -11,7 +11,7 @@
     <meta property="og:locale" content="en_US">
     <meta property="og:site_name" content="Skald: Odyssey">
     <meta property="og:title" content="Skald: Odyssey — One Odyssey. A shelf of ways through.">
-    <meta property="og:description" content="All 24 books, three telling depths, the original Greek, nine historical translations, the voyage, and museum art. Built for Android, iPhone, and iPad. See current availability.">
+    <meta property="og:description" content="Launched July 22, 2026. Read all 24 books with three telling depths, the original Greek, nine historical translations, the voyage, and museum art. Available on Android, iPhone, and iPad.">
     <meta property="og:url" content="https://skald.mannamila.com/">
     <meta property="og:image" content="https://skald.mannamila.com/assets/skald-odyssey-og.jpg">
     <meta property="og:image:width" content="1200">
@@ -19,14 +19,14 @@
     <meta property="og:image:alt" content="Skald: Odyssey presented as a vellum reading edition with Greek text, historical art, and museum context.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Skald: Odyssey">
-    <meta name="twitter:description" content="One Odyssey. A shelf of ways through. Built for Android, iPhone, and iPad. See current availability.">
+    <meta name="twitter:description" content="Launched July 22, 2026. One Odyssey, a shelf of ways through—available on Android, iPhone, and iPad.">
     <meta name="twitter:image" content="https://skald.mannamila.com/assets/skald-odyssey-og.jpg">
     <meta name="twitter:image:alt" content="Skald: Odyssey presented as a vellum reading edition with Greek text, historical art, and museum context.">
     <title>Skald: Odyssey — One Odyssey. A Shelf of Ways Through.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./styles.css?v=20260722">
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -45,28 +45,32 @@
           <a href="#faq">Questions</a>
         </nav>
 
-        <a class="button button-small" data-waitlist-link href="#waitlist">Join the waitlist</a>
+        <a class="button button-small" href="#get-skald">Get the app</a>
       </div>
     </header>
 
     <main id="main-content">
       <section class="hero section" data-section="inside" aria-labelledby="hero-title">
         <div class="hero-copy reveal">
-          <p class="eyebrow">Skald Odyssey</p>
+          <p class="eyebrow"><time datetime="2026-07-22">Launched July 22, 2026</time></p>
           <h1 id="hero-title">One <em>Odyssey.</em><br>A shelf of ways through.</h1>
           <p class="hero-dek">Read all 24 books through source-grounded 1-, 5-, or 20-minute telling depths, explore the original Greek beside nine historical public-domain translations, and follow the journey through the map, fleet, glossary, and museum art.</p>
 
-          <div class="availability-card" data-availability-region aria-live="polite">
-            <p class="availability-copy" data-availability-copy>Coming soon to Android, iPhone, and iPad. Currently under store review.</p>
-            <div class="store-links" data-store-links hidden>
-              <a class="store-link" data-store-link="android" href="#waitlist" hidden>Get it on Google Play</a>
-              <a class="store-link" data-store-link="ios" href="#waitlist" hidden>Download on the App Store</a>
+          <div class="availability-card" id="get-skald" data-availability-region>
+            <p class="availability-copy" data-availability-copy>Available now on Android, iPhone, and iPad.</p>
+            <div class="store-links" data-store-links>
+              <a class="store-link store-link-apple" data-store-link="ios" href="https://apps.apple.com/us/app/skald-odyssey/id6790579937">
+                <img src="./assets/app-store-badge.svg" width="250" height="83" alt="Download on the App Store">
+              </a>
+              <a class="store-link store-link-google" data-store-link="android" href="https://play.google.com/store/apps/details?id=com.mannamila.skald">
+                <img src="./assets/google-play-badge.png" width="646" height="250" alt="Get it on Google Play">
+              </a>
             </div>
           </div>
 
           <div class="hero-actions">
-            <a class="button" data-waitlist-link href="#waitlist">Join the launch waitlist</a>
             <a class="text-link" href="#inside">See what’s inside <span aria-hidden="true">↓</span></a>
+            <a class="text-link" href="#updates">Get product updates <span aria-hidden="true">→</span></a>
           </div>
           <p class="microcopy"><strong>One-time purchase.</strong> No subscription, ads, app account, or in-app purchases.</p>
         </div>
@@ -221,27 +225,28 @@
           <div><h3>Source-grounded</h3><p>Each telling is tied to a documented source span rather than blended from unrelated editions.</p></div>
           <div><h3>Independent</h3><p>Skald is independently published and is not affiliated with a film studio, publisher, museum, or modern translator.</p></div>
         </div>
-        <p class="audience-note">Made for curious adults and general readers. A parent or caregiver can also use Skald for shared reading; it is not a child-directed app. Initial availability is planned for the United States, Canada, Australia, and New Zealand.</p>
+        <p class="audience-note">Made for curious adults and general readers. A parent or caregiver can also use Skald for shared reading; it is not a child-directed app. Available in the United States, Canada, Australia, and New Zealand.</p>
       </section>
 
-      <section class="waitlist-section" id="waitlist" data-section="waitlist" aria-labelledby="waitlist-title">
-        <div class="waitlist-inner">
-          <div class="waitlist-copy reveal">
-            <p class="eyebrow">Hear when Skald launches</p>
-            <h2 id="waitlist-title">Join the voyage.</h2>
-            <p>Choose Android, iPhone, or iPad and we’ll send occasional launch and platform-availability updates—nothing else.</p>
-            <ul class="waitlist-promises">
+      <section class="updates-section" id="updates" data-section="updates" aria-labelledby="updates-title">
+        <span class="legacy-anchor" id="waitlist" aria-hidden="true"></span>
+        <div class="updates-inner">
+          <div class="updates-copy reveal">
+            <p class="eyebrow">Product updates</p>
+            <h2 id="updates-title">Keep following the voyage.</h2>
+            <p>Get occasional news about meaningful Skald updates and platform availability—nothing else.</p>
+            <ul class="updates-promises">
               <li>No account required</li>
-              <li>At most one update per month, plus your platform’s availability notice</li>
+              <li>At most one email per month</li>
               <li>Unsubscribe at any time</li>
             </ul>
-            <p class="privacy-note">Your waitlist response is separate from the Skald app. Read the <a href="./waitlist-privacy/">Waitlist Privacy Notice</a>.</p>
+            <p class="privacy-note">Your product-updates signup is separate from the Skald app. Read the <a href="./updates-privacy/">Product Updates Privacy Notice</a>.</p>
           </div>
-          <div class="form-mount reveal reveal-delay" data-waitlist-container>
-            <div class="form-placeholder" data-waitlist-placeholder>
-              <p class="form-kicker">Launch updates</p>
-              <h3>The signup form is being prepared.</h3>
-              <p>It will open here before the page is published.</p>
+          <div class="form-mount reveal reveal-delay" data-updates-container>
+            <div class="form-placeholder" data-updates-placeholder>
+              <p class="form-kicker">Product updates</p>
+              <h3>Keep in touch with Skald.</h3>
+              <p><a class="button" href="https://docs.google.com/forms/d/e/1FAIpQLSen65qsvGdyF-93OtKCWQKFKzQTFzCdnw4M9Jvqhr2VdsSuMw/viewform">Open the product-updates form</a></p>
             </div>
           </div>
         </div>
@@ -275,15 +280,15 @@
           </details>
           <details>
             <summary>Is this a subscription?</summary>
-            <p>No. Skald is planned as a one-time purchase with no subscription, advertising, app account, or in-app purchases.</p>
+            <p>No. Skald is a one-time purchase with no subscription, advertising, app account, or in-app purchases.</p>
           </details>
           <details>
-            <summary>When and where will Skald be available?</summary>
-            <p data-availability-faq>Android, iPhone, and iPad are currently under store review. Initial availability is planned for the United States, Canada, Australia, and New Zealand.</p>
+            <summary>Where is Skald available?</summary>
+            <p data-availability-faq>Skald is available on Android, iPhone, and iPad in the United States, Canada, Australia, and New Zealand.</p>
           </details>
           <details>
-            <summary>What will the waitlist email me?</summary>
-            <p>Only occasional Skald launch, platform-availability, and major product news. You can unsubscribe whenever you like.</p>
+            <summary>What will product updates email me?</summary>
+            <p>Only occasional news about meaningful Skald updates and platform availability. You can unsubscribe whenever you like.</p>
           </details>
           <details>
             <summary>Who publishes Skald?</summary>
@@ -294,10 +299,18 @@
 
       <section class="final-cta" aria-labelledby="final-cta-title">
         <div class="final-cta-inner reveal">
-          <p class="eyebrow" data-availability-kicker>Coming to Android, iPhone, and iPad</p>
+          <p class="eyebrow" data-availability-kicker>Available on Android, iPhone, and iPad</p>
           <h2 id="final-cta-title">Carry the long way home.</h2>
           <p>All 24 books. Three telling depths. Greek, historical translations, maps, art, and museums.</p>
-          <a class="button button-light" data-waitlist-link href="#waitlist">Join the launch waitlist</a>
+          <div class="store-links store-links-final" data-store-links>
+            <a class="store-link store-link-apple" data-store-link="ios" href="https://apps.apple.com/us/app/skald-odyssey/id6790579937">
+              <img src="./assets/app-store-badge.svg" width="250" height="83" alt="Download on the App Store">
+            </a>
+            <a class="store-link store-link-google" data-store-link="android" href="https://play.google.com/store/apps/details?id=com.mannamila.skald">
+              <img src="./assets/google-play-badge.png" width="646" height="250" alt="Get it on Google Play">
+            </a>
+          </div>
+          <p class="final-updates-link"><a class="text-link text-link-light" href="#updates">Get product updates <span aria-hidden="true">→</span></a></p>
           <p class="microcopy microcopy-light">One-time purchase <span aria-hidden="true">·</span> No subscription, ads, app account, or in-app purchases</p>
         </div>
       </section>
@@ -310,12 +323,12 @@
       </div>
       <nav aria-label="Footer">
         <a href="./privacy/">App privacy</a>
-        <a href="./waitlist-privacy/">Waitlist privacy</a>
+        <a href="./updates-privacy/">Product updates privacy</a>
         <a href="./support/">Support</a>
         <a href="#main-content">Back to top ↑</a>
       </nav>
     </footer>
 
-    <script src="./app.js" defer></script>
+    <script src="./app.js?v=20260722" defer></script>
   </body>
 </html>
