@@ -48,6 +48,10 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+main {
+  overflow-x: clip;
+}
+
 body::before {
   content: "";
   position: fixed;
@@ -1043,6 +1047,15 @@ h3 {
   color: rgba(251, 243, 226, 0.52);
 }
 
+.text-link-light {
+  color: var(--paper-light);
+}
+
+.final-cta-inner > .final-updates-link {
+  margin: 24px auto 0;
+  font: inherit;
+}
+
 .site-footer {
   display: flex;
   align-items: center;
@@ -1520,23 +1533,42 @@ h3 {
 .store-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 13px;
+  align-items: center;
+  gap: 14px;
+  margin-top: 18px;
 }
 
 .store-link {
   display: inline-flex;
-  min-height: 40px;
+  min-height: 44px;
   align-items: center;
-  padding: 0 15px;
-  border: 1px solid var(--ink);
-  border-radius: 5px;
-  color: var(--paper-light);
-  background: var(--night);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  border-radius: 8px;
   text-decoration: none;
+  transition: transform 180ms ease, filter 180ms ease;
+}
+
+.store-link:hover {
+  filter: brightness(1.06);
+  transform: translateY(-2px);
+}
+
+.store-link img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+}
+
+.store-link-apple img {
+  height: 48px;
+}
+
+.store-link-google img {
+  height: 63px;
+}
+
+.store-links-final {
+  justify-content: center;
+  margin-top: 32px;
 }
 
 .store-link:focus-visible,
@@ -1846,7 +1878,7 @@ h3 {
   font-size: 0.76rem;
 }
 
-.waitlist-section {
+.updates-section {
   position: relative;
   overflow: hidden;
   color: var(--paper-light);
@@ -1855,8 +1887,8 @@ h3 {
     var(--night);
 }
 
-.waitlist-section::before {
-  content: "ΜΕΝΕΙΝ";
+.updates-section::before {
+  content: "ΝΕΑ";
   position: absolute;
   right: -0.03em;
   bottom: -0.17em;
@@ -1865,7 +1897,7 @@ h3 {
   pointer-events: none;
 }
 
-.waitlist-inner {
+.updates-inner {
   position: relative;
   z-index: 2;
   display: grid;
@@ -1876,21 +1908,21 @@ h3 {
   padding: clamp(92px, 12vw, 150px) 0;
 }
 
-.waitlist-copy .eyebrow {
+.updates-copy .eyebrow {
   color: var(--copper-pale);
 }
 
-.waitlist-copy h2 {
+.updates-copy h2 {
   font-size: clamp(3.7rem, 6vw, 6.4rem);
 }
 
-.waitlist-copy > p:not(.eyebrow, .privacy-note) {
+.updates-copy > p:not(.eyebrow, .privacy-note) {
   margin: 28px 0 0;
   color: rgba(251, 243, 226, 0.73);
   font: 500 1.18rem/1.6 var(--serif);
 }
 
-.waitlist-promises {
+.updates-promises {
   display: grid;
   gap: 10px;
   margin: 28px 0 0;
@@ -1900,12 +1932,12 @@ h3 {
   list-style: none;
 }
 
-.waitlist-promises li {
+.updates-promises li {
   position: relative;
   padding-left: 20px;
 }
 
-.waitlist-promises li::before {
+.updates-promises li::before {
   content: "✦";
   position: absolute;
   left: 0;
@@ -1921,6 +1953,11 @@ h3 {
 
 .privacy-note a {
   color: var(--paper-light);
+}
+
+.legacy-anchor {
+  position: absolute;
+  top: 0;
 }
 
 .form-mount {
@@ -2058,7 +2095,7 @@ h3 {
     width: min(900px, 100%);
   }
 
-  .waitlist-inner {
+  .updates-inner {
     grid-template-columns: 0.9fr 1.1fr;
   }
 }
@@ -2076,12 +2113,12 @@ h3 {
     border-bottom: 1px solid var(--line);
   }
 
-  .waitlist-inner,
+  .updates-inner,
   .faq {
     grid-template-columns: 1fr;
   }
 
-  .waitlist-copy {
+  .updates-copy {
     max-width: 680px;
   }
 
@@ -2095,9 +2132,17 @@ h3 {
     padding: 14px;
   }
 
-  .store-links,
-  .store-link {
+  .store-links {
     width: 100%;
+  }
+
+  .store-links {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .store-links-final {
+    align-items: center;
   }
 
   .margin-note {
@@ -2169,7 +2214,7 @@ h3 {
     padding-left: 16px;
   }
 
-  .waitlist-inner {
+  .updates-inner {
     width: calc(100% - 28px);
   }
 
@@ -2188,7 +2233,7 @@ h3 {
 }
 
 @media print {
-  .waitlist-section,
+  .updates-section,
   .store-links {
     display: none;
   }

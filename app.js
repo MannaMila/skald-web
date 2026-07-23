@@ -8,10 +8,16 @@ if (new URLSearchParams(window.location.search).has("embed")) {
   document.documentElement.classList.add("embed");
 }
 
-const REVIEW_AVAILABILITY = Object.freeze({
-  android: { state: "review", storeUrl: null },
-  ios: { state: "review", storeUrl: null },
-  lastVerifiedAt: null,
+const LAUNCHED_AVAILABILITY = Object.freeze({
+  android: {
+    state: "available",
+    storeUrl: "https://play.google.com/store/apps/details?id=com.mannamila.skald",
+  },
+  ios: {
+    state: "available",
+    storeUrl: "https://apps.apple.com/us/app/skald-odyssey/id6790579937",
+  },
+  lastVerifiedAt: "2026-07-22T00:00:00-04:00",
 });
 
 const platformRules = {
@@ -27,7 +33,7 @@ const platformRules = {
 
 const normalizePlatform = (platform, name) => {
   if (!platform || platform.state !== "available") {
-    return REVIEW_AVAILABILITY[name];
+    return LAUNCHED_AVAILABILITY[name];
   }
 
   try {
@@ -40,9 +46,9 @@ const normalizePlatform = (platform, name) => {
 
     return trusted
       ? { state: "available", storeUrl: url.toString() }
-      : REVIEW_AVAILABILITY[name];
+      : LAUNCHED_AVAILABILITY[name];
   } catch {
-    return REVIEW_AVAILABILITY[name];
+    return LAUNCHED_AVAILABILITY[name];
   }
 };
 
@@ -52,44 +58,11 @@ const normalizeAvailability = (value) => ({
   lastVerifiedAt: typeof value?.lastVerifiedAt === "string" ? value.lastVerifiedAt : null,
 });
 
-const availabilityCopy = (availability) => {
-  const androidAvailable = availability.android.state === "available";
-  const iosAvailable = availability.ios.state === "available";
-
-  if (androidAvailable && iosAvailable) {
-    return {
-      status: "Available now on Android, iPhone, and iPad.",
-      faq: "Skald is available on Android, iPhone, and iPad in the United States, Canada, Australia, and New Zealand.",
-      kicker: "Available on Android, iPhone, and iPad",
-      waitlist: "Get occasional Skald updates",
-    };
-  }
-
-  if (androidAvailable) {
-    return {
-      status: "Available now on Android. iPhone and iPad are coming soon.",
-      faq: "Skald is available on Android. iPhone and iPad are still under store review. Initial availability is in the United States, Canada, Australia, and New Zealand.",
-      kicker: "Available on Android · iPhone and iPad coming soon",
-      waitlist: "Get iPhone and iPad updates",
-    };
-  }
-
-  if (iosAvailable) {
-    return {
-      status: "Available now on iPhone and iPad. Android is coming soon.",
-      faq: "Skald is available on iPhone and iPad. Android is still under store review. Initial availability is in the United States, Canada, Australia, and New Zealand.",
-      kicker: "Available on iPhone and iPad · Android coming soon",
-      waitlist: "Get Android updates",
-    };
-  }
-
-  return {
-    status: "Coming soon to Android, iPhone, and iPad. Currently under store review.",
-    faq: "Android, iPhone, and iPad are currently under store review. Initial availability is planned for the United States, Canada, Australia, and New Zealand.",
-    kicker: "Coming to Android, iPhone, and iPad",
-    waitlist: "Join the launch waitlist",
-  };
-};
+const availabilityCopy = () => ({
+  status: "Available now on Android, iPhone, and iPad.",
+  faq: "Skald is available on Android, iPhone, and iPad in the United States, Canada, Australia, and New Zealand.",
+  kicker: "Available on Android, iPhone, and iPad",
+});
 
 const applyAvailability = (value) => {
   const availability = normalizeAvailability(value);
@@ -97,32 +70,17 @@ const applyAvailability = (value) => {
   const status = document.querySelector("[data-availability-copy]");
   const faq = document.querySelector("[data-availability-faq]");
   const kicker = document.querySelector("[data-availability-kicker]");
-  const storeLinks = document.querySelector("[data-store-links]");
-  const androidLink = document.querySelector('[data-store-link="android"]');
-  const iosLink = document.querySelector('[data-store-link="ios"]');
 
   if (status) status.textContent = copy.status;
   if (faq) faq.textContent = copy.faq;
   if (kicker) kicker.textContent = copy.kicker;
 
-  document.querySelectorAll("[data-waitlist-link]").forEach((link) => {
-    link.textContent = copy.waitlist;
+  document.querySelectorAll('[data-store-link="android"]').forEach((link) => {
+    link.href = availability.android.storeUrl;
   });
-
-  for (const [link, platform] of [
-    [androidLink, availability.android],
-    [iosLink, availability.ios],
-  ]) {
-    if (!link) continue;
-    const available = platform.state === "available";
-    link.hidden = !available;
-    if (available) link.href = platform.storeUrl;
-  }
-
-  if (storeLinks) {
-    storeLinks.hidden =
-      availability.android.state !== "available" && availability.ios.state !== "available";
-  }
+  document.querySelectorAll('[data-store-link="ios"]').forEach((link) => {
+    link.href = availability.ios.storeUrl;
+  });
 };
 
 const loadAvailability = () =>
@@ -132,7 +90,7 @@ const loadAvailability = () =>
       return response.json();
     })
     .then(applyAvailability)
-    .catch(() => applyAvailability(REVIEW_AVAILABILITY));
+    .catch(() => applyAvailability(LAUNCHED_AVAILABILITY));
 
 const publicFormUrl = (value) => {
   if (typeof value !== "string" || value.includes("REPLACE_WITH_PUBLIC_FORM_ID")) return null;
@@ -147,9 +105,9 @@ const publicFormUrl = (value) => {
   }
 };
 
-const mountWaitlist = (config) => {
-  const mount = document.querySelector("[data-waitlist-container]");
-  const configuredUrl = publicFormUrl(config?.waitlistFormUrl);
+const mountUpdates = (config) => {
+  const mount = document.querySelector("[data-updates-container]");
+  const configuredUrl = publicFormUrl(config?.updatesFormUrl);
   if (!mount || !configuredUrl) return;
 
   const externalUrl = new URL(configuredUrl);
@@ -161,7 +119,7 @@ const mountWaitlist = (config) => {
   const frame = document.createElement("iframe");
   frame.className = "form-frame";
   frame.src = embeddedUrl.toString();
-  frame.title = "Join the Skald: Odyssey launch and availability updates list";
+  frame.title = "Join the Skald: Odyssey product updates list";
   frame.loading = "lazy";
   frame.referrerPolicy = "strict-origin-when-cross-origin";
 
@@ -179,13 +137,13 @@ const mountWaitlist = (config) => {
   mount.replaceChildren(frame, fallback);
 };
 
-const loadWaitlist = () =>
+const loadUpdates = () =>
   fetch("./site-config.json", { cache: "no-store" })
     .then((response) => {
       if (!response.ok) throw new Error("Site configuration was not available.");
       return response.json();
     })
-    .then(mountWaitlist)
+    .then(mountUpdates)
     .catch(() => undefined);
 
 const header = document.querySelector("[data-header]");
@@ -262,4 +220,4 @@ if (supportsIntersectionObserver) {
 window.addEventListener("resize", updateScrollDetails, { passive: true });
 updateScrollDetails();
 loadAvailability();
-loadWaitlist();
+loadUpdates();
