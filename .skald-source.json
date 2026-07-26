@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sourceRepository": "MannaMila/mannamila-web",
-  "sourceCommit": "56cac15c4f1b8f7a07accfcf409c9fe73b56382a",
+  "sourceCommit": "f0e2e954453488a76b37769c921ce1c02cdf6827",
   "sourcePath": "skald",
   "sourceTreeDirty": false,
   "files": {
@@ -17,6 +17,7 @@
     "feedback/index.html": "12a6be163c92a5c9ba29d689387e0086e89cca56613d8685355e95bae7e7631d",
     "feedback/privacy/index.html": "03616b59143298d8c9aea6b3f4d099bf5a4aba15caf569b0729d6d461cf98e34",
     "feedback/styles.css": "6db95258d585d13db67b0dc363fc0f1f4a45d789ba6c90791dc7b399fd6c917d",
+    "get/index.html": "2a5655764209ab09edd2b54ec303671957e0faab0e8f40bcdc8492d3dab4cfb5",
     "index.html": "e89e049e58b50cfd3a5a8085d7b33759c4783ead3133f6c7c99c8024f58539ca",
     "privacy/index.html": "c6843d8da6b39630e802795121f46105ebc47f46b3346cd85af9f857701f79d8",
     "site-config.json": "1ec7b518040819292a291f6e306e3957856c4c206f40f0b5a4b7f561c8b7badb",
