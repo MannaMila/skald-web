@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sourceRepository": "MannaMila/mannamila-web",
-  "sourceCommit": "a3cc40d366957dca39b48fcd22afbfe78842c130",
+  "sourceCommit": "56cac15c4f1b8f7a07accfcf409c9fe73b56382a",
   "sourcePath": "skald",
   "sourceTreeDirty": false,
   "files": {
@@ -50,7 +50,7 @@
     "updates/art/ngprague-byss-penelope-and-suitors.webp": "16dd2f1949176cdcee96a9c2bef75a4958128c3ecabd458ac1a937afc26d9e95",
     "updates/art/rijks-monnet-telemachus-odysseus-reunited.webp": "c741fda08a791050c86dc3ce24679c5f39a1f8c46851e7270bc21a9397a7c75f",
     "updates/art/walters-boeotian-pig-statuette.webp": "2de911c6e3e7412336a57e7ec421ae1c030d1c57c5a3191eecce62351ef21c61",
-    "updates/index.html": "b0c010e4f2cb89d429d1444df982c09a228a924f334f71a7c22832b8fb300691",
+    "updates/index.html": "b49fdb3ee3396d491a0ea46f8eba3024921b88a948f95a4344618e60a00116b2",
     "waitlist-privacy/index.html": "dadfb43e3840f4bfd739f8eacc323a1a2cf7ee66c6ef8c9066bed50c03ced139"
   }
 }
