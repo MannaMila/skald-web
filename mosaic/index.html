@@ -39,11 +39,11 @@
             </div>
             <p class="access-error" role="alert" data-access-error hidden>The access word is not recognized.</p>
             <p class="access-status" aria-live="polite" data-access-status>
-              The image is decrypted only in this tab after access is accepted.
+              The atlas is decrypted only in this tab after access is accepted.
             </p>
           </form>
 
-          <p class="gate-note">Shared-preview access only. Locking or reloading removes the decrypted image from the page.</p>
+          <p class="gate-note">Shared-preview access only. Locking or reloading removes the decrypted atlas from the page.</p>
         </div>
       </section>
 
@@ -64,7 +64,7 @@
             <button type="button" data-action="zoom-in" aria-label="Zoom in">+</button>
             <button type="button" data-action="fit">Fit</button>
             <button type="button" data-action="actual">100%</button>
-            <a class="download-link" data-download hidden>Download decrypted image</a>
+            <button class="download-link" type="button" data-download hidden>Download full-resolution image</button>
             <button class="quiet-control" type="button" data-action="lock">Lock</button>
           </div>
         </header>
@@ -78,16 +78,28 @@
           <div class="asset-placeholder" data-asset-placeholder>
             <p class="eyebrow">Encrypted viewing room</p>
             <h2>The museum-art atlas opens here.</h2>
-            <p>The original image exists in this page only after successful local decryption.</p>
+            <p>The viewing layers exist in this page only after successful local decryption.</p>
           </div>
-          <img
-            class="mosaic-image"
-            data-mosaic-image
-            alt="A large mosaic of public-domain and openly licensed museum art featured in Skald: Odyssey."
-            draggable="false"
+          <div
+            class="mosaic-atlas"
+            data-mosaic-atlas
+            role="img"
+            aria-label="A large mosaic of public-domain and openly licensed museum art featured in Skald: Odyssey."
             hidden
           >
-          <div class="artwork-selection" data-artwork-selection aria-hidden="true" hidden></div>
+            <img class="mosaic-overview" data-mosaic-overview alt="" draggable="false">
+            <div class="mosaic-tiles" data-mosaic-tiles aria-hidden="true"></div>
+            <svg
+              class="artwork-selection"
+              data-artwork-selection
+              aria-hidden="true"
+              viewBox="0 0 1 1"
+              preserveAspectRatio="none"
+              hidden
+            >
+              <rect x="0" y="0" width="1" height="1" vector-effect="non-scaling-stroke"></rect>
+            </svg>
+          </div>
           <p class="asset-status" data-asset-status aria-live="polite">Encrypted mosaic locked.</p>
         </div>
 

@@ -36,5 +36,154 @@
       "iv": "QoF79rZ2q6+XzWnE",
       "url": "./assets/skald-museum-art-map.enc"
     }
+  },
+  "viewer": {
+    "plaintext": {
+      "mediaType": "application/vnd.skald.mosaic-viewer-pack",
+      "bytes": 46737560,
+      "sha256": "16ad0ee7ff1c48f87b48c32c19c3f2a2abc51b16cb426c0d45b2f7b1f5d15fdc",
+      "width": 16000,
+      "height": 8000,
+      "layerCount": 9,
+      "manifestSha256": "0f04131c1e29fc2262fce1dbbe8eece15f058ac1065c7ec8dee77e402fc33003"
+    },
+    "manifest": {
+      "schemaVersion": 1,
+      "width": 16000,
+      "height": 8000,
+      "layers": [
+        {
+          "role": "overview",
+          "id": "overview-clean-4096",
+          "sourcePath": "mosaic-overview-clean-4096.jpg",
+          "sha256": "6bff3ac87eb4cbcec959f913328eb3626ff59c366b13275d7d0c807585b30420",
+          "offset": 0,
+          "bytes": 3619956,
+          "naturalWidth": 4096,
+          "naturalHeight": 2048,
+          "x": 0,
+          "y": 0,
+          "width": 16000,
+          "height": 8000
+        },
+        {
+          "role": "tile",
+          "id": "tile-0-0",
+          "sourcePath": "viewer/tiles/tile-0-0.jpg",
+          "sha256": "f0aa55866c324dc381f8e2e30c2f59532495a524eb015829589aa753a38d36c3",
+          "offset": 3619956,
+          "bytes": 5579575,
+          "naturalWidth": 4000,
+          "naturalHeight": 4000,
+          "x": 0,
+          "y": 0,
+          "width": 4000,
+          "height": 4000
+        },
+        {
+          "role": "tile",
+          "id": "tile-1-0",
+          "sourcePath": "viewer/tiles/tile-1-0.jpg",
+          "sha256": "7d65ff5113126b92923620520a2f29a9cbd1b358502924620875cd6fd671e27e",
+          "offset": 9199531,
+          "bytes": 5312302,
+          "naturalWidth": 4000,
+          "naturalHeight": 4000,
+          "x": 4000,
+          "y": 0,
+          "width": 4000,
+          "height": 4000
+        },
+        {
+          "role": "tile",
+          "id": "tile-2-0",
+          "sourcePath": "viewer/tiles/tile-2-0.jpg",
+          "sha256": "b7e033f7b2007a9e5600f51515537cd1ac613062b17ab80ad5c24db2845b8536",
+          "offset": 14511833,
+          "bytes": 5248551,
+          "naturalWidth": 4000,
+          "naturalHeight": 4000,
+          "x": 8000,
+          "y": 0,
+          "width": 4000,
+          "height": 4000
+        },
+        {
+          "role": "tile",
+          "id": "tile-3-0",
+          "sourcePath": "viewer/tiles/tile-3-0.jpg",
+          "sha256": "d693bce60fa21b88b9ed303e4cf61200ca970d81f13774b93303269e54d45043",
+          "offset": 19760384,
+          "bytes": 4911343,
+          "naturalWidth": 4000,
+          "naturalHeight": 4000,
+          "x": 12000,
+          "y": 0,
+          "width": 4000,
+          "height": 4000
+        },
+        {
+          "role": "tile",
+          "id": "tile-0-1",
+          "sourcePath": "viewer/tiles/tile-0-1.jpg",
+          "sha256": "608ceba721ae1952a29f9d30e1f6c7b7673af2c3949011b87e86bfb55888bf9b",
+          "offset": 24671727,
+          "bytes": 5670866,
+          "naturalWidth": 4000,
+          "naturalHeight": 4000,
+          "x": 0,
+          "y": 4000,
+          "width": 4000,
+          "height": 4000
+        },
+        {
+          "role": "tile",
+          "id": "tile-1-1",
+          "sourcePath": "viewer/tiles/tile-1-1.jpg",
+          "sha256": "487d43d2b4550bd0b67b7afafe726d2407f812304b60532db33d6d92164d8b0a",
+          "offset": 30342593,
+          "bytes": 5408614,
+          "naturalWidth": 4000,
+          "naturalHeight": 4000,
+          "x": 4000,
+          "y": 4000,
+          "width": 4000,
+          "height": 4000
+        },
+        {
+          "role": "tile",
+          "id": "tile-2-1",
+          "sourcePath": "viewer/tiles/tile-2-1.jpg",
+          "sha256": "fae23082a1b91c49226e323ba39950d25fe8ac778c067820ea05db71ef2a244b",
+          "offset": 35751207,
+          "bytes": 5573076,
+          "naturalWidth": 4000,
+          "naturalHeight": 4000,
+          "x": 8000,
+          "y": 4000,
+          "width": 4000,
+          "height": 4000
+        },
+        {
+          "role": "tile",
+          "id": "tile-3-1",
+          "sourcePath": "viewer/tiles/tile-3-1.jpg",
+          "sha256": "74f788ee7b82eb5a625ee4f76bbb613f195cd0a924ccd4765bec8cc984e28b84",
+          "offset": 41324283,
+          "bytes": 5413277,
+          "naturalWidth": 4000,
+          "naturalHeight": 4000,
+          "x": 12000,
+          "y": 4000,
+          "width": 4000,
+          "height": 4000
+        }
+      ]
+    },
+    "cipher": {
+      "name": "AES-GCM",
+      "iv": "YuV8u5LWiKMt4glu",
+      "url": "./assets/skald-museum-art-viewer.enc"
+    }
   }
 }
