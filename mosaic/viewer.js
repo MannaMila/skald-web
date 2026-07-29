@@ -4,10 +4,18 @@
   const CONFIG_URL = "./mosaic-config.json";
   const ENCRYPTED_ASSET_URL = "./assets/skald-museum-art-mosaic.enc";
   const ENCRYPTED_CATALOG_URL = "./assets/skald-museum-art-map.enc";
+  const ENCRYPTED_VIEWER_URL = "./assets/skald-museum-art-viewer.enc";
+  const VIEWER_PACK_MEDIA_TYPE = "application/vnd.skald.mosaic-viewer-pack";
   const SCHEMA_VERSION = 2;
   const MIN_SCALE = 0.005;
-  const MAX_SCALE = 10;
+  const MAX_SCALE = 4;
   const DRAG_THRESHOLD = 5;
+  const WHEEL_ZOOM_SPEED = 0.0025;
+  const TILE_ENTER_SCALE = 0.25;
+  const TILE_EXIT_SCALE = 0.2;
+  const MAX_RENDERED_TILES = 4;
+  const TILE_OVERSCAN = 600;
+  const TILE_UPDATE_DELAY_MS = 90;
 
   const gate = document.querySelector("[data-access-gate]");
   const form = document.querySelector("[data-access-form]");
@@ -17,7 +25,9 @@
   const accessStatus = document.querySelector("[data-access-status]");
   const viewer = document.querySelector("[data-mosaic-viewer]");
   const stage = document.querySelector("[data-mosaic-stage]");
-  const image = document.querySelector("[data-mosaic-image]");
+  const atlas = document.querySelector("[data-mosaic-atlas]");
+  const overview = document.querySelector("[data-mosaic-overview]");
+  const tileContainer = document.querySelector("[data-mosaic-tiles]");
   const placeholder = document.querySelector("[data-asset-placeholder]");
   const status = document.querySelector("[data-asset-status]");
   const zoomOutput = document.querySelector("[data-zoom-output]");
@@ -35,6 +45,8 @@
   const artworkSourceLinks = document.querySelector("[data-artwork-source-links]");
 
   const activePointers = new Map();
+  let renderFrameId = null;
+  let tileUpdateTimer = null;
   const view = {
     loaded: false,
     fitted: true,
@@ -44,7 +56,18 @@
     gesture: null,
     gestureMoved: false,
     suppressClick: false,
-    objectUrl: null,
+    width: 0,
+    height: 0,
+    stageBounds: null,
+    config: null,
+    key: null,
+    viewerPack: null,
+    overviewUrl: null,
+    tileLayers: [],
+    tileElements: new Map(),
+    tileUrls: new Map(),
+    tilesActive: false,
+    downloadUrl: null,
     unlocking: false,
     artworks: [],
     selected: null,
@@ -95,12 +118,144 @@
       ].join("\n"),
     );
 
+  const canonicalJson = (value) => {
+    if (value === null || typeof value !== "object") return JSON.stringify(value);
+    if (Array.isArray(value)) return `[${value.map(canonicalJson).join(",")}]`;
+    return `{${Object.keys(value)
+      .sort()
+      .map((key) => `${JSON.stringify(key)}:${canonicalJson(value[key])}`)
+      .join(",")}}`;
+  };
+
+  const viewerPackAdditionalData = (plaintextContract, manifest) =>
+    new TextEncoder().encode(
+      [
+        "skald-mosaic-viewer-pack-v1",
+        `mediaType=${plaintextContract.mediaType}`,
+        `bytes=${plaintextContract.bytes}`,
+        `sha256=${plaintextContract.sha256}`,
+        `width=${plaintextContract.width}`,
+        `height=${plaintextContract.height}`,
+        `layerCount=${plaintextContract.layerCount}`,
+        `manifestSha256=${plaintextContract.manifestSha256}`,
+        `manifest=${canonicalJson(manifest)}`,
+      ].join("\n"),
+    );
+
   const sha256Hex = async (value) =>
     [...new Uint8Array(await crypto.subtle.digest("SHA-256", value))]
       .map((byte) => byte.toString(16).padStart(2, "0"))
       .join("");
 
   const isPositiveInteger = (value) => Number.isSafeInteger(value) && value > 0;
+
+  const hasExactKeys = (value, expectedKeys) => {
+    if (!value || Array.isArray(value) || typeof value !== "object") return false;
+    const actualKeys = Object.keys(value).sort();
+    const approvedKeys = [...expectedKeys].sort();
+    return actualKeys.length === approvedKeys.length &&
+      actualKeys.every((key, index) => key === approvedKeys[index]);
+  };
+
+  const rectanglesOverlap = (left, right) =>
+    left.x < right.x + right.width &&
+    left.x + left.width > right.x &&
+    left.y < right.y + right.height &&
+    left.y + left.height > right.y;
+
+  const validateViewerManifest = (manifest, width, height) => {
+    const layerKeys = [
+      "role",
+      "id",
+      "sourcePath",
+      "sha256",
+      "offset",
+      "bytes",
+      "naturalWidth",
+      "naturalHeight",
+      "x",
+      "y",
+      "width",
+      "height",
+    ];
+    if (
+      !hasExactKeys(manifest, ["schemaVersion", "width", "height", "layers"]) ||
+      manifest.schemaVersion !== 1 ||
+      manifest.width !== width ||
+      manifest.height !== height ||
+      !Array.isArray(manifest.layers) ||
+      manifest.layers.length < 2
+    ) {
+      throw new Error("Invalid encrypted-mosaic viewer manifest.");
+    }
+
+    const ids = new Set();
+    const paths = new Set();
+    const tiles = [];
+    let overviewLayer = null;
+    let expectedOffset = 0;
+    for (const layer of manifest.layers) {
+      if (
+        !hasExactKeys(layer, layerKeys) ||
+        !["overview", "tile"].includes(layer.role) ||
+        typeof layer.id !== "string" ||
+        !/^[a-z0-9][a-z0-9-]*$/.test(layer.id) ||
+        typeof layer.sourcePath !== "string" ||
+        !/^(?!\/)(?!.*(?:^|\/)\.\.(?:\/|$))(?!.*\/\/)[A-Za-z0-9._/-]+\.jpe?g$/i.test(
+          layer.sourcePath,
+        ) ||
+        !/^[a-f0-9]{64}$/.test(layer.sha256 ?? "") ||
+        layer.offset !== expectedOffset ||
+        !isPositiveInteger(layer.bytes) ||
+        !["naturalWidth", "naturalHeight", "width", "height"].every(
+          (field) => isPositiveInteger(layer[field]),
+        ) ||
+        !["x", "y"].every(
+          (field) => Number.isSafeInteger(layer[field]) && layer[field] >= 0,
+        ) ||
+        layer.x + layer.width > width ||
+        layer.y + layer.height > height ||
+        ids.has(layer.id) ||
+        paths.has(layer.sourcePath)
+      ) {
+        throw new Error("Invalid encrypted-mosaic viewer layer.");
+      }
+      ids.add(layer.id);
+      paths.add(layer.sourcePath);
+      expectedOffset += layer.bytes;
+
+      if (layer.role === "overview") {
+        if (
+          overviewLayer ||
+          layer.x !== 0 ||
+          layer.y !== 0 ||
+          layer.width !== width ||
+          layer.height !== height ||
+          layer.naturalWidth * layer.height !== layer.naturalHeight * layer.width
+        ) {
+          throw new Error("Invalid encrypted-mosaic overview layer.");
+        }
+        overviewLayer = layer;
+      } else {
+        if (
+          layer.naturalWidth !== layer.width ||
+          layer.naturalHeight !== layer.height ||
+          tiles.some((tile) => rectanglesOverlap(tile, layer))
+        ) {
+          throw new Error("Invalid encrypted-mosaic tile layer.");
+        }
+        tiles.push(layer);
+      }
+    }
+
+    if (
+      !overviewLayer ||
+      tiles.reduce((area, tile) => area + tile.width * tile.height, 0) !== width * height
+    ) {
+      throw new Error("The encrypted-mosaic tiles do not cover the atlas.");
+    }
+    return { manifest, overviewLayer, tileLayers: tiles, bytes: expectedOffset };
+  };
 
   const loadConfig = async () => {
     const response = await fetch(CONFIG_URL, {
@@ -110,6 +265,7 @@
     if (!response.ok) throw new Error("The encrypted mosaic is not available.");
     const config = await response.json();
     const catalogContract = config?.catalog?.plaintext;
+    const viewerContract = config?.viewer?.plaintext;
 
     if (
       config?.schemaVersion !== SCHEMA_VERSION ||
@@ -132,14 +288,51 @@
       catalogContract?.height !== config.plaintext.height ||
       !isPositiveInteger(catalogContract?.artworkCount) ||
       config?.catalog?.cipher?.name !== "AES-GCM" ||
-      config.catalog.cipher.url !== ENCRYPTED_CATALOG_URL
+      config.catalog.cipher.url !== ENCRYPTED_CATALOG_URL ||
+      !hasExactKeys(viewerContract, [
+        "mediaType",
+        "bytes",
+        "sha256",
+        "width",
+        "height",
+        "layerCount",
+        "manifestSha256",
+      ]) ||
+      viewerContract.mediaType !== VIEWER_PACK_MEDIA_TYPE ||
+      !isPositiveInteger(viewerContract.bytes) ||
+      !/^[a-f0-9]{64}$/.test(viewerContract.sha256 ?? "") ||
+      viewerContract.width !== config.plaintext.width ||
+      viewerContract.height !== config.plaintext.height ||
+      !isPositiveInteger(viewerContract.layerCount) ||
+      !/^[a-f0-9]{64}$/.test(viewerContract.manifestSha256 ?? "") ||
+      config?.viewer?.cipher?.name !== "AES-GCM" ||
+      config.viewer.cipher.url !== ENCRYPTED_VIEWER_URL
     ) {
       throw new Error("Invalid encrypted-mosaic metadata.");
     }
 
+    const viewerManifest = validateViewerManifest(
+      config.viewer.manifest,
+      config.plaintext.width,
+      config.plaintext.height,
+    );
+    if (
+      viewerContract.bytes !== viewerManifest.bytes ||
+      viewerContract.layerCount !== viewerManifest.manifest.layers.length ||
+      viewerContract.manifestSha256 !==
+        await sha256Hex(new TextEncoder().encode(canonicalJson(viewerManifest.manifest)))
+    ) {
+      throw new Error("Invalid encrypted-mosaic viewer metadata.");
+    }
+
     const imageIv = decodeBase64(config.cipher.iv, 12);
     const catalogIv = decodeBase64(config.catalog.cipher.iv, 12);
-    if (equalBytes(imageIv, catalogIv)) {
+    const viewerIv = decodeBase64(config.viewer.cipher.iv, 12);
+    if (
+      equalBytes(imageIv, catalogIv) ||
+      equalBytes(imageIv, viewerIv) ||
+      equalBytes(catalogIv, viewerIv)
+    ) {
       throw new Error("Invalid encrypted-mosaic metadata.");
     }
 
@@ -156,6 +349,14 @@
         plaintext: catalogContract,
         iv: catalogIv,
         assetUrl: config.catalog.cipher.url,
+      },
+      viewer: {
+        plaintext: viewerContract,
+        iv: viewerIv,
+        assetUrl: config.viewer.cipher.url,
+        manifest: viewerManifest.manifest,
+        overviewLayer: viewerManifest.overviewLayer,
+        tileLayers: viewerManifest.tileLayers,
       },
     };
   };
@@ -217,10 +418,24 @@
     if (
       catalog?.width !== config.plaintext.width ||
       catalog?.height !== config.plaintext.height ||
+      !Array.isArray(catalog?.tiles) ||
+      catalog.tiles.length !== config.viewer.tileLayers.length ||
       !Array.isArray(catalog?.artworks) ||
       catalog.artworks.length !== config.catalog.plaintext.artworkCount
     ) {
       throw new Error("The artwork catalog does not match the mosaic.");
+    }
+
+    for (const [index, tile] of catalog.tiles.entries()) {
+      const layer = config.viewer.tileLayers[index];
+      if (
+        tile?.path !== layer.sourcePath.replace(/^viewer\//, "") ||
+        !["x", "y", "width", "height"].every(
+          (field) => tile[field] === layer[field],
+        )
+      ) {
+        throw new Error("The artwork catalog tiles do not match the mosaic viewer.");
+      }
     }
 
     const ids = new Set();
@@ -265,51 +480,88 @@
     return catalog.artworks;
   };
 
+  const measureStage = () => {
+    const bounds = stage.getBoundingClientRect();
+    view.stageBounds = {
+      left: bounds.left,
+      top: bounds.top,
+      width: bounds.width,
+      height: bounds.height,
+    };
+    return view.stageBounds;
+  };
+
+  const currentStageBounds = () => view.stageBounds ?? measureStage();
+
   const renderSelection = () => {
     if (!view.selected || !view.loaded) {
       artworkSelection.hidden = true;
       return;
     }
-    artworkSelection.style.left = `${view.x + view.selected.x * view.scale}px`;
-    artworkSelection.style.top = `${view.y + view.selected.y * view.scale}px`;
-    artworkSelection.style.width = `${view.selected.width * view.scale}px`;
-    artworkSelection.style.height = `${view.selected.height * view.scale}px`;
+    artworkSelection.style.left = `${view.selected.x}px`;
+    artworkSelection.style.top = `${view.selected.y}px`;
+    artworkSelection.style.width = `${view.selected.width}px`;
+    artworkSelection.style.height = `${view.selected.height}px`;
     artworkSelection.hidden = false;
   };
 
+  const applyRender = () => {
+    atlas.style.transform = `translate3d(${view.x}px, ${view.y}px, 0) scale(${view.scale})`;
+    const zoomText = `${Math.round(view.scale * 100)}%`;
+    if (zoomOutput.value !== zoomText) {
+      zoomOutput.value = zoomText;
+      zoomOutput.textContent = zoomText;
+    }
+    scheduleTileUpdate();
+  };
+
   const render = () => {
-    image.style.transform = `translate3d(${view.x}px, ${view.y}px, 0) scale(${view.scale})`;
-    zoomOutput.value = `${Math.round(view.scale * 100)}%`;
-    zoomOutput.textContent = zoomOutput.value;
-    renderSelection();
+    if (renderFrameId !== null) {
+      cancelAnimationFrame(renderFrameId);
+      renderFrameId = null;
+    }
+    applyRender();
+  };
+
+  const scheduleRender = () => {
+    if (renderFrameId !== null) return;
+    renderFrameId = requestAnimationFrame(() => {
+      renderFrameId = null;
+      applyRender();
+    });
   };
 
   const fitImage = () => {
     if (!view.loaded) return;
-    const bounds = stage.getBoundingClientRect();
+    const bounds = measureStage();
     const inset = Math.min(48, bounds.width * 0.06, bounds.height * 0.06);
-    const widthScale = (bounds.width - inset * 2) / image.naturalWidth;
-    const heightScale = (bounds.height - inset * 2) / image.naturalHeight;
+    const widthScale = (bounds.width - inset * 2) / view.width;
+    const heightScale = (bounds.height - inset * 2) / view.height;
     view.scale = clamp(Math.min(widthScale, heightScale), MIN_SCALE, MAX_SCALE);
-    view.x = (bounds.width - image.naturalWidth * view.scale) / 2;
-    view.y = (bounds.height - image.naturalHeight * view.scale) / 2;
+    view.x = (bounds.width - view.width * view.scale) / 2;
+    view.y = (bounds.height - view.height * view.scale) / 2;
     view.fitted = true;
     render();
   };
 
   const showActualSize = () => {
     if (!view.loaded) return;
-    const bounds = stage.getBoundingClientRect();
+    const bounds = measureStage();
     view.scale = 1;
-    view.x = (bounds.width - image.naturalWidth) / 2;
-    view.y = (bounds.height - image.naturalHeight) / 2;
+    view.x = (bounds.width - view.width) / 2;
+    view.y = (bounds.height - view.height) / 2;
     view.fitted = false;
     render();
   };
 
-  const zoomAt = (nextScale, clientX, clientY) => {
+  const zoomAt = (
+    nextScale,
+    clientX,
+    clientY,
+    deferRender = false,
+    bounds = currentStageBounds(),
+  ) => {
     if (!view.loaded) return;
-    const bounds = stage.getBoundingClientRect();
     const localX = clientX - bounds.left;
     const localY = clientY - bounds.top;
     const imageX = (localX - view.x) / view.scale;
@@ -318,15 +570,18 @@
     view.x = localX - imageX * view.scale;
     view.y = localY - imageY * view.scale;
     view.fitted = false;
-    render();
+    if (deferRender) scheduleRender();
+    else render();
   };
 
   const zoomFromCenter = (factor) => {
-    const bounds = stage.getBoundingClientRect();
+    const bounds = measureStage();
     zoomAt(
       view.scale * factor,
       bounds.left + bounds.width / 2,
       bounds.top + bounds.height / 2,
+      false,
+      bounds,
     );
   };
 
@@ -429,7 +684,7 @@
   };
 
   const artworkAt = (clientX, clientY) => {
-    const bounds = stage.getBoundingClientRect();
+    const bounds = currentStageBounds();
     const imageX = (clientX - bounds.left - view.x) / view.scale;
     const imageY = (clientY - bounds.top - view.y) / view.scale;
     return view.artworks.find(
@@ -447,7 +702,7 @@
   };
 
   const focusArtwork = (artwork) => {
-    const bounds = stage.getBoundingClientRect();
+    const bounds = measureStage();
     const focusScale = Math.min(
       bounds.width / (artwork.width * 1.8),
       bounds.height / (artwork.height * 1.8),
@@ -460,16 +715,149 @@
     render();
   };
 
-  const loadImage = (objectUrl) =>
+  const loadImage = (element, objectUrl) =>
     new Promise((resolveLoad, rejectLoad) => {
-      image.addEventListener("load", resolveLoad, { once: true });
-      image.addEventListener(
-        "error",
-        () => rejectLoad(new Error("The decrypted mosaic is not a readable image.")),
-        { once: true },
-      );
-      image.src = objectUrl;
+      const settle = (callback) => {
+        element.removeEventListener("load", onLoad);
+        element.removeEventListener("error", onError);
+        callback();
+      };
+      const onLoad = () => settle(resolveLoad);
+      const onError = () =>
+        settle(() => rejectLoad(new Error("The decrypted mosaic viewer is not readable.")));
+      element.addEventListener("load", onLoad);
+      element.addEventListener("error", onError);
+      element.src = objectUrl;
     });
+
+  const layerBytes = (layer) =>
+    new Uint8Array(view.viewerPack, layer.offset, layer.bytes);
+
+  const layerObjectUrl = (layer) =>
+    URL.createObjectURL(new Blob([layerBytes(layer)], { type: "image/jpeg" }));
+
+  const loadLayerImage = async (element, layer, objectUrl) => {
+    await loadImage(element, objectUrl);
+    if (
+      element.naturalWidth !== layer.naturalWidth ||
+      element.naturalHeight !== layer.naturalHeight
+    ) {
+      throw new Error("The decrypted mosaic viewer dimensions do not match its approval.");
+    }
+  };
+
+  const unloadTile = (layerId, expectedObjectUrl = null) => {
+    const element = view.tileElements.get(layerId);
+    const objectUrl = view.tileUrls.get(layerId);
+    if (expectedObjectUrl && objectUrl !== expectedObjectUrl) return;
+    if (element) {
+      element.hidden = true;
+      element.removeAttribute("src");
+    }
+    if (objectUrl) URL.revokeObjectURL(objectUrl);
+    view.tileUrls.delete(layerId);
+  };
+
+  const loadTile = async (layer) => {
+    if (view.tileUrls.has(layer.id) || !view.viewerPack) return;
+    const element = view.tileElements.get(layer.id);
+    if (!element) return;
+    const objectUrl = layerObjectUrl(layer);
+    view.tileUrls.set(layer.id, objectUrl);
+    try {
+      await loadLayerImage(element, layer, objectUrl);
+      if (view.tileUrls.get(layer.id) === objectUrl) {
+        element.hidden = false;
+      }
+    } catch {
+      unloadTile(layer.id, objectUrl);
+    }
+  };
+
+  const updateVisibleTiles = () => {
+    if (!view.loaded) return;
+    if (
+      (!view.tilesActive && view.scale < TILE_ENTER_SCALE) ||
+      (view.tilesActive && view.scale < TILE_EXIT_SCALE)
+    ) {
+      view.tilesActive = false;
+      for (const layerId of view.tileUrls.keys()) unloadTile(layerId);
+      return;
+    }
+    view.tilesActive = true;
+
+    const bounds = currentStageBounds();
+    const viewport = {
+      left: -view.x / view.scale - TILE_OVERSCAN,
+      top: -view.y / view.scale - TILE_OVERSCAN,
+      right: (bounds.width - view.x) / view.scale + TILE_OVERSCAN,
+      bottom: (bounds.height - view.y) / view.scale + TILE_OVERSCAN,
+    };
+    const viewportCenter = {
+      x: (viewport.left + viewport.right) / 2,
+      y: (viewport.top + viewport.bottom) / 2,
+    };
+    const visible = new Set(
+      view.tileLayers
+        .filter(
+          (layer) =>
+            layer.x < viewport.right &&
+            layer.x + layer.width > viewport.left &&
+            layer.y < viewport.bottom &&
+            layer.y + layer.height > viewport.top,
+        )
+        .sort((left, right) => {
+          const leftDistance = Math.hypot(
+            left.x + left.width / 2 - viewportCenter.x,
+            left.y + left.height / 2 - viewportCenter.y,
+          );
+          const rightDistance = Math.hypot(
+            right.x + right.width / 2 - viewportCenter.x,
+            right.y + right.height / 2 - viewportCenter.y,
+          );
+          return leftDistance - rightDistance;
+        })
+        .slice(0, MAX_RENDERED_TILES)
+        .map((layer) => layer.id),
+    );
+
+    for (const layerId of view.tileUrls.keys()) {
+      if (!visible.has(layerId)) unloadTile(layerId);
+    }
+    for (const layer of view.tileLayers) {
+      if (visible.has(layer.id)) void loadTile(layer);
+    }
+  };
+
+  const scheduleTileUpdate = () => {
+    if (tileUpdateTimer !== null) clearTimeout(tileUpdateTimer);
+    tileUpdateTimer = setTimeout(() => {
+      tileUpdateTimer = null;
+      updateVisibleTiles();
+    }, TILE_UPDATE_DELAY_MS);
+  };
+
+  const buildTileElements = () => {
+    tileContainer.replaceChildren();
+    view.tileElements.clear();
+    const fragment = document.createDocumentFragment();
+    for (const layer of view.tileLayers) {
+      const element = document.createElement("img");
+      element.className = "mosaic-tile";
+      element.alt = "";
+      element.draggable = false;
+      element.decoding = "async";
+      element.dataset.tileId = layer.id;
+      element.style.left = `${layer.x}px`;
+      element.style.top = `${layer.y}px`;
+      element.style.width = `${layer.width}px`;
+      element.style.height = `${layer.height}px`;
+      element.hidden = true;
+      view.tileElements.set(layer.id, element);
+      fragment.append(element);
+    }
+    tileContainer.append(fragment);
+  };
 
   const loadEncryptedBytes = async (url) => {
     const response = await fetch(url, {
@@ -487,16 +875,16 @@
     if (!key) return false;
 
     accessStatus.textContent = "Access accepted. Decrypting the museum-art atlas…";
-    const [encryptedImage, encryptedCatalog] = await Promise.all([
-      loadEncryptedBytes(config.image.assetUrl),
+    const [encryptedViewer, encryptedCatalog] = await Promise.all([
+      loadEncryptedBytes(config.viewer.assetUrl),
       loadEncryptedBytes(config.catalog.assetUrl),
     ]);
-    const [plaintextImage, plaintextCatalog] = await Promise.all([
+    const [plaintextViewer, plaintextCatalog] = await Promise.all([
       decryptBytes(
-        encryptedImage,
+        encryptedViewer,
         key,
-        config.image.iv,
-        mosaicAdditionalData(config.plaintext),
+        config.viewer.iv,
+        viewerPackAdditionalData(config.viewer.plaintext, config.viewer.manifest),
       ),
       decryptBytes(
         encryptedCatalog,
@@ -506,18 +894,11 @@
       ),
     ]);
 
-    const imageBytes = new Uint8Array(plaintextImage);
     if (
-      plaintextImage.byteLength !== config.plaintext.bytes ||
-      (await sha256Hex(plaintextImage)) !== config.plaintext.sha256 ||
-      imageBytes.length < 4 ||
-      imageBytes[0] !== 0xff ||
-      imageBytes[1] !== 0xd8 ||
-      imageBytes[2] !== 0xff ||
-      imageBytes.at(-2) !== 0xff ||
-      imageBytes.at(-1) !== 0xd9
+      plaintextViewer.byteLength !== config.viewer.plaintext.bytes ||
+      (await sha256Hex(plaintextViewer)) !== config.viewer.plaintext.sha256
     ) {
-      throw new Error("The decrypted mosaic is not a readable image.");
+      throw new Error("The decrypted mosaic viewer is not approved.");
     }
     if (
       plaintextCatalog.byteLength !== config.catalog.plaintext.bytes ||
@@ -534,34 +915,89 @@
     }
     const artworks = validateArtworkMap(catalog, config);
 
-    view.objectUrl = URL.createObjectURL(
-      new Blob([plaintextImage], { type: config.plaintext.mediaType }),
-    );
+    view.width = config.plaintext.width;
+    view.height = config.plaintext.height;
+    view.config = config;
+    view.key = key;
+    view.viewerPack = plaintextViewer;
+    view.tileLayers = config.viewer.tileLayers;
+    view.artworks = artworks;
+    atlas.style.width = `${view.width}px`;
+    atlas.style.height = `${view.height}px`;
+    buildTileElements();
+    view.overviewUrl = layerObjectUrl(config.viewer.overviewLayer);
     try {
-      await loadImage(view.objectUrl);
-      if (
-        image.naturalWidth !== config.plaintext.width ||
-        image.naturalHeight !== config.plaintext.height
-      ) {
-        throw new Error("The decrypted mosaic dimensions do not match its approval.");
-      }
+      await loadLayerImage(overview, config.viewer.overviewLayer, view.overviewUrl);
+      overview.hidden = false;
     } catch (error) {
-      URL.revokeObjectURL(view.objectUrl);
-      view.objectUrl = null;
-      image.removeAttribute("src");
+      URL.revokeObjectURL(view.overviewUrl);
+      view.overviewUrl = null;
+      overview.removeAttribute("src");
       throw error;
     }
 
-    view.artworks = artworks;
     view.loaded = true;
-    image.hidden = false;
+    atlas.hidden = false;
     placeholder.hidden = true;
-    download.href = view.objectUrl;
-    download.download = "skald-museum-art-mosaic.jpg";
     download.hidden = false;
-    status.textContent = `${image.naturalWidth.toLocaleString()} × ${image.naturalHeight.toLocaleString()} pixels · decrypted in this tab · ${artworks.length} artwork records`;
+    download.disabled = false;
+    status.textContent = `${view.width.toLocaleString()} × ${view.height.toLocaleString()} pixels · progressive encrypted viewer · ${artworks.length} artwork records`;
     populatePicker();
     return true;
+  };
+
+  const triggerFullResolutionDownload = () => {
+    const anchor = document.createElement("a");
+    anchor.href = view.downloadUrl;
+    anchor.download = "skald-museum-art-mosaic.jpg";
+    anchor.hidden = true;
+    document.body.append(anchor);
+    anchor.click();
+    anchor.remove();
+  };
+
+  const downloadFullResolutionImage = async () => {
+    if (!view.loaded || !view.config || !view.key || download.disabled) return;
+    if (view.downloadUrl) {
+      triggerFullResolutionDownload();
+      return;
+    }
+
+    download.disabled = true;
+    download.textContent = "Preparing full-resolution image…";
+    status.textContent = "Decrypting the full-resolution download in this tab…";
+    try {
+      const encryptedImage = await loadEncryptedBytes(view.config.image.assetUrl);
+      const plaintextImage = await decryptBytes(
+        encryptedImage,
+        view.key,
+        view.config.image.iv,
+        mosaicAdditionalData(view.config.plaintext),
+      );
+      const imageBytes = new Uint8Array(plaintextImage);
+      if (
+        plaintextImage.byteLength !== view.config.plaintext.bytes ||
+        (await sha256Hex(plaintextImage)) !== view.config.plaintext.sha256 ||
+        imageBytes.length < 4 ||
+        imageBytes[0] !== 0xff ||
+        imageBytes[1] !== 0xd8 ||
+        imageBytes[2] !== 0xff ||
+        imageBytes.at(-2) !== 0xff ||
+        imageBytes.at(-1) !== 0xd9
+      ) {
+        throw new Error("The decrypted mosaic is not a readable image.");
+      }
+      view.downloadUrl = URL.createObjectURL(
+        new Blob([plaintextImage], { type: view.config.plaintext.mediaType }),
+      );
+      triggerFullResolutionDownload();
+      status.textContent = `${view.width.toLocaleString()} × ${view.height.toLocaleString()} pixels · full-resolution download ready · ${view.artworks.length} artwork records`;
+    } catch {
+      status.textContent = "The full-resolution download is unavailable. Please try again.";
+    } finally {
+      download.disabled = false;
+      download.textContent = "Download full-resolution image";
+    }
   };
 
   const unlock = async (password) => {
@@ -588,9 +1024,9 @@
       fitImage();
       stage.focus({ preventScroll: true });
     } catch {
+      lock(false);
       accessError.textContent = "The encrypted viewing room is unavailable. Please try again.";
       accessError.hidden = false;
-      input.select();
     } finally {
       accessStatus.textContent = "The image and artwork records are decrypted only in this tab after access is accepted.";
       input.disabled = false;
@@ -607,30 +1043,55 @@
     stage.classList.remove("is-dragging");
   };
 
-  const lock = () => {
+  function lock(restoreFocus = true) {
+    if (renderFrameId !== null) {
+      cancelAnimationFrame(renderFrameId);
+      renderFrameId = null;
+    }
+    if (tileUpdateTimer !== null) {
+      clearTimeout(tileUpdateTimer);
+      tileUpdateTimer = null;
+    }
     view.loaded = false;
     view.scale = 1;
     view.x = 0;
     view.y = 0;
+    view.width = 0;
+    view.height = 0;
+    view.stageBounds = null;
     view.artworks = [];
     resetPointers();
     closeArtworkDetails();
     clearPicker();
-    image.hidden = true;
-    image.removeAttribute("src");
-    image.style.transform = "";
+    for (const layerId of view.tileUrls.keys()) unloadTile(layerId);
+    view.tileElements.clear();
+    view.tileLayers = [];
+    view.tilesActive = false;
+    tileContainer.replaceChildren();
+    if (view.overviewUrl) URL.revokeObjectURL(view.overviewUrl);
+    view.overviewUrl = null;
+    overview.hidden = true;
+    overview.removeAttribute("src");
+    atlas.hidden = true;
+    atlas.style.transform = "";
+    atlas.style.width = "";
+    atlas.style.height = "";
+    view.viewerPack = null;
+    view.key = null;
+    view.config = null;
     placeholder.hidden = false;
     status.textContent = "Encrypted mosaic locked.";
     download.hidden = true;
-    download.removeAttribute("href");
-    if (view.objectUrl) URL.revokeObjectURL(view.objectUrl);
-    view.objectUrl = null;
+    download.disabled = false;
+    download.textContent = "Download full-resolution image";
+    if (view.downloadUrl) URL.revokeObjectURL(view.downloadUrl);
+    view.downloadUrl = null;
     viewer.hidden = true;
     gate.hidden = false;
     document.body.dataset.locked = "true";
     input.value = "";
-    input.focus({ preventScroll: true });
-  };
+    if (restoreFocus) input.focus({ preventScroll: true });
+  }
 
   const beginGesture = () => {
     const points = [...activePointers.values()];
@@ -647,6 +1108,7 @@
     }
     if (points.length >= 2) {
       const [first, second] = points;
+      const bounds = currentStageBounds();
       const deltaX = second.x - first.x;
       const deltaY = second.y - first.y;
       view.gesture = {
@@ -657,6 +1119,8 @@
         scale: view.scale,
         imageX: view.x,
         imageY: view.y,
+        boundsLeft: bounds.left,
+        boundsTop: bounds.top,
       };
       view.gestureMoved = true;
       view.suppressClick = true;
@@ -672,8 +1136,9 @@
   document.querySelector("[data-action='zoom-out']").addEventListener("click", () => zoomFromCenter(0.8));
   document.querySelector("[data-action='fit']").addEventListener("click", fitImage);
   document.querySelector("[data-action='actual']").addEventListener("click", showActualSize);
-  document.querySelector("[data-action='lock']").addEventListener("click", lock);
+  document.querySelector("[data-action='lock']").addEventListener("click", () => lock());
   document.querySelector("[data-action='close-details']").addEventListener("click", closeArtworkDetails);
+  download.addEventListener("click", downloadFullResolutionImage);
 
   artworkPicker.addEventListener("change", () => {
     const artwork = view.artworks.find((candidate) => candidate.id === artworkPicker.value);
@@ -685,12 +1150,26 @@
     showArtworkDetails(artwork);
   });
 
+  const wheelDeltaPixels = (event, bounds) => {
+    if (event.deltaMode === WheelEvent.DOM_DELTA_LINE) return event.deltaY * 16;
+    if (event.deltaMode === WheelEvent.DOM_DELTA_PAGE) return event.deltaY * bounds.height;
+    return event.deltaY;
+  };
+
   stage.addEventListener(
     "wheel",
     (event) => {
       if (!view.loaded) return;
       event.preventDefault();
-      zoomAt(view.scale * Math.exp(-event.deltaY * 0.0015), event.clientX, event.clientY);
+      const bounds = currentStageBounds();
+      const delta = clamp(wheelDeltaPixels(event, bounds), -240, 240);
+      zoomAt(
+        view.scale * Math.exp(-delta * WHEEL_ZOOM_SPEED),
+        event.clientX,
+        event.clientY,
+        true,
+        bounds,
+      );
     },
     { passive: false },
   );
@@ -732,7 +1211,7 @@
       view.x = view.gesture.imageX + deltaX;
       view.y = view.gesture.imageY + deltaY;
       view.fitted = false;
-      render();
+      scheduleRender();
       return;
     }
 
@@ -747,16 +1226,19 @@
         MIN_SCALE,
         MAX_SCALE,
       );
-      const bounds = stage.getBoundingClientRect();
-      const imageX = (view.gesture.centerX - bounds.left - view.gesture.imageX) / view.gesture.scale;
-      const imageY = (view.gesture.centerY - bounds.top - view.gesture.imageY) / view.gesture.scale;
-      view.x = centerX - bounds.left - imageX * nextScale;
-      view.y = centerY - bounds.top - imageY * nextScale;
+      const imageX =
+        (view.gesture.centerX - view.gesture.boundsLeft - view.gesture.imageX) /
+        view.gesture.scale;
+      const imageY =
+        (view.gesture.centerY - view.gesture.boundsTop - view.gesture.imageY) /
+        view.gesture.scale;
+      view.x = centerX - view.gesture.boundsLeft - imageX * nextScale;
+      view.y = centerY - view.gesture.boundsTop - imageY * nextScale;
       view.scale = nextScale;
       view.fitted = false;
       view.gestureMoved = true;
       view.suppressClick = true;
-      render();
+      scheduleRender();
     }
   });
 
@@ -787,7 +1269,7 @@
   stage.addEventListener("keydown", (event) => {
     if (!view.loaded) return;
     const panStep = event.shiftKey ? 160 : 48;
-    const bounds = stage.getBoundingClientRect();
+    const bounds = currentStageBounds();
     const actions = {
       "+": () => zoomFromCenter(1.25),
       "=": () => zoomFromCenter(1.25),
@@ -833,10 +1315,22 @@
   });
 
   window.addEventListener("resize", () => {
+    view.stageBounds = null;
     if (view.loaded && view.fitted) fitImage();
+    else if (view.loaded) measureStage();
   });
 
-  window.addEventListener("pagehide", () => {
-    if (view.objectUrl) URL.revokeObjectURL(view.objectUrl);
-  });
+  window.addEventListener("scroll", () => {
+    view.stageBounds = null;
+  }, { passive: true });
+
+  if ("ResizeObserver" in window) {
+    new ResizeObserver(() => {
+      view.stageBounds = null;
+      if (view.loaded && view.fitted) fitImage();
+      else if (view.loaded) measureStage();
+    }).observe(stage);
+  }
+
+  window.addEventListener("pagehide", () => lock(false));
 })();
