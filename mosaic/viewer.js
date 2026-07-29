@@ -13,7 +13,7 @@
   const WHEEL_ZOOM_SPEED = 0.0025;
   const TILE_ENTER_SCALE = 0.25;
   const TILE_EXIT_SCALE = 0.2;
-  const MAX_RENDERED_TILES = 4;
+  const MAX_RENDERED_TILES = 2;
   const TILE_OVERSCAN = 600;
   const TILE_UPDATE_DELAY_MS = 90;
 
@@ -45,6 +45,7 @@
   const artworkSourceLinks = document.querySelector("[data-artwork-source-links]");
 
   const activePointers = new Map();
+  const pendingRevocations = new Set();
   let renderFrameId = null;
   let tileUpdateTimer = null;
   const view = {
@@ -67,6 +68,7 @@
     tileElements: new Map(),
     tileUrls: new Map(),
     tilesActive: false,
+    tileGeneration: 0,
     downloadUrl: null,
     unlocking: false,
     artworks: [],
@@ -493,20 +495,39 @@
 
   const currentStageBounds = () => view.stageBounds ?? measureStage();
 
+  const hideDetailTiles = () => {
+    view.tileGeneration += 1;
+    if (tileUpdateTimer !== null) {
+      clearTimeout(tileUpdateTimer);
+      tileUpdateTimer = null;
+    }
+    if (!tileContainer.hidden) {
+      tileContainer.hidden = true;
+      for (const element of view.tileElements.values()) element.hidden = true;
+    }
+    if (view.scale < TILE_EXIT_SCALE) {
+      view.tilesActive = false;
+      for (const layerId of [...view.tileUrls.keys()]) unloadTile(layerId);
+    }
+  };
+
   const renderSelection = () => {
     if (!view.selected || !view.loaded) {
       artworkSelection.hidden = true;
       return;
     }
-    artworkSelection.style.left = `${view.selected.x}px`;
-    artworkSelection.style.top = `${view.selected.y}px`;
-    artworkSelection.style.width = `${view.selected.width}px`;
-    artworkSelection.style.height = `${view.selected.height}px`;
+    artworkSelection.style.left = `${view.x + view.selected.x * view.scale}px`;
+    artworkSelection.style.top = `${view.y + view.selected.y * view.scale}px`;
+    artworkSelection.style.width = `${view.selected.width * view.scale}px`;
+    artworkSelection.style.height = `${view.selected.height * view.scale}px`;
     artworkSelection.hidden = false;
   };
 
   const applyRender = () => {
-    atlas.style.transform = `translate3d(${view.x}px, ${view.y}px, 0) scale(${view.scale})`;
+    const overviewScale = view.scale * view.width / overview.naturalWidth;
+    overview.style.transform =
+      `translate3d(${view.x}px, ${view.y}px, 0) scale(${overviewScale})`;
+    renderSelection();
     const zoomText = `${Math.round(view.scale * 100)}%`;
     if (zoomOutput.value !== zoomText) {
       zoomOutput.value = zoomText;
@@ -520,10 +541,12 @@
       cancelAnimationFrame(renderFrameId);
       renderFrameId = null;
     }
+    hideDetailTiles();
     applyRender();
   };
 
   const scheduleRender = () => {
+    hideDetailTiles();
     if (renderFrameId !== null) return;
     renderFrameId = requestAnimationFrame(() => {
       renderFrameId = null;
@@ -715,20 +738,28 @@
     render();
   };
 
-  const loadImage = (element, objectUrl) =>
-    new Promise((resolveLoad, rejectLoad) => {
-      const settle = (callback) => {
-        element.removeEventListener("load", onLoad);
-        element.removeEventListener("error", onError);
-        callback();
-      };
-      const onLoad = () => settle(resolveLoad);
-      const onError = () =>
-        settle(() => rejectLoad(new Error("The decrypted mosaic viewer is not readable.")));
-      element.addEventListener("load", onLoad);
-      element.addEventListener("error", onError);
-      element.src = objectUrl;
+  const loadImage = async (element, objectUrl) => {
+    let resolveLoad;
+    let rejectLoad;
+    const loaded = new Promise((resolvePromise, rejectPromise) => {
+      resolveLoad = resolvePromise;
+      rejectLoad = rejectPromise;
     });
+    const onLoad = () => resolveLoad();
+    const onError = () => rejectLoad(new Error("The decrypted mosaic viewer is not readable."));
+    element.addEventListener("load", onLoad, { once: true });
+    element.addEventListener("error", onError, { once: true });
+    element.src = objectUrl;
+    try {
+      if (typeof element.decode === "function") await element.decode();
+      else await loaded;
+    } catch {
+      if (!element.complete || element.naturalWidth === 0) await loaded;
+    } finally {
+      element.removeEventListener("load", onLoad);
+      element.removeEventListener("error", onError);
+    }
+  };
 
   const layerBytes = (layer) =>
     new Uint8Array(view.viewerPack, layer.offset, layer.bytes);
@@ -746,6 +777,16 @@
     }
   };
 
+  const revokeAfterOverviewPaint = (objectUrl) => {
+    pendingRevocations.add(objectUrl);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (!pendingRevocations.delete(objectUrl)) return;
+        URL.revokeObjectURL(objectUrl);
+      });
+    });
+  };
+
   const unloadTile = (layerId, expectedObjectUrl = null) => {
     const element = view.tileElements.get(layerId);
     const objectUrl = view.tileUrls.get(layerId);
@@ -754,28 +795,42 @@
       element.hidden = true;
       element.removeAttribute("src");
     }
-    if (objectUrl) URL.revokeObjectURL(objectUrl);
+    if (objectUrl) revokeAfterOverviewPaint(objectUrl);
     view.tileUrls.delete(layerId);
   };
 
   const loadTile = async (layer) => {
-    if (view.tileUrls.has(layer.id) || !view.viewerPack) return;
+    if (!view.viewerPack) return false;
     const element = view.tileElements.get(layer.id);
-    if (!element) return;
-    const objectUrl = layerObjectUrl(layer);
-    view.tileUrls.set(layer.id, objectUrl);
+    if (!element) return false;
+    let objectUrl = view.tileUrls.get(layer.id);
+    if (!objectUrl) {
+      objectUrl = layerObjectUrl(layer);
+      view.tileUrls.set(layer.id, objectUrl);
+    }
     try {
       await loadLayerImage(element, layer, objectUrl);
-      if (view.tileUrls.get(layer.id) === objectUrl) {
-        element.hidden = false;
-      }
+      return view.tileUrls.get(layer.id) === objectUrl;
     } catch {
       unloadTile(layer.id, objectUrl);
+      return false;
     }
   };
 
-  const updateVisibleTiles = () => {
+  const nextAnimationFrame = () =>
+    new Promise((resolveFrame) => requestAnimationFrame(resolveFrame));
+
+  const setTileGeometry = (element, layer) => {
+    element.style.left = `${view.x + layer.x * view.scale}px`;
+    element.style.top = `${view.y + layer.y * view.scale}px`;
+    element.style.width = `${layer.width * view.scale}px`;
+    element.style.height = `${layer.height * view.scale}px`;
+  };
+
+  const updateVisibleTiles = async (generation) => {
     if (!view.loaded) return;
+    if (generation !== view.tileGeneration) return;
+    if (activePointers.size > 0 || view.gesture) return;
     if (
       (!view.tilesActive && view.scale < TILE_ENTER_SCALE) ||
       (view.tilesActive && view.scale < TILE_EXIT_SCALE)
@@ -797,43 +852,77 @@
       x: (viewport.left + viewport.right) / 2,
       y: (viewport.top + viewport.bottom) / 2,
     };
-    const visible = new Set(
-      view.tileLayers
-        .filter(
-          (layer) =>
-            layer.x < viewport.right &&
-            layer.x + layer.width > viewport.left &&
-            layer.y < viewport.bottom &&
-            layer.y + layer.height > viewport.top,
-        )
-        .sort((left, right) => {
-          const leftDistance = Math.hypot(
-            left.x + left.width / 2 - viewportCenter.x,
-            left.y + left.height / 2 - viewportCenter.y,
-          );
-          const rightDistance = Math.hypot(
-            right.x + right.width / 2 - viewportCenter.x,
-            right.y + right.height / 2 - viewportCenter.y,
-          );
-          return leftDistance - rightDistance;
-        })
-        .slice(0, MAX_RENDERED_TILES)
-        .map((layer) => layer.id),
-    );
+    const visibleLayers = view.tileLayers
+      .filter(
+        (layer) =>
+          layer.x < viewport.right &&
+          layer.x + layer.width > viewport.left &&
+          layer.y < viewport.bottom &&
+          layer.y + layer.height > viewport.top,
+      )
+      .sort((left, right) => {
+        const leftDistance = Math.hypot(
+          left.x + left.width / 2 - viewportCenter.x,
+          left.y + left.height / 2 - viewportCenter.y,
+        );
+        const rightDistance = Math.hypot(
+          right.x + right.width / 2 - viewportCenter.x,
+          right.y + right.height / 2 - viewportCenter.y,
+        );
+        return leftDistance - rightDistance;
+      })
+      .slice(0, MAX_RENDERED_TILES);
+    const visible = new Set(visibleLayers.map((layer) => layer.id));
 
-    for (const layerId of view.tileUrls.keys()) {
+    for (const layerId of [...view.tileUrls.keys()]) {
       if (!visible.has(layerId)) unloadTile(layerId);
     }
-    for (const layer of view.tileLayers) {
-      if (visible.has(layer.id)) void loadTile(layer);
+    const loaded = await Promise.all(visibleLayers.map(loadTile));
+    if (
+      generation !== view.tileGeneration ||
+      !view.loaded ||
+      view.scale < TILE_EXIT_SCALE
+    ) {
+      return;
     }
+
+    const readyLayers = visibleLayers.filter((_, index) => loaded[index]);
+    let revealedTileCount = 0;
+    for (const layer of readyLayers) {
+      const element = view.tileElements.get(layer.id);
+      if (element) setTileGeometry(element, layer);
+    }
+    await nextAnimationFrame();
+    await nextAnimationFrame();
+    if (
+      generation !== view.tileGeneration ||
+      !view.loaded ||
+      view.scale < TILE_EXIT_SCALE
+    ) {
+      return;
+    }
+
+    for (const layer of readyLayers) {
+      const element = view.tileElements.get(layer.id);
+      if (
+        element &&
+        view.tileUrls.has(layer.id) &&
+        element.complete &&
+        element.naturalWidth > 0
+      ) {
+        element.hidden = false;
+        revealedTileCount += 1;
+      }
+    }
+    tileContainer.hidden = revealedTileCount === 0;
   };
 
   const scheduleTileUpdate = () => {
     if (tileUpdateTimer !== null) clearTimeout(tileUpdateTimer);
+    const generation = view.tileGeneration;
     tileUpdateTimer = setTimeout(() => {
       tileUpdateTimer = null;
-      updateVisibleTiles();
+      void updateVisibleTiles(generation);
     }, TILE_UPDATE_DELAY_MS);
   };
 
@@ -848,10 +937,6 @@
       element.draggable = false;
       element.decoding = "async";
       element.dataset.tileId = layer.id;
-      element.style.left = `${layer.x}px`;
-      element.style.top = `${layer.y}px`;
-      element.style.width = `${layer.width}px`;
-      element.style.height = `${layer.height}px`;
       element.hidden = true;
       view.tileElements.set(layer.id, element);
       fragment.append(element);
@@ -922,8 +1007,6 @@
     view.viewerPack = plaintextViewer;
     view.tileLayers = config.viewer.tileLayers;
     view.artworks = artworks;
-    atlas.style.width = `${view.width}px`;
-    atlas.style.height = `${view.height}px`;
     buildTileElements();
     view.overviewUrl = layerObjectUrl(config.viewer.overviewLayer);
     try {
@@ -1053,6 +1136,7 @@
       tileUpdateTimer = null;
     }
     view.loaded = false;
+    view.tileGeneration += 1;
     view.scale = 1;
     view.x = 0;
     view.y = 0;
@@ -1063,7 +1147,10 @@
     resetPointers();
     closeArtworkDetails();
     clearPicker();
+    tileContainer.hidden = true;
     for (const layerId of view.tileUrls.keys()) unloadTile(layerId);
+    for (const objectUrl of pendingRevocations) URL.revokeObjectURL(objectUrl);
+    pendingRevocations.clear();
     view.tileElements.clear();
     view.tileLayers = [];
     view.tilesActive = false;
@@ -1072,6 +1159,7 @@
     view.overviewUrl = null;
     overview.hidden = true;
     overview.removeAttribute("src");
+    overview.style.transform = "";
     atlas.hidden = true;
     atlas.style.transform = "";
     atlas.style.width = "";
@@ -1191,6 +1279,7 @@
       activePointers.delete(event.pointerId);
       return;
     }
+    hideDetailTiles();
     beginGesture();
     stage.classList.add("is-dragging");
   });
@@ -1250,6 +1339,7 @@
     } else {
       view.gesture = null;
       stage.classList.remove("is-dragging");
+      scheduleTileUpdate();
     }
   };
 
