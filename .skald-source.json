@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sourceRepository": "MannaMila/mannamila-web",
-  "sourceCommit": "26975f7a42f5730cab1df7ec3444ddd8da3f19a4",
+  "sourceCommit": "a38a3ce56db3b359f5407db537cb8630fcb103f7",
   "sourcePath": "skald",
   "sourceTreeDirty": false,
   "files": {
@@ -19,6 +19,12 @@
     "feedback/styles.css": "6db95258d585d13db67b0dc363fc0f1f4a45d789ba6c90791dc7b399fd6c917d",
     "get/index.html": "0ef2b0d2b55f3e779deabca2a486e7ade893106bfa856006992037cb3a926418",
     "index.html": "b75239738451d9212295781d31e9a1d69ece8b08149602d3b2d678fb7faeb507",
+    "mosaic/assets/skald-museum-art-mosaic.enc": "aed9ad4f6c86f6fce84f467e689552c2373040d67e40b563c852f3418ce67d21",
+    "mosaic/attribution.html": "55e59c71e0b8b969f5394332e51cae44b7ed890e81fafe492cc84553661baee0",
+    "mosaic/index.html": "a246d1d22d07b7796c047dfd401294ce86dbc51bacd7d7b7f3270dee4bff3278",
+    "mosaic/mosaic-config.json": "c5a30e965d638b018d4104728e9b24c5be25984559cfb7e3cf1a3059b2cca1fb",
+    "mosaic/styles.css": "663333c18eb1f17411cce2db6c56b4d5a2c9a99e44aa040277dc9931d2fa23f0",
+    "mosaic/viewer.js": "cc056e583626cd56c030e4e05b1710b5266e17066da48562558be4be9c7469e4",
     "privacy/index.html": "b4347da4c8e7934e713618f301893600aa3e3c838e0160dfb890ee2c21cb6e31",
     "retire-analytics.js": "363e97096e5d80edbbd2d48fe66d605516034942d3263d5fbb74e127e4165631",
     "site-config.json": "1ec7b518040819292a291f6e306e3957856c4c206f40f0b5a4b7f561c8b7badb",
