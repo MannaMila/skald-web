@@ -21,5 +21,20 @@
     "name": "AES-GCM",
     "iv": "7jVbX9YoBL7LJHRp",
     "url": "./assets/skald-museum-art-mosaic.enc"
+  },
+  "catalog": {
+    "plaintext": {
+      "mediaType": "application/json",
+      "bytes": 142560,
+      "sha256": "7ccce31e953b83f1a265b0c7878b50e2a51f735c454624e46bdc9cb911e58895",
+      "width": 16000,
+      "height": 8000,
+      "artworkCount": 200
+    },
+    "cipher": {
+      "name": "AES-GCM",
+      "iv": "QoF79rZ2q6+XzWnE",
+      "url": "./assets/skald-museum-art-map.enc"
+    }
   }
 }
