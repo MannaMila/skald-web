@@ -1,11 +1,10 @@
 {
   "schemaVersion": 1,
   "sourceRepository": "MannaMila/mannamila-web",
-  "sourceCommit": "6379a11ebcd44e1b6f557b0e69b02fe7f21aaa3b",
+  "sourceCommit": "26975f7a42f5730cab1df7ec3444ddd8da3f19a4",
   "sourcePath": "skald",
   "sourceTreeDirty": false,
   "files": {
-    "analytics.js": "025f325071d4a00f70d4f146749aae06ea7c89b368e5ab5e68c84d4d83fe3720",
     "app.js": "5c6417ff99868dc8826b9763a0c349c290b2207f7c706f832c80d45d6450aeb3",
     "assets/app-store-badge.svg": "a26fc5b38380272c92e9019a2eb8b45542a66814b3e2b203772db8904b9fb99f",
     "assets/google-play-badge.png": "f72611e2df8e88204009fd896d05d5e8e83c77009c63943bbffa169559934849",
@@ -15,16 +14,17 @@
     "assets/reader-art.webp": "90f22b1e2f61b4ca894ee3722a11575aacf4e600820f76736d8ccfb3e08ff239",
     "assets/skald-odyssey-og.jpg": "f2cd22477c056d74c86ddd7b5ba17b7f33b067b320b53b72750c770a756d4dbe",
     "availability.json": "59eb1f9f284b19c23d736439e3ba940ceb8a54a6e1211b40bf16b738b9a7c140",
-    "feedback/index.html": "8159ad963b3518dc5d062974b7beaaa3c3aaab0b391d2b98d870a0dc2a1cd1f5",
-    "feedback/privacy/index.html": "2c89a50e1ae9183e8467e9633c75c7f8bc087ccd807af057dd78da6d1217c5d2",
+    "feedback/index.html": "debec1d7ec85932e1146c9163536a8a82808667eed1ffb2ed15270b3d3db975a",
+    "feedback/privacy/index.html": "8e2811750f6ee9041a376776c571c2ef81a6806d34a624ac20a7210c4672c3ba",
     "feedback/styles.css": "6db95258d585d13db67b0dc363fc0f1f4a45d789ba6c90791dc7b399fd6c917d",
-    "get/index.html": "6e4e9770f2c77ae876e260f14056707bad4ca88a1129b3c55f6209511084a176",
-    "index.html": "78f728e8c98d6528d0cee0d66cf7b11641ea1c05375f2c8ae5b83eec20f10be7",
-    "privacy/index.html": "ebd745f3734837858d18c6ad1c7e69aa2665b927f73e8e566ce9cdfdbfe34609",
+    "get/index.html": "0ef2b0d2b55f3e779deabca2a486e7ade893106bfa856006992037cb3a926418",
+    "index.html": "b75239738451d9212295781d31e9a1d69ece8b08149602d3b2d678fb7faeb507",
+    "privacy/index.html": "b4347da4c8e7934e713618f301893600aa3e3c838e0160dfb890ee2c21cb6e31",
+    "retire-analytics.js": "363e97096e5d80edbbd2d48fe66d605516034942d3263d5fbb74e127e4165631",
     "site-config.json": "1ec7b518040819292a291f6e306e3957856c4c206f40f0b5a4b7f561c8b7badb",
     "styles.css": "b5d8cc0d229fa67115289bc139d6b5697f2ee474fa350dfcdcc2c97635e58122",
-    "support/index.html": "f534a51e6a6fe7f12c263334b7f59a7657e08bab91f94edffed80c430bdac881",
-    "updates-privacy/index.html": "98df4d41972c25d290766f633d081317f607237e64c0ff3ff1ad766ffb05c7f7",
+    "support/index.html": "4507b77daee116f8cecc8f00201772b9feed0ea7fd7183a7cdd799308826eb57",
+    "updates-privacy/index.html": "f68eb5861e56242595a14be95f806c4edc65c37878279bf65055e8a8e711dcf5",
     "updates/art/aic-111044.webp": "8170997befda2f153afc048186b57614fd4332288d454d3d61769e70054ba43e",
     "updates/art/aic-164.webp": "87413d102920bba79bd6d24c0a930e3675f47f7af5e4aa3590b7661076c041f4",
     "updates/art/aic-2104.webp": "d4cc744b5838506c5f6e1ab056c17b5b2787873afc7248c8b55f7062627554e3",
@@ -52,7 +52,7 @@
     "updates/art/ngprague-byss-penelope-and-suitors.webp": "16dd2f1949176cdcee96a9c2bef75a4958128c3ecabd458ac1a937afc26d9e95",
     "updates/art/rijks-monnet-telemachus-odysseus-reunited.webp": "c741fda08a791050c86dc3ce24679c5f39a1f8c46851e7270bc21a9397a7c75f",
     "updates/art/walters-boeotian-pig-statuette.webp": "2de911c6e3e7412336a57e7ec421ae1c030d1c57c5a3191eecce62351ef21c61",
-    "updates/index.html": "9ee6b0c662c364d6cade00780d4e3d43467b074ca129872f85e56654485c1db9",
-    "waitlist-privacy/index.html": "acac21b0347bf3dd0ede5a67ddb48a2c600b3c51a52453a75986424cf7a61681"
+    "updates/index.html": "12be6db5eba5f5e15ccb17f3a809c7de0b13a26596cb597821c451ed068877d8",
+    "waitlist-privacy/index.html": "fa7f45fafbb5079ff05e0747089f6ba9f383ba20f8c0ead3ddcc0b38f187080f"
   }
 }
