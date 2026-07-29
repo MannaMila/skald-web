@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 2,
+  "plaintext": {
+    "mediaType": "image/jpeg",
+    "bytes": 43116820,
+    "sha256": "f5ccbcc3c4c6423cd21ac3474e49cf711c3a000c24954276af48bf10070c6d5f",
+    "width": 16000,
+    "height": 8000
+  },
+  "kdf": {
+    "name": "PBKDF2",
+    "hash": "SHA-256",
+    "iterations": 600000,
+    "salt": "uNnlGSJG5VpACHjjnbPCOg=="
+  },
+  "verifier": {
+    "hash": "SHA-256",
+    "value": "xXJF/ybtpreHQAhqAYyhvbSVbRxQWorhXwF78RBQfV4="
+  },
+  "cipher": {
+    "name": "AES-GCM",
+    "iv": "7jVbX9YoBL7LJHRp",
+    "url": "./assets/skald-museum-art-mosaic.enc"
+  }
+}

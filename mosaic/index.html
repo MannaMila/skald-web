@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="referrer" content="no-referrer">
+    <meta name="theme-color" content="#100d0a">
+    <title>Skald Art Studio</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="../retire-analytics.js" defer></script>
+    <script src="./viewer.js" defer></script>
+  </head>
+  <body data-locked="true">
+    <a class="skip-link" href="#access">Skip to access form</a>
+
+    <main>
+      <section class="gate" id="access" data-access-gate aria-labelledby="access-title">
+        <div class="gate-card">
+          <p class="eyebrow">Skald · private studio</p>
+          <h1 id="access-title">Enter the viewing room.</h1>
+          <p class="gate-intro">This unlisted preview holds a working, high-resolution museum-art mosaic for campaign production.</p>
+
+          <form data-access-form>
+            <label for="access-word">Access word</label>
+            <div class="access-row">
+              <input
+                id="access-word"
+                name="access-word"
+                type="password"
+                autocomplete="current-password"
+                autocapitalize="none"
+                spellcheck="false"
+                required
+                data-access-input
+              >
+              <button type="submit" data-access-submit>Open studio</button>
+            </div>
+            <p class="access-error" role="alert" data-access-error hidden>The access word is not recognized.</p>
+            <p class="access-status" aria-live="polite" data-access-status>
+              The image is decrypted only in this tab after access is accepted.
+            </p>
+          </form>
+
+          <p class="gate-note">Shared-preview access only. Locking or reloading removes the decrypted image from the page.</p>
+        </div>
+      </section>
+
+      <section class="workspace" data-mosaic-viewer hidden aria-label="Skald museum-art mosaic viewer">
+        <header class="viewer-header">
+          <div class="viewer-title">
+            <span class="viewer-mark">MannaMila</span>
+            <span>Skald museum-art atlas</span>
+          </div>
+
+          <div class="viewer-controls" aria-label="Mosaic controls">
+            <button type="button" data-action="zoom-out" aria-label="Zoom out">−</button>
+            <output data-zoom-output aria-live="polite">100%</output>
+            <button type="button" data-action="zoom-in" aria-label="Zoom in">+</button>
+            <button type="button" data-action="fit">Fit</button>
+            <button type="button" data-action="actual">100%</button>
+            <a class="download-link" data-download hidden>Download decrypted image</a>
+            <button class="quiet-control" type="button" data-action="lock">Lock</button>
+          </div>
+        </header>
+
+        <div
+          class="mosaic-stage"
+          data-mosaic-stage
+          tabindex="0"
+          aria-label="Zoomable museum-art mosaic. Drag to pan; use the controls, mouse wheel, or keyboard to zoom."
+        >
+          <div class="asset-placeholder" data-asset-placeholder>
+            <p class="eyebrow">Encrypted viewing room</p>
+            <h2>The museum-art atlas opens here.</h2>
+            <p>The original image exists in this page only after successful local decryption.</p>
+          </div>
+          <img
+            class="mosaic-image"
+            data-mosaic-image
+            alt="A large mosaic of public-domain and openly licensed museum art featured in Skald: Odyssey."
+            draggable="false"
+            hidden
+          >
+          <p class="asset-status" data-asset-status aria-live="polite">Encrypted mosaic locked.</p>
+        </div>
+
+        <footer class="viewer-footer">
+          <span>Drag to move</span>
+          <span>Scroll or + / − to zoom</span>
+          <span>F to fit · 0 for actual size</span>
+          <a href="./attribution.html" target="_blank" rel="noopener noreferrer">Artwork credits</a>
+        </footer>
+      </section>
+    </main>
+  </body>
+</html>
