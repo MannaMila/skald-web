@@ -55,6 +55,10 @@
           </div>
 
           <div class="viewer-controls" aria-label="Mosaic controls">
+            <label class="visually-hidden" for="artwork-picker">Choose an artwork</label>
+            <select id="artwork-picker" data-artwork-picker disabled>
+              <option value="">Choose artwork…</option>
+            </select>
             <button type="button" data-action="zoom-out" aria-label="Zoom out">−</button>
             <output data-zoom-output aria-live="polite">100%</output>
             <button type="button" data-action="zoom-in" aria-label="Zoom in">+</button>
@@ -69,7 +73,7 @@
           class="mosaic-stage"
           data-mosaic-stage
           tabindex="0"
-          aria-label="Zoomable museum-art mosaic. Drag to pan; use the controls, mouse wheel, or keyboard to zoom."
+          aria-label="Interactive museum-art mosaic. Click or tap a work for details. Drag to pan; scroll, pinch, or use the controls and keyboard to zoom."
         >
           <div class="asset-placeholder" data-asset-placeholder>
             <p class="eyebrow">Encrypted viewing room</p>
@@ -83,12 +87,48 @@
             draggable="false"
             hidden
           >
+          <div class="artwork-selection" data-artwork-selection aria-hidden="true" hidden></div>
           <p class="asset-status" data-asset-status aria-live="polite">Encrypted mosaic locked.</p>
         </div>
 
+        <aside
+          class="artwork-info"
+          data-artwork-info
+          aria-labelledby="artwork-title"
+          aria-live="polite"
+          hidden
+        >
+          <button
+            class="artwork-close"
+            type="button"
+            data-action="close-details"
+            aria-label="Close artwork details"
+          >×</button>
+          <p class="artwork-index" data-artwork-index></p>
+          <h2 id="artwork-title" data-artwork-title></h2>
+          <p class="artwork-creator" data-artwork-creator></p>
+          <dl class="artwork-facts">
+            <div>
+              <dt>Collection</dt>
+              <dd data-artwork-museum></dd>
+            </div>
+            <div>
+              <dt>Display</dt>
+              <dd data-artwork-status></dd>
+            </div>
+            <div>
+              <dt>Rights</dt>
+              <dd data-artwork-license></dd>
+            </div>
+          </dl>
+          <p class="artwork-provider" data-artwork-provider></p>
+          <div class="artwork-links" data-artwork-source-links></div>
+        </aside>
+
         <footer class="viewer-footer">
           <span>Drag to move</span>
-          <span>Scroll or + / − to zoom</span>
+          <span>Click or tap a work for details</span>
+          <span>Scroll or pinch / + / − to zoom</span>
           <span>F to fit · 0 for actual size</span>
           <a href="./attribution.html" target="_blank" rel="noopener noreferrer">Artwork credits</a>
         </footer>
