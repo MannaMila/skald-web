@@ -33,6 +33,7 @@
   const zoomOutput = document.querySelector("[data-zoom-output]");
   const download = document.querySelector("[data-download]");
   const fullscreenButton = document.querySelector("[data-action='fullscreen']");
+  const fullscreenLabel = document.querySelector("[data-fullscreen-label]");
   const artworkPicker = document.querySelector("[data-artwork-picker]");
   const artworkSelection = document.querySelector("[data-artwork-selection]");
   const artworkInfo = document.querySelector("[data-artwork-info]");
@@ -46,6 +47,7 @@
   const artworkTitle = document.querySelector("[data-artwork-title]");
   const artworkCreator = document.querySelector("[data-artwork-creator]");
   const artworkMuseum = document.querySelector("[data-artwork-museum]");
+  const artworkBooks = document.querySelector("[data-artwork-books]");
   const artworkStatus = document.querySelector("[data-artwork-status]");
   const artworkLicense = document.querySelector("[data-artwork-license]");
   const artworkProvider = document.querySelector("[data-artwork-provider]");
@@ -92,8 +94,13 @@
 
   const syncFullscreenControl = () => {
     const active = fullscreenElement() === viewer;
+    viewer.dataset.fullscreen = String(active);
     fullscreenButton.setAttribute("aria-pressed", String(active));
-    fullscreenButton.textContent = active ? "Exit full screen" : "Full screen";
+    fullscreenButton.setAttribute(
+      "aria-label",
+      active ? "Exit full screen" : "Enter full screen",
+    );
+    fullscreenLabel.textContent = active ? "Exit full screen" : "Full screen";
   };
 
   const toggleViewerFullscreen = async () => {
@@ -515,6 +522,15 @@
         !["title", "creator", "date", "source_provider", "license"].every(
           (field) => typeof artwork[field] === "string" && artwork[field].trim(),
         ) ||
+        !["museum", "city"].every((field) => typeof artwork[field] === "string") ||
+        !["museum-artifact", "chapter-only-plate"].includes(artwork.catalog_class) ||
+        !Array.isArray(artwork.books) ||
+        artwork.books.some(
+          (book) => !Number.isSafeInteger(book) || book < 1 || book > 24,
+        ) ||
+        artwork.books.some(
+          (book, bookIndex) => bookIndex > 0 && artwork.books[bookIndex - 1] >= book,
+        ) ||
         typeof artwork.on_view !== "boolean" ||
         !(parseHttpsUrl(artwork.museum_url) || parseHttpsUrl(artwork.file_page_url))
       ) {
@@ -703,6 +719,7 @@
       artworkTitle,
       artworkCreator,
       artworkMuseum,
+      artworkBooks,
       artworkStatus,
       artworkLicense,
       artworkProvider,
@@ -853,6 +870,43 @@
     }).format(new Date(Date.UTC(year, month - 1, 1)));
   };
 
+  const bookNumerals = [
+    "",
+    "I",
+    "II",
+    "III",
+    "IV",
+    "V",
+    "VI",
+    "VII",
+    "VIII",
+    "IX",
+    "X",
+    "XI",
+    "XII",
+    "XIII",
+    "XIV",
+    "XV",
+    "XVI",
+    "XVII",
+    "XVIII",
+    "XIX",
+    "XX",
+    "XXI",
+    "XXII",
+    "XXIII",
+    "XXIV",
+  ];
+  const bookList = new Intl.ListFormat("en", {
+    style: "long",
+    type: "conjunction",
+  });
+  const formatBookReferences = (books) => {
+    if (books.length === 0) return "Browse all Odyssey art";
+    const references = bookList.format(books.map((book) => bookNumerals[book]));
+    return `${books.length === 1 ? "Book" : "Books"} ${references}`;
+  };
+
   const addSourceLink = (url, label) => {
     const safeUrl = parseHttpsUrl(url);
     if (!safeUrl) return;
@@ -877,7 +931,11 @@
     artworkIndex.textContent = String(artwork.index).padStart(3, "0");
     artworkTitle.textContent = artwork.title;
     artworkCreator.textContent = [artwork.creator, artwork.date].filter(Boolean).join(" · ");
-    artworkMuseum.textContent = artwork.museum || artwork.source_provider;
+    artworkMuseum.textContent = [
+      artwork.museum || artwork.source_provider,
+      artwork.city,
+    ].filter(Boolean).join(" · ");
+    artworkBooks.textContent = formatBookReferences(artwork.books);
     if (artwork.on_view) {
       artworkStatus.textContent = [
         "On view",

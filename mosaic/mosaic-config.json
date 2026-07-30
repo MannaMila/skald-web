@@ -25,15 +25,15 @@
   "catalog": {
     "plaintext": {
       "mediaType": "application/json",
-      "bytes": 142560,
-      "sha256": "7ccce31e953b83f1a265b0c7878b50e2a51f735c454624e46bdc9cb911e58895",
+      "bytes": 166218,
+      "sha256": "6f80c7d95eb30101103261b501604f7342259d360e57a530ce2e871103f21924",
       "width": 16000,
       "height": 8000,
       "artworkCount": 200
     },
     "cipher": {
       "name": "AES-GCM",
-      "iv": "QoF79rZ2q6+XzWnE",
+      "iv": "b3lhw8Eu443lIjjq",
       "url": "./assets/skald-museum-art-map.enc"
     }
   },
