@@ -64,6 +64,11 @@
             <button type="button" data-action="zoom-in" aria-label="Zoom in">+</button>
             <button type="button" data-action="fit">Fit</button>
             <button type="button" data-action="actual">100%</button>
+            <button
+              type="button"
+              data-action="fullscreen"
+              aria-pressed="false"
+            >Full screen</button>
             <button class="download-link" type="button" data-download hidden>Download full-resolution image</button>
             <button class="quiet-control" type="button" data-action="lock">Lock</button>
           </div>
@@ -103,11 +108,11 @@
           <p class="asset-status" data-asset-status aria-live="polite">Encrypted mosaic locked.</p>
         </div>
 
-        <aside
+        <dialog
           class="artwork-info"
           data-artwork-info
           aria-labelledby="artwork-title"
-          aria-live="polite"
+          aria-modal="true"
           hidden
         >
           <button
@@ -116,26 +121,50 @@
             data-action="close-details"
             aria-label="Close artwork details"
           >×</button>
-          <p class="artwork-index" data-artwork-index></p>
-          <h2 id="artwork-title" data-artwork-title></h2>
-          <p class="artwork-creator" data-artwork-creator></p>
-          <dl class="artwork-facts">
-            <div>
-              <dt>Collection</dt>
-              <dd data-artwork-museum></dd>
-            </div>
-            <div>
-              <dt>Display</dt>
-              <dd data-artwork-status></dd>
-            </div>
-            <div>
-              <dt>Rights</dt>
-              <dd data-artwork-license></dd>
-            </div>
-          </dl>
-          <p class="artwork-provider" data-artwork-provider></p>
-          <div class="artwork-links" data-artwork-source-links></div>
-        </aside>
+          <div class="artwork-dialog-layout">
+            <figure class="artwork-preview-frame" data-artwork-preview-frame>
+              <div class="artwork-preview-clip">
+                <img
+                  class="artwork-preview artwork-preview-overview"
+                  data-artwork-preview-overview
+                  alt=""
+                  draggable="false"
+                >
+                <img
+                  class="artwork-preview artwork-preview-detail"
+                  data-artwork-preview-detail
+                  alt=""
+                  draggable="false"
+                >
+              </div>
+              <figcaption data-artwork-preview-status aria-live="polite">
+                Preparing full detail…
+              </figcaption>
+            </figure>
+
+            <section class="artwork-metadata">
+              <p class="artwork-index" data-artwork-index></p>
+              <h2 id="artwork-title" data-artwork-title></h2>
+              <p class="artwork-creator" data-artwork-creator></p>
+              <dl class="artwork-facts">
+                <div>
+                  <dt>Collection</dt>
+                  <dd data-artwork-museum></dd>
+                </div>
+                <div>
+                  <dt>Display</dt>
+                  <dd data-artwork-status></dd>
+                </div>
+                <div>
+                  <dt>Rights</dt>
+                  <dd data-artwork-license></dd>
+                </div>
+              </dl>
+              <p class="artwork-provider" data-artwork-provider></p>
+              <div class="artwork-links" data-artwork-source-links></div>
+            </section>
+          </div>
+        </dialog>
 
         <footer class="viewer-footer">
           <span>Drag to move</span>
