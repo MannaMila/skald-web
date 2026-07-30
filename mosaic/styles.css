@@ -314,6 +314,17 @@ form label {
   color: var(--ink-muted);
 }
 
+[data-fullscreen-exit-icon] {
+  display: none;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
 .download-link {
   display: inline-flex;
   align-items: center;
@@ -824,6 +835,65 @@ form label {
   .artwork-facts div {
     grid-template-columns: 82px minmax(0, 1fr);
   }
+}
+
+.workspace[data-fullscreen="true"] {
+  width: 100vw;
+  height: 100dvh;
+  min-height: 0;
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.workspace[data-fullscreen="true"] .viewer-header {
+  position: absolute;
+  inset: 0 0 auto auto;
+  z-index: 8;
+  display: block;
+  min-height: 0;
+  padding:
+    max(8px, env(safe-area-inset-top))
+    max(8px, env(safe-area-inset-right))
+    0
+    0;
+  border: 0;
+  background: transparent;
+  pointer-events: none;
+}
+
+.workspace[data-fullscreen="true"] .viewer-title,
+.workspace[data-fullscreen="true"] .viewer-controls > :not([data-action="fullscreen"]),
+.workspace[data-fullscreen="true"] .viewer-footer,
+.workspace[data-fullscreen="true"] .asset-status {
+  display: none;
+}
+
+.workspace[data-fullscreen="true"] .viewer-controls {
+  width: auto;
+  display: block;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.workspace[data-fullscreen="true"] [data-action="fullscreen"] {
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  min-height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-color: rgba(246, 237, 221, 0.28);
+  background: rgba(16, 13, 10, 0.82);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.34);
+  pointer-events: auto;
+}
+
+.workspace[data-fullscreen="true"] [data-fullscreen-label] {
+  display: none;
+}
+
+.workspace[data-fullscreen="true"] [data-fullscreen-exit-icon] {
+  display: block;
 }
 
 @media (prefers-reduced-motion: reduce) {

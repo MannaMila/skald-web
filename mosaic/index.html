@@ -68,7 +68,18 @@
               type="button"
               data-action="fullscreen"
               aria-pressed="false"
-            >Full screen</button>
+              aria-label="Enter full screen"
+            >
+              <span data-fullscreen-label>Full screen</span>
+              <svg
+                data-fullscreen-exit-icon
+                aria-hidden="true"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path d="M9 3v6H3m12-6v6h6M3 15h6v6m12-6h-6v6"></path>
+              </svg>
+            </button>
             <button class="download-link" type="button" data-download hidden>Download full-resolution image</button>
             <button class="quiet-control" type="button" data-action="lock">Lock</button>
           </div>
@@ -150,6 +161,10 @@
                 <div>
                   <dt>Collection</dt>
                   <dd data-artwork-museum></dd>
+                </div>
+                <div>
+                  <dt>In Skald</dt>
+                  <dd data-artwork-books></dd>
                 </div>
                 <div>
                   <dt>Display</dt>
