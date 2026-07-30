@@ -32,9 +32,16 @@
   const status = document.querySelector("[data-asset-status]");
   const zoomOutput = document.querySelector("[data-zoom-output]");
   const download = document.querySelector("[data-download]");
+  const fullscreenButton = document.querySelector("[data-action='fullscreen']");
   const artworkPicker = document.querySelector("[data-artwork-picker]");
   const artworkSelection = document.querySelector("[data-artwork-selection]");
   const artworkInfo = document.querySelector("[data-artwork-info]");
+  const artworkClose = document.querySelector("[data-action='close-details']");
+  const artworkPreviewFrame = document.querySelector("[data-artwork-preview-frame]");
+  const artworkPreviewClip = artworkPreviewFrame.querySelector(".artwork-preview-clip");
+  const artworkPreviewOverview = document.querySelector("[data-artwork-preview-overview]");
+  let artworkPreviewDetail = document.querySelector("[data-artwork-preview-detail]");
+  const artworkPreviewStatus = document.querySelector("[data-artwork-preview-status]");
   const artworkIndex = document.querySelector("[data-artwork-index]");
   const artworkTitle = document.querySelector("[data-artwork-title]");
   const artworkCreator = document.querySelector("[data-artwork-creator]");
@@ -73,9 +80,59 @@
     unlocking: false,
     artworks: [],
     selected: null,
+    detailGeneration: 0,
+    detailUrl: null,
+    detailOpener: null,
   };
 
   const clamp = (value, minimum, maximum) => Math.min(maximum, Math.max(minimum, value));
+
+  const fullscreenElement = () =>
+    document.fullscreenElement ?? document.webkitFullscreenElement ?? null;
+
+  const syncFullscreenControl = () => {
+    const active = fullscreenElement() === viewer;
+    fullscreenButton.setAttribute("aria-pressed", String(active));
+    fullscreenButton.textContent = active ? "Exit full screen" : "Full screen";
+  };
+
+  const toggleViewerFullscreen = async () => {
+    try {
+      if (fullscreenElement() === viewer) {
+        const exitFullscreen =
+          document.exitFullscreen ?? document.webkitExitFullscreen;
+        if (!exitFullscreen) throw new Error("Fullscreen exit is unavailable.");
+        await exitFullscreen.call(document);
+      } else {
+        const requestFullscreen =
+          viewer.requestFullscreen ?? viewer.webkitRequestFullscreen;
+        if (!requestFullscreen) throw new Error("Fullscreen is unavailable.");
+        await requestFullscreen.call(viewer);
+      }
+    } catch {
+      status.textContent = "Full screen is unavailable in this browser.";
+      syncFullscreenControl();
+    }
+  };
+
+  const exitViewerFullscreen = () => {
+    if (fullscreenElement() !== viewer) return;
+    const exitFullscreen =
+      document.exitFullscreen ?? document.webkitExitFullscreen;
+    if (!exitFullscreen) return;
+    void Promise.resolve(exitFullscreen.call(document)).catch(() => {});
+  };
+
+  const handleFullscreenChange = () => {
+    syncFullscreenControl();
+    view.stageBounds = null;
+    if (!view.loaded) return;
+    requestAnimationFrame(() => {
+      if (!view.loaded) return;
+      if (view.fitted) fitImage();
+      else measureStage();
+    });
+  };
 
   const decodeBase64 = (value, expectedLength) => {
     if (typeof value !== "string") throw new Error("Invalid encrypted-mosaic metadata.");
@@ -474,6 +531,16 @@
       ) {
         throw new Error("The artwork catalog contains an invalid display claim.");
       }
+      const containingLayers = config.viewer.tileLayers.filter(
+        (layer) =>
+          artwork.x >= layer.x &&
+          artwork.y >= layer.y &&
+          artwork.x + artwork.width <= layer.x + layer.width &&
+          artwork.y + artwork.height <= layer.y + layer.height,
+      );
+      if (containingLayers.length !== 1) {
+        throw new Error("An artwork does not fit exactly one encrypted detail tile.");
+      }
 
       ids.add(artwork.id);
       cells.add(cell);
@@ -645,12 +712,134 @@
     artworkSourceLinks.replaceChildren();
   };
 
-  const closeArtworkDetails = () => {
-    view.selected = null;
+  const setPreviewCrop = (element, artwork, layer) => {
+    element.style.left =
+      `${-((artwork.x - layer.x) / artwork.width) * 100}%`;
+    element.style.top =
+      `${-((artwork.y - layer.y) / artwork.height) * 100}%`;
+    element.style.width = `${(layer.width / artwork.width) * 100}%`;
+    element.style.height = `${(layer.height / artwork.height) * 100}%`;
+  };
+
+  const resetArtworkPreview = () => {
+    view.detailGeneration += 1;
+    artworkPreviewOverview.removeAttribute("src");
+    artworkPreviewOverview.removeAttribute("style");
+    artworkPreviewDetail.removeAttribute("src");
+    artworkPreviewDetail.removeAttribute("style");
+    artworkPreviewDetail.alt = "";
+    for (const key of [
+      "sourceTile",
+      "cropX",
+      "cropY",
+      "cropWidth",
+      "cropHeight",
+    ]) {
+      delete artworkPreviewDetail.dataset[key];
+    }
+    artworkPreviewDetail.dataset.ready = "false";
+    artworkPreviewClip.style.aspectRatio = "";
+    artworkPreviewStatus.textContent = "Preparing full detail…";
+    if (view.detailUrl) URL.revokeObjectURL(view.detailUrl);
+    view.detailUrl = null;
+  };
+
+  const suspendStageTiles = () => {
+    view.tileGeneration += 1;
+    if (tileUpdateTimer !== null) {
+      clearTimeout(tileUpdateTimer);
+      tileUpdateTimer = null;
+    }
+    tileContainer.hidden = true;
+    for (const layerId of [...view.tileUrls.keys()]) unloadTile(layerId);
+    for (const element of view.tileElements.values()) element.hidden = true;
+    view.tilesActive = false;
+  };
+
+  const detailLayerFor = artwork =>
+    view.tileLayers.find(
+      (layer) =>
+        artwork.x >= layer.x &&
+        artwork.y >= layer.y &&
+        artwork.x + artwork.width <= layer.x + layer.width &&
+        artwork.y + artwork.height <= layer.y + layer.height,
+    );
+
+  async function loadArtworkPreview(artwork, generation) {
+    const layer = detailLayerFor(artwork);
+    if (!layer || !view.overviewUrl || !view.viewerPack) {
+      artworkPreviewStatus.textContent = "Full detail is unavailable.";
+      return;
+    }
+
+    artworkPreviewClip.style.aspectRatio =
+      `${artwork.width} / ${artwork.height}`;
+    setPreviewCrop(artworkPreviewOverview, artwork, {
+      x: 0,
+      y: 0,
+      width: view.width,
+      height: view.height,
+    });
+    artworkPreviewOverview.src = view.overviewUrl;
+
+    const objectUrl = layerObjectUrl(layer);
+    view.detailUrl = objectUrl;
+    const candidate = new Image();
+    candidate.className = "artwork-preview artwork-preview-detail";
+    candidate.dataset.artworkPreviewDetail = "";
+    candidate.dataset.ready = "false";
+    candidate.dataset.sourceTile = layer.sourcePath.replace(/^viewer\//, "");
+    candidate.dataset.cropX = String(artwork.x - layer.x);
+    candidate.dataset.cropY = String(artwork.y - layer.y);
+    candidate.dataset.cropWidth = String(artwork.width);
+    candidate.dataset.cropHeight = String(artwork.height);
+    candidate.alt = `${artwork.title}, ${artwork.creator}`;
+    candidate.draggable = false;
+    setPreviewCrop(candidate, artwork, layer);
+
+    try {
+      await loadLayerImage(candidate, layer, objectUrl);
+      if (
+        generation !== view.detailGeneration ||
+        view.detailUrl !== objectUrl ||
+        !artworkInfo.open ||
+        view.selected?.id !== artwork.id
+      ) {
+        return;
+      }
+      candidate.dataset.ready = "true";
+      artworkPreviewDetail.replaceWith(candidate);
+      artworkPreviewDetail = candidate;
+      artworkPreviewStatus.textContent =
+        "Full-resolution mosaic crop · close with ×";
+    } catch {
+      if (
+        generation === view.detailGeneration &&
+        view.detailUrl === objectUrl
+      ) {
+        artworkPreviewStatus.textContent = "Full detail is unavailable.";
+      }
+    }
+  }
+
+  const closeArtworkDetails = (restoreFocus = true) => {
+    const opener = view.detailOpener;
+    view.detailOpener = null;
+    resetArtworkPreview();
+    if (artworkInfo.open) artworkInfo.close();
     artworkInfo.hidden = true;
+    view.selected = null;
     artworkSelection.hidden = true;
     artworkPicker.value = "";
     clearArtworkText();
+    if (view.loaded) scheduleTileUpdate();
+    if (restoreFocus) {
+      const target =
+        opener instanceof HTMLElement && opener.isConnected
+          ? opener
+          : stage;
+      target.focus({ preventScroll: true });
+    }
   };
 
   const formatAsOf = (value) => {
@@ -676,6 +865,14 @@
   };
 
   const showArtworkDetails = (artwork) => {
+    if (!artworkInfo.open) {
+      view.detailOpener =
+        document.activeElement instanceof HTMLElement
+          ? document.activeElement
+          : stage;
+    }
+    suspendStageTiles();
+    resetArtworkPreview();
     view.selected = artwork;
     artworkIndex.textContent = String(artwork.index).padStart(3, "0");
     artworkTitle.textContent = artwork.title;
@@ -703,7 +900,10 @@
     }
     artworkPicker.value = artwork.id;
     artworkInfo.hidden = false;
+    if (!artworkInfo.open) artworkInfo.showModal();
     renderSelection();
+    artworkClose.focus({ preventScroll: true });
+    void loadArtworkPreview(artwork, view.detailGeneration);
   };
 
   const artworkAt = (clientX, clientY) => {
@@ -800,7 +1000,7 @@
   };
 
   const loadTile = async (layer) => {
-    if (!view.viewerPack) return false;
+    if (!view.viewerPack || artworkInfo.open) return false;
     const element = view.tileElements.get(layer.id);
     if (!element) return false;
     let objectUrl = view.tileUrls.get(layer.id);
@@ -830,6 +1030,7 @@
   const updateVisibleTiles = async (generation) => {
     if (!view.loaded) return;
     if (generation !== view.tileGeneration) return;
+    if (artworkInfo.open) return;
     if (activePointers.size > 0 || view.gesture) return;
     if (
       (!view.tilesActive && view.scale < TILE_ENTER_SCALE) ||
@@ -877,6 +1078,7 @@
     for (const layerId of [...view.tileUrls.keys()]) {
       if (!visible.has(layerId)) unloadTile(layerId);
     }
+    if (generation !== view.tileGeneration || artworkInfo.open) return;
     const loaded = await Promise.all(visibleLayers.map(loadTile));
     if (
       generation !== view.tileGeneration ||
@@ -1127,6 +1329,7 @@
   };
 
   function lock(restoreFocus = true) {
+    exitViewerFullscreen();
     if (renderFrameId !== null) {
       cancelAnimationFrame(renderFrameId);
       renderFrameId = null;
@@ -1145,7 +1348,7 @@
     view.stageBounds = null;
     view.artworks = [];
     resetPointers();
-    closeArtworkDetails();
+    closeArtworkDetails(false);
     clearPicker();
     tileContainer.hidden = true;
     for (const layerId of view.tileUrls.keys()) unloadTile(layerId);
@@ -1177,6 +1380,7 @@
     viewer.hidden = true;
     gate.hidden = false;
     document.body.dataset.locked = "true";
+    syncFullscreenControl();
     input.value = "";
     if (restoreFocus) input.focus({ preventScroll: true });
   }
@@ -1224,8 +1428,12 @@
   document.querySelector("[data-action='zoom-out']").addEventListener("click", () => zoomFromCenter(0.8));
   document.querySelector("[data-action='fit']").addEventListener("click", fitImage);
   document.querySelector("[data-action='actual']").addEventListener("click", showActualSize);
+  fullscreenButton.addEventListener("click", () => void toggleViewerFullscreen());
   document.querySelector("[data-action='lock']").addEventListener("click", () => lock());
-  document.querySelector("[data-action='close-details']").addEventListener("click", closeArtworkDetails);
+  artworkClose.addEventListener("click", () => closeArtworkDetails());
+  artworkInfo.addEventListener("cancel", (event) => {
+    event.preventDefault();
+  });
   download.addEventListener("click", downloadFullResolutionImage);
 
   artworkPicker.addEventListener("change", () => {
@@ -1396,13 +1604,16 @@
     action();
   });
 
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && !artworkInfo.hidden) {
-      event.preventDefault();
-      closeArtworkDetails();
-      stage.focus({ preventScroll: true });
-    }
-  });
+  document.addEventListener("fullscreenchange", handleFullscreenChange);
+  document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+  if (
+    typeof viewer.requestFullscreen !== "function" &&
+    typeof viewer.webkitRequestFullscreen !== "function"
+  ) {
+    fullscreenButton.disabled = true;
+    fullscreenButton.title = "Full screen is unavailable in this browser";
+  }
+  syncFullscreenControl();
 
   window.addEventListener("resize", () => {
     view.stageBounds = null;
