@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sourceRepository": "MannaMila/mannamila-web",
-  "sourceCommit": "8026c31e76925017289ca68a0da48e19261d6768",
+  "sourceCommit": "22062d3f160d99870c6d0183aa31a4d321ed4e51",
   "sourcePath": "skald",
   "sourceTreeDirty": false,
   "files": {
@@ -27,7 +27,7 @@
     "mosaic/mosaic-config.json": "7561cd43dd9e47ad6467d0f21b8db2b2396a7ea722ca6ac0d94f846aab113332",
     "mosaic/styles.css": "6c469dc63210d5df850ff16ad7c3f5b144609bf0515d5a7a4e3a5445f4c655d5",
     "mosaic/viewer.js": "600708adc8a691e7f9092a0129b385fec1576b68fe8bf84ec62ebfe580a26736",
-    "privacy/index.html": "1ab5e7bc4126974d1bed426ac5c236e35b3274e3c7d5980fbce6bb7a2167fd03",
+    "privacy/index.html": "d4c0323bcdb3e7cf7b904266bcf86966cd7f019a9c6d4f866b4f45e1231432c4",
     "retire-analytics.js": "363e97096e5d80edbbd2d48fe66d605516034942d3263d5fbb74e127e4165631",
     "site-config.json": "1ec7b518040819292a291f6e306e3957856c4c206f40f0b5a4b7f561c8b7badb",
     "styles.css": "b5d8cc0d229fa67115289bc139d6b5697f2ee474fa350dfcdcc2c97635e58122",
