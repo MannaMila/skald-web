@@ -650,6 +650,37 @@ form label {
   background: rgba(221, 189, 121, 0.11);
 }
 
+.artwork-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 18px;
+  padding: 13px 16px;
+  border: 1px solid rgba(221, 189, 121, 0.45);
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(221, 189, 121, 0.13), rgba(221, 189, 121, 0.06));
+  text-decoration: none;
+}
+
+.artwork-cta:hover {
+  border-color: var(--gold);
+  background: linear-gradient(180deg, rgba(221, 189, 121, 0.2), rgba(221, 189, 121, 0.1));
+}
+
+.artwork-cta-lede {
+  color: var(--ink-muted);
+  font-family: var(--serif);
+  font-size: 0.86rem;
+  line-height: 1.4;
+}
+
+.artwork-cta-action {
+  color: var(--gold);
+  font-size: 0.76rem;
+  font-weight: 720;
+  letter-spacing: 0.01em;
+}
+
 .viewer-footer {
   display: flex;
   justify-content: center;
