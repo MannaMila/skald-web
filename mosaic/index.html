@@ -137,6 +137,7 @@ button:hover{border-color:var(--gold-dim);color:var(--gold)}
  <span class="tag">The Odyssey in Art · every work in its place in the poem</span>
  <span class="spacer"></span>
  <a id="credits" href="./attribution.html">Credits</a>
+ <button id="fullscreen" aria-label="Toggle full screen">⛶ Full screen</button>
  <button id="minus">−</button><button id="fit">Fit all</button><button id="plus">+</button>
 </div>
 <nav id="rail" aria-label="Jump to book"></nav>
@@ -385,6 +386,17 @@ addEventListener('keydown',e=>{
  }
 });
 
+const fsButton=document.getElementById('fullscreen');
+const fsElement=()=>document.fullscreenElement??document.webkitFullscreenElement??null;
+const fsSupported=document.documentElement.requestFullscreen||document.documentElement.webkitRequestFullscreen;
+if(!fsSupported)fsButton.style.display='none';
+fsButton.onclick=()=>{
+ const root=document.documentElement;
+ if(fsElement())(document.exitFullscreen||document.webkitExitFullscreen).call(document);
+ else (root.requestFullscreen||root.webkitRequestFullscreen).call(root);
+};
+for(const ev of['fullscreenchange','webkitfullscreenchange'])
+ document.addEventListener(ev,()=>{fsButton.textContent=fsElement()?'⛶ Exit full screen':'⛶ Full screen';fit()});
 document.getElementById('plus').onclick=()=>zoomAt(scale*1.4,innerWidth/2,innerHeight/2);
 document.getElementById('minus').onclick=()=>zoomAt(scale/1.4,innerWidth/2,innerHeight/2);
 document.getElementById('fit').onclick=fit;
