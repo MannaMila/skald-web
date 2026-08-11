@@ -32,6 +32,20 @@ test("modal artwork exposes isolated wheel, pinch, and drag interaction", () => 
   assert.match(html, /const detailPointers=new Map\(\)/);
 });
 
+test("artwork pan leaves modal controls clickable", () => {
+  const pointerDown = html.match(
+    /artPane\.addEventListener\('pointerdown',event=>\{([\s\S]*?)\n\}\);/,
+  )?.[1];
+
+  assert.ok(pointerDown);
+  assert.match(pointerDown, /event\.target\.closest\('button,a'\)/);
+  assert.ok(
+    pointerDown.indexOf("event.target.closest('button,a')") <
+      pointerDown.indexOf("event.preventDefault()"),
+    "interactive controls must be ignored before pan cancels the pointer event",
+  );
+});
+
 test("GA4 is privacy-scoped and covers detail engagement", () => {
   assert.match(html, /const GA_ID="G-K0V3J9TLBF"/);
   assert.match(html, /cookie_domain:'none'/);
