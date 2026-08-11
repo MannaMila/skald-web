@@ -19,6 +19,66 @@ test("store badges use the standard interface type and foreground color", () => 
   assert.match(html, /\.badge svg\{[^}]*fill:currentColor/);
 });
 
+test("store badges name Skald consistently", () => {
+  assert.match(
+    html,
+    /data-store="app_store"[^>]*>[\s\S]*?<b>Skald: Odyssey<\/b> · App Store<\/a>/,
+  );
+  assert.match(
+    html,
+    /data-store="google_play"[^>]*>[\s\S]*?<b>Skald: Odyssey<\/b> · Google Play<\/a>/,
+  );
+});
+
+test("Skald CTA leads the long artwork copy and keeps store links first", () => {
+  const detailTemplate = html.match(
+    /infoPane\.innerHTML=`([\s\S]*?)`;\n veil\.classList/,
+  )?.[1];
+
+  assert.ok(detailTemplate);
+  assert.ok(
+    detailTemplate.indexOf('<div class="skald-cta') <
+      detailTemplate.indexOf('${story?'),
+    "the app hook must appear before the long artwork story",
+  );
+  assert.ok(
+    detailTemplate.indexOf('<div class="badges">') <
+      detailTemplate.indexOf('<div class="cta-body">'),
+    "store links must lead the app section",
+  );
+});
+
+test("phone portrait keeps the app screenshot and hook side by side", () => {
+  assert.match(
+    html,
+    /\.cta-body\{display:grid;grid-template-columns:minmax\(88px,118px\) minmax\(0,1fr\)/,
+  );
+  assert.match(
+    html,
+    /@media \(max-width:600px\)\{[\s\S]*?\.cta-body\{grid-template-columns:minmax\(82px,32vw\) minmax\(0,1fr\)/,
+  );
+  assert.match(
+    html,
+    /@media \(max-width:600px\)\{[\s\S]*?\.badges\{grid-template-columns:minmax\(0,1fr\)/,
+  );
+  assert.match(html, /class="cta-footnote"/);
+});
+
+test("short phone landscape keeps the stores above the fold", () => {
+  assert.match(
+    html,
+    /@media \(max-width:860px\) and \(orientation:landscape\) and \(max-height:600px\)\{/,
+  );
+  assert.match(
+    html,
+    /@media \(max-width:860px\) and \(orientation:landscape\) and \(max-height:600px\)\{[\s\S]*?#sheet\{[^}]*flex-direction:row/,
+  );
+  assert.match(
+    html,
+    /@media \(max-width:860px\) and \(orientation:landscape\) and \(max-height:600px\)\{[\s\S]*?#art-pane\{[^}]*min-height:0/,
+  );
+});
+
 test("modal artwork exposes isolated wheel, pinch, and drag interaction", () => {
   assert.match(html, /id="art-pane"[^>]*tabindex="0"/);
   assert.match(html, /id="art-surface"/);
