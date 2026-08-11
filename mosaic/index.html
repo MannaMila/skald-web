@@ -79,9 +79,16 @@ button:hover{border-color:var(--gold-dim);color:var(--gold)}
 #sheet{display:flex;gap:0;max-width:min(1240px,96vw);max-height:92vh;width:100%;
  background:var(--panel);border:1px solid var(--panel-edge);border-radius:18px;overflow:hidden;
  box-shadow:0 40px 120px #000d,0 0 0 1px #00000088}
-#art-pane{flex:1.15;min-width:0;background:#0e0b08;display:flex;align-items:center;justify-content:center;
- position:relative;padding:34px}
-#art-pane canvas{max-width:100%;max-height:calc(92vh - 68px);box-shadow:0 18px 60px #000c;border:1px solid #00000066}
+#art-pane{flex:1.15;min-width:0;background:#0e0b08;position:relative;padding:34px;overflow:hidden;
+ touch-action:none;cursor:grab;outline:none}
+#art-pane.dragging{cursor:grabbing}
+#art-pane:focus-visible{outline:3px solid var(--gold);outline-offset:-3px}
+#art-surface{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform;user-select:none}
+#art-surface canvas{display:block;width:100%;height:100%;box-shadow:0 18px 60px #000c;
+ border:1px solid #00000066;pointer-events:none}
+#art-help,#art-zoom{position:absolute;bottom:14px;z-index:1;margin:0;padding:5px 9px;border-radius:999px;
+ color:var(--paper);background:#14100Ccc;font:500 11px 'NotoSerif',Georgia,serif;pointer-events:none}
+#art-help{left:16px}#art-zoom{right:16px;font-variant-numeric:tabular-nums}
 #info-pane{flex:1;min-width:340px;max-width:520px;overflow-y:auto;padding:34px 36px 30px;scrollbar-width:thin}
 #info-pane .overline{font-size:11.5px;letter-spacing:.22em;color:var(--gold-dim);text-transform:uppercase;margin:0 0 10px}
 #info-pane h2{font-family:'Cormorant';font-weight:600;font-size:31px;line-height:1.12;margin:0 0 8px;color:var(--paper)}
@@ -109,13 +116,12 @@ button:hover{border-color:var(--gold-dim);color:var(--gold)}
 .cta-copy h3{font-family:'Cormorant';font-weight:600;font-size:21px;margin:0 0 7px;color:var(--paper)}
 .cta-copy p{font-size:12.8px;line-height:1.55;color:var(--muted);margin:0 0 12px}
 .badges{display:flex;gap:8px;flex-wrap:wrap}
-.badge{font-size:11.5px;padding:7px 13px;border:1px solid var(--gold-dim);border-radius:8px;
- color:var(--paper-deep);text-decoration:none;display:inline-flex;align-items:center;gap:7px;
- cursor:pointer}
-.badge:hover{border-color:var(--gold);background:#211a12}
-.badge b{color:var(--gold);font-weight:600}
-.badge svg{width:13px;height:13px;fill:var(--gold-dim);flex:none}
-.badge:hover svg{fill:var(--gold)}
+.badge{font-family:'NotoSerif',Georgia,serif;font-size:11.5px;padding:7px 13px;
+ border:1px solid var(--gold-dim);border-radius:8px;color:var(--paper);text-decoration:none;
+ display:inline-flex;align-items:center;gap:7px;cursor:pointer}
+.badge:hover{border-color:var(--gold);background:#211a12;color:var(--paper)}
+.badge b{color:inherit;font-weight:600}
+.badge svg{width:13px;height:13px;fill:currentColor;flex:none}
 .no-shot .phone{display:none}
 
 /* ---- tablet / narrow desktop: one tidy topbar row, no phone collapse ---- */
@@ -129,8 +135,7 @@ button:hover{border-color:var(--gold-dim);color:var(--gold)}
 
 @media (max-width:860px){
  #sheet{flex-direction:column;overflow-y:auto}
- #art-pane{flex:none;max-height:44vh;padding:20px}
- #art-pane canvas{max-height:calc(44vh - 40px)}
+ #art-pane{flex:none;height:44vh;min-height:260px;max-height:44vh;padding:20px}
  #info-pane{max-width:none;min-width:0}
 }
 
@@ -160,7 +165,9 @@ button:hover{border-color:var(--gold-dim);color:var(--gold)}
  #sheet{width:100%;height:100%;max-width:none;max-height:none;border-radius:0;border:none;
   overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
  #art-pane{flex:none;height:40%;min-height:180px;max-height:none;padding:14px}
- #art-pane canvas{max-height:calc(100% - 28px)}
+ #art-help{left:10px;bottom:10px;max-width:calc(100% - 78px);overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap}
+ #art-zoom{right:10px;bottom:10px}
  #close{top:10px;right:10px;width:44px;height:44px;background:#211a15e8}
  #info-pane{flex:1 0 auto;overflow:visible;padding:20px 18px calc(30px + var(--safe-b));max-width:none;min-width:0}
  #info-pane h2{font-size:26px}
@@ -210,7 +217,12 @@ button:hover{border-color:var(--gold-dim);color:var(--gold)}
 <div id="veil"></div>
 <div id="modal" role="dialog" aria-modal="true">
  <div id="sheet">
-  <div id="art-pane"><button id="close" aria-label="Close">✕</button><canvas id="art-canvas"></canvas></div>
+  <div id="art-pane" tabindex="0" aria-label="Artwork detail. Scroll or pinch to zoom, drag to pan, and press 0 to fit.">
+   <button id="close" aria-label="Close">✕</button>
+   <div id="art-surface"><canvas id="art-canvas"></canvas></div>
+   <p id="art-help" aria-hidden="true">Scroll or pinch to zoom · drag to move</p>
+   <output id="art-zoom" aria-live="polite">1×</output>
+  </div>
   <div id="info-pane"></div>
  </div>
 </div>
@@ -246,9 +258,33 @@ if(GA_ID){
  gtag('js',new Date());
  /* skm_ cookie prefix keeps the site's retire-analytics.js (which expires
     legacy _ga/_ga_* cookies) from deleting this page's analytics cookies. */
- gtag('config',GA_ID,{page_title:'Skald Odyssey Art Atlas',cookie_prefix:'skm'});
+ gtag('config',GA_ID,{page_title:'Skald Odyssey Art Atlas',cookie_prefix:'skm',
+  cookie_domain:'none',cookie_path:'/mosaic/',allow_google_signals:false,
+  allow_ad_personalization_signals:false});
 }
 function track(name,params){if(GA_ID)gtag('event',name,params)}
+const actionContext={sequence:0,artworksViewed:0,storeClicks:0,lastArtwork:null};
+function trackArtworkView(w){
+ const params={artwork_id:w.id,artwork_title:w.title,book:w.book||0,
+  museum:w.museum||w.source_provider,mosaic_index:w.index,
+  interaction_sequence:++actionContext.sequence,
+  store_clicks_before_event:actionContext.storeClicks,
+  store_timing:actionContext.storeClicks>0?'after_store_click':'before_store_click'};
+ actionContext.artworksViewed+=1;actionContext.lastArtwork=w;
+ track('view_artwork',params);
+}
+function trackStoreClick(store,w){
+ const last=actionContext.lastArtwork;
+ const params={store,artwork_id:w.id,artwork_title:w.title,book:w.book||0,
+  museum:w.museum||w.source_provider,utm_content:utmContent(w),
+  interaction_sequence:++actionContext.sequence,
+  artworks_viewed_before_store:actionContext.artworksViewed,
+  store_clicks_before_event:actionContext.storeClicks,
+  store_timing:actionContext.artworksViewed>0?'after_artwork_view':'before_artwork_view',
+  last_artwork_id:last?last.id:'',last_artwork_title:last?last.title:''};
+ actionContext.storeClicks+=1;
+ track('click_store',params);
+}
 function utmContent(w){return w?`book${String(w.book||0).padStart(2,'0')}-${w.id}`:'atlas'}
 function storeLinks(w){
  const content=utmContent(w);
@@ -262,10 +298,16 @@ const stage=document.getElementById('stage'),atlas=document.getElementById('atla
 const hoverBox=document.getElementById('hover'),groupBox=document.getElementById('grouphover');
 const rail=document.getElementById('rail');
 const veil=document.getElementById('veil'),modal=document.getElementById('modal');
-const infoPane=document.getElementById('info-pane'),artCanvas=document.getElementById('art-canvas');
+const infoPane=document.getElementById('info-pane'),artPane=document.getElementById('art-pane');
+const artSurface=document.getElementById('art-surface'),artCanvas=document.getElementById('art-canvas');
+const artZoomOutput=document.getElementById('art-zoom');
 const ROMAN=['','I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV','XVI','XVII','XVIII','XIX','XX','XXI','XXII','XXIII','XXIV'];
 let scale=1,x=0,y=0,gesture=null,moved=false,anim=null;
 const pointers=new Map();
+let detailView=null,detailGesture=null;
+const detailPointers=new Map();
+let detailEngagement={zoom:false,pan:false};
+const clamp=(value,minimum,maximum)=>Math.min(maximum,Math.max(minimum,value));
 
 /* Viewport helpers: on mobile the layout viewport can be taller than what the
    browser actually shows, so measure through visualViewport where available. */
@@ -397,6 +439,131 @@ stage.addEventListener('click',e=>{
 
 /* ---------- modal ---------- */
 let currentIndex=-1;
+function applyDetail(){
+ if(!detailView)return;
+ artSurface.style.transform=`translate(${detailView.x}px,${detailView.y}px) scale(${detailView.scale})`;
+ const rounded=Math.round(detailView.scale);
+ artZoomOutput.value=`${Math.abs(detailView.scale-rounded)<.01?rounded:detailView.scale.toFixed(1)}×`;
+}
+function constrainDetail(){
+ if(!detailView)return;
+ const width=artPane.clientWidth,height=artPane.clientHeight;
+ const scaledWidth=detailView.width*detailView.scale,scaledHeight=detailView.height*detailView.scale;
+ detailView.x=scaledWidth<=width?(width-scaledWidth)/2:clamp(detailView.x,width-scaledWidth,0);
+ detailView.y=scaledHeight<=height?(height-scaledHeight)/2:clamp(detailView.y,height-scaledHeight,0);
+}
+function fitDetail(w){
+ const style=getComputedStyle(artPane);
+ const horizontal=parseFloat(style.paddingLeft)+parseFloat(style.paddingRight);
+ const vertical=parseFloat(style.paddingTop)+parseFloat(style.paddingBottom);
+ const availableWidth=Math.max(1,artPane.clientWidth-horizontal);
+ const availableHeight=Math.max(1,artPane.clientHeight-vertical);
+ const baseScale=Math.min(availableWidth/w.width,availableHeight/w.height);
+ const width=w.width*baseScale,height=w.height*baseScale;
+ detailView={artwork:w,width,height,scale:1,x:(artPane.clientWidth-width)/2,
+  y:(artPane.clientHeight-height)/2};
+ detailGesture=null;detailPointers.clear();artPane.classList.remove('dragging');
+ artSurface.style.width=`${width}px`;artSurface.style.height=`${height}px`;applyDetail();
+}
+function trackDetail(name,method){
+ if(!detailView)return;
+ const flag=name==='zoom_artwork'?'zoom':'pan';
+ if(detailEngagement[flag])return;
+ detailEngagement[flag]=true;
+ const w=detailView.artwork;
+ track(name,{artwork_id:w.id,book:w.book||0,method,zoom_level:+detailView.scale.toFixed(2)});
+}
+function setDetailZoom(next,px,py,method){
+ if(!detailView)return;
+ next=clamp(next,1,8);
+ const ix=(px-detailView.x)/detailView.scale,iy=(py-detailView.y)/detailView.scale;
+ detailView.x=px-ix*next;detailView.y=py-iy*next;detailView.scale=next;
+ constrainDetail();applyDetail();
+ if(next>1.01)trackDetail('zoom_artwork',method);
+}
+function zoomDetailAt(next,cx,cy,method){
+ const bounds=artPane.getBoundingClientRect();
+ setDetailZoom(next,cx-bounds.left,cy-bounds.top,method);
+}
+function detailPoint(event){
+ const bounds=artPane.getBoundingClientRect();
+ return{x:event.clientX-bounds.left,y:event.clientY-bounds.top};
+}
+function startDetailGesture(){
+ if(!detailView)return;
+ const pts=[...detailPointers.values()];
+ if(pts.length===1){
+  detailGesture={type:'pan',px:pts[0].x,py:pts[0].y,x:detailView.x,y:detailView.y};
+ }else if(pts.length>=2){
+  const[a,b]=pts;
+  detailGesture={type:'pinch',distance:Math.max(1,Math.hypot(b.x-a.x,b.y-a.y)),
+   cx:(a.x+b.x)/2,cy:(a.y+b.y)/2,scale:detailView.scale,x:detailView.x,y:detailView.y};
+ }
+}
+artPane.addEventListener('wheel',event=>{
+ if(!detailView)return;
+ event.preventDefault();
+ const bounds=artPane.getBoundingClientRect();
+ const unit=event.deltaMode===1?16:event.deltaMode===2?bounds.height:1;
+ const delta=clamp(event.deltaY*unit,-240,240);
+ zoomDetailAt(detailView.scale*Math.exp(-delta*.0015),event.clientX,event.clientY,'wheel');
+},{passive:false});
+artPane.addEventListener('pointerdown',event=>{
+ if(!detailView||(event.pointerType==='mouse'&&event.button!==0))return;
+ event.preventDefault();
+ try{artPane.setPointerCapture(event.pointerId)}catch{}
+ detailPointers.set(event.pointerId,detailPoint(event));startDetailGesture();
+ artPane.classList.add('dragging');artPane.focus({preventScroll:true});
+});
+artPane.addEventListener('pointermove',event=>{
+ if(!detailPointers.has(event.pointerId)||!detailGesture||!detailView)return;
+ detailPointers.set(event.pointerId,detailPoint(event));
+ const pts=[...detailPointers.values()];
+ if(detailGesture.type==='pan'&&pts.length===1){
+  const dx=pts[0].x-detailGesture.px,dy=pts[0].y-detailGesture.py;
+  detailView.x=detailGesture.x+dx;detailView.y=detailGesture.y+dy;
+  constrainDetail();applyDetail();
+  if(detailView.scale>1.01&&Math.hypot(dx,dy)>5)trackDetail('pan_artwork','drag');
+ }else if(detailGesture.type==='pinch'&&pts.length>=2){
+  const[a,b]=pts,cx=(a.x+b.x)/2,cy=(a.y+b.y)/2;
+  const next=clamp(detailGesture.scale*Math.hypot(b.x-a.x,b.y-a.y)/detailGesture.distance,1,8);
+  const ix=(detailGesture.cx-detailGesture.x)/detailGesture.scale;
+  const iy=(detailGesture.cy-detailGesture.y)/detailGesture.scale;
+  detailView.x=cx-ix*next;detailView.y=cy-iy*next;detailView.scale=next;
+  constrainDetail();applyDetail();
+  if(detailView.scale>1.01)trackDetail('zoom_artwork','pinch');
+ }
+});
+function endDetailPointer(event){
+ detailPointers.delete(event.pointerId);
+ if(detailPointers.size)startDetailGesture();
+ else{detailGesture=null;artPane.classList.remove('dragging')}
+}
+artPane.addEventListener('pointerup',endDetailPointer);
+artPane.addEventListener('pointercancel',endDetailPointer);
+artPane.addEventListener('dblclick',event=>{
+ if(!detailView)return;
+ const next=detailView.scale>1.01?1:2;
+ zoomDetailAt(next,event.clientX,event.clientY,'double_click');
+});
+artPane.addEventListener('keydown',event=>{
+ if(!detailView)return;
+ const bounds=artPane.getBoundingClientRect(),centerX=bounds.left+bounds.width/2;
+ const centerY=bounds.top+bounds.height/2,step=48;
+ if(['+','=','-','_','0','ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key)){
+  event.preventDefault();event.stopPropagation();
+ }
+ if(event.key==='+'||event.key==='=')zoomDetailAt(detailView.scale*1.35,centerX,centerY,'keyboard');
+ else if(event.key==='-'||event.key==='_')zoomDetailAt(detailView.scale/1.35,centerX,centerY,'keyboard');
+ else if(event.key==='0')fitDetail(detailView.artwork);
+ else if(event.key.startsWith('Arrow')&&detailView.scale>1.01){
+  if(event.key==='ArrowLeft')detailView.x+=step;
+  if(event.key==='ArrowRight')detailView.x-=step;
+  if(event.key==='ArrowUp')detailView.y+=step;
+  if(event.key==='ArrowDown')detailView.y-=step;
+  constrainDetail();applyDetail();trackDetail('pan_artwork','keyboard');
+ }
+});
 function drawArtToCanvas(w){
  const dpr=Math.min(devicePixelRatio||1,2);
  const cw=Math.round(w.width),ch=Math.round(w.height);
@@ -418,9 +585,9 @@ function drawArtToCanvas(w){
 function esc(s){return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 function openModal(w){
  currentIndex=data.artworks.indexOf(w);
+ detailEngagement={zoom:false,pan:false};
  const links=storeLinks(w);
- track('view_artwork',{artwork_id:w.id,artwork_title:w.title,book:w.book||0,
-  museum:w.museum||w.source_provider,mosaic_index:w.index});
+ trackArtworkView(w);
  artCanvas.getContext('2d').clearRect(0,0,artCanvas.width,artCanvas.height);
  ensureTilesFor(w).then(()=>drawArtToCanvas(w));
  const group=data.groups.find(g=>g.book===w.book);
@@ -470,16 +637,20 @@ function openModal(w){
     </div>
    </div>
   </div>`;
- veil.classList.add('open');modal.classList.add('open');hoverBox.style.display='none';
+ veil.classList.add('open');modal.classList.add('open');hoverBox.style.display='none';fitDetail(w);
  infoPane.scrollTop=0;
  infoPane.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
   const store=a.dataset.store;
-  if(store)track('click_store',{store,artwork_id:w.id,book:w.book||0,utm_content:utmContent(w)});
+  if(store)trackStoreClick(store,w);
   else track('click_source_record',{artwork_id:w.id,museum:w.museum||w.source_provider,url:a.href});
  }));
  if(w.book)setActiveBook(w.book);
 }
-function closeModal(){veil.classList.remove('open');modal.classList.remove('open');currentIndex=-1}
+function closeModal(){
+ veil.classList.remove('open');modal.classList.remove('open');currentIndex=-1;
+ detailPointers.clear();detailGesture=null;detailView=null;artPane.classList.remove('dragging');
+ artSurface.style.transform='';artZoomOutput.value='1×';
+}
 document.getElementById('close').onclick=closeModal;
 veil.onclick=closeModal;
 modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
@@ -519,7 +690,10 @@ function onViewportChange(){
  const w=Math.round(VW()),h=Math.round(VH());
  if(Math.abs(w-lastVW)<2&&Math.abs(h-lastVH)<2)return;
  lastVW=w;lastVH=h;
- clearTimeout(refitTimer);refitTimer=setTimeout(()=>{lastVW=Math.round(VW());lastVH=Math.round(VH());fit()},120);
+ clearTimeout(refitTimer);refitTimer=setTimeout(()=>{
+  lastVW=Math.round(VW());lastVH=Math.round(VH());
+  if(currentIndex>=0&&detailView)fitDetail(detailView.artwork);else fit();
+ },120);
 }
 addEventListener('resize',onViewportChange);
 addEventListener('orientationchange',()=>setTimeout(onViewportChange,250));
