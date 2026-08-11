@@ -509,7 +509,7 @@ artPane.addEventListener('wheel',event=>{
  zoomDetailAt(detailView.scale*Math.exp(-delta*.0015),event.clientX,event.clientY,'wheel');
 },{passive:false});
 artPane.addEventListener('pointerdown',event=>{
- if(!detailView||(event.pointerType==='mouse'&&event.button!==0))return;
+ if(!detailView||event.target.closest('button,a')||(event.pointerType==='mouse'&&event.button!==0))return;
  event.preventDefault();
  try{artPane.setPointerCapture(event.pointerId)}catch{}
  detailPointers.set(event.pointerId,detailPoint(event));startDetailGesture();
