@@ -34,6 +34,21 @@ test("store badges name Skald consistently", () => {
   );
 });
 
+test("the in-app heading carries a compact artwork context snippet", () => {
+  assert.match(
+    html,
+    /<div class="in-app-row">\s*<p class="in-app">In the app<\/p>\s*<p class="in-app-note">This art sits beside the text in Skald\.<\/p>\s*<\/div>/,
+  );
+  assert.match(
+    html,
+    /\.in-app-row\{display:flex;align-items:baseline;justify-content:space-between/,
+  );
+  assert.match(
+    html,
+    /\.in-app-note\{[^}]*font-size:10px[^}]*text-align:right/,
+  );
+});
+
 test("artwork-specific content leads the Skald CTA and stores lead the promotion", () => {
   const detailTemplate = html.match(
     /infoPane\.innerHTML=`([\s\S]*?)`;\n veil\.classList/,
