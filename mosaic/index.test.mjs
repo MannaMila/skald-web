@@ -64,6 +64,45 @@ test("phone portrait keeps the app screenshot and hook side by side", () => {
   assert.match(html, /class="cta-footnote"/);
 });
 
+test("app explanation fills the column beside the screenshot", () => {
+  const detailTemplate = html.match(
+    /infoPane\.innerHTML=`([\s\S]*?)`;\n veil\.classList/,
+  )?.[1];
+
+  assert.ok(detailTemplate);
+  assert.match(
+    detailTemplate,
+    /<div class="cta-copy">[\s\S]*?<h3>[\s\S]*?<\/h3>\s*<p class="cta-footnote">[\s\S]*?<\/p>\s*\$\{status\}\s*<\/div>/,
+  );
+  assert.match(html, /\.cta-copy\{[^}]*justify-content:flex-start[^}]*gap:10px/);
+  assert.match(html, /\.cta-copy \.onview\{[^}]*align-self:flex-start[^}]*margin:0/);
+});
+
+test("on-view status follows the compact app hook before long artwork copy", () => {
+  const detailTemplate = html.match(
+    /infoPane\.innerHTML=`([\s\S]*?)`;\n veil\.classList/,
+  )?.[1];
+
+  assert.ok(detailTemplate);
+  assert.ok(
+    detailTemplate.indexOf("${status}") >
+      detailTemplate.indexOf('<p class="in-app">In the app</p>'),
+    "ON VIEW must stay below IN THE APP",
+  );
+  assert.ok(
+    detailTemplate.indexOf("${status}") < detailTemplate.indexOf("${story?"),
+    "ON VIEW must remain above the long artwork story",
+  );
+  assert.match(
+    html,
+    /@media \(max-width:600px\)\{[\s\S]*?#art-pane\{[^}]*height:31%/,
+  );
+  assert.match(
+    html,
+    /@media \(max-width:600px\)\{[\s\S]*?#info-pane\{[^}]*padding:16px 18px/,
+  );
+});
+
 test("short phone landscape keeps the stores above the fold", () => {
   assert.match(
     html,
