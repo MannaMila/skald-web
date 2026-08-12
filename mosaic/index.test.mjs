@@ -30,16 +30,21 @@ test("store badges name Skald consistently", () => {
   );
 });
 
-test("Skald CTA leads the long artwork copy and keeps store links first", () => {
+test("artwork-specific content leads the Skald CTA and stores lead the promotion", () => {
   const detailTemplate = html.match(
     /infoPane\.innerHTML=`([\s\S]*?)`;\n veil\.classList/,
   )?.[1];
 
   assert.ok(detailTemplate);
   assert.ok(
-    detailTemplate.indexOf('<div class="skald-cta') <
-      detailTemplate.indexOf('${story?'),
-    "the app hook must appear before the long artwork story",
+    detailTemplate.indexOf('${story?') <
+      detailTemplate.indexOf('<div class="skald-cta'),
+    "the unique artwork story must appear before the app promotion",
+  );
+  assert.ok(
+    detailTemplate.indexOf("${status}") <
+      detailTemplate.indexOf('<div class="skald-cta'),
+    "the unique museum status must appear before the app promotion",
   );
   assert.ok(
     detailTemplate.indexOf('<div class="badges">') <
@@ -48,23 +53,21 @@ test("Skald CTA leads the long artwork copy and keeps store links first", () => 
   );
 });
 
-test("phone portrait keeps the app screenshot and hook side by side", () => {
+test("phone portrait wraps app copy beneath the screenshot without column whitespace", () => {
   assert.match(
     html,
     /\.cta-body\{display:grid;grid-template-columns:minmax\(88px,118px\) minmax\(0,1fr\)/,
   );
+  assert.match(html, /@media \(max-width:600px\)\{[\s\S]*?\.cta-body\{display:flow-root\}/);
   assert.match(
     html,
-    /@media \(max-width:600px\)\{[\s\S]*?\.cta-body\{grid-template-columns:minmax\(82px,32vw\) minmax\(0,1fr\)/,
+    /@media \(max-width:600px\)\{[\s\S]*?\.cta-body \.phone\{[^}]*float:left[^}]*width:min\(25vw,82px\)[^}]*margin:0 12px 6px 0/,
   );
-  assert.match(
-    html,
-    /@media \(max-width:600px\)\{[\s\S]*?\.badges\{grid-template-columns:minmax\(0,1fr\)/,
-  );
+  assert.match(html, /@media \(max-width:600px\)\{[\s\S]*?\.cta-copy\{display:block\}/);
   assert.match(html, /class="cta-footnote"/);
 });
 
-test("app explanation fills the column beside the screenshot", () => {
+test("app explanation remains inside the wrapping screenshot body", () => {
   const detailTemplate = html.match(
     /infoPane\.innerHTML=`([\s\S]*?)`;\n veil\.classList/,
   )?.[1];
@@ -72,34 +75,37 @@ test("app explanation fills the column beside the screenshot", () => {
   assert.ok(detailTemplate);
   assert.match(
     detailTemplate,
-    /<div class="cta-copy">[\s\S]*?<h3>[\s\S]*?<\/h3>\s*<p class="cta-footnote">[\s\S]*?<\/p>\s*\$\{status\}\s*<\/div>/,
+    /<div class="cta-copy">[\s\S]*?<h3>[\s\S]*?<\/h3>\s*<p class="cta-footnote">[\s\S]*?<\/p>\s*<\/div>/,
   );
   assert.match(html, /\.cta-copy\{[^}]*justify-content:flex-start[^}]*gap:10px/);
-  assert.match(html, /\.cta-copy \.onview\{[^}]*align-self:flex-start[^}]*margin:0/);
 });
 
-test("on-view status follows the compact app hook before long artwork copy", () => {
+test("phone portrait brings unique content up and keeps stores in one compact row", () => {
   const detailTemplate = html.match(
     /infoPane\.innerHTML=`([\s\S]*?)`;\n veil\.classList/,
   )?.[1];
 
   assert.ok(detailTemplate);
   assert.ok(
-    detailTemplate.indexOf("${status}") >
-      detailTemplate.indexOf('<p class="in-app">In the app</p>'),
-    "ON VIEW must stay below IN THE APP",
+    detailTemplate.indexOf("${status}") > detailTemplate.indexOf("${story?"),
+    "ON VIEW must follow the unique artwork story",
   );
   assert.ok(
-    detailTemplate.indexOf("${status}") < detailTemplate.indexOf("${story?"),
-    "ON VIEW must remain above the long artwork story",
+    detailTemplate.indexOf("${status}") <
+      detailTemplate.indexOf('<p class="in-app">In the app</p>'),
+    "ON VIEW must remain above the app promotion",
   );
   assert.match(
     html,
-    /@media \(max-width:600px\)\{[\s\S]*?#art-pane\{[^}]*height:31%/,
+    /@media \(max-width:600px\)\{[\s\S]*?#art-pane\{[^}]*height:25%[^}]*min-height:160px/,
   );
   assert.match(
     html,
-    /@media \(max-width:600px\)\{[\s\S]*?#info-pane\{[^}]*padding:16px 18px/,
+    /@media \(max-width:600px\)\{[\s\S]*?#info-pane\{[^}]*padding:12px 16px/,
+  );
+  assert.match(
+    html,
+    /@media \(max-width:600px\)\{[\s\S]*?\.badges\{grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/,
   );
 });
 
