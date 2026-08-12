@@ -77,9 +77,11 @@ test("phone portrait places a tiny reader screenshot beside the poetry", () => {
   assert.ok(detailTemplate);
   assert.match(
     detailTemplate,
-    /<div class="passage-copy"><div class="lines">[\s\S]*?<\/div><div class="ref">[\s\S]*?<\/div><\/div>\s*\$\{shot\?`<div class="poetry-shot"><img src="\$\{shot\}"/,
+    /<div class="passage-copy"><div class="lines">[\s\S]*?<\/div><div class="ref">[\s\S]*?<\/div><\/div>\s*\$\{shot\?`<button type="button" class="poetry-shot screenshot-open"[^>]*><img src="\$\{shot\}"/,
   );
   assert.match(html, /\.poetry-shot\{display:none\}/);
+  assert.doesNotMatch(html, /\n\.screenshot-open\{[^}]*display:block/);
+  assert.match(html, /\.phone\.screenshot-open\{display:block\}/);
   assert.match(
     html,
     /@media \(max-width:600px\) and \(orientation:portrait\)\{[\s\S]*?\.passage\.has-poetry-shot\{[^}]*display:grid[^}]*grid-template-columns:minmax\(0,1fr\) 52px[^}]*align-items:end/,
@@ -87,6 +89,56 @@ test("phone portrait places a tiny reader screenshot beside the poetry", () => {
   assert.match(
     html,
     /@media \(max-width:600px\) and \(orientation:portrait\)\{[\s\S]*?\.poetry-shot\{[^}]*display:block[^}]*width:52px[^}]*justify-self:end/,
+  );
+});
+
+test("reader screenshots open an isolated nested modal", () => {
+  const detailTemplate = html.match(
+    /infoPane\.innerHTML=`([\s\S]*?)`;\n veil\.classList/,
+  )?.[1];
+
+  assert.ok(detailTemplate);
+  assert.match(
+    html,
+    /id="shot-modal"[^>]*role="dialog"[^>]*aria-modal="true"[^>]*aria-hidden="true"/,
+  );
+  assert.match(html, /id="shot-image"/);
+  assert.match(html, /id="shot-close"[^>]*aria-label="Close reader screenshot"/);
+  assert.match(
+    detailTemplate,
+    /class="phone screenshot-open"[^>]*data-reader-shot/,
+  );
+  assert.match(
+    detailTemplate,
+    /class="poetry-shot screenshot-open"[^>]*data-reader-shot/,
+  );
+  assert.match(html, /function openScreenshotModal\(trigger,w,shot,bookLabel\)/);
+  assert.match(html, /function closeScreenshotModal\(restoreFocus=true\)/);
+  assert.match(
+    html,
+    /modal\.setAttribute\('aria-hidden','true'\)[\s\S]*?modal\.removeAttribute\('aria-hidden'\)/,
+  );
+});
+
+test("nested screenshot modal overlays both tracked store links", () => {
+  assert.match(
+    html,
+    /id="shot-actions"[^>]*aria-label="Get Skald"[\s\S]*?data-store="app_store"[\s\S]*?data-store="google_play"/,
+  );
+  assert.match(
+    html,
+    /#shot-actions\{[^}]*position:absolute[^}]*top:var\(--shot-top,16px\)[^}]*right:var\(--shot-right,16px\)/,
+  );
+  assert.match(html, /function positionScreenshotControls\(\)/);
+  assert.match(html, /imageBounds\.left-stageBounds\.left\+inset/);
+  assert.match(
+    html,
+    /trackStoreClick\(link\.dataset\.store,shotArtwork,'reader_screenshot'\)/,
+  );
+  assert.match(html, /track\('view_reader_screenshot'/);
+  assert.match(
+    html,
+    /if\(e\.key==='Escape'\)\{\s*if\(shotModal\.classList\.contains\('open'\)\)closeScreenshotModal\(\);\s*else closeModal\(\);/,
   );
 });
 
