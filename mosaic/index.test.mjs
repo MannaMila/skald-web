@@ -279,6 +279,59 @@ test("artwork pan leaves modal controls clickable", () => {
   );
 });
 
+test("fit all invalidates stale canvas gestures before resetting the view", () => {
+  const resetGestureMatch = html.match(
+    /function resetCanvasGesture\(\)\{([\s\S]*?)\n\}/,
+  );
+  const resetGesture = resetGestureMatch?.[1];
+  const fit = html.match(/function fit\(\)\{([\s\S]*?)\n\}/)?.[1];
+
+  assert.ok(resetGesture);
+  assert.match(resetGesture, /pointers\.clear\(\)/);
+  assert.match(resetGesture, /gesture=null/);
+  assert.match(resetGesture, /stage\.classList\.remove\('dragging'\)/);
+  assert.ok(fit);
+  assert.ok(
+    fit.indexOf("resetCanvasGesture()") < fit.indexOf("scale=Math.min"),
+    "fit must clear the old gesture before calculating the fitted transform",
+  );
+
+  const resetState = new Function(`
+    const pointers=new Map([[17,{x:900,y:400}]]);
+    let gesture={type:'pan',px:900,py:400,x:-12000,y:-7000},moved=true;
+    const removed=[];
+    const stage={classList:{remove:value=>removed.push(value)},style:{cursor:'grabbing'}};
+    const hoverBox={style:{display:'block'}};
+    ${resetGestureMatch[0]}
+    resetCanvasGesture();
+    return {pointerCount:pointers.size,gesture,moved,removed,cursor:stage.style.cursor,hover:hoverBox.style.display};
+  `)();
+  assert.deepEqual(resetState, {
+    pointerCount: 0,
+    gesture: null,
+    moved: false,
+    removed: ["dragging"],
+    cursor: "grab",
+    hover: "none",
+  });
+});
+
+test("desktop canvas recovers when a pointer release is missed", () => {
+  const pointerMove = html.match(
+    /stage\.addEventListener\('pointermove',e=>\{([\s\S]*?)\n\}\);/,
+  )?.[1];
+
+  assert.ok(pointerMove);
+  assert.match(
+    pointerMove,
+    /e\.pointerType==='mouse'&&e\.buttons===0[\s\S]*?endPointer\(e\)/,
+  );
+  assert.match(
+    html,
+    /stage\.addEventListener\('lostpointercapture',endPointer\)/,
+  );
+});
+
 test("GA4 is privacy-scoped and covers detail engagement", () => {
   assert.match(html, /const GA_ID="G-K0V3J9TLBF"/);
   assert.match(html, /cookie_domain:'none'/);

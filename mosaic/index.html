@@ -435,14 +435,18 @@ function ensureTilesFor(rect){
  return Promise.all(jobs);
 }
 function apply(){atlas.style.transform=`translate(${x}px,${y}px) scale(${scale})`;loadVisibleTiles()}
-function fit(){cancelAnim();syncViewportVar();
+function resetCanvasGesture(){
+ pointers.clear();gesture=null;moved=false;stage.classList.remove('dragging');
+ hoverBox.style.display='none';stage.style.cursor='grab';
+}
+function fit(){cancelAnim();resetCanvasGesture();syncViewportVar();
  const ins=insets(),vw=VW(),avail=VH()-ins.top-ins.bottom;
  scale=Math.min(vw/data.width,avail/data.height)*.97;
  x=(vw-data.width*scale)/2;y=ins.top+(avail-data.height*scale)/2;apply();setActiveBook(null)}
-function zoomAt(next,cx,cy){cancelAnim();next=Math.max(.03,Math.min(4,next));
+function zoomAt(next,cx,cy){cancelAnim();resetCanvasGesture();next=Math.max(.03,Math.min(4,next));
  const ix=(cx-x)/scale,iy=(cy-y)/scale;x=cx-ix*next;y=cy-iy*next;scale=next;apply()}
 function cancelAnim(){if(anim){cancelAnimationFrame(anim);anim=null}}
-function flyTo(tx,ty,ts,done){cancelAnim();
+function flyTo(tx,ty,ts,done){cancelAnim();resetCanvasGesture();
  const sx=x,sy=y,ss=scale,t0=performance.now(),dur=650;
  function step(now){const t=Math.min(1,(now-t0)/dur),e=t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
   x=sx+(tx-sx)*e;y=sy+(ty-sy)*e;scale=ss+(ts-ss)*e;apply();
@@ -490,6 +494,7 @@ function startGesture(){
  if(pts.length===1)gesture={type:'pan',px:pts[0].x,py:pts[0].y,x,y};
  else if(pts.length>=2){const[a,b]=pts;gesture={type:'pinch',distance:Math.hypot(b.x-a.x,b.y-a.y),cx:(a.x+b.x)/2,cy:(a.y+b.y)/2,scale,x,y}}}
 stage.addEventListener('pointermove',e=>{
+ if(e.pointerType==='mouse'&&e.buttons===0&&pointers.has(e.pointerId))endPointer(e);
  if(pointers.has(e.pointerId)&&gesture){
   pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
   const pts=[...pointers.values()];
@@ -507,6 +512,7 @@ stage.addEventListener('pointermove',e=>{
 });
 function endPointer(e){pointers.delete(e.pointerId);if(pointers.size)startGesture();else{gesture=null;stage.classList.remove('dragging')}}
 stage.addEventListener('pointerup',endPointer);stage.addEventListener('pointercancel',endPointer);
+stage.addEventListener('lostpointercapture',endPointer);
 
 function atlasPoint(e){return{ax:(e.clientX-x)/scale,ay:(e.clientY-y)/scale}}
 function workAt(ax,ay){return data.artworks.find(v=>ax>=v.x&&ax<v.x+v.width&&ay>=v.y&&ay<v.y+v.height)}
