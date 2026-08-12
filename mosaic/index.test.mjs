@@ -3,6 +3,10 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 const html = await readFile(new URL("./index.html", import.meta.url), "utf8");
+const resolutionsScript = await readFile(
+  new URL("./art-resolutions.js", import.meta.url),
+  "utf8",
+);
 const inlineScript = html.match(/<script>([\s\S]*)<\/script>/)?.[1];
 
 test("inline viewer script parses", () => {
@@ -63,6 +67,65 @@ test("phone portrait favors the artwork over a second promotional screenshot", (
     /@media \(max-width:600px\) and \(orientation:portrait\)\{[\s\S]*?\.skald-cta \.cta-body\{display:none\}/,
   );
   assert.match(html, /class="cta-footnote"/);
+});
+
+test("phone portrait places a tiny reader screenshot beside the poetry", () => {
+  const detailTemplate = html.match(
+    /infoPane\.innerHTML=`([\s\S]*?)`;\n veil\.classList/,
+  )?.[1];
+
+  assert.ok(detailTemplate);
+  assert.match(
+    detailTemplate,
+    /<div class="passage-copy"><div class="lines">[\s\S]*?<\/div><div class="ref">[\s\S]*?<\/div><\/div>\s*\$\{shot\?`<div class="poetry-shot"><img src="\$\{shot\}"/,
+  );
+  assert.match(html, /\.poetry-shot\{display:none\}/);
+  assert.match(
+    html,
+    /@media \(max-width:600px\) and \(orientation:portrait\)\{[\s\S]*?\.passage\.has-poetry-shot\{[^}]*display:grid[^}]*grid-template-columns:minmax\(0,1fr\) 52px[^}]*align-items:end/,
+  );
+  assert.match(
+    html,
+    /@media \(max-width:600px\) and \(orientation:portrait\)\{[\s\S]*?\.poetry-shot\{[^}]*display:block[^}]*width:52px[^}]*justify-self:end/,
+  );
+});
+
+test("every artwork has a source-resolution-backed useful zoom ceiling", () => {
+  const dataJson = html.match(/const data=(\{.*\});\nconst passages=/)?.[1];
+  const resolutionsJson = resolutionsScript.match(
+    /globalThis\.MOSAIC_ART_RESOLUTIONS=(\{.*\});/,
+  )?.[1];
+
+  assert.ok(dataJson);
+  assert.ok(resolutionsJson);
+  const artworks = JSON.parse(dataJson).artworks;
+  const resolutions = JSON.parse(resolutionsJson);
+  assert.deepEqual(
+    artworks.filter(({ id }) => !resolutions[id]),
+    [],
+    "every mosaic artwork needs source pixel dimensions",
+  );
+  assert.deepEqual(resolutions["aic-110760"], [750, 283]);
+  assert.ok(
+    new Set(Object.values(resolutions).map(([width, height]) => Math.max(width, height)))
+      .size > 20,
+    "useful zoom must vary with actual source resolution",
+  );
+});
+
+test("modal zoom readout shows current scale and the useful-detail ceiling", () => {
+  assert.match(html, /<script src="art-resolutions\.js"><\/script>\s*<script>/);
+  assert.match(html, /id="art-zoom"[^>]*>1× \/ … detail<\/output>/);
+  assert.match(html, /function usefulDetailScale\(w,width,height\)/);
+  assert.match(
+    html,
+    /const deliveredPixels=Math\.min\(Math\.max\(w\.width,w\.height\),Math\.max\(source\[0\],source\[1\]\)\)/,
+  );
+  assert.match(
+    html,
+    /artZoomOutput\.value=`\$\{[^}]+\}× \/ \$\{formatDetailScale\(detailView\.detailScale\)\}× detail`/,
+  );
+  assert.match(html, /artZoomOutput\.classList\.toggle\('past-detail'/);
 });
 
 test("app explanation remains grouped with its screenshot on larger viewports", () => {
