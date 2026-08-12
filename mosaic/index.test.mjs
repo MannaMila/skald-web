@@ -53,21 +53,19 @@ test("artwork-specific content leads the Skald CTA and stores lead the promotion
   );
 });
 
-test("phone portrait wraps app copy beneath the screenshot without column whitespace", () => {
+test("phone portrait favors the artwork over a second promotional screenshot", () => {
   assert.match(
     html,
     /\.cta-body\{display:grid;grid-template-columns:minmax\(88px,118px\) minmax\(0,1fr\)/,
   );
-  assert.match(html, /@media \(max-width:600px\)\{[\s\S]*?\.cta-body\{display:flow-root\}/);
   assert.match(
     html,
-    /@media \(max-width:600px\)\{[\s\S]*?\.cta-body \.phone\{[^}]*float:left[^}]*width:min\(25vw,82px\)[^}]*margin:0 12px 6px 0/,
+    /@media \(max-width:600px\) and \(orientation:portrait\)\{[\s\S]*?\.skald-cta \.cta-body\{display:none\}/,
   );
-  assert.match(html, /@media \(max-width:600px\)\{[\s\S]*?\.cta-copy\{display:block\}/);
   assert.match(html, /class="cta-footnote"/);
 });
 
-test("app explanation remains inside the wrapping screenshot body", () => {
+test("app explanation remains grouped with its screenshot on larger viewports", () => {
   const detailTemplate = html.match(
     /infoPane\.innerHTML=`([\s\S]*?)`;\n veil\.classList/,
   )?.[1];
@@ -97,7 +95,7 @@ test("phone portrait brings unique content up and keeps stores in one compact ro
   );
   assert.match(
     html,
-    /@media \(max-width:600px\)\{[\s\S]*?#art-pane\{[^}]*height:25%[^}]*min-height:160px/,
+    /@media \(max-width:600px\)\{[\s\S]*?#art-pane\{[^}]*height:38%[^}]*min-height:220px[^}]*max-height:340px/,
   );
   assert.match(
     html,

@@ -167,7 +167,7 @@ button:hover{border-color:var(--gold-dim);color:var(--gold)}
  #modal{padding:0}
  #sheet{width:100%;height:100%;max-width:none;max-height:none;border-radius:0;border:none;
   overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
- #art-pane{flex:none;height:25%;min-height:160px;max-height:none;padding:12px}
+ #art-pane{flex:none;height:38%;min-height:220px;max-height:340px;padding:12px}
  #art-help{left:10px;bottom:10px;max-width:calc(100% - 78px);overflow:hidden;text-overflow:ellipsis;
   white-space:nowrap}
  #art-zoom{right:10px;bottom:10px}
@@ -190,6 +190,10 @@ button:hover{border-color:var(--gold-dim);color:var(--gold)}
  .cta-copy h3{font-size:18px;line-height:1.1;margin-bottom:6px}
  .cta-footnote{font-size:11px;line-height:1.4}
  .no-shot .cta-body{display:block}
+}
+
+@media (max-width:600px) and (orientation:portrait){
+ .skald-cta .cta-body{display:none}
 }
 
 @media (max-width:860px) and (orientation:landscape) and (max-height:600px){
