@@ -1,8 +1,12 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 
 const html = await readFile(new URL("./index.html", import.meta.url), "utf8");
+const attributionHtml = await readFile(
+  new URL("./attribution.html", import.meta.url),
+  "utf8",
+);
 const resolutionsScript = await readFile(
   new URL("./art-resolutions.js", import.meta.url),
   "utf8",
@@ -23,21 +27,21 @@ test("store badges use the standard interface type and foreground color", () => 
   assert.match(html, /\.badge svg\{[^}]*fill:currentColor/);
 });
 
-test("store badges name Skald consistently", () => {
+test("store badges pair a context-specific action with each store", () => {
   assert.match(
     html,
-    /data-store="app_store"[^>]*>[\s\S]*?<b>Skald: Odyssey<\/b> · App Store<\/a>/,
+    /data-store="app_store"[^>]*>[\s\S]*?<b>\$\{esc\(promotion\.action\)\}<\/b> · App Store<\/a>/,
   );
   assert.match(
     html,
-    /data-store="google_play"[^>]*>[\s\S]*?<b>Skald: Odyssey<\/b> · Google Play<\/a>/,
+    /data-store="google_play"[^>]*>[\s\S]*?<b>\$\{esc\(promotion\.action\)\}<\/b> · Google Play<\/a>/,
   );
 });
 
 test("the in-app heading carries a compact artwork context snippet", () => {
   assert.match(
     html,
-    /<div class="in-app-row">\s*<p class="in-app">In the app<\/p>\s*<p class="in-app-note">This art sits beside the text in Skald\.<\/p>\s*<\/div>/,
+    /<div class="in-app-row">\s*<p class="in-app">In the app<\/p>\s*<p class="in-app-note">\$\{esc\(promotion\.comparison\)\}\.<\/p>\s*<\/div>/,
   );
   assert.match(
     html,
@@ -181,7 +185,10 @@ test("every artwork has a source-resolution-backed useful zoom ceiling", () => {
 });
 
 test("modal zoom readout shows current scale and the useful-detail ceiling", () => {
-  assert.match(html, /<script src="art-resolutions\.js"><\/script>\s*<script>/);
+  assert.match(
+    html,
+    /<script src="art-resolutions\.js"><\/script>\s*<script src="art-routes\.js"><\/script>\s*<script>/,
+  );
   assert.match(html, /id="art-zoom"[^>]*>1× \/ … detail<\/output>/);
   assert.match(html, /function usefulDetailScale\(w,width,height\)/);
   assert.match(
@@ -367,4 +374,116 @@ test("artwork and store events carry action-order context", () => {
   );
   assert.match(html, /last_artwork_id:last\?last\.id:''/);
   assert.match(html, /track\('click_store',params\)/);
+});
+
+test("the public Mosaic and its artwork previews are indexable", () => {
+  assert.doesNotMatch(
+    html,
+    /noindex|nofollow|nosnippet|noimageindex/,
+    "the former private-launch crawler block must not return",
+  );
+  assert.match(
+    html,
+    /<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">/,
+  );
+  assert.match(html, /<base href="\/mosaic\/">/);
+  assert.match(html, /<meta name="twitter:card" content="summary_large_image">/);
+  assert.doesNotMatch(
+    attributionHtml,
+    /noindex|nofollow|nosnippet|noimageindex/,
+    "public artwork credits must remain discoverable with the Mosaic",
+  );
+});
+
+test("artwork exploration updates history and restores through popstate", () => {
+  assert.match(html, /<script src="art-routes\.js"><\/script>/);
+  assert.match(html, /function artworkPath\(w\)/);
+  assert.match(html, /function updateExplorationUrl\(state,mode='push'\)/);
+  assert.ok(html.includes("history[`${mode}State`](state,'',url)"));
+  assert.match(html, /updateExplorationUrl\(\{work:w\.id\}/);
+  assert.match(html, /updateExplorationUrl\(\{book:g\.book\}/);
+  assert.match(html, /addEventListener\('popstate',restoreExplorationFromUrl\)/);
+  assert.match(html, /function updateArtworkMetadata\(w\)/);
+  assert.match(html, /document\.title=/);
+  assert.match(html, /setMeta\('meta\[property="og:image"\]'/);
+});
+
+test("artwork modal offers native sharing and copyable permanent links", () => {
+  assert.match(html, /class="share-actions"/);
+  assert.match(html, />Share this artwork<\/button>/);
+  assert.match(html, />Copy link<\/button>/);
+  assert.match(html, /function shareArtwork\(w,trigger\)/);
+  assert.match(html, /navigator\.share\(shareData\)/);
+  assert.match(html, /function copyArtworkLink\(w,trigger/);
+  assert.match(html, /navigator\.clipboard\.writeText\(url\)/);
+  assert.match(html, /track\('share_artwork'/);
+});
+
+test("store clicks preserve inbound campaign dimensions and artwork context", () => {
+  assert.match(
+    html,
+    /const INBOUND_CAMPAIGN_KEYS=\['utm_id','utm_source','utm_medium','utm_campaign','utm_content','utm_term'\]/,
+  );
+  assert.match(html, /const inboundCampaign=readInboundCampaign\(location\.search\)/);
+  assert.match(html, /function campaignForArtwork\(w\)/);
+  assert.match(html, /mosaic_artwork_id:w\.id/);
+  assert.match(html, /play\.searchParams\.set\('referrer',campaign\.toString\(\)\)/);
+  assert.match(html, /apple\.searchParams\.set\('ct',appleCampaignToken\(campaign\)\)/);
+  assert.match(html, /utm_source:campaign\.get\('utm_source'\)/);
+  assert.match(html, /utm_content:campaign\.get\('utm_content'\)/);
+});
+
+test("the CTA is passage-specific while free-edition copy waits for release", () => {
+  assert.match(html, /const FREE_EDITION_LIVE=false/);
+  assert.match(html, /Continue from this passage/);
+  assert.match(html, /Compare this passage across ten translations/);
+  assert.match(html, /Read Book \$\{ROMAN\[w\.book\]\} free in Skald/);
+  assert.match(html, /Free download · Books I, II and IX included/);
+  assert.match(html, /One-time purchase · All 24 books included/);
+});
+
+test("all 200 artworks have permanent index pages and social cards", async () => {
+  const dataJson = html.match(/const data=(\{.*\});\nconst passages=/)?.[1];
+  const routesScript = await readFile(
+    new URL("./art-routes.js", import.meta.url),
+    "utf8",
+  );
+  const routesJson = routesScript.match(
+    /globalThis\.MOSAIC_ART_ROUTES=(\{.*\});/,
+  )?.[1];
+
+  assert.ok(dataJson);
+  assert.ok(routesJson);
+  const artworks = JSON.parse(dataJson).artworks;
+  const routes = JSON.parse(routesJson);
+  assert.equal(Object.keys(routes).length, artworks.length);
+
+  for (const artwork of artworks) {
+    const slug = routes[artwork.id];
+    assert.ok(slug, `missing route for ${artwork.id}`);
+    await access(new URL(`./art/${slug}/index.html`, import.meta.url));
+    await access(new URL(`./social/${artwork.id}.jpg`, import.meta.url));
+  }
+
+  const sample = artworks.find(({ id }) => id === "ngv-waterhouse-ulysses-sirens");
+  const sampleSlug = routes[sample.id];
+  const routeHtml = await readFile(
+    new URL(`./art/${sampleSlug}/index.html`, import.meta.url),
+    "utf8",
+  );
+  const canonical = `https://skald.mannamila.com/mosaic/art/${sampleSlug}/`;
+  assert.match(routeHtml, /<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">/);
+  assert.ok(routeHtml.includes(`<link rel="canonical" href="${canonical}">`));
+  assert.ok(routeHtml.includes(`<meta property="og:url" content="${canonical}">`));
+  assert.ok(routeHtml.includes("/mosaic/social/ngv-waterhouse-ulysses-sirens.jpg"));
+  assert.match(routeHtml, /<meta property="og:image:width" content="1200">/);
+  assert.match(routeHtml, /<meta property="og:image:height" content="630">/);
+  assert.match(routeHtml, /<h1>Ulysses and the Sirens<\/h1>/);
+  assert.match(routeHtml, /"sameAs":"https:\/\/commons\.wikimedia\.org\/wiki\/File:/);
+  assert.doesNotMatch(routeHtml, /"license":"https:\/\/commons\.wikimedia\.org\/wiki\/File:/);
+  assert.match(routeHtml, /target\.searchParams\.set\('work','ngv-waterhouse-ulysses-sirens'\)/);
+
+  const sitemap = await readFile(new URL("./sitemap.xml", import.meta.url), "utf8");
+  assert.ok(sitemap.includes(`<loc>${canonical}</loc>`));
+  assert.equal((sitemap.match(/<url>/g) || []).length, artworks.length + 1);
 });
