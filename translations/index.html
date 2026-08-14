@@ -73,7 +73,7 @@ header{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1p
 #wires{z-index:6}
 #wires path{fill:none;stroke:var(--copper);stroke-width:1.4;opacity:.85}
 .erarule{position:absolute;left:0;right:0;display:flex;align-items:center;gap:10px;pointer-events:none;z-index:3}
-.erarule span{font:600 10px var(--body);letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);
+.erarule span{font:600 10.5px var(--body);letter-spacing:.18em;color:var(--ink-soft);
  background:var(--paper);padding:1px 6px 1px 0;white-space:nowrap}
 .erarule::after{content:'';flex:1;height:1px;background:var(--line)}
 .erarule.right{flex-direction:row-reverse}
@@ -85,7 +85,10 @@ header{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1p
 .node.lm .dot{width:12px;height:12px}
 .node .lbl sup.sk{color:var(--copper);font-weight:700;font-size:.72em;margin-left:1px}
 .node.mirror{flex-direction:row-reverse;text-align:right}
-.node.spot .dot{box-shadow:0 0 0 3px var(--gold-bright)}
+.node.spot{z-index:12}
+.node.spot .dot{box-shadow:0 0 0 3px var(--gold-bright),0 0 16px rgba(197,154,74,.85)}
+.node.spot .lbl{background:var(--paper-light);border:1px solid var(--gold-bright);border-radius:7px;
+ padding:3px 8px;margin-left:-3px;box-shadow:0 5px 16px rgba(52,37,20,.2)}
 .node.spot .lbl b{color:var(--copper-dark)}
 #spotcard{position:fixed;left:0;right:0;bottom:0;z-index:34;display:none;cursor:pointer;
  background:var(--paper-light);border-top:1px solid var(--line-strong);
@@ -589,7 +592,8 @@ function updateSpotlight(){
  if(modal.style.display==='block'||!positions.size){spotHide();return}
  /* everything currently on screen, in chronological (top-to-bottom) order */
  const tlTop=timeline.getBoundingClientRect().top+scrollY;
- const lo=scrollY-tlTop,hi=lo+innerHeight-110; /* card overlays the bottom */
+ const headerH=(document.querySelector('header')?.offsetHeight||0)+14;
+ const lo=scrollY-tlTop+headerH,hi=scrollY-tlTop+innerHeight-120; /* below sticky header, above the card */
  const set=[...positions.entries()].filter(([,p])=>p.y>=lo&&p.y<=hi)
   .sort((a,b)=>a[1].y-b[1].y||a[1].x-b[1].x).map(([id])=>id);
  if(set.join()!==spotSet.join()){
