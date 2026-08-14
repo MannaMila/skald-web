@@ -182,6 +182,12 @@ footer .page{display:flex;flex-direction:column;gap:8px}
  .node .lbl b{font-size:16px}
  .node.lm .lbl b{font-size:17px}
  .node .lbl i{font-size:10.5px}
+}
+@media (max-width:600px){
+ .node .lbl b{font-size:14.5px}
+ .node.lm .lbl b{font-size:15.5px}
+ .node .lbl i{font-size:10px}
+ #lanelabels span{font-size:9px;letter-spacing:.12em}
  #hovercard .hc-name{font-size:19px}
  #hovercard .hc-hook{font-size:14px}
  #statsrow{font-size:12px}
@@ -363,18 +369,18 @@ function laneMode(w){return w<600?1:(w<960?3:5)}
 function laneKeys(mode){
  if(mode===5)return ['cls','en','rom','ger','sla'];
  if(mode===3)return ['cls','en','eur'];
- return ['all'];
+ return ['en','cls','eur']; /* phone: fixed columns — English always left */
 }
 function laneKeyOf(t,mode){
  const g=groupOf(t);
  if(mode===5)return g;
- if(mode===3)return g==='cls'?'cls':(g==='en'?'en':'eur');
- return 'all';
+ return g==='cls'?'cls':(g==='en'?'en':'eur');
 }
 function laneTitle(k){
  return {cls:'Classical & World',en:'English',rom:'Romance',ger:'Germanic & Nordic',
-  sla:'Slavic · Baltic · Finnic',eur:'Other European',all:''}[k];
+  sla:'Slavic · Baltic · Finnic',eur:'European'}[k];
 }
+const EUR_COLOR='#7a6a55';
 
 function render(){
  const wrap=document.getElementById('flowwrap');
@@ -384,13 +390,12 @@ function render(){
  const laneX={};
  const gutter=mode===1?0:(mode===5?100:80);
  const laneSpan=(W-gutter)/keys.length;
- keys.forEach((k,i)=>{laneX[k]=mode===1?Math.round(W/2):Math.round(gutter+i*laneSpan+6);});
- const maxCols=2;
- const colW=mode===1?0:laneSpan/maxCols;
- const phoneW=Math.min(Math.round(W/2-26),230);
+ keys.forEach((k,i)=>{laneX[k]=Math.round(gutter+i*laneSpan+(mode===1?8:6));});
+ const maxCols=mode===1?1:2;
+ const colW=laneSpan/maxCols;
 
- laneLabels.innerHTML=mode===1?'':keys.map((k,i)=>{
-  const color=(GROUPS[k]||{}).color||'#8A6B33';
+ laneLabels.innerHTML=keys.map((k,i)=>{
+  const color=(GROUPS[k]||{}).color||EUR_COLOR;
   const off=state.group&&state.group!==k?' class="off"':(state.group===k?' class="on"':'');
   return `<span data-group="${k}"${off} style="left:${Math.round(gutter+(i+0.5)*laneSpan)}px;color:${color}">${laneTitle(k)}</span>`;
  }).join('');
@@ -411,7 +416,6 @@ function render(){
 
  /* per-lane rows: same-year (or colliding) entries sit side by side up to maxCols */
  const laneRows={};
- const sideLast={0:-1e9,1:-1e9};
  positions=new Map();
  visibleOrder=visible.map(t=>t.id);
  let maxY=0;
@@ -420,37 +424,22 @@ function render(){
   const k=laneKeyOf(t,mode);
   const desired=yOf(t.year==null?0:t.year);
   const color=GROUPS[groupOf(t)].color;
-  let x,y,html;
-  if(mode===1){
-   /* centered spine: entries alternate left/right of it (marginalia style) */
-   const side=sideLast[0]<=sideLast[1]?0:1;
-   y=Math.max(desired,sideLast[side]+MINGAP);
-   sideLast[side]=y;
-   x=laneX[k];
-   const left=side===0?x+8:x-phoneW-8;
-   html=`<div class="node reveal${t.tier==='landmark'?' lm':''}${side===1?' mirror':''}" data-id="${t.id}" id="c-${t.id}"
-    style="left:${left}px;top:${y}px;width:${phoneW}px">
-   <span class="dot" style="background:${color}"></span>
-   <span class="lbl"><b>${esc(shortName(t))}${t.skald?'<sup class="sk">✳</sup>':''}</b><i>${esc(shortYear(t))} · ${esc(abbr(t))}</i></span></div>`;
+  const row=laneRows[k];
+  let y,col;
+  if(row&&desired<=row.y+MINGAP-1&&row.cols<maxCols){
+   y=row.y;col=row.cols;row.cols++;
   }else{
-   const row=laneRows[k];
-   let col;
-   if(row&&desired<=row.y+MINGAP-1&&row.cols<maxCols){
-    y=row.y;col=row.cols;row.cols++;
-   }else{
-    y=Math.max(desired,row?row.y+MINGAP:desired);col=0;
-    laneRows[k]={y,cols:1};
-   }
-   x=laneX[k]+col*colW;
-   const width=Math.min(colW-16,260);
-   html=`<div class="node reveal${t.tier==='landmark'?' lm':''}" data-id="${t.id}" id="c-${t.id}"
-    style="left:${x-5}px;top:${y}px;max-width:${Math.round(width)}px">
-   <span class="dot" style="background:${color}"></span>
-   <span class="lbl"><b>${esc(shortName(t))}${t.skald?'<sup class="sk">✳</sup>':''}</b><i>${esc(shortYear(t))} · ${esc(abbr(t))}</i></span></div>`;
+   y=Math.max(desired,row?row.y+MINGAP:desired);col=0;
+   laneRows[k]={y,cols:1};
   }
+  const x=laneX[k]+col*colW;
+  const width=Math.min(colW*(maxCols===1?1:1)-16,260);
   maxY=Math.max(maxY,y);
   positions.set(t.id,{x,y});
-  nodeHtml.push(html);
+  nodeHtml.push(`<div class="node reveal${t.tier==='landmark'?' lm':''}" data-id="${t.id}" id="c-${t.id}"
+    style="left:${x-5}px;top:${y}px;max-width:${Math.round(width)}px">
+   <span class="dot" style="background:${color}"></span>
+   <span class="lbl"><b>${esc(shortName(t))}${t.skald?'<sup class="sk">✳</sup>':''}</b><i>${esc(shortYear(t))} · ${esc(abbr(t))}</i></span></div>`);
  }
  const H=visible.length?maxY+80:40;
  timeline.style.height=H+'px';
@@ -492,7 +481,7 @@ function render(){
   if(!ids.length)continue;
   const x=laneX[k];
   const y1=positions.get(ids[0].id).y,y2=positions.get(ids[ids.length-1].id).y;
-  const color=(GROUPS[k]||{color:'#8A6B33'}).color;
+  const color=(GROUPS[k]||{color:EUR_COLOR}).color;
   threadPaths+=`<line x1="${x}" y1="${y1}" x2="${x}" y2="${y2}" stroke="${color}" stroke-width="2" opacity="0.28"/>`;
  }
  threadsSvg.innerHTML=threadPaths;
