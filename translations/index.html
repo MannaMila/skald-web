@@ -85,15 +85,26 @@ header{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1p
 .node.lm .dot{width:12px;height:12px}
 .node .lbl sup.sk{color:var(--copper);font-weight:700;font-size:.72em;margin-left:1px}
 .node.mirror{flex-direction:row-reverse;text-align:right}
+.node.spot .dot{box-shadow:0 0 0 3px var(--gold-bright)}
+.node.spot .lbl b{color:var(--copper-dark)}
+#spotcard{position:fixed;left:0;right:0;bottom:0;z-index:34;display:none;cursor:pointer;
+ background:var(--paper-light);border-top:1px solid var(--line-strong);
+ box-shadow:0 -10px 30px rgba(52,37,20,.12);padding:11px 16px calc(11px + env(safe-area-inset-bottom,0px))}
+#spotcard .sc-name{font-family:var(--serif);font-weight:600;font-size:17px;line-height:1.15}
+#spotcard .sc-name .chip{font:600 9px var(--body);letter-spacing:.08em;text-transform:uppercase;border-radius:999px;
+ padding:2px 7px;background:var(--night);color:var(--gold-bright);margin-left:6px;vertical-align:2px}
+#spotcard .sc-meta{font-size:11px;color:var(--ink-soft);margin:1px 0 3px}
+#spotcard .sc-hook{font-size:12.5px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#spotcard .sc-count{position:absolute;top:10px;right:14px;font-size:10px;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--gold)}
 #surprise{position:fixed;left:14px;bottom:14px;z-index:35;border:1px solid var(--line-strong);
  background:var(--paper-light);color:var(--copper-dark);border-radius:999px;padding:8px 15px;
  font:600 12.5px var(--body);cursor:pointer;box-shadow:0 8px 24px rgba(52,37,20,.14)}
 #surprise:hover{border-color:var(--copper)}
-.mnav{position:absolute;top:50%;transform:translateY(-50%);border:1px solid var(--line-strong);
- background:var(--paper);border-radius:999px;width:34px;height:34px;font:600 17px var(--body);
+.mnav{position:absolute;top:12px;border:1px solid var(--line-strong);
+ background:var(--paper);border-radius:999px;width:32px;height:32px;font:600 16px var(--body);
  cursor:pointer;color:var(--ink);line-height:1}
-.mnav.prev{left:-14px}.mnav.next{right:-14px}
-@media (max-width:900px){.mnav.prev{left:4px}.mnav.next{right:4px}}
+.mnav.prev{right:90px}.mnav.next{right:52px}
 .node .lbl{min-width:0;line-height:1.12}
 .node .lbl b{display:block;font-family:var(--serif);font-weight:600;font-size:13.5px;
  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -168,6 +179,9 @@ footer .page{display:flex;flex-direction:column;gap:8px}
 #emptystate{padding:70px 0 90px;text-align:center}
 #emptystate .big{font-family:var(--serif);font-weight:600;font-size:26px;margin-bottom:6px}
 #emptystate .sub{color:var(--ink-soft);font-size:14px;margin-bottom:16px}
+@media (hover: none){
+ #surprise{bottom:104px}
+}
 @media (max-width:900px){
  .bar .tag{display:none}
  body{font-size:16px}
@@ -209,6 +223,7 @@ footer .page{display:flex;flex-direction:column;gap:8px}
 </div>
 <div id="compass"></div>
 <button id="surprise" title="Open a random translation">✦ Surprise me</button>
+<div id="spotcard" role="button" aria-label="Open highlighted translation"></div>
 <div id="hovercard"></div>
 
 <div id="veil"></div>
@@ -251,6 +266,7 @@ if(GA_ID){
 function track(name,params){if(GA_ID)gtag('event',name,params)}
 
 const compass=document.getElementById('compass');
+const NOHOVER=matchMedia('(hover: none)').matches;
 const T=DATA.translations,E=DATA.influences;
 const byId=new Map(T.map(t=>[t.id,t]));
 function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
@@ -506,6 +522,7 @@ function render(){
   observeNodes();
  }
  compass.style.display='none';
+ if(NOHOVER)updateSpotlight();
  drawWires();
 }
 laneLabels.addEventListener('click',e=>{
@@ -532,6 +549,48 @@ function observeNodes(){
   .forEach(n=>n.classList.add('in')),1500);
 }
 
+/* touch spotlight: the entry at viewport center surfaces its hover card in a
+   fixed bottom sheet; same-year clusters auto-cycle; paused while the modal
+   is open; tapping opens the modal. Hover devices keep the pointer card. */
+const spotcard=document.getElementById('spotcard');
+let spotSet=[],spotIdx=0;
+function spotHide(){spotcard.style.display='none';
+ document.querySelectorAll('.node.spot').forEach(n=>n.classList.remove('spot'))}
+function spotShow(){
+ if(!spotSet.length){spotHide();return}
+ const t=byId.get(spotSet[spotIdx]);if(!t){spotHide();return}
+ document.querySelectorAll('.node.spot').forEach(n=>n.classList.remove('spot'));
+ document.getElementById('c-'+t.id)?.classList.add('spot');
+ spotcard.innerHTML=`${spotSet.length>1?`<span class="sc-count">${spotIdx+1} / ${spotSet.length}</span>`:''}
+  <div class="sc-name">${esc(t.who)}${t.skald?'<span class="chip">In Skald</span>':''}</div>
+  <div class="sc-meta">${esc(yearLabel(t))} · ${esc(t.lang)}${t.form?` · ${esc(t.form)}`:''}</div>
+  <div class="sc-hook">${esc(hook(t))}</div>`;
+ spotcard.style.display='block';
+}
+function updateSpotlight(){
+ if(!NOHOVER)return;
+ if(modal.style.display==='block'||!positions.size){spotHide();return}
+ const mid=scrollY+innerHeight/2-(timeline.getBoundingClientRect().top+scrollY);
+ let nearest=null,nd=1e9;
+ const cands=[];
+ for(const [id,p] of positions){
+  const d=Math.abs(p.y-mid);
+  if(d<nd){nd=d;nearest=id}
+  if(d<60)cands.push([d,id]);
+ }
+ const set=cands.length?cands.sort((a,b)=>a[0]-b[0]).map(c=>c[1]):(nearest?[nearest]:[]);
+ if(set.join()!==spotSet.join()){spotSet=set;spotIdx=0}
+ spotShow();
+}
+setInterval(()=>{
+ if(NOHOVER&&spotSet.length>1&&modal.style.display!=='block'){
+  spotIdx=(spotIdx+1)%spotSet.length;spotShow();
+ }
+},9000);
+spotcard.addEventListener('click',()=>{
+ const id=spotSet[spotIdx];if(id)openModal(id,'spotlight');
+});
+
 /* year compass: the century under your thumb while you scroll */
 let compassTimer=null;
 addEventListener('scroll',()=>{
@@ -548,6 +607,7 @@ addEventListener('scroll',()=>{
   const t=byId.get(best);
   if(t&&scrollY>140){compass.textContent=shortYear(t);compass.style.display='block'}
   else compass.style.display='none';
+  updateSpotlight();
  },90);
 },{passive:true});
 let resizeTimer=null;
@@ -655,8 +715,7 @@ function openModal(id,from){
  }
  const outs=E.filter(e=>e.source===id).filter(e=>fresh(e,'out')),
        ins=E.filter(e=>e.target===id).filter(e=>fresh(e,'in'));
- const img=t.img?`<img src="images/${esc(t.img)}" alt="${esc(t.who)}, ${esc(t.title||'Odyssey')}">`
-  :`<span class="tile">${esc(initials(t))}</span>`;
+ const thumb=t.img?`<div class="m-thumb"><img src="images/${esc(t.img)}" alt="${esc(t.who)}, ${esc(t.title||'Odyssey')}"></div>`:'';
  const st=storeLinks(t);
  let headCta='';
  if(t.skald){
@@ -687,7 +746,7 @@ function openModal(id,from){
  panel.innerHTML=`<button class="close" aria-label="Close">✕</button>
   <button class="mnav prev" aria-label="Previous translation">‹</button>
   <button class="mnav next" aria-label="Next translation">›</button>
-  <div class="m-head"><div class="m-thumb">${img}</div>
+  <div class="m-head">${thumb}
    <div class="m-title"><div class="overline">${esc(t.lang)} · ${esc(yearLabel(t))}${t.skald?' &nbsp;<span class="chip skald">In Skald</span>':''}</div>
     <h3>${esc(t.who)}</h3><div class="t-label">${esc(t.title||'')}</div>
     ${headCta}</div></div>
@@ -707,7 +766,7 @@ function openModal(id,from){
     <a href="https://skald.mannamila.com/" target="_blank" rel="noreferrer">About Skald</a></div></div>`:''}
   ${t.img&&t.img_credit?`<div class="m-credit">Image: ${esc(t.img_credit)}${t.img_source?` · <a href="${esc(t.img_source)}" target="_blank" rel="noreferrer" style="color:inherit">Source</a>`:''}</div>`:''}`;
  veil.style.display='block';modal.style.display='block';document.body.style.overflow='hidden';
- hovercard.style.display='none';
+ hovercard.style.display='none';spotHide();
  if(location.hash!=='#'+t.id)history.replaceState(null,'','#'+t.id);
  track('select_translation',{translation_id:t.id,translator:t.who,language:t.lang,year:t.year,from:from||'timeline'});
  panel.querySelector('.close').addEventListener('click',closeModal);
@@ -724,7 +783,8 @@ function openModal(id,from){
   track('click_amazon',{translation_id:t.id,translator:t.who})));
 }
 function closeModal(){veil.style.display='none';modal.style.display='none';document.body.style.overflow='';
- if(location.hash)history.replaceState(null,'',location.pathname+location.search)}
+ if(location.hash)history.replaceState(null,'',location.pathname+location.search);
+ if(NOHOVER)updateSpotlight()}
 veil.addEventListener('click',closeModal);
 modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
 addEventListener('keydown',e=>{
