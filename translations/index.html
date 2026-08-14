@@ -84,6 +84,16 @@ header{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1p
  box-shadow:0 0 0 1px rgba(56,40,23,.25)}
 .node.lm .dot{width:12px;height:12px}
 .node .lbl sup.sk{color:var(--copper);font-weight:700;font-size:.72em;margin-left:1px}
+.node.mirror{flex-direction:row-reverse;text-align:right}
+#surprise{position:fixed;left:14px;bottom:14px;z-index:35;border:1px solid var(--line-strong);
+ background:var(--paper-light);color:var(--copper-dark);border-radius:999px;padding:8px 15px;
+ font:600 12.5px var(--body);cursor:pointer;box-shadow:0 8px 24px rgba(52,37,20,.14)}
+#surprise:hover{border-color:var(--copper)}
+.mnav{position:absolute;top:50%;transform:translateY(-50%);border:1px solid var(--line-strong);
+ background:var(--paper);border-radius:999px;width:34px;height:34px;font:600 17px var(--body);
+ cursor:pointer;color:var(--ink);line-height:1}
+.mnav.prev{left:-14px}.mnav.next{right:-14px}
+@media (max-width:900px){.mnav.prev{left:4px}.mnav.next{right:4px}}
 .node .lbl{min-width:0;line-height:1.12}
 .node .lbl b{display:block;font-family:var(--serif);font-weight:600;font-size:13.5px;
  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -198,6 +208,7 @@ footer .page{display:flex;flex-direction:column;gap:8px}
  </main>
 </div>
 <div id="compass"></div>
+<button id="surprise" title="Open a random translation">✦ Surprise me</button>
 <div id="hovercard"></div>
 
 <div id="veil"></div>
@@ -338,6 +349,7 @@ const threadsSvg=document.getElementById('threads');
 const laneLabels=document.getElementById('lanelabels');
 const MINGAP=30;
 let positions=new Map();
+let visibleOrder=[];
 
 function laneMode(w){return w<600?1:(w<960?3:5)}
 function laneKeys(mode){
@@ -364,9 +376,10 @@ function render(){
  const laneX={};
  const gutter=mode===1?0:(mode===5?100:80);
  const laneSpan=(W-gutter)/keys.length;
- keys.forEach((k,i)=>{laneX[k]=mode===1?18:Math.round(gutter+i*laneSpan+6);});
- const maxCols=mode===1?1:2;
- const colW=laneSpan/maxCols;
+ keys.forEach((k,i)=>{laneX[k]=mode===1?Math.round(W/2):Math.round(gutter+i*laneSpan+6);});
+ const maxCols=2;
+ const colW=mode===1?0:laneSpan/maxCols;
+ const phoneW=Math.min(Math.round(W/2-26),230);
 
  laneLabels.innerHTML=mode===1?'':keys.map((k,i)=>{
   const color=(GROUPS[k]||{}).color||'#8A6B33';
@@ -390,29 +403,46 @@ function render(){
 
  /* per-lane rows: same-year (or colliding) entries sit side by side up to maxCols */
  const laneRows={};
+ const sideLast={0:-1e9,1:-1e9};
  positions=new Map();
+ visibleOrder=visible.map(t=>t.id);
  let maxY=0;
  const nodeHtml=[];
  for(const t of visible){
   const k=laneKeyOf(t,mode);
   const desired=yOf(t.year==null?0:t.year);
-  const row=laneRows[k];
-  let y,col;
-  if(row&&desired<=row.y+MINGAP-1&&row.cols<maxCols){
-   y=row.y;col=row.cols;row.cols++;
-  }else{
-   y=Math.max(desired,row?row.y+MINGAP:desired);col=0;
-   laneRows[k]={y,cols:1};
-  }
-  maxY=Math.max(maxY,y);
-  const x=laneX[k]+col*colW;
-  positions.set(t.id,{x,y});
   const color=GROUPS[groupOf(t)].color;
-  const width=Math.min(mode===1?230:colW-16,260);
-  nodeHtml.push(`<div class="node reveal${t.tier==='landmark'?' lm':''}" data-id="${t.id}" id="c-${t.id}"
+  let x,y,html;
+  if(mode===1){
+   /* centered spine: entries alternate left/right of it (marginalia style) */
+   const side=sideLast[0]<=sideLast[1]?0:1;
+   y=Math.max(desired,sideLast[side]+MINGAP);
+   sideLast[side]=y;
+   x=laneX[k];
+   const left=side===0?x+8:x-phoneW-8;
+   html=`<div class="node reveal${t.tier==='landmark'?' lm':''}${side===1?' mirror':''}" data-id="${t.id}" id="c-${t.id}"
+    style="left:${left}px;top:${y}px;width:${phoneW}px">
+   <span class="dot" style="background:${color}"></span>
+   <span class="lbl"><b>${esc(shortName(t))}${t.skald?'<sup class="sk">✳</sup>':''}</b><i>${esc(shortYear(t))} · ${esc(abbr(t))}</i></span></div>`;
+  }else{
+   const row=laneRows[k];
+   let col;
+   if(row&&desired<=row.y+MINGAP-1&&row.cols<maxCols){
+    y=row.y;col=row.cols;row.cols++;
+   }else{
+    y=Math.max(desired,row?row.y+MINGAP:desired);col=0;
+    laneRows[k]={y,cols:1};
+   }
+   x=laneX[k]+col*colW;
+   const width=Math.min(colW-16,260);
+   html=`<div class="node reveal${t.tier==='landmark'?' lm':''}" data-id="${t.id}" id="c-${t.id}"
     style="left:${x-5}px;top:${y}px;max-width:${Math.round(width)}px">
    <span class="dot" style="background:${color}"></span>
-   <span class="lbl"><b>${esc(shortName(t))}${t.skald?'<sup class="sk">✳</sup>':''}</b><i>${esc(shortYear(t))} · ${esc(abbr(t))}</i></span></div>`);
+   <span class="lbl"><b>${esc(shortName(t))}${t.skald?'<sup class="sk">✳</sup>':''}</b><i>${esc(shortYear(t))} · ${esc(abbr(t))}</i></span></div>`;
+  }
+  maxY=Math.max(maxY,y);
+  positions.set(t.id,{x,y});
+  nodeHtml.push(html);
  }
  const H=visible.length?maxY+80:40;
  timeline.style.height=H+'px';
@@ -424,7 +454,7 @@ function render(){
  document.getElementById('stats').innerHTML=
   `<b>${visible.length}</b> of ${T.length} translations · <b>${langsN}</b> languages · <b>${skaldN}</b> in Skald · <b>${freeN}</b> free to read`;
  document.getElementById('legend').innerHTML=
-  Object.entries(GROUPS).map(([k,g])=>`<span class="lg"><i style="background:${g.color}"></i>${mode===1?g.label.split(' ')[0]:g.label}</span>`).join('')+
+  Object.entries(GROUPS).map(([k,g])=>`<span class="lg"><i style="background:${g.color}"></i>${g.label}</span>`).join('')+
   `<span class="lg sk">✳ in Skald</span>`;
 
  /* era rules: only where results exist */
@@ -437,12 +467,11 @@ function render(){
   }));
   eras=ERA_MARKS.map(([yr,label],i)=>{
    if(!present.has(i))return '';
-   const firstYear=Math.min(...visible.filter(t=>{
-    const y=t.year==null?0:t.year;
-    const next=i+1<ERA_MARKS.length?ERA_MARKS[i+1][0]:99999;
-    return y>=yr&&y<next;
-   }).map(t=>t.year==null?0:t.year));
-   const y=filtered?yOf(firstYear)-24:yFor(yr)-14;
+   const next=i+1<ERA_MARKS.length?ERA_MARKS[i+1][0]:99999;
+   const eraNodeYs=visible.filter(t=>{
+    const yy=t.year==null?0:t.year;return yy>=yr&&yy<next;
+   }).map(t=>positions.get(t.id).y);
+   const y=Math.min(...eraNodeYs)-24;
    return `<div class="erarule${mode===1?' right':''}" style="top:${y}px"><span>${label}</span></div>`;
   }).join('');
  }
@@ -491,9 +520,16 @@ const io=('IntersectionObserver' in window)?new IntersectionObserver(entries=>{
  for(const en of entries)if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}
 },{rootMargin:'600px 0px 400px 0px'}):null;
 function observeNodes(){
- document.querySelectorAll('.node.reveal:not(.in)').forEach(n=>{
-  if(io)io.observe(n);else n.classList.add('in');
- });
+ const nodes=[...document.querySelectorAll('.node.reveal:not(.in)')];
+ for(const n of nodes){
+  /* above/near the fold: show immediately — no dependency on IO delivery */
+  if(!io||n.getBoundingClientRect().top<innerHeight*1.5)n.classList.add('in');
+  else io.observe(n);
+ }
+ /* safety net: if rendering-frame callbacks are throttled (background tab,
+    occluded window), everything becomes visible anyway */
+ setTimeout(()=>document.querySelectorAll('.node.reveal:not(.in)')
+  .forEach(n=>n.classList.add('in')),1500);
 }
 
 /* year compass: the century under your thumb while you scroll */
@@ -649,6 +685,8 @@ function openModal(id,from){
  const links=(t.links||[]).map(l=>
   `<li><a href="${esc(l.url)}" target="_blank" rel="noreferrer" data-track-link="${esc(l.host)}">${esc(l.host)}</a>${l.rights?` — <span style="color:var(--ink-soft)">${esc(l.rights)}</span>`:''}</li>`).join('');
  panel.innerHTML=`<button class="close" aria-label="Close">✕</button>
+  <button class="mnav prev" aria-label="Previous translation">‹</button>
+  <button class="mnav next" aria-label="Next translation">›</button>
   <div class="m-head"><div class="m-thumb">${img}</div>
    <div class="m-title"><div class="overline">${esc(t.lang)} · ${esc(yearLabel(t))}${t.skald?' &nbsp;<span class="chip skald">In Skald</span>':''}</div>
     <h3>${esc(t.who)}</h3><div class="t-label">${esc(t.title||'')}</div>
@@ -673,6 +711,10 @@ function openModal(id,from){
  if(location.hash!=='#'+t.id)history.replaceState(null,'','#'+t.id);
  track('select_translation',{translation_id:t.id,translator:t.who,language:t.lang,year:t.year,from:from||'timeline'});
  panel.querySelector('.close').addEventListener('click',closeModal);
+ const idx=visibleOrder.indexOf(t.id);
+ const step=d=>{const n=visibleOrder[(idx+d+visibleOrder.length)%visibleOrder.length];if(n)openModal(n,'flip')};
+ panel.querySelector('.mnav.prev').addEventListener('click',()=>step(-1));
+ panel.querySelector('.mnav.next').addEventListener('click',()=>step(1));
  panel.querySelectorAll('[data-goto]').forEach(el=>el.addEventListener('click',()=>openModal(el.dataset.goto,'lineage')));
  panel.querySelectorAll('[data-track-link]').forEach(a=>a.addEventListener('click',()=>
   track('click_access_link',{translation_id:t.id,host:a.dataset.trackLink,url:a.href})));
@@ -685,7 +727,19 @@ function closeModal(){veil.style.display='none';modal.style.display='none';docum
  if(location.hash)history.replaceState(null,'',location.pathname+location.search)}
 veil.addEventListener('click',closeModal);
 modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
-addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+addEventListener('keydown',e=>{
+ if(e.key==='Escape')closeModal();
+ if(modal.style.display==='block'){
+  if(e.key==='ArrowLeft')panel.querySelector('.mnav.prev')?.click();
+  if(e.key==='ArrowRight')panel.querySelector('.mnav.next')?.click();
+ }
+});
+document.getElementById('surprise').addEventListener('click',()=>{
+ const pool=visibleOrder.filter(id=>byId.get(id).tier==='landmark');
+ const pick=(pool.length?pool:visibleOrder)[Math.floor(Math.random()*(pool.length||visibleOrder.length))];
+ if(pick)openModal(pick,'surprise');
+ track('surprise_me',{});
+});
 document.getElementById('to-mosaic').addEventListener('click',()=>track('click_mosaic_crosslink',{}));
 
 render();
