@@ -411,7 +411,32 @@ function render(){
   const yearY=new Map(years.map((yr,i)=>[yr,50+i*34]));
   yOf=yr=>yearY.get(yr)??50;
  }else{
-  yOf=yFor;
+  /* stretch each time segment so the densest lane fits without entries
+     drifting below their years (alignment beats compactness) */
+  const segs=[];
+  for(let i=0;i<SCALE.length-1;i++){
+   const [start,pxy]=SCALE[i],end=SCALE[i+1][0];
+   const counts={};
+   for(const t of visible){
+    const yy=t.year==null?0:t.year;
+    if((yy>start&&yy<=end)||(i===0&&yy<=start)){
+     const k=laneKeyOf(t,mode);counts[k]=(counts[k]||0)+1;
+    }
+   }
+   const maxC=Math.max(0,...Object.values(counts));
+   const base=(end-start)*pxy;
+   const mult=Math.max(1,(maxC*MINGAP+14)/base);
+   segs.push([start,end,pxy*mult]);
+  }
+  yOf=year=>{
+   let y=40;
+   for(const [start,end,rate] of segs){
+    if(year<=start)return y;
+    y+=(Math.min(year,end)-start)*rate;
+    if(year<=end)return y;
+   }
+   return y;
+  };
  }
 
  /* per-lane rows: same-year (or colliding) entries sit side by side up to maxCols */
