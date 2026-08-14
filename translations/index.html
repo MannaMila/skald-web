@@ -39,7 +39,7 @@ a{color:var(--copper-dark)}
 .page{width:var(--page);margin:0 auto}
 
 /* ---------- header ---------- */
-header{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1px solid var(--line);padding:10px 0}
+header{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1px solid var(--line);padding:9px 0 7px;box-shadow:0 6px 18px rgba(52,37,20,.05)}
 .bar{width:var(--page);margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .brand{font-family:var(--serif);font-weight:600;font-size:18px;letter-spacing:.24em;color:var(--copper-dark);
  text-decoration:none;white-space:nowrap}
@@ -55,16 +55,14 @@ header{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1p
 .pill.active{background:var(--night);color:var(--paper);border-color:var(--night)}
 
 /* ---------- threads flow ---------- */
-#lanehead{position:sticky;top:53px;z-index:30;background:linear-gradient(var(--paper) 86%,rgba(242,230,207,0));
- padding:6px 0 6px;pointer-events:none}
 #statsrow{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--ink-soft);
- padding-bottom:5px;border-bottom:1px solid var(--line);margin-bottom:5px}
+ margin-top:8px;padding-top:6px;border-top:1px solid var(--line)}
 #stats b{color:var(--ink);font-weight:600}
 #legend{display:flex;gap:11px;align-items:center;flex-wrap:wrap;margin-left:auto}
 #legend .lg{display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
 #legend .lg i{width:8px;height:8px;border-radius:50%;display:inline-block}
 #legend .sk{color:var(--copper);font-weight:600}
-#lanelabels{width:var(--page);margin:0 auto;position:relative;height:16px}
+#lanelabels{width:var(--page);margin:6px auto 0;position:relative;height:15px}
 #lanelabels span{position:absolute;transform:translateX(-50%);font:600 10px var(--body);
  letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;pointer-events:auto;cursor:pointer}
 #lanelabels span.off{opacity:.35}
@@ -190,12 +188,9 @@ footer .page{display:flex;flex-direction:column;gap:8px}
   <a class="pill" id="to-mosaic" href="https://skald.mannamila.com/mosaic/">Art Atlas</a>
   <a class="pill" href="https://skald.mannamila.com/">The app</a>
  </div>
-</header>
-
-<div id="lanehead">
  <div id="statsrow" class="page"><span id="stats"></span><span id="legend"></span></div>
  <div id="lanelabels"></div>
-</div>
+</header>
 <div id="flowwrap">
  <main id="timeline">
   <svg id="threads" aria-hidden="true"></svg>
@@ -296,7 +291,7 @@ const NAME_OVERRIDE={'LA-C0240-LIVIUS':'Livius Andronicus','LA-C0050-POLYBIUS':'
  'KO-1996-CHUN':'Chun','ZH-1979-YANG':'Yang Xianyi','ZH-2003-CHEN':'Chen','ZH-1997-WANG':'Wang',
  'JA-1994-MATSUDAIRA':'Matsudaira','JA-1943-DOI':'Doi Bansui','ES-1988-CALVO':'Calvo',
  'ES-2004-GARCIAGUAL':'García Gual','CA-1998-ALBERICH':'Alberich','IT-2010-DIBENEDETTO':'Di Benedetto',
- 'GL-1990-SELA':'de Sela','EL-1965-KAZANTZAKIS-KAKRIDIS':'Kazantzakis & Kakridis'};
+ 'GL-1990-SELA':'de Sela','EL-1965-KAZANTZAKIS-KAKRIDIS':'Kazantzakis & Kakridis','AF-1963-VANRENSBURG':'van Rensburg'};
 function shortName(t){
  if(t.original)return 'Homer';
  if(NAME_OVERRIDE[t.id])return NAME_OVERRIDE[t.id];
