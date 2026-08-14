@@ -55,11 +55,20 @@ header{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1p
 .pill.active{background:var(--night);color:var(--paper);border-color:var(--night)}
 
 /* ---------- threads flow ---------- */
-#lanehead{position:sticky;top:53px;z-index:30;background:linear-gradient(var(--paper) 78%,rgba(242,230,207,0));
- padding:8px 0 6px;pointer-events:none}
+#lanehead{position:sticky;top:53px;z-index:30;background:linear-gradient(var(--paper) 86%,rgba(242,230,207,0));
+ padding:6px 0 6px;pointer-events:none}
+#statsrow{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--ink-soft);
+ padding-bottom:5px;border-bottom:1px solid var(--line);margin-bottom:5px}
+#stats b{color:var(--ink);font-weight:600}
+#legend{display:flex;gap:11px;align-items:center;flex-wrap:wrap;margin-left:auto}
+#legend .lg{display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+#legend .lg i{width:8px;height:8px;border-radius:50%;display:inline-block}
+#legend .sk{color:var(--copper);font-weight:600}
 #lanelabels{width:var(--page);margin:0 auto;position:relative;height:16px}
 #lanelabels span{position:absolute;transform:translateX(-50%);font:600 10px var(--body);
- letter-spacing:.18em;text-transform:uppercase;white-space:nowrap}
+ letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;pointer-events:auto;cursor:pointer}
+#lanelabels span.off{opacity:.35}
+#lanelabels span:hover{text-decoration:underline}
 #flowwrap{width:var(--page);margin:0 auto;position:relative}
 #timeline{position:relative;min-height:400px}
 #threads,#wires{position:absolute;inset:0;pointer-events:none}
@@ -76,7 +85,7 @@ header{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1p
 .node .dot{flex:none;width:9px;height:9px;border-radius:50%;border:2px solid var(--paper);
  box-shadow:0 0 0 1px rgba(56,40,23,.25)}
 .node.lm .dot{width:12px;height:12px}
-.node.skald .dot{box-shadow:0 0 0 2px var(--copper)}
+.node .lbl sup.sk{color:var(--copper);font-weight:700;font-size:.72em;margin-left:1px}
 .node .lbl{min-width:0;line-height:1.12}
 .node .lbl b{display:block;font-family:var(--serif);font-weight:600;font-size:13.5px;
  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -139,9 +148,32 @@ header{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1p
 footer{border-top:1px solid var(--line);padding:26px 0 50px;margin-top:40px;font-size:12.5px;color:var(--ink-soft)}
 footer .page{display:flex;flex-direction:column;gap:8px}
 
-@media (max-width:640px){
+.node.reveal{opacity:0;transform:translateY(10px) translateY(-50%)}
+.node.reveal.in{opacity:1;transform:translateY(-50%);transition:opacity .28s ease,transform .28s ease}
+@media (prefers-reduced-motion: reduce){
+ .node.reveal{opacity:1;transform:translateY(-50%)}
+ .node.reveal.in{transition:none}
+}
+#compass{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:20;pointer-events:none;
+ font-family:var(--serif);font-weight:600;font-size:40px;color:rgba(116,57,21,.32);
+ writing-mode:vertical-rl;letter-spacing:.06em;display:none}
+#emptystate{padding:70px 0 90px;text-align:center}
+#emptystate .big{font-family:var(--serif);font-weight:600;font-size:26px;margin-bottom:6px}
+#emptystate .sub{color:var(--ink-soft);font-size:14px;margin-bottom:16px}
+@media (max-width:900px){
  .bar .tag{display:none}
- .node{max-width:200px}
+ body{font-size:16px}
+ .node{max-width:230px}
+ .node .lbl b{font-size:16px}
+ .node.lm .lbl b{font-size:17px}
+ .node .lbl i{font-size:10.5px}
+ #hovercard .hc-name{font-size:19px}
+ #hovercard .hc-hook{font-size:14px}
+ #statsrow{font-size:12px}
+ #compass{font-size:30px;right:8px}
+ .m-blurb{font-size:16px}
+ .fact{font-size:15px}
+ .m-section li{font-size:15px}
 }
 </style>
 </head>
@@ -155,19 +187,22 @@ footer .page{display:flex;flex-direction:column;gap:8px}
   <select id="lang" aria-label="Filter by language"><option value="">All languages</option></select>
   <button class="pill" data-filter="skald">In Skald</button>
   <button class="pill" data-filter="free">Free to read</button>
-  <button class="pill" id="lineage-btn" title="Draw documented influence lines">Lineage</button>
   <a class="pill" id="to-mosaic" href="https://skald.mannamila.com/mosaic/">Art Atlas</a>
   <a class="pill" href="https://skald.mannamila.com/">The app</a>
  </div>
 </header>
 
-<div id="lanehead"><div id="lanelabels"></div></div>
+<div id="lanehead">
+ <div id="statsrow" class="page"><span id="stats"></span><span id="legend"></span></div>
+ <div id="lanelabels"></div>
+</div>
 <div id="flowwrap">
  <main id="timeline">
   <svg id="threads" aria-hidden="true"></svg>
   <svg id="wires" aria-hidden="true"></svg>
  </main>
 </div>
+<div id="compass"></div>
 <div id="hovercard"></div>
 
 <div id="veil"></div>
@@ -175,8 +210,7 @@ footer .page{display:flex;flex-direction:column;gap:8px}
 
 <footer>
  <div class="page">
-  <div>A <a href="https://skald.mannamila.com/">Skald</a> research project · translations whose dot carries a
-   copper ring are bundled in the Skald reader. As an Amazon Associate, MannaMila earns from qualifying purchases.</div>
+  <div>A <a href="https://skald.mannamila.com/">Skald</a> research project · translations marked <span style="color:var(--copper);font-weight:700">✳</span> are bundled in the Skald reader. As an Amazon Associate, MannaMila earns from qualifying purchases.</div>
   <div>Cover and title-page images are public-domain scans where marked; modern covers appear as small
    identification thumbnails. <a href="https://skald.mannamila.com/mosaic/">Odyssey Art Atlas</a> ·
    <a href="https://skald.mannamila.com/privacy/">Privacy</a></div>
@@ -210,6 +244,7 @@ if(GA_ID){
 }
 function track(name,params){if(GA_ID)gtag('event',name,params)}
 
+const compass=document.getElementById('compass');
 const T=DATA.translations,E=DATA.influences;
 const byId=new Map(T.map(t=>[t.id,t]));
 function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
@@ -277,7 +312,7 @@ function shortName(t){
 function hook(t){return ((t.blurb||'').split(/(?<=[.!?])\s/)[0]||'')}
 
 /* ---------- filters ---------- */
-const state={q:'',lang:'',skald:false,free:false,lineage:false};
+const state={q:'',lang:'',skald:false,free:false,group:''};
 const langSel=document.getElementById('lang');
 [...new Set(T.map(t=>t.lang))].sort().forEach(l=>{
  const o=document.createElement('option');o.value=l;o.textContent=l;langSel.appendChild(o);
@@ -289,11 +324,9 @@ document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click'
  state[b.dataset.filter]=!state[b.dataset.filter];b.classList.toggle('active',state[b.dataset.filter]);render();
  track('filter_atlas',{facet:b.dataset.filter,value:String(state[b.dataset.filter])});
 }));
-const lineageBtn=document.getElementById('lineage-btn');
-lineageBtn.addEventListener('click',()=>{state.lineage=!state.lineage;
- lineageBtn.classList.toggle('active',state.lineage);drawWires();
- track('view_influence',{mode:state.lineage?'all':'off'})});
+
 function passes(t){
+ if(state.group&&groupOf(t)!==state.group)return false;
  if(state.lang&&t.lang!==state.lang)return false;
  if(state.skald&&!t.skald)return false;
  if(state.free&&!(t.links&&t.links.length))return false;
@@ -337,39 +370,87 @@ function render(){
  const gutter=mode===1?0:(mode===5?100:80);
  const laneSpan=(W-gutter)/keys.length;
  keys.forEach((k,i)=>{laneX[k]=mode===1?18:Math.round(gutter+i*laneSpan+6);});
+ const maxCols=mode===1?1:2;
+ const colW=laneSpan/maxCols;
 
  laneLabels.innerHTML=mode===1?'':keys.map((k,i)=>{
   const color=(GROUPS[k]||{}).color||'#8A6B33';
-  return `<span style="left:${Math.round(gutter+(i+0.5)*laneSpan)}px;color:${color}">${laneTitle(k)}</span>`;
+  const off=state.group&&state.group!==k?' class="off"':(state.group===k?' class="on"':'');
+  return `<span data-group="${k}"${off} style="left:${Math.round(gutter+(i+0.5)*laneSpan)}px;color:${color}">${laneTitle(k)}</span>`;
  }).join('');
 
  const visible=T.filter(passes).sort((a,b)=>(a.year||0)-(b.year||0));
- const laneLast={};
+ const filtered=!!(state.q||state.lang||state.skald||state.free||state.group);
+
+ /* time scale: proportional normally; compressed to occupied years when filtering
+    so results stay dense instead of stranded in empty centuries */
+ let yOf;
+ if(filtered){
+  const years=[...new Set(visible.map(t=>t.year==null?0:t.year))].sort((a,b)=>a-b);
+  const yearY=new Map(years.map((yr,i)=>[yr,50+i*34]));
+  yOf=yr=>yearY.get(yr)??50;
+ }else{
+  yOf=yFor;
+ }
+
+ /* per-lane rows: same-year (or colliding) entries sit side by side up to maxCols */
+ const laneRows={};
  positions=new Map();
  let maxY=0;
  const nodeHtml=[];
  for(const t of visible){
   const k=laneKeyOf(t,mode);
-  const desired=yFor(t.year==null?0:t.year);
-  const y=Math.max(desired,(laneLast[k]||0)+MINGAP);
-  laneLast[k]=y;
+  const desired=yOf(t.year==null?0:t.year);
+  const row=laneRows[k];
+  let y,col;
+  if(row&&desired<=row.y+MINGAP-1&&row.cols<maxCols){
+   y=row.y;col=row.cols;row.cols++;
+  }else{
+   y=Math.max(desired,row?row.y+MINGAP:desired);col=0;
+   laneRows[k]={y,cols:1};
+  }
   maxY=Math.max(maxY,y);
-  const x=laneX[k];
+  const x=laneX[k]+col*colW;
   positions.set(t.id,{x,y});
   const color=GROUPS[groupOf(t)].color;
-  nodeHtml.push(`<div class="node${t.tier==='landmark'?' lm':''}${t.skald?' skald':''}" data-id="${t.id}" id="c-${t.id}"
-    style="left:${x-5}px;top:${y}px">
+  const width=Math.min(mode===1?230:colW-16,260);
+  nodeHtml.push(`<div class="node reveal${t.tier==='landmark'?' lm':''}" data-id="${t.id}" id="c-${t.id}"
+    style="left:${x-5}px;top:${y}px;max-width:${Math.round(width)}px">
    <span class="dot" style="background:${color}"></span>
-   <span class="lbl"><b>${esc(shortName(t))}</b><i>${esc(shortYear(t))} · ${esc(abbr(t))}</i></span></div>`);
+   <span class="lbl"><b>${esc(shortName(t))}${t.skald?'<sup class="sk">✳</sup>':''}</b><i>${esc(shortYear(t))} · ${esc(abbr(t))}</i></span></div>`);
  }
- const H=maxY+80;
+ const H=visible.length?maxY+80:40;
  timeline.style.height=H+'px';
 
- const minYear=visible.length?Math.min(...visible.map(t=>t.year==null?0:t.year)):0;
- const maxYear=visible.length?Math.max(...visible.map(t=>t.year==null?0:t.year)):0;
- const eras=ERA_MARKS
-  .filter(([yr])=>yr>=minYear-100&&yr<=maxYear)
-  .map(([yr,label])=>`<div class="erarule${mode===1?' right':''}" style="top:${yFor(yr)-14}px"><span>${label}</span></div>`).join('');
+ /* stats + legend */
+ const langsN=new Set(visible.filter(t=>!t.original).map(t=>t.lang)).size;
+ const skaldN=visible.filter(t=>t.skald).length;
+ const freeN=visible.filter(t=>t.links&&t.links.length).length;
+ document.getElementById('stats').innerHTML=
+  `<b>${visible.length}</b> of ${T.length} translations · <b>${langsN}</b> languages · <b>${skaldN}</b> in Skald · <b>${freeN}</b> free to read`;
+ document.getElementById('legend').innerHTML=
+  Object.entries(GROUPS).map(([k,g])=>`<span class="lg"><i style="background:${g.color}"></i>${mode===1?g.label.split(' ')[0]:g.label}</span>`).join('')+
+  `<span class="lg sk">✳ in Skald</span>`;
+
+ /* era rules: only where results exist */
+ let eras='';
+ if(visible.length){
+  const present=new Set(visible.map(t=>{
+   const y=t.year==null?0:t.year;
+   for(let i=ERA_MARKS.length-1;i>=0;i--){if(y>=ERA_MARKS[i][0])return i}
+   return 0;
+  }));
+  eras=ERA_MARKS.map(([yr,label],i)=>{
+   if(!present.has(i))return '';
+   const firstYear=Math.min(...visible.filter(t=>{
+    const y=t.year==null?0:t.year;
+    const next=i+1<ERA_MARKS.length?ERA_MARKS[i+1][0]:99999;
+    return y>=yr&&y<next;
+   }).map(t=>t.year==null?0:t.year));
+   const y=filtered?yOf(firstYear)-24:yFor(yr)-14;
+   return `<div class="erarule${mode===1?' right':''}" style="top:${y}px"><span>${label}</span></div>`;
+  }).join('');
+ }
 
  threadsSvg.setAttribute('width',W);threadsSvg.setAttribute('height',H);
  threadsSvg.setAttribute('viewBox',`0 0 ${W} ${H}`);
@@ -384,10 +465,60 @@ function render(){
  }
  threadsSvg.innerHTML=threadPaths;
 
- timeline.querySelectorAll('.node,.erarule').forEach(n=>n.remove());
- timeline.insertAdjacentHTML('beforeend',eras+nodeHtml.join(''));
+ timeline.querySelectorAll('.node,.erarule,#emptystate').forEach(n=>n.remove());
+ if(!visible.length){
+  timeline.insertAdjacentHTML('beforeend',
+   `<div id="emptystate"><div class="big">Nothing matches${state.q?` “${esc(state.q)}”`:''}.</div>
+    <div class="sub">Try another spelling, or clear the filters below.</div>
+    <button class="pill" id="clearfilters">Clear filters</button></div>`);
+  document.getElementById('clearfilters').addEventListener('click',()=>{
+   state.q='';state.lang='';state.skald=false;state.free=false;state.group='';
+   document.getElementById('q').value='';langSel.value='';
+   document.querySelectorAll('[data-filter]').forEach(b=>b.classList.remove('active'));
+   render();
+  });
+ }else{
+  timeline.insertAdjacentHTML('beforeend',eras+nodeHtml.join(''));
+  observeNodes();
+ }
+ compass.style.display='none';
  drawWires();
 }
+laneLabels.addEventListener('click',e=>{
+ const el=e.target.closest('[data-group]');if(!el)return;
+ state.group=state.group===el.dataset.group?'':el.dataset.group;
+ render();
+ track('filter_atlas',{facet:'group',value:state.group||'all'});
+});
+
+/* entrance reveal */
+const io=('IntersectionObserver' in window)?new IntersectionObserver(entries=>{
+ for(const en of entries)if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}
+},{rootMargin:'600px 0px 400px 0px'}):null;
+function observeNodes(){
+ document.querySelectorAll('.node.reveal:not(.in)').forEach(n=>{
+  if(io)io.observe(n);else n.classList.add('in');
+ });
+}
+
+/* year compass: the century under your thumb while you scroll */
+let compassTimer=null;
+addEventListener('scroll',()=>{
+ if(compassTimer)return;
+ compassTimer=setTimeout(()=>{
+  compassTimer=null;
+  if(!positions.size){compass.style.display='none';return}
+  const mid=scrollY+innerHeight/2-timeline.getBoundingClientRect().top-scrollY;
+  let best=null,bestD=1e9;
+  for(const [id,p] of positions){
+   const d=Math.abs(p.y-mid);
+   if(d<bestD){bestD=d;best=id}
+  }
+  const t=byId.get(best);
+  if(t&&scrollY>140){compass.textContent=shortYear(t);compass.style.display='block'}
+  else compass.style.display='none';
+ },90);
+},{passive:true});
 let resizeTimer=null;
 addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(render,120)});
 
@@ -407,12 +538,11 @@ timeline.addEventListener('mouseover',e=>{
   <div class="hc-hint">Click for details</div>`;
  hovercard.style.display='block';
  positionCard(e);
- if(!state.lineage)highlight(t.id);
+ highlight(t.id);
 });
 timeline.addEventListener('mousemove',positionCard);
 timeline.addEventListener('mouseout',e=>{
- if(e.target.closest('.node')){hovercard.style.display='none';
-  if(!state.lineage)highlight(null);}
+ if(e.target.closest('.node')){hovercard.style.display='none';highlight(null);}
 });
 function positionCard(e){
  if(hovercard.style.display!=='block')return;
@@ -431,7 +561,7 @@ function drawWires(focus){
  wires.setAttribute('width',W);wires.setAttribute('height',H);
  wires.setAttribute('viewBox',`0 0 ${W} ${H}`);
  wires.innerHTML='';
- if(!state.lineage&&!focus)return;
+ if(!focus)return;
  for(const e of resolvedEdges()){
   if(focus&&e.source!==focus&&e.target!==focus)continue;
   const a=positions.get(e.source),b=positions.get(e.target);
