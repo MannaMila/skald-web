@@ -190,6 +190,22 @@ footer .page{display:flex;flex-direction:column;gap:8px}
  .node.lm .lbl b{font-size:17px}
  .node .lbl i{font-size:10.5px}
 }
+@media (max-height:520px){
+ header{padding:4px 0 3px}
+ .pill{padding:4px 10px;font-size:11px}
+ .bar input[type=search]{padding:4px 12px;font-size:12px;flex-basis:140px}
+ .bar select{padding:4px 8px;font-size:11px}
+ .bar{gap:8px}
+ #legend{display:none}
+ #statsrow{margin-top:3px;padding-top:3px}
+ #lanelabels{margin-top:2px;height:12px}
+ #lanelabels span{font-size:8.5px}
+ #spotcard{padding:6px 12px calc(6px + env(safe-area-inset-bottom,0px))}
+ #spotcard .sc-hook{display:none}
+ #spotcard .sc-name{font-size:14px;display:inline}
+ #spotcard .sc-meta{display:inline;margin-left:8px}
+ #compass{display:none!important}
+}
 @media (max-width:600px){
  .node .lbl b{font-size:14.5px}
  .node.lm .lbl b{font-size:15.5px}
@@ -552,10 +568,10 @@ function spotShow(){
  const t=byId.get(spotSet[spotIdx]);if(!t){spotHide();return}
  document.querySelectorAll('.node.spot').forEach(n=>n.classList.remove('spot'));
  document.getElementById('c-'+t.id)?.classList.add('spot');
- spotcard.innerHTML=`${spotSet.length>1?`<span class="sc-count"><b data-sc="-1">‹</b>${spotIdx+1} / ${spotSet.length}<b data-sc="1">›</b></span>`:''}
-  <div class="sc-name">${esc(t.who)}${t.skald?'<span class="chip">In Skald</span>':''}</div>
-  <div class="sc-meta">${esc(yearLabel(t))} · ${esc(t.lang)}${t.form?` · ${esc(t.form)}`:''}</div>
-  <div class="sc-hook">${esc(hook(t))}</div>`;
+ spotcard.innerHTML=(spotSet.length>1?`<span class="sc-count"><b data-sc="-1">‹</b>${spotIdx+1} / ${spotSet.length}<b data-sc="1">›</b></span>`:'')+
+  `<div class="sc-name">${esc(t.who)}${t.skald?'<span class="chip">In Skald</span>':''}</div>`+
+  `<div class="sc-meta">${esc(yearLabel(t))} · ${esc(t.lang)}${t.form?` · ${esc(t.form)}`:''}</div>`+
+  `<div class="sc-hook">${esc(hook(t))}</div>`;
  spotcard.style.display='block';
 }
 function spotStep(d){
