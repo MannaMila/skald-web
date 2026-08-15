@@ -740,8 +740,10 @@ function edgeItem(e,dir){
  return `<li>${dir==='out'?'→':'←'} ${link} — ${esc(e.claim)}
   ${cite?`<div style="font-size:11px;color:var(--ink-soft);margin-top:1px">${cite}</div>`:''}</li>`;
 }
+let lastModalId=null;
 function openModal(id,from){
  const t=byId.get(id);if(!t)return;
+ lastModalId=id;
  const seenEdges=new Set();
  function fresh(e,dir){
   const key=`${dir}|${(dir==='out'?e.target_label:e.source_label)||''}|${(e.claim||'').slice(0,50)}`;
@@ -819,7 +821,20 @@ function openModal(id,from){
 }
 function closeModal(){veil.style.display='none';modal.style.display='none';document.body.style.overflow='';
  if(location.hash)history.replaceState(null,'',location.pathname+location.search);
- if(NOHOVER)updateSpotlight()}
+ if(NOHOVER){
+  /* the translation you just viewed becomes the spotlight */
+  if(lastModalId&&positions.has(lastModalId)){
+   const id=lastModalId;
+   updateSpotlight();
+   if(spotSet.indexOf(id)<0)
+    document.getElementById('c-'+id)?.scrollIntoView({block:'center',behavior:'instant'});
+   setTimeout(()=>{
+    updateSpotlight();
+    const i=spotSet.indexOf(id);
+    if(i>=0){spotIdx=i;spotHoldUntil=Date.now()+10000;spotLastAdvance=Date.now();spotShow();}
+   },60);
+  }else updateSpotlight();
+ }}
 veil.addEventListener('click',closeModal);
 modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
 addEventListener('keydown',e=>{
