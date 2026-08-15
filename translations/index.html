@@ -409,67 +409,41 @@ function render(){
 
  const visible=T.filter(passes).sort((a,b)=>(a.year||0)-(b.year||0));
  const filtered=!!(state.q||state.lang||state.skald||state.free||state.group);
+ visibleOrder=visible.map(t=>t.id);
 
- /* time scale: proportional normally; compressed to occupied years when filtering
-    so results stay dense instead of stranded in empty centuries */
- let yOf;
- if(filtered){
-  const years=[...new Set(visible.map(t=>t.year==null?0:t.year))].sort((a,b)=>a-b);
-  const yearY=new Map(years.map((yr,i)=>[yr,50+i*34]));
-  yOf=yr=>yearY.get(yr)??50;
- }else{
-  /* stretch each time segment so the densest lane fits without entries
-     drifting below their years (alignment beats compactness) */
-  const segs=[];
-  for(let i=0;i<SCALE.length-1;i++){
-   const [start,pxy]=SCALE[i],end=SCALE[i+1][0];
-   const perYear={};
-   for(const t of visible){
-    const yy=t.year==null?0:t.year;
-    if((yy>start&&yy<=end)||(i===0&&yy<=start)){
-     const k=laneKeyOf(t,mode);
-     (perYear[k]=perYear[k]||{})[yy]=(perYear[k][yy]||0)+1;
-    }
-   }
-   const maxC=Math.max(0,...Object.values(perYear).map(ys=>
-    Object.values(ys).reduce((a,c)=>a+Math.ceil(c/maxCols),0)));
-   const base=(end-start)*pxy;
-   const mult=Math.max(1,(maxC*MINGAP+14)/base);
-   segs.push([start,end,pxy*mult]);
-  }
-  yOf=year=>{
-   let y=40;
-   for(const [start,end,rate] of segs){
-    if(year<=start)return y;
-    y+=(Math.min(year,end)-start)*rate;
-    if(year<=end)return y;
-   }
-   return y;
-  };
+ /* global year ladder: every year gets one shared band across ALL columns;
+    the next year always starts below it, so no column ever runs ahead */
+ const yearLane={};
+ for(const t of visible){
+  const yr=t.year==null?0:t.year;
+  const k=laneKeyOf(t,mode);
+  (yearLane[yr]=yearLane[yr]||{})[k]=(yearLane[yr][k]||0)+1;
+ }
+ const years=Object.keys(yearLane).map(Number).sort((a,b)=>a-b);
+ const yearY={},yearRowsN={};
+ let cursor=44;
+ for(const yr of years){
+  const rows=Math.max(...Object.values(yearLane[yr]).map(c=>Math.ceil(c/maxCols)));
+  const y=Math.max(filtered?cursor:yFor(yr),cursor);
+  yearY[yr]=y;yearRowsN[yr]=rows;
+  cursor=y+rows*MINGAP;
  }
 
- /* per-lane rows: same-year (or colliding) entries sit side by side up to maxCols */
- const laneRows={};
  positions=new Map();
- visibleOrder=visible.map(t=>t.id);
- let maxY=0;
+ let maxY=cursor;
+ const laneYearIdx={};
  const nodeHtml=[];
  for(const t of visible){
-  const k=laneKeyOf(t,mode);
-  const desired=yOf(t.year==null?0:t.year);
-  const color=GROUPS[groupOf(t)].color;
   const yr=t.year==null?0:t.year;
-  const row=laneRows[k];
-  let y,col;
-  if(row&&row.year===yr&&row.cols<maxCols){
-   y=row.y;col=row.cols;row.cols++;
-  }else{
-   y=Math.max(desired,row?row.y+MINGAP:desired);col=0;
-   laneRows[k]={y,cols:1,year:yr};
-  }
+  const k=laneKeyOf(t,mode);
+  const key=k+'|'+yr;
+  const i=laneYearIdx[key]||0;
+  laneYearIdx[key]=i+1;
+  const subRow=Math.floor(i/maxCols),col=i%maxCols;
+  const y=yearY[yr]+subRow*MINGAP;
   const x=laneX[k]+col*colW;
-  const width=Math.min(colW*(maxCols===1?1:1)-16,260);
-  maxY=Math.max(maxY,y);
+  const color=GROUPS[groupOf(t)].color;
+  const width=Math.min(colW-16,260);
   positions.set(t.id,{x,y});
   nodeHtml.push(`<div class="node reveal${t.tier==='landmark'?' lm':''}" data-id="${t.id}" id="c-${t.id}"
     style="left:${x-5}px;top:${y}px;max-width:${Math.round(width)}px">
