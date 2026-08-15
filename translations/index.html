@@ -98,9 +98,11 @@ header{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1p
  padding:2px 7px;background:var(--night);color:var(--gold-bright);margin-left:6px;vertical-align:2px}
 #spotcard .sc-meta{font-size:11px;color:var(--ink-soft);margin:1px 0 3px}
 #spotcard .sc-hook{font-size:12.5px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-#spotcard .sc-count{position:absolute;top:8px;right:12px;font-size:11px;letter-spacing:.1em;
- text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:7px}
-#spotcard .sc-count b{font-size:15px;color:var(--copper-dark);padding:0 4px;cursor:pointer;font-weight:600}
+#spotcard .sc-count{position:absolute;top:0;right:0;font-size:11px;letter-spacing:.1em;
+ text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:2px;
+ padding:6px 6px 10px 10px}
+#spotcard .sc-count b{font-size:17px;color:var(--copper-dark);cursor:pointer;font-weight:600;
+ padding:8px 13px;line-height:1}
 #spotcard{touch-action:pan-y;user-select:none}
 .mnav{position:absolute;top:12px;border:1px solid var(--line-strong);
  background:var(--paper);border-radius:999px;width:32px;height:32px;font:600 16px var(--body);
@@ -624,6 +626,9 @@ spotcard.addEventListener('touchend',e=>{
 spotcard.addEventListener('click',e=>{
  const arrow=e.target.closest('[data-sc]');
  if(arrow){spotStep(parseInt(arrow.dataset.sc,10));e.stopPropagation();return}
+ /* the whole counter zone is a dead area — near-misses on the arrows must
+    never open the modal */
+ if(e.target.closest('.sc-count'))return;
  if(swiped){swiped=false;return}
  const id=spotSet[spotIdx];if(id)openModal(id,'spotlight');
 });
