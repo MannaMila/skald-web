@@ -423,14 +423,16 @@ function render(){
   const segs=[];
   for(let i=0;i<SCALE.length-1;i++){
    const [start,pxy]=SCALE[i],end=SCALE[i+1][0];
-   const counts={};
+   const perYear={};
    for(const t of visible){
     const yy=t.year==null?0:t.year;
     if((yy>start&&yy<=end)||(i===0&&yy<=start)){
-     const k=laneKeyOf(t,mode);counts[k]=(counts[k]||0)+1;
+     const k=laneKeyOf(t,mode);
+     (perYear[k]=perYear[k]||{})[yy]=(perYear[k][yy]||0)+1;
     }
    }
-   const maxC=Math.max(0,...Object.values(counts));
+   const maxC=Math.max(0,...Object.values(perYear).map(ys=>
+    Object.values(ys).reduce((a,c)=>a+Math.ceil(c/maxCols),0)));
    const base=(end-start)*pxy;
    const mult=Math.max(1,(maxC*MINGAP+14)/base);
    segs.push([start,end,pxy*mult]);
@@ -456,13 +458,14 @@ function render(){
   const k=laneKeyOf(t,mode);
   const desired=yOf(t.year==null?0:t.year);
   const color=GROUPS[groupOf(t)].color;
+  const yr=t.year==null?0:t.year;
   const row=laneRows[k];
   let y,col;
-  if(row&&desired<=row.y+MINGAP-1&&row.cols<maxCols){
+  if(row&&row.year===yr&&row.cols<maxCols){
    y=row.y;col=row.cols;row.cols++;
   }else{
    y=Math.max(desired,row?row.y+MINGAP:desired);col=0;
-   laneRows[k]={y,cols:1};
+   laneRows[k]={y,cols:1,year:yr};
   }
   const x=laneX[k]+col*colW;
   const width=Math.min(colW*(maxCols===1?1:1)-16,260);
