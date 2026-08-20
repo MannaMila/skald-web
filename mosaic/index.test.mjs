@@ -433,13 +433,17 @@ test("store clicks preserve inbound campaign dimensions and artwork context", ()
   assert.match(html, /utm_content:campaign\.get\('utm_content'\)/);
 });
 
-test("the CTA is passage-specific while free-edition copy waits for release", () => {
-  assert.match(html, /const FREE_EDITION_LIVE=false/);
+test("the CTA is passage-specific and the free edition is live", () => {
+  assert.match(html, /const FREE_EDITION_LIVE=true/);
+  assert.match(html, /const FREE_BOOKS=new Set\(\[1,2,9\]\)/);
   assert.match(html, /Continue from this passage/);
-  assert.match(html, /Compare this passage across ten translations/);
+  assert.match(html, /Compare this passage across eleven translations/);
   assert.match(html, /Read Book \$\{ROMAN\[w\.book\]\} free in Skald/);
   assert.match(html, /Free download · Books I, II and IX included/);
-  assert.match(html, /One-time purchase · All 24 books included/);
+  // The paid string stays in the ternary as the flag's other branch; it must no
+  // longer be the one a reader sees.
+  assert.match(html, /availability:FREE_EDITION_LIVE\?'Free download/);
+  assert.doesNotMatch(html, /across ten translations/);
 });
 
 test("all 200 artworks have permanent index pages and social cards", async () => {

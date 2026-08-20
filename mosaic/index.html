@@ -334,7 +334,7 @@ const GA_ID="G-K0V3J9TLBF";
 const APP_STORE_URL='https://apps.apple.com/app/id6790579937';
 const PLAY_PACKAGE='com.mannamila.skald';
 const UTM_SOURCE='odyssey-art-atlas',UTM_CAMPAIGN='mosaic-2026';
-const FREE_EDITION_LIVE=false;
+const FREE_EDITION_LIVE=true;
 const FREE_BOOKS=new Set([1,2,9]);
 const INBOUND_CAMPAIGN_KEYS=['utm_id','utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
 const BASE_META={
@@ -815,7 +815,7 @@ function promotionCopy(w,anchor){
   :(anchor&&anchor.ref?'Continue from this passage':(w.book?`Read Book ${ROMAN[w.book]} in Skald`:'Explore in Skald'));
  return{
   action,
-  comparison:anchor&&anchor.ref?'Compare this passage across ten translations':'Compare the Odyssey across ten translations',
+  comparison:anchor&&anchor.ref?'Compare this passage across eleven translations':'Compare the Odyssey across eleven translations',
   availability:FREE_EDITION_LIVE?'Free download · Books I, II and IX included':'One-time purchase · All 24 books included'
  };
 }
