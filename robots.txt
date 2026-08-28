@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+Sitemap: https://skald.mannamila.com/sitemap.xml
 Sitemap: https://skald.mannamila.com/mosaic/sitemap.xml
