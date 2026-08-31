@@ -1,0 +1,1067 @@
+{
+  "schemaVersion": 1,
+  "role": "draft-author",
+  "model": "gpt-5.6-sol",
+  "basis": [
+    "docs/analysis-reviews/source.json"
+  ],
+  "records": [
+    {
+      "id": "murray",
+      "atlasId": "EN-1919-MURRAY",
+      "narrative": "Murray is presented in the atlas as a prose translation in the historical prose group. Against other English translations, its statistical profile is best described through corpus scale, lexical spread, sentence length, and recurrence, without turning those measures into judgments of fidelity or quality. The corpus contains 133986 tokens and 5749 unique forms, producing a type-token ratio of 0.042907. Its mean sentence length is 30.737784. The leading recurring formula is “so he spoke and,” counted 122 times. For a concrete peer comparison, Butler contains 117938 tokens, placing the subject’s overall scale in direct relation to another member of the stated basis. The eligible distinctiveness list also foregrounds “argeiphontes,” offering another bounded marker of vocabulary within its language cohort. Together, these observations describe measurable textual patterning: how large the corpus is, how broadly forms are distributed, how sentences are segmented, and which wording recurs. They do not establish translator intention, historical influence beyond the atlas account, literary merit, accuracy, or any expected reader response.",
+      "wordCount": 163,
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 133986 tokens.",
+          "metric": "tokens",
+          "value": 133986,
+          "source": "/records/0/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 5749 unique forms.",
+          "metric": "uniqueForms",
+          "value": 5749,
+          "source": "/records/0/headline/uniqueForms"
+        },
+        {
+          "claim": "The type-token ratio is 0.042907.",
+          "metric": "typeTokenRatio",
+          "value": 0.042907,
+          "source": "/records/0/headline/typeTokenRatio"
+        },
+        {
+          "claim": "The mean sentence length is 30.737784.",
+          "metric": "meanSentenceLength",
+          "value": 30.737784,
+          "source": "/records/0/headline/meanSentenceLength"
+        },
+        {
+          "claim": "The leading recurring formula is counted 122 times.",
+          "metric": "topFormulaCount",
+          "value": 122,
+          "source": "/records/0/topFormulas/0/count"
+        },
+        {
+          "claim": "Butler contains 117938 tokens.",
+          "metric": "peerTokens",
+          "value": 117938,
+          "source": "/records/0/peers/0/headline/tokens"
+        }
+      ]
+    },
+    {
+      "id": "butler",
+      "atlasId": "EN-1900-BUTLER",
+      "narrative": "Butler is presented in the atlas as a prose translation in the historical prose group. Against other English translations, its statistical profile is best described through corpus scale, lexical spread, sentence length, and recurrence, without turning those measures into judgments of fidelity or quality. The corpus contains 117938 tokens and 6322 unique forms, producing a type-token ratio of 0.053604. Its mean sentence length is 30.922391. The leading recurring formula is “the house of,” counted 70 times. For a concrete peer comparison, Murray contains 133986 tokens, placing the subject’s overall scale in direct relation to another member of the stated basis. The eligible distinctiveness list also foregrounds “cloisters,” offering another bounded marker of vocabulary within its language cohort. Together, these observations describe measurable textual patterning: how large the corpus is, how broadly forms are distributed, how sentences are segmented, and which wording recurs. They do not establish translator intention, historical influence beyond the atlas account, literary merit, accuracy, or any expected reader response.",
+      "wordCount": 162,
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 117938 tokens.",
+          "metric": "tokens",
+          "value": 117938,
+          "source": "/records/1/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 6322 unique forms.",
+          "metric": "uniqueForms",
+          "value": 6322,
+          "source": "/records/1/headline/uniqueForms"
+        },
+        {
+          "claim": "The type-token ratio is 0.053604.",
+          "metric": "typeTokenRatio",
+          "value": 0.053604,
+          "source": "/records/1/headline/typeTokenRatio"
+        },
+        {
+          "claim": "The mean sentence length is 30.922391.",
+          "metric": "meanSentenceLength",
+          "value": 30.922391,
+          "source": "/records/1/headline/meanSentenceLength"
+        },
+        {
+          "claim": "The leading recurring formula is counted 70 times.",
+          "metric": "topFormulaCount",
+          "value": 70,
+          "source": "/records/1/topFormulas/0/count"
+        },
+        {
+          "claim": "Murray contains 133986 tokens.",
+          "metric": "peerTokens",
+          "value": 133986,
+          "source": "/records/1/peers/0/headline/tokens"
+        }
+      ]
+    },
+    {
+      "id": "butcher-lang",
+      "atlasId": "EN-1879-BUTCHER-LANG",
+      "narrative": "Butcher & Lang is presented in the atlas as a prose translation in the historical prose group. Against other English translations, its statistical profile is best described through corpus scale, lexical spread, sentence length, and recurrence, without turning those measures into judgments of fidelity or quality. The corpus contains 135560 tokens and 6093 unique forms, producing a type-token ratio of 0.044947. Its mean sentence length is 30.914481. The leading recurring formula is “odysseus of many counsels,” counted 66 times. For a concrete peer comparison, Murray contains 133986 tokens, placing the subject’s overall scale in direct relation to another member of the stated basis. The eligible distinctiveness list also foregrounds “forasmuch,” offering another bounded marker of vocabulary within its language cohort. Together, these observations describe measurable textual patterning: how large the corpus is, how broadly forms are distributed, how sentences are segmented, and which wording recurs. They do not establish translator intention, historical influence beyond the atlas account, literary merit, accuracy, or any expected reader response.",
+      "wordCount": 165,
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 135560 tokens.",
+          "metric": "tokens",
+          "value": 135560,
+          "source": "/records/2/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 6093 unique forms.",
+          "metric": "uniqueForms",
+          "value": 6093,
+          "source": "/records/2/headline/uniqueForms"
+        },
+        {
+          "claim": "The type-token ratio is 0.044947.",
+          "metric": "typeTokenRatio",
+          "value": 0.044947,
+          "source": "/records/2/headline/typeTokenRatio"
+        },
+        {
+          "claim": "The mean sentence length is 30.914481.",
+          "metric": "meanSentenceLength",
+          "value": 30.914481,
+          "source": "/records/2/headline/meanSentenceLength"
+        },
+        {
+          "claim": "The leading recurring formula is counted 66 times.",
+          "metric": "topFormulaCount",
+          "value": 66,
+          "source": "/records/2/topFormulas/0/count"
+        },
+        {
+          "claim": "Murray contains 133986 tokens.",
+          "metric": "peerTokens",
+          "value": 133986,
+          "source": "/records/2/peers/0/headline/tokens"
+        }
+      ]
+    },
+    {
+      "id": "pope",
+      "atlasId": "EN-1725-POPE",
+      "narrative": "Pope is presented in the atlas as a verse translation in the rhymed or stanzaic verse group. Against other English translations, its statistical profile is best described through corpus scale, lexical spread, sentence length, and recurrence, without turning those measures into judgments of fidelity or quality. The corpus contains 112547 tokens and 8258 unique forms, producing a type-token ratio of 0.073374. Its mean sentence length is 24.413666. The leading recurring formula is “o er the,” counted 151 times. For a concrete peer comparison, Murray contains 133986 tokens, placing the subject’s overall scale in direct relation to another member of the stated basis. The eligible distinctiveness list also foregrounds “rejoin,” offering another bounded marker of vocabulary within its language cohort. Together, these observations describe measurable textual patterning: how large the corpus is, how broadly forms are distributed, how sentences are segmented, and which wording recurs. They do not establish translator intention, historical influence beyond the atlas account, literary merit, accuracy, or any expected reader response.",
+      "wordCount": 164,
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 112547 tokens.",
+          "metric": "tokens",
+          "value": 112547,
+          "source": "/records/3/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 8258 unique forms.",
+          "metric": "uniqueForms",
+          "value": 8258,
+          "source": "/records/3/headline/uniqueForms"
+        },
+        {
+          "claim": "The type-token ratio is 0.073374.",
+          "metric": "typeTokenRatio",
+          "value": 0.073374,
+          "source": "/records/3/headline/typeTokenRatio"
+        },
+        {
+          "claim": "The mean sentence length is 24.413666.",
+          "metric": "meanSentenceLength",
+          "value": 24.413666,
+          "source": "/records/3/headline/meanSentenceLength"
+        },
+        {
+          "claim": "The leading recurring formula is counted 151 times.",
+          "metric": "topFormulaCount",
+          "value": 151,
+          "source": "/records/3/topFormulas/0/count"
+        },
+        {
+          "claim": "Murray contains 133986 tokens.",
+          "metric": "peerTokens",
+          "value": 133986,
+          "source": "/records/3/peers/0/headline/tokens"
+        }
+      ]
+    },
+    {
+      "id": "cowper",
+      "atlasId": "EN-1791-COWPER",
+      "narrative": "Cowper is presented in the atlas as a verse translation in the unrhymed or accentual verse group. Against other English translations, its statistical profile is best described through corpus scale, lexical spread, sentence length, and recurrence, without turning those measures into judgments of fidelity or quality. The corpus contains 115040 tokens and 8365 unique forms, producing a type-token ratio of 0.072714. Its mean sentence length is 23.221639. The leading recurring formula is “o er the,” counted 51 times. For a concrete peer comparison, Murray contains 133986 tokens, placing the subject’s overall scale in direct relation to another member of the stated basis. The eligible distinctiveness list also foregrounds “num,” offering another bounded marker of vocabulary within its language cohort. Together, these observations describe measurable textual patterning: how large the corpus is, how broadly forms are distributed, how sentences are segmented, and which wording recurs. They do not establish translator intention, historical influence beyond the atlas account, literary merit, accuracy, or any expected reader response.",
+      "wordCount": 164,
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 115040 tokens.",
+          "metric": "tokens",
+          "value": 115040,
+          "source": "/records/4/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 8365 unique forms.",
+          "metric": "uniqueForms",
+          "value": 8365,
+          "source": "/records/4/headline/uniqueForms"
+        },
+        {
+          "claim": "The type-token ratio is 0.072714.",
+          "metric": "typeTokenRatio",
+          "value": 0.072714,
+          "source": "/records/4/headline/typeTokenRatio"
+        },
+        {
+          "claim": "The mean sentence length is 23.221639.",
+          "metric": "meanSentenceLength",
+          "value": 23.221639,
+          "source": "/records/4/headline/meanSentenceLength"
+        },
+        {
+          "claim": "The leading recurring formula is counted 51 times.",
+          "metric": "topFormulaCount",
+          "value": 51,
+          "source": "/records/4/topFormulas/0/count"
+        },
+        {
+          "claim": "Murray contains 133986 tokens.",
+          "metric": "peerTokens",
+          "value": 133986,
+          "source": "/records/4/peers/0/headline/tokens"
+        }
+      ]
+    },
+    {
+      "id": "chapman",
+      "atlasId": "EN-1615-CHAPMAN",
+      "narrative": "Chapman is presented in the atlas as a verse translation in the rhymed or stanzaic verse group. Against other English translations, its statistical profile is best described through corpus scale, lexical spread, sentence length, and recurrence, without turning those measures into judgments of fidelity or quality. The corpus contains 140625 tokens and 8434 unique forms, producing a type-token ratio of 0.059975. Its mean sentence length is 32.95641. The leading recurring formula is “of all the,” counted 67 times. For a concrete peer comparison, Murray contains 133986 tokens, placing the subject’s overall scale in direct relation to another member of the stated basis. The eligible distinctiveness list also foregrounds “ry,” offering another bounded marker of vocabulary within its language cohort. Together, these observations describe measurable textual patterning: how large the corpus is, how broadly forms are distributed, how sentences are segmented, and which wording recurs. They do not establish translator intention, historical influence beyond the atlas account, literary merit, accuracy, or any expected reader response.",
+      "wordCount": 164,
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 140625 tokens.",
+          "metric": "tokens",
+          "value": 140625,
+          "source": "/records/5/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 8434 unique forms.",
+          "metric": "uniqueForms",
+          "value": 8434,
+          "source": "/records/5/headline/uniqueForms"
+        },
+        {
+          "claim": "The type-token ratio is 0.059975.",
+          "metric": "typeTokenRatio",
+          "value": 0.059975,
+          "source": "/records/5/headline/typeTokenRatio"
+        },
+        {
+          "claim": "The mean sentence length is 32.95641.",
+          "metric": "meanSentenceLength",
+          "value": 32.95641,
+          "source": "/records/5/headline/meanSentenceLength"
+        },
+        {
+          "claim": "The leading recurring formula is counted 67 times.",
+          "metric": "topFormulaCount",
+          "value": 67,
+          "source": "/records/5/topFormulas/0/count"
+        },
+        {
+          "claim": "Murray contains 133986 tokens.",
+          "metric": "peerTokens",
+          "value": 133986,
+          "source": "/records/5/peers/0/headline/tokens"
+        }
+      ]
+    },
+    {
+      "id": "segala",
+      "atlasId": "ES-1912-SEGALA",
+      "narrative": "Segalá is presented in the atlas as a prose translation in the historical prose group. Against other historical prose translations, its statistical profile is best described through corpus scale, lexical spread, sentence length, and recurrence, without turning those measures into judgments of fidelity or quality. The corpus contains 118573 tokens and 12235 unique forms, producing a type-token ratio of 0.103185. Its mean sentence length is 27.460167. The leading recurring formula is “en el palacio,” counted 114 times. For a concrete peer comparison, Murray contains 133986 tokens, placing the subject’s overall scale in direct relation to another member of the stated basis. No eligible distinctiveness term is supplied here, so the comparison remains with the headline measures and formula evidence. Together, these observations describe measurable textual patterning: how large the corpus is, how broadly forms are distributed, how sentences are segmented, and which wording recurs. They do not establish translator intention, historical influence beyond the atlas account, literary merit, accuracy, or any expected reader response.",
+      "wordCount": 164,
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 118573 tokens.",
+          "metric": "tokens",
+          "value": 118573,
+          "source": "/records/6/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 12235 unique forms.",
+          "metric": "uniqueForms",
+          "value": 12235,
+          "source": "/records/6/headline/uniqueForms"
+        },
+        {
+          "claim": "The type-token ratio is 0.103185.",
+          "metric": "typeTokenRatio",
+          "value": 0.103185,
+          "source": "/records/6/headline/typeTokenRatio"
+        },
+        {
+          "claim": "The mean sentence length is 27.460167.",
+          "metric": "meanSentenceLength",
+          "value": 27.460167,
+          "source": "/records/6/headline/meanSentenceLength"
+        },
+        {
+          "claim": "The leading recurring formula is counted 114 times.",
+          "metric": "topFormulaCount",
+          "value": 114,
+          "source": "/records/6/topFormulas/0/count"
+        },
+        {
+          "claim": "Murray contains 133986 tokens.",
+          "metric": "peerTokens",
+          "value": 133986,
+          "source": "/records/6/peers/0/headline/tokens"
+        }
+      ]
+    },
+    {
+      "id": "leconte",
+      "atlasId": "FR-1867-LECONTE",
+      "narrative": "Leconte de Lisle is presented in the atlas as a prose translation in the historical prose group. Against other Français translations, its statistical profile is best described through corpus scale, lexical spread, sentence length, and recurrence, without turning those measures into judgments of fidelity or quality. The corpus contains 118797 tokens and 8125 unique forms, producing a type-token ratio of 0.068394. Its mean sentence length is 24.038244. The leading recurring formula is “parla ainsi et,” counted 210 times. For a concrete peer comparison, Dacier contains 143271 tokens, placing the subject’s overall scale in direct relation to another member of the stated basis. The eligible distinctiveness list also foregrounds “odysseus,” offering another bounded marker of vocabulary within its language cohort. Together, these observations describe measurable textual patterning: how large the corpus is, how broadly forms are distributed, how sentences are segmented, and which wording recurs. They do not establish translator intention, historical influence beyond the atlas account, literary merit, accuracy, or any expected reader response.",
+      "wordCount": 164,
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 118797 tokens.",
+          "metric": "tokens",
+          "value": 118797,
+          "source": "/records/7/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 8125 unique forms.",
+          "metric": "uniqueForms",
+          "value": 8125,
+          "source": "/records/7/headline/uniqueForms"
+        },
+        {
+          "claim": "The type-token ratio is 0.068394.",
+          "metric": "typeTokenRatio",
+          "value": 0.068394,
+          "source": "/records/7/headline/typeTokenRatio"
+        },
+        {
+          "claim": "The mean sentence length is 24.038244.",
+          "metric": "meanSentenceLength",
+          "value": 24.038244,
+          "source": "/records/7/headline/meanSentenceLength"
+        },
+        {
+          "claim": "The leading recurring formula is counted 210 times.",
+          "metric": "topFormulaCount",
+          "value": 210,
+          "source": "/records/7/topFormulas/0/count"
+        },
+        {
+          "claim": "Dacier contains 143271 tokens.",
+          "metric": "peerTokens",
+          "value": 143271,
+          "source": "/records/7/peers/0/headline/tokens"
+        }
+      ]
+    },
+    {
+      "id": "voss",
+      "atlasId": "DE-1781-VOSS",
+      "narrative": "Voß is presented in the atlas as a verse translation in the hexameter verse group. Against other hexameter verse translations, its statistical profile is best described through corpus scale, lexical spread, sentence length, and recurrence, without turning those measures into judgments of fidelity or quality. The corpus contains 109003 tokens and 11565 unique forms, producing a type-token ratio of 0.106098. Its mean sentence length is 20.958085. The leading recurring formula is “also sprach er,” counted 175 times. For a concrete peer comparison, Cotterill contains 145162 tokens, placing the subject’s overall scale in direct relation to another member of the stated basis. No eligible distinctiveness term is supplied here, so the comparison remains with the headline measures and formula evidence. Together, these observations describe measurable textual patterning: how large the corpus is, how broadly forms are distributed, how sentences are segmented, and which wording recurs. They do not establish translator intention, historical influence beyond the atlas account, literary merit, accuracy, or any expected reader response.",
+      "wordCount": 164,
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 109003 tokens.",
+          "metric": "tokens",
+          "value": 109003,
+          "source": "/records/8/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 11565 unique forms.",
+          "metric": "uniqueForms",
+          "value": 11565,
+          "source": "/records/8/headline/uniqueForms"
+        },
+        {
+          "claim": "The type-token ratio is 0.106098.",
+          "metric": "typeTokenRatio",
+          "value": 0.106098,
+          "source": "/records/8/headline/typeTokenRatio"
+        },
+        {
+          "claim": "The mean sentence length is 20.958085.",
+          "metric": "meanSentenceLength",
+          "value": 20.958085,
+          "source": "/records/8/headline/meanSentenceLength"
+        },
+        {
+          "claim": "The leading recurring formula is counted 175 times.",
+          "metric": "topFormulaCount",
+          "value": 175,
+          "source": "/records/8/topFormulas/0/count"
+        },
+        {
+          "claim": "Cotterill contains 145162 tokens.",
+          "metric": "peerTokens",
+          "value": 145162,
+          "source": "/records/8/peers/0/headline/tokens"
+        }
+      ]
+    },
+    {
+      "id": "johnston",
+      "atlasId": "EN-2006-JOHNSTON",
+      "narrative": "Johnston is presented in the atlas as a verse translation in the unrhymed or accentual verse group. Against other English translations, its statistical profile is best described through corpus scale, lexical spread, sentence length, and recurrence, without turning those measures into judgments of fidelity or quality. The corpus contains 129664 tokens and 6755 unique forms, producing a type-token ratio of 0.052096. Its mean sentence length is 18.898703. The leading recurring formula is “answered him and said,” counted 80 times. For a concrete peer comparison, Murray contains 133986 tokens, placing the subject’s overall scale in direct relation to another member of the stated basis. The eligible distinctiveness list also foregrounds “resourceful,” offering another bounded marker of vocabulary within its language cohort. Together, these observations describe measurable textual patterning: how large the corpus is, how broadly forms are distributed, how sentences are segmented, and which wording recurs. They do not establish translator intention, historical influence beyond the atlas account, literary merit, accuracy, or any expected reader response.",
+      "wordCount": 165,
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 129664 tokens.",
+          "metric": "tokens",
+          "value": 129664,
+          "source": "/records/9/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 6755 unique forms.",
+          "metric": "uniqueForms",
+          "value": 6755,
+          "source": "/records/9/headline/uniqueForms"
+        },
+        {
+          "claim": "The type-token ratio is 0.052096.",
+          "metric": "typeTokenRatio",
+          "value": 0.052096,
+          "source": "/records/9/headline/typeTokenRatio"
+        },
+        {
+          "claim": "The mean sentence length is 18.898703.",
+          "metric": "meanSentenceLength",
+          "value": 18.898703,
+          "source": "/records/9/headline/meanSentenceLength"
+        },
+        {
+          "claim": "The leading recurring formula is counted 80 times.",
+          "metric": "topFormulaCount",
+          "value": 80,
+          "source": "/records/9/topFormulas/0/count"
+        },
+        {
+          "claim": "Murray contains 133986 tokens.",
+          "metric": "peerTokens",
+          "value": 133986,
+          "source": "/records/9/peers/0/headline/tokens"
+        }
+      ]
+    },
+    {
+      "id": "bryant",
+      "atlasId": "EN-1871-BRYANT",
+      "narrative": "Bryant is presented in the atlas as a verse translation in the unrhymed or accentual verse group. Against other English translations, its statistical profile is best described through corpus scale, lexical spread, sentence length, and recurrence, without turning those measures into judgments of fidelity or quality. The corpus contains 118115 tokens and 6934 unique forms, producing a type-token ratio of 0.058705. Its mean sentence length is 25.384698. The leading recurring formula is “he spake and,” counted 94 times. For a concrete peer comparison, Murray contains 133986 tokens, placing the subject’s overall scale in direct relation to another member of the stated basis. The eligible distinctiveness list also foregrounds “circè,” offering another bounded marker of vocabulary within its language cohort. Together, these observations describe measurable textual patterning: how large the corpus is, how broadly forms are distributed, how sentences are segmented, and which wording recurs. They do not establish translator intention, historical influence beyond the atlas account, literary merit, accuracy, or any expected reader response.",
+      "wordCount": 164,
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 118115 tokens.",
+          "metric": "tokens",
+          "value": 118115,
+          "source": "/records/10/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 6934 unique forms.",
+          "metric": "uniqueForms",
+          "value": 6934,
+          "source": "/records/10/headline/uniqueForms"
+        },
+        {
+          "claim": "The type-token ratio is 0.058705.",
+          "metric": "typeTokenRatio",
+          "value": 0.058705,
+          "source": "/records/10/headline/typeTokenRatio"
+        },
+        {
+          "claim": "The mean sentence length is 25.384698.",
+          "metric": "meanSentenceLength",
+          "value": 25.384698,
+          "source": "/records/10/headline/meanSentenceLength"
+        },
+        {
+          "claim": "The leading recurring formula is counted 94 times.",
+          "metric": "topFormulaCount",
+          "value": 94,
+          "source": "/records/10/topFormulas/0/count"
+        },
+        {
+          "claim": "Murray contains 133986 tokens.",
+          "metric": "peerTokens",
+          "value": 133986,
+          "source": "/records/10/peers/0/headline/tokens"
+        }
+      ]
+    },
+    {
+      "id": "palmer",
+      "atlasId": "EN-1884-PALMER",
+      "narrative": "Palmer is presented in the atlas as a prose translation in the historical prose group. Against other English translations, its statistical profile is best described through corpus scale, lexical spread, sentence length, and recurrence, without turning those measures into judgments of fidelity or quality. The corpus contains 116728 tokens and 6545 unique forms, producing a type-token ratio of 0.056071. Its mean sentence length is 22.843053. The leading recurring formula is “the son of,” counted 106 times. For a concrete peer comparison, Murray contains 133986 tokens, placing the subject’s overall scale in direct relation to another member of the stated basis. The eligible distinctiveness list also foregrounds “kronos,” offering another bounded marker of vocabulary within its language cohort. Together, these observations describe measurable textual patterning: how large the corpus is, how broadly forms are distributed, how sentences are segmented, and which wording recurs. They do not establish translator intention, historical influence beyond the atlas account, literary merit, accuracy, or any expected reader response.",
+      "wordCount": 162,
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 116728 tokens.",
+          "metric": "tokens",
+          "value": 116728,
+          "source": "/records/11/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 6545 unique forms.",
+          "metric": "uniqueForms",
+          "value": 6545,
+          "source": "/records/11/headline/uniqueForms"
+        },
+        {
+          "claim": "The type-token ratio is 0.056071.",
+          "metric": "typeTokenRatio",
+          "value": 0.056071,
+          "source": "/records/11/headline/typeTokenRatio"
+        },
+        {
+          "claim": "The mean sentence length is 22.843053.",
+          "metric": "meanSentenceLength",
+          "value": 22.843053,
+          "source": "/records/11/headline/meanSentenceLength"
+        },
+        {
+          "claim": "The leading recurring formula is counted 106 times.",
+          "metric": "topFormulaCount",
+          "value": 106,
+          "source": "/records/11/topFormulas/0/count"
+        },
+        {
+          "claim": "Murray contains 133986 tokens.",
+          "metric": "peerTokens",
+          "value": 133986,
+          "source": "/records/11/peers/0/headline/tokens"
+        }
+      ]
+    },
+    {
+      "id": "cotterill",
+      "atlasId": "EN-1911-COTTERILL",
+      "narrative": "Cotterill is presented in the atlas as a verse translation in the hexameter verse group. Against other English translations, its statistical profile is best described through corpus scale, lexical spread, sentence length, and recurrence, without turning those measures into judgments of fidelity or quality. The corpus contains 145162 tokens and 8231 unique forms, producing a type-token ratio of 0.056702. Its mean sentence length is 29.178291. The leading recurring formula is “all of the,” counted 169 times. For a concrete peer comparison, Murray contains 133986 tokens, placing the subject’s overall scale in direct relation to another member of the stated basis. The eligible distinctiveness list also foregrounds “penelopeia,” offering another bounded marker of vocabulary within its language cohort. Together, these observations describe measurable textual patterning: how large the corpus is, how broadly forms are distributed, how sentences are segmented, and which wording recurs. They do not establish translator intention, historical influence beyond the atlas account, literary merit, accuracy, or any expected reader response.",
+      "wordCount": 162,
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 145162 tokens.",
+          "metric": "tokens",
+          "value": 145162,
+          "source": "/records/12/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 8231 unique forms.",
+          "metric": "uniqueForms",
+          "value": 8231,
+          "source": "/records/12/headline/uniqueForms"
+        },
+        {
+          "claim": "The type-token ratio is 0.056702.",
+          "metric": "typeTokenRatio",
+          "value": 0.056702,
+          "source": "/records/12/headline/typeTokenRatio"
+        },
+        {
+          "claim": "The mean sentence length is 29.178291.",
+          "metric": "meanSentenceLength",
+          "value": 29.178291,
+          "source": "/records/12/headline/meanSentenceLength"
+        },
+        {
+          "claim": "The leading recurring formula is counted 169 times.",
+          "metric": "topFormulaCount",
+          "value": 169,
+          "source": "/records/12/topFormulas/0/count"
+        },
+        {
+          "claim": "Murray contains 133986 tokens.",
+          "metric": "peerTokens",
+          "value": 133986,
+          "source": "/records/12/peers/0/headline/tokens"
+        }
+      ]
+    },
+    {
+      "id": "morris",
+      "atlasId": "EN-1887-MORRIS",
+      "narrative": "Morris is presented in the atlas as a verse translation in the rhymed or stanzaic verse group. Against other English translations, its statistical profile is best described through corpus scale, lexical spread, sentence length, and recurrence, without turning those measures into judgments of fidelity or quality. The corpus contains 147844 tokens and 6390 unique forms, producing a type-token ratio of 0.043221. Its mean sentence length is 41.953462. The leading recurring formula is “he spake and,” counted 122 times. For a concrete peer comparison, Murray contains 133986 tokens, placing the subject’s overall scale in direct relation to another member of the stated basis. The eligible distinctiveness list also foregrounds “menfolk,” offering another bounded marker of vocabulary within its language cohort. Together, these observations describe measurable textual patterning: how large the corpus is, how broadly forms are distributed, how sentences are segmented, and which wording recurs. They do not establish translator intention, historical influence beyond the atlas account, literary merit, accuracy, or any expected reader response.",
+      "wordCount": 164,
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 147844 tokens.",
+          "metric": "tokens",
+          "value": 147844,
+          "source": "/records/13/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 6390 unique forms.",
+          "metric": "uniqueForms",
+          "value": 6390,
+          "source": "/records/13/headline/uniqueForms"
+        },
+        {
+          "claim": "The type-token ratio is 0.043221.",
+          "metric": "typeTokenRatio",
+          "value": 0.043221,
+          "source": "/records/13/headline/typeTokenRatio"
+        },
+        {
+          "claim": "The mean sentence length is 41.953462.",
+          "metric": "meanSentenceLength",
+          "value": 41.953462,
+          "source": "/records/13/headline/meanSentenceLength"
+        },
+        {
+          "claim": "The leading recurring formula is counted 122 times.",
+          "metric": "topFormulaCount",
+          "value": 122,
+          "source": "/records/13/topFormulas/0/count"
+        },
+        {
+          "claim": "Murray contains 133986 tokens.",
+          "metric": "peerTokens",
+          "value": 133986,
+          "source": "/records/13/peers/0/headline/tokens"
+        }
+      ]
+    },
+    {
+      "id": "worsley",
+      "atlasId": "EN-1862-WORSLEY",
+      "narrative": "Worsley is presented in the atlas as a verse translation in the rhymed or stanzaic verse group. Against other English translations, its statistical profile is best described through corpus scale, lexical spread, sentence length, and recurrence, without turning those measures into judgments of fidelity or quality. The corpus contains 116110 tokens and 8027 unique forms, producing a type-token ratio of 0.069133. Its mean sentence length is 23.647658. The leading recurring formula is “o er the,” counted 73 times. For a concrete peer comparison, Murray contains 133986 tokens, placing the subject’s overall scale in direct relation to another member of the stated basis. The eligible distinctiveness list also foregrounds “wingèd,” offering another bounded marker of vocabulary within its language cohort. Together, these observations describe measurable textual patterning: how large the corpus is, how broadly forms are distributed, how sentences are segmented, and which wording recurs. They do not establish translator intention, historical influence beyond the atlas account, literary merit, accuracy, or any expected reader response.",
+      "wordCount": 164,
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 116110 tokens.",
+          "metric": "tokens",
+          "value": 116110,
+          "source": "/records/14/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 8027 unique forms.",
+          "metric": "uniqueForms",
+          "value": 8027,
+          "source": "/records/14/headline/uniqueForms"
+        },
+        {
+          "claim": "The type-token ratio is 0.069133.",
+          "metric": "typeTokenRatio",
+          "value": 0.069133,
+          "source": "/records/14/headline/typeTokenRatio"
+        },
+        {
+          "claim": "The mean sentence length is 23.647658.",
+          "metric": "meanSentenceLength",
+          "value": 23.647658,
+          "source": "/records/14/headline/meanSentenceLength"
+        },
+        {
+          "claim": "The leading recurring formula is counted 73 times.",
+          "metric": "topFormulaCount",
+          "value": 73,
+          "source": "/records/14/topFormulas/0/count"
+        },
+        {
+          "claim": "Murray contains 133986 tokens.",
+          "metric": "peerTokens",
+          "value": 133986,
+          "source": "/records/14/peers/0/headline/tokens"
+        }
+      ]
+    },
+    {
+      "id": "pindemonte",
+      "atlasId": "IT-1822-PINDEMONTE",
+      "narrative": "Pindemonte is presented in the atlas as a verse translation in the unrhymed or accentual verse group. Against other unrhymed or accentual verse translations, its statistical profile is best described through corpus scale, lexical spread, sentence length, and recurrence, without turning those measures into judgments of fidelity or quality. The corpus contains 107050 tokens and 14353 unique forms, producing a type-token ratio of 0.134078. Its mean sentence length is 22.922912. The leading recurring formula is “se non che,” counted 21 times. For a concrete peer comparison, Cowper contains 115040 tokens, placing the subject’s overall scale in direct relation to another member of the stated basis. No eligible distinctiveness term is supplied here, so the comparison remains with the headline measures and formula evidence. Together, these observations describe measurable textual patterning: how large the corpus is, how broadly forms are distributed, how sentences are segmented, and which wording recurs. They do not establish translator intention, historical influence beyond the atlas account, literary merit, accuracy, or any expected reader response.",
+      "wordCount": 168,
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 107050 tokens.",
+          "metric": "tokens",
+          "value": 107050,
+          "source": "/records/15/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 14353 unique forms.",
+          "metric": "uniqueForms",
+          "value": 14353,
+          "source": "/records/15/headline/uniqueForms"
+        },
+        {
+          "claim": "The type-token ratio is 0.134078.",
+          "metric": "typeTokenRatio",
+          "value": 0.134078,
+          "source": "/records/15/headline/typeTokenRatio"
+        },
+        {
+          "claim": "The mean sentence length is 22.922912.",
+          "metric": "meanSentenceLength",
+          "value": 22.922912,
+          "source": "/records/15/headline/meanSentenceLength"
+        },
+        {
+          "claim": "The leading recurring formula is counted 21 times.",
+          "metric": "topFormulaCount",
+          "value": 21,
+          "source": "/records/15/topFormulas/0/count"
+        },
+        {
+          "claim": "Cowper contains 115040 tokens.",
+          "metric": "peerTokens",
+          "value": 115040,
+          "source": "/records/15/peers/0/headline/tokens"
+        }
+      ]
+    },
+    {
+      "id": "zhukovsky",
+      "atlasId": "RU-1849-ZHUKOVSKY",
+      "narrative": "Zhukovsky is presented in the atlas as a verse translation in the hexameter verse group. Against other hexameter verse translations, its statistical profile is best described through corpus scale, lexical spread, sentence length, and recurrence, without turning those measures into judgments of fidelity or quality. The corpus contains 98574 tokens and 18344 unique forms, producing a type-token ratio of 0.186094. Its mean sentence length is 24.917594. The leading recurring formula is “так он сказал,” counted 79 times. For a concrete peer comparison, Voß contains 109003 tokens, placing the subject’s overall scale in direct relation to another member of the stated basis. No eligible distinctiveness term is supplied here, so the comparison remains with the headline measures and formula evidence. Together, these observations describe measurable textual patterning: how large the corpus is, how broadly forms are distributed, how sentences are segmented, and which wording recurs. They do not establish translator intention, historical influence beyond the atlas account, literary merit, accuracy, or any expected reader response.",
+      "wordCount": 164,
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 98574 tokens.",
+          "metric": "tokens",
+          "value": 98574,
+          "source": "/records/16/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 18344 unique forms.",
+          "metric": "uniqueForms",
+          "value": 18344,
+          "source": "/records/16/headline/uniqueForms"
+        },
+        {
+          "claim": "The type-token ratio is 0.186094.",
+          "metric": "typeTokenRatio",
+          "value": 0.186094,
+          "source": "/records/16/headline/typeTokenRatio"
+        },
+        {
+          "claim": "The mean sentence length is 24.917594.",
+          "metric": "meanSentenceLength",
+          "value": 24.917594,
+          "source": "/records/16/headline/meanSentenceLength"
+        },
+        {
+          "claim": "The leading recurring formula is counted 79 times.",
+          "metric": "topFormulaCount",
+          "value": 79,
+          "source": "/records/16/topFormulas/0/count"
+        },
+        {
+          "claim": "Voß contains 109003 tokens.",
+          "metric": "peerTokens",
+          "value": 109003,
+          "source": "/records/16/peers/0/headline/tokens"
+        }
+      ]
+    },
+    {
+      "id": "vosmaer",
+      "atlasId": "NL-1889-VOSMAER",
+      "narrative": "Vosmaer is presented in the atlas as a verse translation in the hexameter verse group. Against other hexameter verse translations, its statistical profile is best described through corpus scale, lexical spread, sentence length, and recurrence, without turning those measures into judgments of fidelity or quality. The corpus contains 128485 tokens and 11715 unique forms, producing a type-token ratio of 0.091178. Its mean sentence length is 30.324522. The leading recurring formula is “alzoo sprak hij,” counted 126 times. For a concrete peer comparison, Voß contains 109003 tokens, placing the subject’s overall scale in direct relation to another member of the stated basis. No eligible distinctiveness term is supplied here, so the comparison remains with the headline measures and formula evidence. Together, these observations describe measurable textual patterning: how large the corpus is, how broadly forms are distributed, how sentences are segmented, and which wording recurs. They do not establish translator intention, historical influence beyond the atlas account, literary merit, accuracy, or any expected reader response.",
+      "wordCount": 164,
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 128485 tokens.",
+          "metric": "tokens",
+          "value": 128485,
+          "source": "/records/17/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 11715 unique forms.",
+          "metric": "uniqueForms",
+          "value": 11715,
+          "source": "/records/17/headline/uniqueForms"
+        },
+        {
+          "claim": "The type-token ratio is 0.091178.",
+          "metric": "typeTokenRatio",
+          "value": 0.091178,
+          "source": "/records/17/headline/typeTokenRatio"
+        },
+        {
+          "claim": "The mean sentence length is 30.324522.",
+          "metric": "meanSentenceLength",
+          "value": 30.324522,
+          "source": "/records/17/headline/meanSentenceLength"
+        },
+        {
+          "claim": "The leading recurring formula is counted 126 times.",
+          "metric": "topFormulaCount",
+          "value": 126,
+          "source": "/records/17/topFormulas/0/count"
+        },
+        {
+          "claim": "Voß contains 109003 tokens.",
+          "metric": "peerTokens",
+          "value": 109003,
+          "source": "/records/17/peers/0/headline/tokens"
+        }
+      ]
+    },
+    {
+      "id": "wilster",
+      "atlasId": "DA-1837-WILSTER",
+      "narrative": "Wilster is presented in the atlas as a verse translation in the hexameter verse group. Against other hexameter verse translations, its statistical profile is best described through corpus scale, lexical spread, sentence length, and recurrence, without turning those measures into judgments of fidelity or quality. The corpus contains 122876 tokens and 10095 unique forms, producing a type-token ratio of 0.082156. Its mean sentence length is 27.130934. The leading recurring formula is “saa han taled og,” counted 58 times. For a concrete peer comparison, Voß contains 109003 tokens, placing the subject’s overall scale in direct relation to another member of the stated basis. No eligible distinctiveness term is supplied here, so the comparison remains with the headline measures and formula evidence. Together, these observations describe measurable textual patterning: how large the corpus is, how broadly forms are distributed, how sentences are segmented, and which wording recurs. They do not establish translator intention, historical influence beyond the atlas account, literary merit, accuracy, or any expected reader response.",
+      "wordCount": 165,
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 122876 tokens.",
+          "metric": "tokens",
+          "value": 122876,
+          "source": "/records/18/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 10095 unique forms.",
+          "metric": "uniqueForms",
+          "value": 10095,
+          "source": "/records/18/headline/uniqueForms"
+        },
+        {
+          "claim": "The type-token ratio is 0.082156.",
+          "metric": "typeTokenRatio",
+          "value": 0.082156,
+          "source": "/records/18/headline/typeTokenRatio"
+        },
+        {
+          "claim": "The mean sentence length is 27.130934.",
+          "metric": "meanSentenceLength",
+          "value": 27.130934,
+          "source": "/records/18/headline/meanSentenceLength"
+        },
+        {
+          "claim": "The leading recurring formula is counted 58 times.",
+          "metric": "topFormulaCount",
+          "value": 58,
+          "source": "/records/18/topFormulas/0/count"
+        },
+        {
+          "claim": "Voß contains 109003 tokens.",
+          "metric": "peerTokens",
+          "value": 109003,
+          "source": "/records/18/peers/0/headline/tokens"
+        }
+      ]
+    },
+    {
+      "id": "dacier",
+      "atlasId": "FR-1716-DACIER",
+      "narrative": "Dacier is presented in the atlas as a prose translation in the historical prose group. Against other Français translations, its statistical profile is best described through corpus scale, lexical spread, sentence length, and recurrence, without turning those measures into judgments of fidelity or quality. The corpus contains 143271 tokens and 9962 unique forms, producing a type-token ratio of 0.069533. Its mean sentence length is 28.867822. The leading recurring formula is “en même temps,” counted 91 times. For a concrete peer comparison, Leconte de Lisle contains 118797 tokens, placing the subject’s overall scale in direct relation to another member of the stated basis. The eligible distinctiveness list also foregrounds “ulysse,” offering another bounded marker of vocabulary within its language cohort. Together, these observations describe measurable textual patterning: how large the corpus is, how broadly forms are distributed, how sentences are segmented, and which wording recurs. They do not establish translator intention, historical influence beyond the atlas account, literary merit, accuracy, or any expected reader response.",
+      "wordCount": 164,
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 143271 tokens.",
+          "metric": "tokens",
+          "value": 143271,
+          "source": "/records/19/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 9962 unique forms.",
+          "metric": "uniqueForms",
+          "value": 9962,
+          "source": "/records/19/headline/uniqueForms"
+        },
+        {
+          "claim": "The type-token ratio is 0.069533.",
+          "metric": "typeTokenRatio",
+          "value": 0.069533,
+          "source": "/records/19/headline/typeTokenRatio"
+        },
+        {
+          "claim": "The mean sentence length is 28.867822.",
+          "metric": "meanSentenceLength",
+          "value": 28.867822,
+          "source": "/records/19/headline/meanSentenceLength"
+        },
+        {
+          "claim": "The leading recurring formula is counted 91 times.",
+          "metric": "topFormulaCount",
+          "value": 91,
+          "source": "/records/19/topFormulas/0/count"
+        },
+        {
+          "claim": "Leconte de Lisle contains 118797 tokens.",
+          "metric": "peerTokens",
+          "value": 118797,
+          "source": "/records/19/peers/0/headline/tokens"
+        }
+      ]
+    },
+    {
+      "id": "tchernichovsky",
+      "atlasId": "HE-1940-TCHERNICHOVSKY",
+      "narrative": "Tchernichovsky is presented in the atlas as a verse translation in the hexameter verse group. Against other hexameter verse translations, its statistical profile is best described through corpus scale, lexical spread, sentence length, and recurrence, without turning those measures into judgments of fidelity or quality. The corpus contains 85572 tokens and 21611 unique forms, producing a type-token ratio of 0.252548. Its mean sentence length is 19.577213. The leading recurring formula is “אוֹדִיסֵס הָאִישׁ רַב,” counted 118 times. For a concrete peer comparison, Voß contains 109003 tokens, placing the subject’s overall scale in direct relation to another member of the stated basis. No eligible distinctiveness term is supplied here, so the comparison remains with the headline measures and formula evidence. Together, these observations describe measurable textual patterning: how large the corpus is, how broadly forms are distributed, how sentences are segmented, and which wording recurs. They do not establish translator intention, historical influence beyond the atlas account, literary merit, accuracy, or any expected reader response.",
+      "wordCount": 164,
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 85572 tokens.",
+          "metric": "tokens",
+          "value": 85572,
+          "source": "/records/20/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 21611 unique forms.",
+          "metric": "uniqueForms",
+          "value": 21611,
+          "source": "/records/20/headline/uniqueForms"
+        },
+        {
+          "claim": "The type-token ratio is 0.252548.",
+          "metric": "typeTokenRatio",
+          "value": 0.252548,
+          "source": "/records/20/headline/typeTokenRatio"
+        },
+        {
+          "claim": "The mean sentence length is 19.577213.",
+          "metric": "meanSentenceLength",
+          "value": 19.577213,
+          "source": "/records/20/headline/meanSentenceLength"
+        },
+        {
+          "claim": "The leading recurring formula is counted 118 times.",
+          "metric": "topFormulaCount",
+          "value": 118,
+          "source": "/records/20/topFormulas/0/count"
+        },
+        {
+          "claim": "Voß contains 109003 tokens.",
+          "metric": "peerTokens",
+          "value": 109003,
+          "source": "/records/20/peers/0/headline/tokens"
+        }
+      ]
+    },
+    {
+      "id": "hobbes",
+      "atlasId": "EN-1675-HOBBES",
+      "narrative": "Hobbes is presented in the atlas as a verse translation in the rhymed or stanzaic verse group. Against other English translations, its statistical profile is best described through corpus scale, lexical spread, sentence length, and recurrence, without turning those measures into judgments of fidelity or quality. The corpus contains 93977 tokens and 5915 unique forms, producing a type-token ratio of 0.062941. Its mean sentence length is 23.845978. The leading recurring formula is “and to the,” counted 35 times. For a concrete peer comparison, Murray contains 133986 tokens, placing the subject’s overall scale in direct relation to another member of the stated basis. The eligible distinctiveness list also foregrounds “ægistus,” offering another bounded marker of vocabulary within its language cohort. Together, these observations describe measurable textual patterning: how large the corpus is, how broadly forms are distributed, how sentences are segmented, and which wording recurs. They do not establish translator intention, historical influence beyond the atlas account, literary merit, accuracy, or any expected reader response.",
+      "wordCount": 164,
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 93977 tokens.",
+          "metric": "tokens",
+          "value": 93977,
+          "source": "/records/21/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 5915 unique forms.",
+          "metric": "uniqueForms",
+          "value": 5915,
+          "source": "/records/21/headline/uniqueForms"
+        },
+        {
+          "claim": "The type-token ratio is 0.062941.",
+          "metric": "typeTokenRatio",
+          "value": 0.062941,
+          "source": "/records/21/headline/typeTokenRatio"
+        },
+        {
+          "claim": "The mean sentence length is 23.845978.",
+          "metric": "meanSentenceLength",
+          "value": 23.845978,
+          "source": "/records/21/headline/meanSentenceLength"
+        },
+        {
+          "claim": "The leading recurring formula is counted 35 times.",
+          "metric": "topFormulaCount",
+          "value": 35,
+          "source": "/records/21/topFormulas/0/count"
+        },
+        {
+          "claim": "Murray contains 133986 tokens.",
+          "metric": "peerTokens",
+          "value": 133986,
+          "source": "/records/21/peers/0/headline/tokens"
+        }
+      ]
+    },
+    {
+      "id": "polylas",
+      "atlasId": "EL-1875-POLYLAS",
+      "narrative": "Polylas is presented in the atlas as a verse translation in the unrhymed or accentual verse group. Against other unrhymed or accentual verse translations, its statistical profile is best described through corpus scale, lexical spread, sentence length, and recurrence, without turning those measures into judgments of fidelity or quality. The corpus contains 103091 tokens and 14786 unique forms, producing a type-token ratio of 0.143427. Its mean sentence length is 36.557092. The leading recurring formula is “ς το σπίτι,” counted 136 times. For a concrete peer comparison, Cowper contains 115040 tokens, placing the subject’s overall scale in direct relation to another member of the stated basis. No eligible distinctiveness term is supplied here, so the comparison remains with the headline measures and formula evidence. Together, these observations describe measurable textual patterning: how large the corpus is, how broadly forms are distributed, how sentences are segmented, and which wording recurs. They do not establish translator intention, historical influence beyond the atlas account, literary merit, accuracy, or any expected reader response.",
+      "wordCount": 168,
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 103091 tokens.",
+          "metric": "tokens",
+          "value": 103091,
+          "source": "/records/22/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 14786 unique forms.",
+          "metric": "uniqueForms",
+          "value": 14786,
+          "source": "/records/22/headline/uniqueForms"
+        },
+        {
+          "claim": "The type-token ratio is 0.143427.",
+          "metric": "typeTokenRatio",
+          "value": 0.143427,
+          "source": "/records/22/headline/typeTokenRatio"
+        },
+        {
+          "claim": "The mean sentence length is 36.557092.",
+          "metric": "meanSentenceLength",
+          "value": 36.557092,
+          "source": "/records/22/headline/meanSentenceLength"
+        },
+        {
+          "claim": "The leading recurring formula is counted 136 times.",
+          "metric": "topFormulaCount",
+          "value": 136,
+          "source": "/records/22/topFormulas/0/count"
+        },
+        {
+          "claim": "Cowper contains 115040 tokens.",
+          "metric": "peerTokens",
+          "value": 115040,
+          "source": "/records/22/peers/0/headline/tokens"
+        }
+      ]
+    },
+    {
+      "id": "lagerlof",
+      "atlasId": "SV-1908-LAGERLOF",
+      "narrative": "Lagerlöf is presented in the atlas as a verse translation in the hexameter verse group. Against other hexameter verse translations, its statistical profile is best described through corpus scale, lexical spread, sentence length, and recurrence, without turning those measures into judgments of fidelity or quality. The corpus contains 122053 tokens and 11031 unique forms, producing a type-token ratio of 0.090379. Its mean sentence length is 28.42408. The leading recurring formula is “svarade då den,” counted 118 times. For a concrete peer comparison, Voß contains 109003 tokens, placing the subject’s overall scale in direct relation to another member of the stated basis. No eligible distinctiveness term is supplied here, so the comparison remains with the headline measures and formula evidence. Together, these observations describe measurable textual patterning: how large the corpus is, how broadly forms are distributed, how sentences are segmented, and which wording recurs. They do not establish translator intention, historical influence beyond the atlas account, literary merit, accuracy, or any expected reader response.",
+      "wordCount": 164,
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 122053 tokens.",
+          "metric": "tokens",
+          "value": 122053,
+          "source": "/records/23/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 11031 unique forms.",
+          "metric": "uniqueForms",
+          "value": 11031,
+          "source": "/records/23/headline/uniqueForms"
+        },
+        {
+          "claim": "The type-token ratio is 0.090379.",
+          "metric": "typeTokenRatio",
+          "value": 0.090379,
+          "source": "/records/23/headline/typeTokenRatio"
+        },
+        {
+          "claim": "The mean sentence length is 28.42408.",
+          "metric": "meanSentenceLength",
+          "value": 28.42408,
+          "source": "/records/23/headline/meanSentenceLength"
+        },
+        {
+          "claim": "The leading recurring formula is counted 118 times.",
+          "metric": "topFormulaCount",
+          "value": 118,
+          "source": "/records/23/topFormulas/0/count"
+        },
+        {
+          "claim": "Voß contains 109003 tokens.",
+          "metric": "peerTokens",
+          "value": 109003,
+          "source": "/records/23/peers/0/headline/tokens"
+        }
+      ]
+    }
+  ]
+}
+

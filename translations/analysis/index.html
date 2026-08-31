@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+ <title>Deep analysis of 24 Odyssey translations · Skald</title>
+ <meta name="description" content="Surface-form corpus statistics, recurring formulas, and line-aligned rendering variation for the 24 historical Odyssey translations in Skald.">
+ <link rel="canonical" href="https://skald.mannamila.com/translations/analysis/">
+ <meta name="theme-color" content="#f2e6cf">
+ <meta property="og:title" content="Deep analysis of 24 Odyssey translations · Skald">
+ <meta property="og:description" content="Surface-form corpus statistics, recurring formulas, and line-aligned rendering variation for the 24 historical Odyssey translations in Skald.">
+ <meta property="og:type" content="article">
+ <meta property="og:url" content="https://skald.mannamila.com/translations/analysis/">
+ <meta property="og:image" content="https://skald.mannamila.com/translations/assets/og.jpg">
+ <meta property="og:image:width" content="1200">
+ <meta property="og:image:height" content="630">
+ <meta property="og:image:alt" content="The Skald Odyssey Translation Atlas arranged on a warm vellum-colored field.">
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:image" content="https://skald.mannamila.com/translations/assets/og.jpg">
+ <link rel="stylesheet" href="./styles.css">
+ <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Deep analysis of 24 Odyssey translations · Skald","description":"Surface-form corpus statistics, recurring formulas, and line-aligned rendering variation for the 24 historical Odyssey translations in Skald.","url":"https://skald.mannamila.com/translations/analysis/","mainEntityOfPage":"https://skald.mannamila.com/translations/analysis/","image":"https://skald.mannamila.com/translations/assets/og.jpg","inLanguage":"en","datePublished":"2026-08-30","dateModified":"2026-08-30","isBasedOn":"https://skald.mannamila.com/translations/","author":{"@type":"Organization","name":"MannaMila","url":"https://www.mannamila.com/"},"publisher":{"@type":"Organization","name":"MannaMila","url":"https://www.mannamila.com/"}}</script>
+</head>
+<body>
+ <a class="skip-link" href="#main-content">Skip to content</a>
+ <header class="site-header">
+  <div class="bar">
+   <a class="brand" href="/">SKALD</a>
+   <span class="tag">Translation analysis</span>
+   <span class="spacer"></span>
+   
+   <a class="pill" href="/translations/">Translation Atlas</a>
+   <a class="pill" href="/translations/guide/">Reader’s guide</a>
+  </div>
+ </header>
+ <main id="main-content">
+  <p class="kicker">The Odyssey, measured without mistaking measurement for judgment</p>
+  <h1>Twenty-four translations, seen from the surface.</h1>
+  <p class="lede">This analysis counts the visible forms in every bundled translation and looks for recurring three-to-six-word formulas. It also places the same Greek surface forms beside aligned or estimated line windows, making changes in the surrounding wording visible without pretending that an automated window is a word-for-word alignment.</p>
+  <aside class="method-note"><strong>Method boundary.</strong> Tokens are Unicode letter-and-mark runs, lowercased without stemming or lemmatization. TTR is unique surface forms divided by tokens; sentence length uses a punctuation split. “Formula” means a recurring chunk-local n-gram, not necessarily an oral formula. Rendering candidates are context words, not asserted translations. Cross-language totals are descriptive because tokenization and inflection differ.</aside>
+  <section class="section-block" aria-labelledby="translations-heading">
+   <p class="section-label">The corpus</p>
+   <h2 id="translations-heading">All 24 Skald translations</h2>
+   <div class="table-wrap">
+    <table>
+     <thead><tr><th>Translation</th><th>Year</th><th>Language</th><th>Tokens</th><th>TTR</th><th>Top ranked formula</th></tr></thead>
+     <tbody><tr data-analysis-id="murray">
+    <td><a class="translation-link" href="./murray/">A. T. Murray</a></td>
+    <td>1919</td>
+    <td>English</td>
+    <td data-tokens="133986">133,986</td>
+    <td data-ttr="0.042907">0.0429</td>
+    <td>“so he spoke and” (122×)</td>
+   </tr>
+<tr data-analysis-id="butler">
+    <td><a class="translation-link" href="./butler/">Samuel Butler</a></td>
+    <td>1900</td>
+    <td>English</td>
+    <td data-tokens="117938">117,938</td>
+    <td data-ttr="0.053604">0.0536</td>
+    <td>“the house of” (70×)</td>
+   </tr>
+<tr data-analysis-id="butcher-lang">
+    <td><a class="translation-link" href="./butcher-lang/">S. H. Butcher &amp; A. Lang</a></td>
+    <td>1879</td>
+    <td>English</td>
+    <td data-tokens="135560">135,560</td>
+    <td data-ttr="0.044947">0.0449</td>
+    <td>“odysseus of many counsels” (66×)</td>
+   </tr>
+<tr data-analysis-id="pope">
+    <td><a class="translation-link" href="./pope/">Alexander Pope</a></td>
+    <td>1725</td>
+    <td>English</td>
+    <td data-tokens="112547">112,547</td>
+    <td data-ttr="0.073374">0.0734</td>
+    <td>“o er the” (151×)</td>
+   </tr>
+<tr data-analysis-id="cowper">
+    <td><a class="translation-link" href="./cowper/">William Cowper</a></td>
+    <td>1791</td>
+    <td>English</td>
+    <td data-tokens="115040">115,040</td>
+    <td data-ttr="0.072714">0.0727</td>
+    <td>“o er the” (51×)</td>
+   </tr>
+<tr data-analysis-id="chapman">
+    <td><a class="translation-link" href="./chapman/">George Chapman</a></td>
+    <td>1615</td>
+    <td>English</td>
+    <td data-tokens="140625">140,625</td>
+    <td data-ttr="0.059975">0.0600</td>
+    <td>“of all the” (67×)</td>
+   </tr>
+<tr data-analysis-id="segala">
+    <td><a class="translation-link" href="./segala/">Luis Segalá y Estalella</a></td>
+    <td>1910</td>
+    <td>Spanish</td>
+    <td data-tokens="118573">118,573</td>
+    <td data-ttr="0.103185">0.1032</td>
+    <td>“en el palacio” (114×)</td>
+   </tr>
+<tr data-analysis-id="leconte">
+    <td><a class="translation-link" href="./leconte/">Leconte de Lisle</a></td>
+    <td>1867</td>
+    <td>French</td>
+    <td data-tokens="118797">118,797</td>
+    <td data-ttr="0.068394">0.0684</td>
+    <td>“parla ainsi et” (210×)</td>
+   </tr>
+<tr data-analysis-id="voss">
+    <td><a class="translation-link" href="./voss/">Johann Heinrich Voß</a></td>
+    <td>1781</td>
+    <td>German</td>
+    <td data-tokens="109003">109,003</td>
+    <td data-ttr="0.106098">0.1061</td>
+    <td>“also sprach er” (175×)</td>
+   </tr>
+<tr data-analysis-id="johnston">
+    <td><a class="translation-link" href="./johnston/">Ian Johnston</a></td>
+    <td>2006</td>
+    <td>English</td>
+    <td data-tokens="129664">129,664</td>
+    <td data-ttr="0.052096">0.0521</td>
+    <td>“answered him and said” (80×)</td>
+   </tr>
+<tr data-analysis-id="bryant">
+    <td><a class="translation-link" href="./bryant/">William Cullen Bryant</a></td>
+    <td>1871</td>
+    <td>English</td>
+    <td data-tokens="118115">118,115</td>
+    <td data-ttr="0.058705">0.0587</td>
+    <td>“he spake and” (94×)</td>
+   </tr>
+<tr data-analysis-id="palmer">
+    <td><a class="translation-link" href="./palmer/">George Herbert Palmer</a></td>
+    <td>1884</td>
+    <td>English</td>
+    <td data-tokens="116728">116,728</td>
+    <td data-ttr="0.056071">0.0561</td>
+    <td>“the son of” (106×)</td>
+   </tr>
+<tr data-analysis-id="cotterill">
+    <td><a class="translation-link" href="./cotterill/">H. B. Cotterill</a></td>
+    <td>1911</td>
+    <td>English</td>
+    <td data-tokens="145162">145,162</td>
+    <td data-ttr="0.056702">0.0567</td>
+    <td>“all of the” (169×)</td>
+   </tr>
+<tr data-analysis-id="morris">
+    <td><a class="translation-link" href="./morris/">William Morris</a></td>
+    <td>1887</td>
+    <td>English</td>
+    <td data-tokens="147844">147,844</td>
+    <td data-ttr="0.043221">0.0432</td>
+    <td>“he spake and” (122×)</td>
+   </tr>
+<tr data-analysis-id="worsley">
+    <td><a class="translation-link" href="./worsley/">Philip Stanhope Worsley</a></td>
+    <td>1861</td>
+    <td>English</td>
+    <td data-tokens="116110">116,110</td>
+    <td data-ttr="0.069133">0.0691</td>
+    <td>“o er the” (73×)</td>
+   </tr>
+<tr data-analysis-id="pindemonte">
+    <td><a class="translation-link" href="./pindemonte/">Ippolito Pindemonte</a></td>
+    <td>1822</td>
+    <td>Italian</td>
+    <td data-tokens="107050">107,050</td>
+    <td data-ttr="0.134078">0.1341</td>
+    <td>“se non che” (21×)</td>
+   </tr>
+<tr data-analysis-id="zhukovsky">
+    <td><a class="translation-link" href="./zhukovsky/">Vasily Zhukovsky</a></td>
+    <td>1849</td>
+    <td>Russian</td>
+    <td data-tokens="98574">98,574</td>
+    <td data-ttr="0.186094">0.1861</td>
+    <td>“так он сказал” (79×)</td>
+   </tr>
+<tr data-analysis-id="vosmaer">
+    <td><a class="translation-link" href="./vosmaer/">Carel Vosmaer</a></td>
+    <td>1889</td>
+    <td>Dutch</td>
+    <td data-tokens="128485">128,485</td>
+    <td data-ttr="0.091178">0.0912</td>
+    <td>“alzoo sprak hij” (126×)</td>
+   </tr>
+<tr data-analysis-id="wilster">
+    <td><a class="translation-link" href="./wilster/">Christian Wilster</a></td>
+    <td>1837</td>
+    <td>Danish</td>
+    <td data-tokens="122876">122,876</td>
+    <td data-ttr="0.082156">0.0822</td>
+    <td>“saa han taled og” (58×)</td>
+   </tr>
+<tr data-analysis-id="dacier">
+    <td><a class="translation-link" href="./dacier/">Anne Dacier</a></td>
+    <td>1716</td>
+    <td>French</td>
+    <td data-tokens="143271">143,271</td>
+    <td data-ttr="0.069533">0.0695</td>
+    <td>“en même temps” (91×)</td>
+   </tr>
+<tr data-analysis-id="tchernichovsky">
+    <td><a class="translation-link" href="./tchernichovsky/">Shaul Tchernichovsky</a></td>
+    <td>1940</td>
+    <td>Modern Hebrew</td>
+    <td data-tokens="85572">85,572</td>
+    <td data-ttr="0.252548">0.2525</td>
+    <td>“אוֹדִיסֵס הָאִישׁ רַב” (118×)</td>
+   </tr>
+<tr data-analysis-id="hobbes">
+    <td><a class="translation-link" href="./hobbes/">Thomas Hobbes</a></td>
+    <td>1675</td>
+    <td>English</td>
+    <td data-tokens="93977">93,977</td>
+    <td data-ttr="0.062941">0.0629</td>
+    <td>“and to the” (35×)</td>
+   </tr>
+<tr data-analysis-id="polylas">
+    <td><a class="translation-link" href="./polylas/">Iakovos Polylas</a></td>
+    <td>1875</td>
+    <td>Modern Greek</td>
+    <td data-tokens="103091">103,091</td>
+    <td data-ttr="0.143427">0.1434</td>
+    <td>“ς το σπίτι” (136×)</td>
+   </tr>
+<tr data-analysis-id="lagerlof">
+    <td><a class="translation-link" href="./lagerlof/">Erland Lagerlöf</a></td>
+    <td>1908</td>
+    <td>Swedish</td>
+    <td data-tokens="122053">122,053</td>
+    <td data-ttr="0.090379">0.0904</td>
+    <td>“svarade då den” (118×)</td>
+   </tr></tbody>
+    </table>
+   </div>
+  </section>
+ </main>
+ <footer class="site-footer">
+  <div class="footer-inner">
+   <p>A <a href="/">Skald</a> research project by <a href="https://www.mannamila.com/">MannaMila</a>.</p>
+   <nav class="footer-nav" aria-label="Footer">
+    <a href="/translations/">Translation Atlas</a>
+    <a href="/mosaic/">Art Atlas</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="#main-content">Back to top ↑</a>
+   </nav>
+  </div>
+ </footer>
+</body>
+</html>
