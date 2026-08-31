@@ -1,0 +1,143 @@
+{
+  "id": "translators-gallery-2026-09-01",
+  "date": "2026-09-01",
+  "scope": "New /translators/ portrait gallery: 24 cards, modals with verbatim bio-corpus highlights, bidirectional links (atlas records + analysis pages), GA events. Page-authored copy three-agent reviewed; corpus excerpts machine-verified verbatim (144).",
+  "roles": [
+    {
+      "role": "reviewer1",
+      "model": "gpt-5.6-terra/high",
+      "focus": "copy accuracy (caught: 'twenty-four lives' wrong — Butcher-Lang is two people)"
+    },
+    {
+      "role": "reviewer2",
+      "model": "gpt-5.6-terra/high",
+      "focus": "reader appeal"
+    },
+    {
+      "role": "arbiter",
+      "model": "gpt-5.6-sol/high",
+      "focus": "final copy — kicker 'Twenty-four translations, one poem.', honest plaque accounting in lede+method note"
+    }
+  ],
+  "decision": "Arbiter blocks applied verbatim to the generator; verify-translators.mjs green.",
+  "reviews": {
+    "trpage-r1": {
+      "role": "reviewer1",
+      "scope": "Authored copy only: kicker, h1, lede, CTA panel, and Sources and rights note. Corpus excerpts were not reviewed.",
+      "overallVerdict": "revise",
+      "blocks": [
+        {
+          "block": "kicker",
+          "verdict": "revise",
+          "original": "Twenty-four lives spent on one poem",
+          "replacement": "Twenty-four translations, one poem.",
+          "reason": "The gallery has 24 translation records, not 24 individual lives: the Butcher–Lang record represents two people and the Pope record names Pope, Fenton, and Broome."
+        },
+        {
+          "block": "h1",
+          "verdict": "accept",
+          "original": "The Translators.",
+          "replacement": "The Translators.",
+          "reason": "Accurate neutral title."
+        },
+        {
+          "block": "lede",
+          "verdict": "revise",
+          "original": "Every Odyssey in Skald was somebody's years of work — a philosopher, a rebel novelist, a court tutor, a war poet. Open a portrait to see who they were, how they came to Homer, and what their translation gave the poem. 19 of the twenty-four have public-domain portraits; the rest are still hiding from the archives.",
+          "replacement": "Each Odyssey in Skald is the work of a translator—or, in two cases, a collaboration. Open a card to meet the people behind it, see their path to Homer, and learn about the translation. Nineteen of the twenty-four cards use portraits with a recorded public-domain basis; five use plaques: three because no locatable public-domain portrait was found, and two because U.S. public-domain status remains unconfirmed in the research.",
+          "reason": "The original collapses 24 records into 24 lives; its occupational examples are not all supported by the reviewed corpus; and its archive metaphor hides the material distinction between three unavailable portraits and two withheld for unresolved U.S. public-domain status. The 19/5 split is verified."
+        },
+        {
+          "block": "CTA panel",
+          "verdict": "accept",
+          "original": "Read them side by side. Skald sets all twenty-four beside the Greek, with the voyage map, the art, and the margins alive.",
+          "replacement": "Read them side by side. Skald sets all twenty-four beside the Greek, with the voyage map, the art, and the margins alive.",
+          "reason": "The bundled Odyssey content contains 24 translation records and the reader provides Greek/parallel reading, voyage-map, art, and margin-note features. “Alive” is plainly figurative."
+        },
+        {
+          "block": "Sources and rights",
+          "verdict": "revise",
+          "original": "Sources and rights. Biography highlights come from Skald's three-agent-reviewed translator research; portrait files are public-domain reproductions with the creator, date, and public-domain basis recorded on each. Three translators have no locatable public-domain portrait, and two portraits await final rights confirmation — those appear as plaques.",
+          "replacement": "Sources and rights. Biography highlights are drawn from Skald's three-agent-reviewed translator research. For every portrait shown, the card records its source or collection, creator and date when known, and the stated rights basis. Nineteen portraits are shown; three translators have no locatable public-domain portrait, and two additional portraits are withheld pending confirmation of U.S. public-domain status. These five cards use plaques.",
+          "reason": "The review registry supports the three-agent-review claim. The existing sentence overstates the legal status of every served portrait file: the research includes mixed or qualified rights bases, and two unshipped portraits specifically lack a verified U.S. public-domain basis. The proposed wording reports the documented basis rather than making a blanket public-domain assertion."
+        }
+      ],
+      "verification": {
+        "translationRecords": 24,
+        "shownPortraits": 19,
+        "plaqueCards": 5,
+        "plaqueBreakdown": {
+          "noLocatablePublicDomainPortrait": 3,
+          "usPublicDomainStatusUnconfirmed": 2
+        },
+        "sourcesChecked": [
+          "translators/index.html embedded data",
+          "docs/verify-translators.mjs",
+          "translator-bios/review-registry.json",
+          "core/src/main/assets/content/odyssey/translations.json"
+        ]
+      }
+    },
+    "trpage-r2": {
+      "reviewer": "Reviewer 2",
+      "scope": "Authored translators-gallery copy only: kicker, h1, lede, CTA panel, and Sources and rights note. Corpus excerpts were not reviewed.",
+      "focus": "General-reader clarity, appeal, and fit with the direct, concrete voice of Skald's Translation Atlas and Greek-words pages.",
+      "overall_verdict": "revise",
+      "blocks": [
+        {
+          "block": "kicker",
+          "verdict": "accept",
+          "current": "Twenty-four lives spent on one poem",
+          "replacement": "Twenty-four lives spent on one poem",
+          "reason": "Compact, human, and inviting; it establishes the gallery's premise without front-loading scholarship."
+        },
+        {
+          "block": "h1",
+          "verdict": "accept",
+          "current": "The Translators.",
+          "replacement": "The Translators.",
+          "reason": "Clear, elegant, and well matched to the site's short, declarative headings."
+        },
+        {
+          "block": "lede",
+          "verdict": "revise",
+          "current": "Every Odyssey in Skald was somebody's years of work — a philosopher, a rebel novelist, a court tutor, a war poet. Open a portrait to see who they were, how they came to Homer, and what their translation gave the poem. 19 of the twenty-four have public-domain portraits; the rest are still hiding from the archives.",
+          "replacement": "Every Odyssey in Skald was somebody's years of work — a philosopher, a rebel novelist, a court tutor, a war poet. Open a card to meet them, see how they came to Homer, and learn what their version brings to the poem. Nineteen of the twenty-four have public-domain portraits; the remaining five appear as plaques while the archive search and rights review continue.",
+          "reason": "Cards, not all portraits, open the profiles. The replacement makes the reader benefit more concrete and explains the plaques without the whimsical but misleading suggestion that every missing image is simply lost in an archive."
+        },
+        {
+          "block": "CTA panel",
+          "verdict": "revise",
+          "current": "Read them side by side. Skald sets all twenty-four beside the Greek, with the voyage map, the art, and the margins alive.",
+          "replacement": "Read them side by side. Skald lets you read all twenty-four translations beside the Greek, with the voyage map, the fleet, a glossary, and museum art along the way.",
+          "reason": "The heading works. The body should name the comparison clearly and replace the atmospheric but vague 'margins alive' with the specific reader tools the site foregrounds."
+        },
+        {
+          "block": "Sources and rights",
+          "verdict": "revise",
+          "current": "Sources and rights. Biography highlights come from Skald's three-agent-reviewed translator research; portrait files are public-domain reproductions with the creator, date, and public-domain basis recorded on each. Three translators have no locatable public-domain portrait, and two portraits await final rights confirmation — those appear as plaques.",
+          "replacement": "Sources and rights. Biographical highlights are based on Skald's reviewed translator research. Every displayed portrait is a public-domain reproduction; its caption records the creator, date, and public-domain basis. Three translators have no locatable public-domain portrait, and two candidate portraits are still under rights review. All five appear as plaques.",
+          "reason": "'Three-agent-reviewed' describes an internal process rather than a useful source signal for a general reader. The replacement keeps the review assurance, makes the displayed-image status explicit, and removes the ambiguous antecedent in 'those appear as plaques.'"
+        }
+      ]
+    },
+    "trpage-arb": {
+      "blocks": {
+        "kicker": "Twenty-four translations, one poem.",
+        "h1": "The Translators.",
+        "lede": "Behind each Odyssey in Skald is a translator — or, in two cases, a collaboration. Open a card to meet them, see how they came to Homer, and learn what their version brings to the poem. Nineteen of the twenty-four cards show portraits with a recorded public-domain basis; five use plaques: three because no locatable public-domain portrait was found, and two because U.S. public-domain status remains unconfirmed.",
+        "ctaHeading": "Read them side by side.",
+        "ctaBody": "Skald lets you read all twenty-four translations beside the Greek, with the voyage map, the fleet, a glossary, and museum art along the way.",
+        "methodNote": "Sources and rights. Biographical highlights are drawn from Skald's reviewed translator research. For every portrait shown, the card records its source or collection, creator and date when known, and the stated rights basis. Nineteen portraits are shown; three translators have no locatable public-domain portrait, and two additional portraits are withheld pending confirmation of U.S. public-domain status. These five cards use plaques."
+      },
+      "rationale": {
+        "kicker": "R1's factual objection controls. The gallery contains twenty-four translation records, not twenty-four lives: Butcher–Lang credits two people, and the Pope record also credits Fenton and Broome. 'Twenty-four translations' is exact and keeps the line compact.",
+        "h1": "Both reviewers accepted this heading; it is copied verbatim from the page.",
+        "lede": "R1 controls the collaboration count and the nineteen-portrait/five-plaque rights breakdown; R2 controls the warmer card, meeting, and version language. The unsupported occupational shorthand and misleading archive metaphor are removed.",
+        "ctaHeading": "Both reviewers accepted the heading; it is copied verbatim from the page.",
+        "ctaBody": "R2's concrete reader-tool list wins because the facts allow it. Naming the translations, fleet, glossary, and museum art is clearer than 'the margins alive.'",
+        "methodNote": "R1 controls the rights wording: the copy does not make a blanket public-domain claim and distinguishes three unlocated portraits from two withheld pending U.S. confirmation. R2's plainer process wording and explicit plaque sentence improve reader clarity without weakening those facts."
+      }
+    }
+  }
+}
