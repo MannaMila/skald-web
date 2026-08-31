@@ -38,10 +38,10 @@
   <p class="lede">A surface-form portrait of this <em>Odyssey</em>: corpus scale, recurring wording, line-window variation around Greek forms, and a comparison with other English translations.</p>
   <p class="meta-line">Atlas edition year: 1861 · Statistics corpus year: 1861 · All 24 books</p>
   <div class="stats-grid" aria-label="Headline corpus statistics">
-   <div class="stat"><strong data-claim-tokens="116110">116,110</strong><span>tokens</span></div>
-   <div class="stat"><strong data-claim-unique-forms="8027">8,027</strong><span>unique forms</span></div>
-   <div class="stat"><strong data-claim-ttr="0.069133">0.0691</strong><span>type-token ratio</span></div>
-   <div class="stat"><strong data-claim-mean-sentence="23.647658">23.65</strong><span>mean sentence length</span></div>
+   <div class="stat"><strong data-claim-tokens="116110">116,110</strong><span>words</span></div>
+   <div class="stat"><strong data-claim-unique-forms="8027">8,027</strong><span>distinct word forms</span></div>
+   <div class="stat"><strong data-claim-ttr="0.069133">0.0691</strong><span>vocabulary variety (distinct ÷ total)</span></div>
+   <div class="stat"><strong data-claim-mean-sentence="23.647658">23.65</strong><span>average sentence length</span></div>
   </div>
   <div class="viz-card">
    <svg viewBox="0 0 700 250" role="img" aria-labelledby="viz-title viz-desc">
@@ -49,22 +49,22 @@
     <desc id="viz-desc">Copper bars show this translation; pale bars show the peer median for four surface-form metrics.</desc>
     <rect x="0" y="0" width="12" height="12" rx="2" fill="#9e5725"/><text x="19" y="10" fill="#2a2118" font-size="11">Worsley</text>
     <rect x="150" y="0" width="12" height="8" rx="2" fill="#c69260"/><text x="169" y="9" fill="#6f6150" font-size="11">Peer median</text>
-    <text x="0" y="65" fill="#2a2118" font-size="13">Tokens</text>
+    <text x="0" y="65" fill="#2a2118" font-size="13">Words</text>
       <rect x="150" y="50" width="347" height="12" rx="2" fill="#9e5725"/>
       <rect x="150" y="66" width="370" height="8" rx="2" fill="#c69260"/>
       <text x="535" y="60" fill="#2a2118" font-size="12">116,110</text>
       <text x="535" y="75" fill="#6f6150" font-size="10">median 123,889.5</text>
-<text x="0" y="113" fill="#2a2118" font-size="13">Unique forms</text>
+<text x="0" y="113" fill="#2a2118" font-size="13">Distinct word forms</text>
       <rect x="150" y="98" width="370" height="12" rx="2" fill="#9e5725"/>
       <rect x="150" y="114" width="307" height="8" rx="2" fill="#c69260"/>
       <text x="535" y="108" fill="#2a2118" font-size="12">8,027</text>
       <text x="535" y="123" fill="#6f6150" font-size="10">median 6,650</text>
-<text x="0" y="161" fill="#2a2118" font-size="13">Type-token ratio</text>
+<text x="0" y="161" fill="#2a2118" font-size="13">Vocabulary variety</text>
       <rect x="150" y="146" width="370" height="12" rx="2" fill="#9e5725"/>
       <rect x="150" y="162" width="302" height="8" rx="2" fill="#c69260"/>
       <text x="535" y="156" fill="#2a2118" font-size="12">0.0691</text>
       <text x="535" y="171" fill="#6f6150" font-size="10">median 0.0564</text>
-<text x="0" y="209" fill="#2a2118" font-size="13">Mean sentence length</text>
+<text x="0" y="209" fill="#2a2118" font-size="13">Average sentence length</text>
       <rect x="150" y="194" width="321" height="12" rx="2" fill="#9e5725"/>
       <rect x="150" y="210" width="370" height="8" rx="2" fill="#c69260"/>
       <text x="535" y="204" fill="#2a2118" font-size="12">23.65</text>
@@ -72,12 +72,12 @@
    </svg>
    <p class="viz-note">Comparison basis: other English translations (12 peers). Each metric has its own scale. Cross-language style-group values are descriptive only.</p>
   </div>
-  <aside class="method-note"><strong>Read the bars cautiously.</strong> These are surface-form statistics. A higher TTR can reflect morphology, orthography, or corpus conventions as well as vocabulary; the sentence figure comes from a simple punctuation split. The chart describes this corpus and its declared peers, not translation quality.</aside>
+  <aside class="method-note"><strong>Read the bars cautiously.</strong> A higher vocabulary-variety value can result from grammar, spelling, or how an edition was prepared—not just from using a wider range of words. Sentence length is estimated by splitting at punctuation. The chart describes this corpus and its declared peers, not translation quality.</aside>
 
   <section class="section-block" aria-labelledby="formulas-heading">
    <p class="section-label">Repeated wording</p>
    <h2 id="formulas-heading">The translator’s formulas</h2>
-   <p>The ten highest-ranked chunk-local three-to-six-word n-grams, ordered by the source method’s count-times-length score. Overlapping phrases can describe the same recurring line.</p>
+   <p>The ten repeated phrases of three to six words that rank highest when we multiply how often each phrase appears by its length. Overlapping phrases can describe the same recurring line.</p>
    <ol class="formula-list"><li class="formula-item" data-formula-count="73">
     <span class="formula-phrase">“o er the”</span>
     <span class="formula-meta">73 occurrences · Od. 1.80 and 1.178</span>
@@ -123,74 +123,74 @@
   <section class="section-block" aria-labelledby="variation-heading">
    <p class="section-label">Line-window evidence</p>
    <h2 id="variation-heading">One Greek word, many choices</h2>
-   <p>Each card follows one Greek surface form into three visibly different passages in this translation. Exact sidecars are used where available; otherwise the source uses a proportional line window. The quoted text is real corpus text, but the candidate context words are heuristic—not word alignments or claims that one listed word translates the Greek.</p>
+   <p>Each card follows one Greek word into three visibly different passages in this translation. The Greek line containing the word appears first, followed by the nearby passage in the translation. The listed nearby words show recurring context, not direct translations of the Greek word.</p>
    <div class="variation-grid"><article class="variation-card" data-variation-case="διοσ" data-stability="0.038674">
     <div class="term-heading">
      <h3 class="greek-term" lang="grc">δῖος</h3>
      <span class="transliteration">dios</span>
-     <span class="stability">stability 3.9%</span>
+     <span class="stability" title="Share of passages containing this Greek word where its most frequent nearby context word appears.">recurring nearby word 4%</span>
     </div>
     <ul class="variants">
-     <li class="variant"><blockquote lang="en">arms, and six by Dolius led, His sons ; e’en Dolius and Laertes don, Both grey with age, bright arms, by need</blockquote><cite>Od. 24.502 · candidate context: age, arms, bright, dolius</cite></li>
-     <li class="variant"><blockquote lang="en">ranged and well in sight Before his lofty portals, glistering white. Thereon sat Neleus in the days of yore, Made equal</blockquote><cite>Od. 3.394 · candidate context: before, days, equal, glistering</cite></li>
-     <li class="variant"><blockquote lang="en">sceptred with gold, I saw dividing justice to the dead, Who round his throne in the wide-gated hold Of Hades stand or sit,</blockquote><cite>Od. 11.568 · candidate context: dead, dividing, gated, gold</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">ἡμένη ἐν θαλάμῳ· ὁ δʼ ἐδείπνεε δῖος Ὀδυσσεύς·</blockquote><cite class="greek-cite">Greek line · Od. 17.506</cite><blockquote lang="en">through long wanderings led, Naked and cold and overwhelmed with woe, And in his hunger asks a little bread. Then all the</blockquote><cite>Translation passage · Od. 17.506 · nearby words: asks, bread, cold, hunger</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">υἱέες Αὐτολύκου· μετὰ τοῖσι δὲ δῖος Ὀδυσσεὺς</blockquote><cite class="greek-cite">Greek line · Od. 19.437</cite><blockquote lang="en">secret woodland, where Never the Sun pierced with his beaming ray, Nor the moist breathings of the wintry air Blew,</blockquote><cite>Translation passage · Od. 19.437 · nearby words: air, beaming, blew, breathings</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">ἢ οὐκ ἀίεις οἷον κλέος ἔλλαβε δῖος Ὀρέστης</blockquote><cite class="greek-cite">Greek line · Od. 1.298</cite><blockquote lang="en">performed, devise and learn How best amid wild wassail, there and then, Whether by fraud or force, to slay these evil men. 42</blockquote><cite>Translation passage · Od. 1.298 · nearby words: amid, best, devise, force</cite></li>
     </ul>
    </article>
 <article class="variation-card" data-variation-case="πεπνυμενοσ" data-stability="0.075472">
     <div class="term-heading">
      <h3 class="greek-term" lang="grc">πεπνυμένος</h3>
      <span class="transliteration">pepnymenos</span>
-     <span class="stability">stability 7.5%</span>
+     <span class="stability" title="Share of passages containing this Greek word where its most frequent nearby context word appears.">recurring nearby word 8%</span>
     </div>
     <ul class="variants">
-     <li class="variant"><blockquote lang="en">they tire—take heed and be not weak.&quot; 43 To whom the sage Telemachus replied : &quot; Guidance from friendly spirit thou dost impart,</blockquote><cite>Od. 1.306 · candidate context: dost, friendly, guidance, heed</cite></li>
-     <li class="variant"><blockquote lang="en">attained the isle. His comrades furl the sails, the mast take down, And to the harbour row the vessel on, Cast anchor, tie the</blockquote><cite>Od. 15.502 · candidate context: anchor, attained, cast, comrades</cite></li>
-     <li class="variant"><blockquote lang="en">war, To Sparta’s hold he bade me voyage make, And lent me horses and a well-built car. There I saw Argive Helen,</blockquote><cite>Od. 17.107 · candidate context: argive, bade, built, car</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">τὴν δʼ αὖ Τηλέμαχος πεπνυμένος ἀντίον ηὔδα·</blockquote><cite class="greek-cite">Greek line · Od. 1.306</cite><blockquote lang="en">they tire—take heed and be not weak.&quot; 43 To whom the sage Telemachus replied : &quot; Guidance from friendly spirit thou dost impart,</blockquote><cite>Translation passage · Od. 1.306 · nearby words: dost, friendly, guidance, heed</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">τοῖσι δὲ Τηλέμαχος πεπνυμένος ἤρχετο μύθων·</blockquote><cite class="greek-cite">Greek line · Od. 15.502</cite><blockquote lang="en">attained the isle. His comrades furl the sails, the mast take down, And to the harbour row the vessel on, Cast anchor, tie the</blockquote><cite>Translation passage · Od. 15.502 · nearby words: anchor, attained, cast, comrades</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">τὴν δʼ αὖ Τηλέμαχος πεπνυμένος ἀντίον ηὔδα·</blockquote><cite class="greek-cite">Greek line · Od. 17.107</cite><blockquote lang="en">war, To Sparta’s hold he bade me voyage make, And lent me horses and a well-built car. There I saw Argive Helen,</blockquote><cite>Translation passage · Od. 17.107 · nearby words: argive, bade, built, car</cite></li>
     </ul>
    </article>
 <article class="variation-card" data-variation-case="φιλοσ" data-stability="0.068182">
     <div class="term-heading">
      <h3 class="greek-term" lang="grc">φίλος</h3>
      <span class="transliteration">philos</span>
-     <span class="stability">stability 6.8%</span>
+     <span class="stability" title="Share of passages containing this Greek word where its most frequent nearby context word appears.">recurring nearby word 7%</span>
     </div>
     <ul class="variants">
-     <li class="variant"><blockquote lang="en">silver-hilted brand ; And, the sun falling, stately heralds bring Into Alcinous’ halls the presents grand ; Which soon the</blockquote><cite>Od. 8.413 · candidate context: alcinous, brand, bring, falling</cite></li>
-     <li class="variant"><blockquote lang="en">not heard divine Orestes’ fame, Who slew the secret slayer of the king His father, and achieved a noble name ? Thou also, friend,</blockquote><cite>Od. 1.301 · candidate context: achieved, also, fame, friend</cite></li>
-     <li class="variant"><blockquote lang="en">afar Sail ye the watery ways ? After some star Of purpose, or, at random blown about, Range ye</blockquote><cite>Od. 3.64 · candidate context: about, afar, after, blown</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">καὶ σὺ φίλος μάλα χαῖρε, θεοὶ δέ τοι ὄλβια δοῖεν.</blockquote><cite class="greek-cite">Greek line · Od. 8.413</cite><blockquote lang="en">silver-hilted brand ; And, the sun falling, stately heralds bring Into Alcinous’ halls the presents grand ; Which soon the</blockquote><cite>Translation passage · Od. 8.413 · nearby words: alcinous, brand, bring, falling</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">καὶ σύ, φίλος, μάλα γάρ σʼ ὁρόω καλόν τε μέγαν τε,</blockquote><cite class="greek-cite">Greek line · Od. 1.301</cite><blockquote lang="en">not heard divine Orestes’ fame, Who slew the secret slayer of the king His father, and achieved a noble name ? Thou also, friend,</blockquote><cite>Translation passage · Od. 1.301 · nearby words: achieved, also, fame, friend</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">ὣς δʼ αὔτως ἠρᾶτο Ὀδυσσῆος φίλος υἱός.</blockquote><cite class="greek-cite">Greek line · Od. 3.64</cite><blockquote lang="en">afar Sail ye the watery ways ? After some star Of purpose, or, at random blown about, Range ye</blockquote><cite>Translation passage · Od. 3.64 · nearby words: about, afar, after, blown</cite></li>
     </ul>
    </article>
 <article class="variation-card" data-variation-case="τοξον" data-stability="0.2">
     <div class="term-heading">
      <h3 class="greek-term" lang="grc">τόξον</h3>
      <span class="transliteration">toxon</span>
-     <span class="stability">stability 20.0%</span>
+     <span class="stability" title="Share of passages containing this Greek word where its most frequent nearby context word appears.">recurring nearby word 20%</span>
     </div>
     <ul class="variants">
-     <li class="variant"><blockquote lang="en">appear Ere they the nerve stretch of this burnished bow, Or shoot a winged shaft through the iron row.&quot; And him</blockquote><cite>Od. 19.586 · candidate context: appear, bow, burnished, ere</cite></li>
-     <li class="variant"><blockquote lang="en">from the ring the loop untwined, and bore Inward the key with deft aim to repel The firm bolts,</blockquote><cite>Od. 21.38 · candidate context: aim, bolts, bore, deft</cite></li>
-     <li class="variant"><blockquote lang="en">eat bread ; Though not that strength which older time hath nursed To rival I aspire ; such heroes dread As once</blockquote><cite>Od. 8.215 · candidate context: aspire, bread, dread, eat</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">πρὶν τούτους τόδε τόξον ἐΰξοον ἀμφαφόωντας</blockquote><cite class="greek-cite">Greek line · Od. 19.586</cite><blockquote lang="en">appear Ere they the nerve stretch of this burnished bow, Or shoot a winged shaft through the iron row.&quot; And him</blockquote><cite>Translation passage · Od. 19.586 · nearby words: appear, bow, burnished, ere</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">ὅς οἱ τόξον ἔδωκε. τὸ δʼ οὔ ποτε δῖος Ὀδυσσεὺς</blockquote><cite class="greek-cite">Greek line · Od. 21.38</cite><blockquote lang="en">from the ring the loop untwined, and bore Inward the key with deft aim to repel The firm bolts,</blockquote><cite>Translation passage · Od. 21.38 · nearby words: aim, bolts, bore, deft</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">εὖ μὲν τόξον οἶδα ἐύξοον ἀμφαφάασθαι·</blockquote><cite class="greek-cite">Greek line · Od. 8.215</cite><blockquote lang="en">eat bread ; Though not that strength which older time hath nursed To rival I aspire ; such heroes dread As once</blockquote><cite>Translation passage · Od. 8.215 · nearby words: aspire, bread, dread, eat</cite></li>
     </ul>
    </article>
 <article class="variation-card" data-variation-case="συβωτησ" data-stability="0.090909">
     <div class="term-heading">
      <h3 class="greek-term" lang="grc">συβώτης</h3>
      <span class="transliteration">sybōtēs</span>
-     <span class="stability">stability 9.1%</span>
+     <span class="stability" title="Share of passages containing this Greek word where its most frequent nearby context word appears.">recurring nearby word 9%</span>
     </div>
     <ul class="variants">
-     <li class="variant"><blockquote lang="en">bore. But from the vestibule they came anon, And with fine sponges cleansed each table, bench, and</blockquote><cite>Od. 22.454 · candidate context: anon, bench, bore, cleansed</cite></li>
-     <li class="variant"><blockquote lang="en">upon his wonted seat Framed sandals, and of ox the shining hide Cut, deftly shaping it about his feet.</blockquote><cite>Od. 14.18 · candidate context: about, cut, deftly, framed</cite></li>
-     <li class="variant"><blockquote lang="en">thy finery to the wind, Wherein rejoicing thou the poor dost spurn, Roaming the city, while with evil mind Bad</blockquote><cite>Od. 17.238 · candidate context: bad, city, dost, finery</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">ἔστη ἐνὶ προθύροισι. ταφὼν δʼ ἀνόρουσε συβώτης,</blockquote><cite class="greek-cite">Greek line · Od. 16.12</cite><blockquote lang="en">hands let fall the bowls, whereon He laboured mixing wine, and came anon Straight to his master, and fell</blockquote><cite>Translation passage · Od. 16.12 · nearby words: anon, bowls, laboured, master</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">ἀντίθεοι μνηστῆρες, ἐπεὶ προΐαλλε συβώτης</blockquote><cite class="greek-cite">Greek line · Od. 14.18</cite><blockquote lang="en">upon his wonted seat Framed sandals, and of ox the shining hide Cut, deftly shaping it about his feet.</blockquote><cite>Translation passage · Od. 14.18 · nearby words: about, cut, deftly, framed</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">ἀλλʼ ἐπετόλμησε, φρεσὶ δʼ ἔσχετο· τὸν δὲ συβώτης</blockquote><cite class="greek-cite">Greek line · Od. 17.238</cite><blockquote lang="en">thy finery to the wind, Wherein rejoicing thou the poor dost spurn, Roaming the city, while with evil mind Bad</blockquote><cite>Translation passage · Od. 17.238 · nearby words: bad, city, dost, finery</cite></li>
     </ul>
    </article></div>
-   <aside class="method-note"><strong>Stability is narrow by design.</strong> It is the share of Greek occurrences whose line window contains the modal candidate context token. It does not measure semantic consistency, freedom, fidelity, or quality.</aside>
+   <aside class="method-note"><strong>What “recurring nearby word” measures.</strong> For each Greek word, we look at the words near it in each translation passage, leaving out common words. We find the nearby word that appears in the most passages, then show the percentage of passages where it appears. This measures recurrence in nearby context, not a direct translation or a measure of meaning, fidelity, quality, or intentional choice.</aside>
   </section>
 
   <section class="section-block" aria-labelledby="siblings-heading">
    <p class="section-label">Statistical comparison</p>
    <h2 id="siblings-heading">Against its siblings</h2>
-   <p class="narrative" data-final-narrative>Worsley builds his Odyssey in the stanza associated with Spenser, openly defending that choice against contemporary objections and sustaining it across the complete poem. The corpus contains 116110 tokens and 8027 unique forms. Its score-ranked formula list begins with “o er the,” recorded 73 times; this first position does not mean it has the highest raw count. For scale within other English translations, Murray contains 133986 tokens. This is a bounded comparison: the history identifies the translation’s formal setting, while the statistics locate its scale and verbal patterning among the peers actually declared in the source. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora. That focus keeps the comparison useful without asking the data to support more than it can.</p>
+   <p class="narrative" data-final-narrative>Worsley builds his Odyssey in the stanza associated with Spenser, openly defending that choice against contemporary objections and sustaining it across the complete poem. The corpus contains 116110 words and 8027 distinct word forms. Its score-ranked formula list begins with “o er the,” recorded 73 times; this first position does not mean it has the highest raw count. For scale within other English translations, Murray contains 133986 words. This is a bounded comparison: the history identifies the translation’s formal setting, while the statistics locate its scale and verbal patterning among the peers actually declared in the source. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora. That focus keeps the comparison useful without asking the data to support more than it can.</p>
   </section>
 
   <section class="cta-panel" aria-labelledby="continue-heading">

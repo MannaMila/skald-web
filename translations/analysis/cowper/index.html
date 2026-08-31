@@ -38,10 +38,10 @@
   <p class="lede">A surface-form portrait of this <em>Odyssey</em>: corpus scale, recurring wording, line-window variation around Greek forms, and a comparison with other English translations.</p>
   <p class="meta-line">Atlas edition year: 1791 · Statistics corpus year: 1791 · All 24 books</p>
   <div class="stats-grid" aria-label="Headline corpus statistics">
-   <div class="stat"><strong data-claim-tokens="115040">115,040</strong><span>tokens</span></div>
-   <div class="stat"><strong data-claim-unique-forms="8365">8,365</strong><span>unique forms</span></div>
-   <div class="stat"><strong data-claim-ttr="0.072714">0.0727</strong><span>type-token ratio</span></div>
-   <div class="stat"><strong data-claim-mean-sentence="23.221639">23.22</strong><span>mean sentence length</span></div>
+   <div class="stat"><strong data-claim-tokens="115040">115,040</strong><span>words</span></div>
+   <div class="stat"><strong data-claim-unique-forms="8365">8,365</strong><span>distinct word forms</span></div>
+   <div class="stat"><strong data-claim-ttr="0.072714">0.0727</strong><span>vocabulary variety (distinct ÷ total)</span></div>
+   <div class="stat"><strong data-claim-mean-sentence="23.221639">23.22</strong><span>average sentence length</span></div>
   </div>
   <div class="viz-card">
    <svg viewBox="0 0 700 250" role="img" aria-labelledby="viz-title viz-desc">
@@ -49,22 +49,22 @@
     <desc id="viz-desc">Copper bars show this translation; pale bars show the peer median for four surface-form metrics.</desc>
     <rect x="0" y="0" width="12" height="12" rx="2" fill="#9e5725"/><text x="19" y="10" fill="#2a2118" font-size="11">Cowper</text>
     <rect x="150" y="0" width="12" height="8" rx="2" fill="#c69260"/><text x="169" y="9" fill="#6f6150" font-size="11">Peer median</text>
-    <text x="0" y="65" fill="#2a2118" font-size="13">Tokens</text>
+    <text x="0" y="65" fill="#2a2118" font-size="13">Words</text>
       <rect x="150" y="50" width="344" height="12" rx="2" fill="#9e5725"/>
       <rect x="150" y="66" width="370" height="8" rx="2" fill="#c69260"/>
       <text x="535" y="60" fill="#2a2118" font-size="12">115,040</text>
       <text x="535" y="75" fill="#6f6150" font-size="10">median 123,889.5</text>
-<text x="0" y="113" fill="#2a2118" font-size="13">Unique forms</text>
+<text x="0" y="113" fill="#2a2118" font-size="13">Distinct word forms</text>
       <rect x="150" y="98" width="370" height="12" rx="2" fill="#9e5725"/>
       <rect x="150" y="114" width="294" height="8" rx="2" fill="#c69260"/>
       <text x="535" y="108" fill="#2a2118" font-size="12">8,365</text>
       <text x="535" y="123" fill="#6f6150" font-size="10">median 6,650</text>
-<text x="0" y="161" fill="#2a2118" font-size="13">Type-token ratio</text>
+<text x="0" y="161" fill="#2a2118" font-size="13">Vocabulary variety</text>
       <rect x="150" y="146" width="370" height="12" rx="2" fill="#9e5725"/>
       <rect x="150" y="162" width="287" height="8" rx="2" fill="#c69260"/>
       <text x="535" y="156" fill="#2a2118" font-size="12">0.0727</text>
       <text x="535" y="171" fill="#6f6150" font-size="10">median 0.0564</text>
-<text x="0" y="209" fill="#2a2118" font-size="13">Mean sentence length</text>
+<text x="0" y="209" fill="#2a2118" font-size="13">Average sentence length</text>
       <rect x="150" y="194" width="315" height="12" rx="2" fill="#9e5725"/>
       <rect x="150" y="210" width="370" height="8" rx="2" fill="#c69260"/>
       <text x="535" y="204" fill="#2a2118" font-size="12">23.22</text>
@@ -72,12 +72,12 @@
    </svg>
    <p class="viz-note">Comparison basis: other English translations (12 peers). Each metric has its own scale. Cross-language style-group values are descriptive only.</p>
   </div>
-  <aside class="method-note"><strong>Read the bars cautiously.</strong> These are surface-form statistics. A higher TTR can reflect morphology, orthography, or corpus conventions as well as vocabulary; the sentence figure comes from a simple punctuation split. The chart describes this corpus and its declared peers, not translation quality.</aside>
+  <aside class="method-note"><strong>Read the bars cautiously.</strong> A higher vocabulary-variety value can result from grammar, spelling, or how an edition was prepared—not just from using a wider range of words. Sentence length is estimated by splitting at punctuation. The chart describes this corpus and its declared peers, not translation quality.</aside>
 
   <section class="section-block" aria-labelledby="formulas-heading">
    <p class="section-label">Repeated wording</p>
    <h2 id="formulas-heading">The translator’s formulas</h2>
-   <p>The ten highest-ranked chunk-local three-to-six-word n-grams, ordered by the source method’s count-times-length score. Overlapping phrases can describe the same recurring line.</p>
+   <p>The ten repeated phrases of three to six words that rank highest when we multiply how often each phrase appears by its length. Overlapping phrases can describe the same recurring line.</p>
    <ol class="formula-list"><li class="formula-item" data-formula-count="51">
     <span class="formula-phrase">“o er the”</span>
     <span class="formula-meta">51 occurrences · Od. 1.80 and 2.129</span>
@@ -123,74 +123,74 @@
   <section class="section-block" aria-labelledby="variation-heading">
    <p class="section-label">Line-window evidence</p>
    <h2 id="variation-heading">One Greek word, many choices</h2>
-   <p>Each card follows one Greek surface form into three visibly different passages in this translation. Exact sidecars are used where available; otherwise the source uses a proportional line window. The quoted text is real corpus text, but the candidate context words are heuristic—not word alignments or claims that one listed word translates the Greek.</p>
+   <p>Each card follows one Greek word into three visibly different passages in this translation. The Greek line containing the word appears first, followed by the nearby passage in the translation. The listed nearby words show recurring context, not direct translations of the Greek word.</p>
    <div class="variation-grid"><article class="variation-card" data-variation-case="διοσ" data-stability="0.027624">
     <div class="term-heading">
      <h3 class="greek-term" lang="grc">δῖος</h3>
      <span class="transliteration">dios</span>
-     <span class="stability">stability 2.8%</span>
+     <span class="stability" title="Share of passages containing this Greek word where its most frequent nearby context word appears.">recurring nearby word 3%</span>
     </div>
     <ul class="variants">
-     <li class="variant"><blockquote lang="en">then Eumæus with indignant look Rebuking, rais'd his</blockquote><cite>Od. 17.240 · candidate context: eumæus, indignant, look, rais</cite></li>
-     <li class="variant"><blockquote lang="en">swift away. But haste thou back to light, and, taught</blockquote><cite>Od. 11.217 · candidate context: away, back, haste, light</cite></li>
-     <li class="variant"><blockquote lang="en">They pris'ners in the fertile womb of earth, Though</blockquote><cite>Od. 11.297 · candidate context: earth, fertile, ners, pris</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">ἡ μὲν ἄρʼ ὣς ἀγόρευεν, ὁ δʼ ᾤχετο δῖος ὑφορβὸς</blockquote><cite class="greek-cite">Greek line · Od. 17.589</cite><blockquote lang="en">message told) The good Eumæus to the suitors went</blockquote><cite>Translation passage · Od. 17.589 · nearby words: eumæus, good, message, told</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">γήθησέν τʼ ἄρʼ ἔπειτα πολύτλας δῖος Ὀδυσσεύς,</blockquote><cite class="greek-cite">Greek line · Od. 13.353</cite><blockquote lang="en">toil-inured, Transport unutterable, seeing plain Once more</blockquote><cite>Translation passage · Od. 13.353 · nearby words: inured, plain, seeing, toil</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">ὣς φάτο, ῥίγησεν δὲ πολύτλας δῖος Ὀδυσσεύς,</blockquote><cite class="greek-cite">Greek line · Od. 5.171</cite><blockquote lang="en">expanse terrible, which even ships Pass not, though form'd</blockquote><cite>Translation passage · Od. 5.171 · nearby words: expanse, form, pass, ships</cite></li>
     </ul>
    </article>
 <article class="variation-card" data-variation-case="φιλοσ" data-stability="0.045455">
     <div class="term-heading">
      <h3 class="greek-term" lang="grc">φίλος</h3>
      <span class="transliteration">philos</span>
-     <span class="stability">stability 4.5%</span>
+     <span class="stability" title="Share of passages containing this Greek word where its most frequent nearby context word appears.">recurring nearby word 5%</span>
     </div>
     <ul class="variants">
-     <li class="variant"><blockquote lang="en">of Hippotas, belov'd By the Immortals, in an isle</blockquote><cite>Od. 10.2 · candidate context: belov, hippotas, immortals, isle</cite></li>
-     <li class="variant"><blockquote lang="en">needy wretch Cloakless and destitute of fleecy stores</blockquote><cite>Od. 3.352 · candidate context: cloakless, destitute, fleecy, needy</cite></li>
-     <li class="variant"><blockquote lang="en">dimensions ampler to his limbs; Swarthy again his manly</blockquote><cite>Od. 16.178 · candidate context: ampler, dimensions, limbs, manly</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">Αἴολος Ἱπποτάδης, φίλος ἀθανάτοισι θεοῖσιν,</blockquote><cite class="greek-cite">Greek line · Od. 10.2</cite><blockquote lang="en">of Hippotas, belov'd By the Immortals, in an isle</blockquote><cite>Translation passage · Od. 10.2 · nearby words: belov, hippotas, immortals, isle</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">οὔ θην δὴ τοῦδʼ ἀνδρὸς Ὀδυσσῆος φίλος υἱὸς</blockquote><cite class="greek-cite">Greek line · Od. 3.352</cite><blockquote lang="en">needy wretch Cloakless and destitute of fleecy stores</blockquote><cite>Translation passage · Od. 3.352 · nearby words: cloakless, destitute, fleecy, needy</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">ἤϊεν ἐς κλισίην· θάμβησε δέ μιν φίλος υἱός,</blockquote><cite class="greek-cite">Greek line · Od. 16.178</cite><blockquote lang="en">dimensions ampler to his limbs; Swarthy again his manly</blockquote><cite>Translation passage · Od. 16.178 · nearby words: ampler, dimensions, limbs, manly</cite></li>
     </ul>
    </article>
 <article class="variation-card" data-variation-case="πεπνυμενοσ" data-stability="0.132075">
     <div class="term-heading">
      <h3 class="greek-term" lang="grc">πεπνυμένος</h3>
      <span class="transliteration">pepnymenos</span>
-     <span class="stability">stability 13.2%</span>
+     <span class="stability" title="Share of passages containing this Greek word where its most frequent nearby context word appears.">recurring nearby word 13%</span>
     </div>
     <ul class="variants">
-     <li class="variant"><blockquote lang="en">discrete, replied. Piræus! wait; for I not yet foresee</blockquote><cite>Od. 17.77 · candidate context: discrete, foresee, piræus, wait</cite></li>
-     <li class="variant"><blockquote lang="en">(for pleas'd thy vig'rous youth I view, And just proportion)</blockquote><cite>Od. 3.201 · candidate context: just, pleas, proportion, view</cite></li>
-     <li class="variant"><blockquote lang="en">could not arrive In a whole year, so vast is the expanse.</blockquote><cite>Od. 3.328 · candidate context: arrive, could, expanse, vast</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">τὸν δʼ αὖ Τηλέμαχος πεπνυμένος ἀντίον ηὔδα·</blockquote><cite class="greek-cite">Greek line · Od. 17.77</cite><blockquote lang="en">discrete, replied. Piræus! wait; for I not yet foresee</blockquote><cite>Translation passage · Od. 17.77 · nearby words: discrete, foresee, piræus, wait</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">τὸν δʼ αὖ Τηλέμαχος πεπνυμένος ἀντίον ηὔδα·</blockquote><cite class="greek-cite">Greek line · Od. 3.201</cite><blockquote lang="en">(for pleas'd thy vig'rous youth I view, And just proportion)</blockquote><cite>Translation passage · Od. 3.201 · nearby words: just, pleas, proportion, view</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">ψεῦδος δʼ οὐκ ἐρέει· μάλα γὰρ πεπνυμένος ἐστίν.</blockquote><cite class="greek-cite">Greek line · Od. 3.328</cite><blockquote lang="en">could not arrive In a whole year, so vast is the expanse.</blockquote><cite>Translation passage · Od. 3.328 · nearby words: arrive, could, expanse, vast</cite></li>
     </ul>
    </article>
 <article class="variation-card" data-variation-case="τοξον" data-stability="0.075">
     <div class="term-heading">
      <h3 class="greek-term" lang="grc">τόξον</h3>
      <span class="transliteration">toxon</span>
-     <span class="stability">stability 7.5%</span>
+     <span class="stability" title="Share of passages containing this Greek word where its most frequent nearby context word appears.">recurring nearby word 8%</span>
     </div>
     <ul class="variants">
-     <li class="variant"><blockquote lang="en">No pow'r to bend it. Disappointment wrung A groan</blockquote><cite>Od. 21.245 · candidate context: bend, disappointment, groan, pow</cite></li>
-     <li class="variant"><blockquote lang="en">who his arrow sends Through twice six rings, he takes</blockquote><cite>Od. 21.74 · candidate context: arrow, rings, sends, six</cite></li>
-     <li class="variant"><blockquote lang="en">turbulent; he, gloomy-brow'd as night, With uncased</blockquote><cite>Od. 11.607 · candidate context: brow, gloomy, night, turbulent</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">Εὐρύμαχος δʼ ἤδη τόξον μετὰ χερσὶν ἐνώμα,</blockquote><cite class="greek-cite">Greek line · Od. 21.245</cite><blockquote lang="en">No pow'r to bend it. Disappointment wrung A groan</blockquote><cite>Translation passage · Od. 21.245 · nearby words: bend, disappointment, groan, pow</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">θήσω γὰρ μέγα τόξον Ὀδυσσῆος θείοιο·</blockquote><cite class="greek-cite">Greek line · Od. 21.74</cite><blockquote lang="en">who his arrow sends Through twice six rings, he takes</blockquote><cite>Translation passage · Od. 21.74 · nearby words: arrow, rings, sends, six</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">γυμνὸν τόξον ἔχων καὶ ἐπὶ νευρῆφιν ὀιστόν,</blockquote><cite class="greek-cite">Greek line · Od. 11.607</cite><blockquote lang="en">turbulent; he, gloomy-brow'd as night, With uncased</blockquote><cite>Translation passage · Od. 11.607 · nearby words: brow, gloomy, night, turbulent</cite></li>
     </ul>
    </article>
 <article class="variation-card" data-variation-case="συβωτησ" data-stability="0.181818">
     <div class="term-heading">
      <h3 class="greek-term" lang="grc">συβώτης</h3>
      <span class="transliteration">sybōtēs</span>
-     <span class="stability">stability 18.2%</span>
+     <span class="stability" title="Share of passages containing this Greek word where its most frequent nearby context word appears.">recurring nearby word 18%</span>
     </div>
     <ul class="variants">
-     <li class="variant"><blockquote lang="en">They carv'd him quickly, and Eumæus spread Thin slices</blockquote><cite>Od. 14.427 · candidate context: carv, eumæus, quickly, slices</cite></li>
-     <li class="variant"><blockquote lang="en">own airy lodge commodious, built Amidst a level</blockquote><cite>Od. 14.7 · candidate context: airy, amidst, built, commodious</cite></li>
-     <li class="variant"><blockquote lang="en">or small? To whom the master swine-herd in reply.</blockquote><cite>Od. 15.389 · candidate context: herd, master, reply, small</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">αἶψα δέ μιν διέχευαν· ὁ δʼ ὠμοθετεῖτο συβώτης,</blockquote><cite class="greek-cite">Greek line · Od. 14.427</cite><blockquote lang="en">They carv'd him quickly, and Eumæus spread Thin slices</blockquote><cite>Translation passage · Od. 14.427 · nearby words: carv, eumæus, quickly, slices</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">καλή τε μεγάλη τε, περίδρομος· ἥν ῥα συβώτης</blockquote><cite class="greek-cite">Greek line · Od. 14.7</cite><blockquote lang="en">own airy lodge commodious, built Amidst a level</blockquote><cite>Translation passage · Od. 14.7 · nearby words: airy, amidst, built, commodious</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">τὸν δʼ αὖτε προσέειπε συβώτης, ὄρχαμος ἀνδρῶν·</blockquote><cite class="greek-cite">Greek line · Od. 15.389</cite><blockquote lang="en">or small? To whom the master swine-herd in reply.</blockquote><cite>Translation passage · Od. 15.389 · nearby words: herd, master, reply, small</cite></li>
     </ul>
    </article></div>
-   <aside class="method-note"><strong>Stability is narrow by design.</strong> It is the share of Greek occurrences whose line window contains the modal candidate context token. It does not measure semantic consistency, freedom, fidelity, or quality.</aside>
+   <aside class="method-note"><strong>What “recurring nearby word” measures.</strong> For each Greek word, we look at the words near it in each translation passage, leaving out common words. We find the nearby word that appears in the most passages, then show the percentage of passages where it appears. This measures recurrence in nearby context, not a direct translation or a measure of meaning, fidelity, quality, or intentional choice.</aside>
   </section>
 
   <section class="section-block" aria-labelledby="siblings-heading">
    <p class="section-label">Statistical comparison</p>
    <h2 id="siblings-heading">Against its siblings</h2>
-   <p class="narrative" data-final-narrative>Cowper’s blank verse appears in the atlas as an explicit answer to Pope’s rhyme, exchanging couplet form for a closer, deliberately plainer metrical approach. The corpus contains 115040 tokens and 8365 unique forms. Its score-ranked formula list begins with “o er the,” recorded 51 times; this first position does not mean it has the highest raw count. For scale within other English translations, Murray contains 133986 tokens. The comparison therefore joins publication history to observable corpus structure, keeping the historical portrait vivid while letting the measurements describe only textual scale, lexical distribution, and repeated phrasing. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora. That focus keeps the comparison useful without asking the data to support more than it can.</p>
+   <p class="narrative" data-final-narrative>Cowper’s blank verse appears in the atlas as an explicit answer to Pope’s rhyme, exchanging couplet form for a closer, deliberately plainer metrical approach. The corpus contains 115040 words and 8365 distinct word forms. Its score-ranked formula list begins with “o er the,” recorded 51 times; this first position does not mean it has the highest raw count. For scale within other English translations, Murray contains 133986 words. The comparison therefore joins publication history to observable corpus structure, keeping the historical portrait vivid while letting the measurements describe only textual scale, lexical distribution, and repeated phrasing. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora. That focus keeps the comparison useful without asking the data to support more than it can.</p>
   </section>
 
   <section class="cta-panel" aria-labelledby="continue-heading">

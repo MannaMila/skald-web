@@ -38,10 +38,10 @@
   <p class="lede">A surface-form portrait of this <em>Odyssey</em>: corpus scale, recurring wording, line-window variation around Greek forms, and a comparison with other English translations.</p>
   <p class="meta-line">Atlas edition year: 1615 · Statistics corpus year: 1616 · All 24 books</p>
   <div class="stats-grid" aria-label="Headline corpus statistics">
-   <div class="stat"><strong data-claim-tokens="140625">140,625</strong><span>tokens</span></div>
-   <div class="stat"><strong data-claim-unique-forms="8434">8,434</strong><span>unique forms</span></div>
-   <div class="stat"><strong data-claim-ttr="0.059975">0.0600</strong><span>type-token ratio</span></div>
-   <div class="stat"><strong data-claim-mean-sentence="32.95641">32.96</strong><span>mean sentence length</span></div>
+   <div class="stat"><strong data-claim-tokens="140625">140,625</strong><span>words</span></div>
+   <div class="stat"><strong data-claim-unique-forms="8434">8,434</strong><span>distinct word forms</span></div>
+   <div class="stat"><strong data-claim-ttr="0.059975">0.0600</strong><span>vocabulary variety (distinct ÷ total)</span></div>
+   <div class="stat"><strong data-claim-mean-sentence="32.95641">32.96</strong><span>average sentence length</span></div>
   </div>
   <div class="viz-card">
    <svg viewBox="0 0 700 250" role="img" aria-labelledby="viz-title viz-desc">
@@ -49,22 +49,22 @@
     <desc id="viz-desc">Copper bars show this translation; pale bars show the peer median for four surface-form metrics.</desc>
     <rect x="0" y="0" width="12" height="12" rx="2" fill="#9e5725"/><text x="19" y="10" fill="#2a2118" font-size="11">Chapman</text>
     <rect x="150" y="0" width="12" height="8" rx="2" fill="#c69260"/><text x="169" y="9" fill="#6f6150" font-size="11">Peer median</text>
-    <text x="0" y="65" fill="#2a2118" font-size="13">Tokens</text>
+    <text x="0" y="65" fill="#2a2118" font-size="13">Words</text>
       <rect x="150" y="50" width="370" height="12" rx="2" fill="#9e5725"/>
       <rect x="150" y="66" width="311" height="8" rx="2" fill="#c69260"/>
       <text x="535" y="60" fill="#2a2118" font-size="12">140,625</text>
       <text x="535" y="75" fill="#6f6150" font-size="10">median 118,026.5</text>
-<text x="0" y="113" fill="#2a2118" font-size="13">Unique forms</text>
+<text x="0" y="113" fill="#2a2118" font-size="13">Distinct word forms</text>
       <rect x="150" y="98" width="370" height="12" rx="2" fill="#9e5725"/>
       <rect x="150" y="114" width="292" height="8" rx="2" fill="#c69260"/>
       <text x="535" y="108" fill="#2a2118" font-size="12">8,434</text>
       <text x="535" y="123" fill="#6f6150" font-size="10">median 6,650</text>
-<text x="0" y="161" fill="#2a2118" font-size="13">Type-token ratio</text>
+<text x="0" y="161" fill="#2a2118" font-size="13">Vocabulary variety</text>
       <rect x="150" y="146" width="370" height="12" rx="2" fill="#9e5725"/>
       <rect x="150" y="162" width="348" height="8" rx="2" fill="#c69260"/>
       <text x="535" y="156" fill="#2a2118" font-size="12">0.0600</text>
       <text x="535" y="171" fill="#6f6150" font-size="10">median 0.0564</text>
-<text x="0" y="209" fill="#2a2118" font-size="13">Mean sentence length</text>
+<text x="0" y="209" fill="#2a2118" font-size="13">Average sentence length</text>
       <rect x="150" y="194" width="370" height="12" rx="2" fill="#9e5725"/>
       <rect x="150" y="210" width="280" height="8" rx="2" fill="#c69260"/>
       <text x="535" y="204" fill="#2a2118" font-size="12">32.96</text>
@@ -72,12 +72,12 @@
    </svg>
    <p class="viz-note">Comparison basis: other English translations (12 peers). Each metric has its own scale. Cross-language style-group values are descriptive only.</p>
   </div>
-  <aside class="method-note"><strong>Read the bars cautiously.</strong> These are surface-form statistics. A higher TTR can reflect morphology, orthography, or corpus conventions as well as vocabulary; the sentence figure comes from a simple punctuation split. The chart describes this corpus and its declared peers, not translation quality.</aside>
+  <aside class="method-note"><strong>Read the bars cautiously.</strong> A higher vocabulary-variety value can result from grammar, spelling, or how an edition was prepared—not just from using a wider range of words. Sentence length is estimated by splitting at punctuation. The chart describes this corpus and its declared peers, not translation quality.</aside>
 
   <section class="section-block" aria-labelledby="formulas-heading">
    <p class="section-label">Repeated wording</p>
    <h2 id="formulas-heading">The translator’s formulas</h2>
-   <p>The ten highest-ranked chunk-local three-to-six-word n-grams, ordered by the source method’s count-times-length score. Overlapping phrases can describe the same recurring line.</p>
+   <p>The ten repeated phrases of three to six words that rank highest when we multiply how often each phrase appears by its length. Overlapping phrases can describe the same recurring line.</p>
    <ol class="formula-list"><li class="formula-item" data-formula-count="67">
     <span class="formula-phrase">“of all the”</span>
     <span class="formula-meta">67 occurrences · Od. 1.44 and 1.125</span>
@@ -123,74 +123,74 @@
   <section class="section-block" aria-labelledby="variation-heading">
    <p class="section-label">Line-window evidence</p>
    <h2 id="variation-heading">One Greek word, many choices</h2>
-   <p>Each card follows one Greek surface form into three visibly different passages in this translation. Exact sidecars are used where available; otherwise the source uses a proportional line window. The quoted text is real corpus text, but the candidate context words are heuristic—not word alignments or claims that one listed word translates the Greek.</p>
+   <p>Each card follows one Greek word into three visibly different passages in this translation. The Greek line containing the word appears first, followed by the nearby passage in the translation. The listed nearby words show recurring context, not direct translations of the Greek word.</p>
    <div class="variation-grid"><article class="variation-card" data-variation-case="διοσ" data-stability="0.044199">
     <div class="term-heading">
      <h3 class="greek-term" lang="grc">δῖος</h3>
      <span class="transliteration">dios</span>
-     <span class="stability">stability 4.4%</span>
+     <span class="stability" title="Share of passages containing this Greek word where its most frequent nearby context word appears.">recurring nearby word 4%</span>
     </div>
     <ul class="variants">
-     <li class="variant"><blockquote lang="en">with life convent My person home, and to my sav’d decease Of my lov’d son’s sight add the sweet increase.” “Be confident,” said Pallas,</blockquote><cite>Od. 13.359 · candidate context: add, confident, convent, decease</cite></li>
-     <li class="variant"><blockquote lang="en">I’ll dismiss thee well, gifts exquisite Preparing for thee, chariot, horses three, A cup of curious frame to serve for thee To serve th’ immortal Gods with sacrifice, Mindful of me while all suns light thy</blockquote><cite>Od. 4.569 · candidate context: chariot, cup, curious, dismiss</cite></li>
-     <li class="variant"><blockquote lang="en">so vain Antinous chid, and said: “For shame, contain These braving speeches. Who can tell who hears? Are we not now in reach of others’ ears? If our intentions please us, let us call Our spirits up to them, and let</blockquote><cite>Od. 4.752 · candidate context: antinous, braving, chid, contain</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">ἱρὸν Ἀθηναίης, ἵνʼ ἄρʼ ἕζετο δῖος Ὀδυσσεύς.</blockquote><cite class="greek-cite">Greek line · Od. 6.322</cite><blockquote lang="en">Sacred to Pallas; where the god-like good Ulysses rested, and to Pallas pray’d: “Hear me, of goat-kept Jove th’ unconquer’d Maid! Now throughly</blockquote><cite>Translation passage · Od. 6.323 · nearby words: goat, hear, kept, maid</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">τὸν δʼ αὖτε προσέειπε πολύτλας δῖος Ὀδυσσεύς·</blockquote><cite class="greek-cite">Greek line · Od. 16.258</cite><blockquote lang="en">me by the heels about Mine own free earth, and after hurl me out, Do thou still suffer. Nay, though with their darts They beat and bruise me, bear. But these foul parts Persuade them</blockquote><cite>Translation passage · Od. 16.258 · nearby words: after, beat, bruise, darts</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">δὴ τότʼ ἄρʼ Ἀλκίνοον προσεφώνεε δῖος Ὀδυσσεύς·</blockquote><cite class="greek-cite">Greek line · Od. 8.381</cite><blockquote lang="en">danc’d ground tricks, oft mix’d hand in hand, And did so gracefully their change command, That all the other youth that stood at pause, With deaf’ning shouts,</blockquote><cite>Translation passage · Od. 8.381 · nearby words: change, command, danc, deaf</cite></li>
     </ul>
    </article>
 <article class="variation-card" data-variation-case="πεπνυμενοσ" data-stability="0.113208">
     <div class="term-heading">
      <h3 class="greek-term" lang="grc">πεπνυμένος</h3>
      <span class="transliteration">pepnymenos</span>
-     <span class="stability">stability 11.3%</span>
+     <span class="stability" title="Share of passages containing this Greek word where its most frequent nearby context word appears.">recurring nearby word 11%</span>
     </div>
     <ul class="variants">
-     <li class="variant"><blockquote lang="en">Telemachus accosts him, who begun Speech of his journey’s proposition: “And what, my young Ulyssean</blockquote><cite>Od. 4.315 · candidate context: accosts, begun, journey, proposition</cite></li>
-     <li class="variant"><blockquote lang="en">In mean space, mark this: When the chiefly-wise Minerva prompts me, I’ll inform thine eyes With some giv’n sign, and then all th’ arms that are Aloft thy roof in some near room prepare</blockquote><cite>Od. 16.262 · candidate context: aloft, arms, chiefly, inform</cite></li>
-     <li class="variant"><blockquote lang="en">Of soul aspir’d to)’ thou mak’st nothing good Thy fate, nor fortune, nor thy height of blood, In manage of thy actions.</blockquote><cite>Od. 18.226 · candidate context: actions, aspir, blood, fate</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">τὸν δʼ αὖ Τηλέμαχος πεπνυμένος ἀντίον ηὔδα·</blockquote><cite class="greek-cite">Greek line · Od. 4.315</cite><blockquote lang="en">Telemachus accosts him, who begun Speech of his journey’s proposition: “And what, my young Ulyssean</blockquote><cite>Translation passage · Od. 4.315 · nearby words: accosts, begun, journey, proposition</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">τὸν δʼ αὖ Τηλέμαχος πεπνυμένος ἀντίον ηὔδα·</blockquote><cite class="greek-cite">Greek line · Od. 16.262</cite><blockquote lang="en">In mean space, mark this: When the chiefly-wise Minerva prompts me, I’ll inform thine eyes With some giv’n sign, and then all th’ arms that are Aloft thy roof in some near room prepare</blockquote><cite>Translation passage · Od. 16.262 · nearby words: aloft, arms, chiefly, inform</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">τὴν δʼ αὖ Τηλέμαχος πεπνυμένος ἀντίον ηὔδα·</blockquote><cite class="greek-cite">Greek line · Od. 18.226</cite><blockquote lang="en">Of soul aspir’d to)’ thou mak’st nothing good Thy fate, nor fortune, nor thy height of blood, In manage of thy actions.</blockquote><cite>Translation passage · Od. 18.226 · nearby words: actions, aspir, blood, fate</cite></li>
     </ul>
    </article>
 <article class="variation-card" data-variation-case="φιλοσ" data-stability="0.113636">
     <div class="term-heading">
      <h3 class="greek-term" lang="grc">φίλος</h3>
      <span class="transliteration">philos</span>
-     <span class="stability">stability 11.4%</span>
+     <span class="stability" title="Share of passages containing this Greek word where its most frequent nearby context word appears.">recurring nearby word 11%</span>
     </div>
     <ul class="variants">
-     <li class="variant"><blockquote lang="en">Bent to the door to eat. Yet could not leave Antinous so, but said: “Do you too give, Lov’d lord; your presence makes a show to me As you</blockquote><cite>Od. 17.415 · candidate context: antinous, bent, door, eat</cite></li>
-     <li class="variant"><blockquote lang="en">empty heat and appetite to food, His knees afflicted with his spirit-spent blood) At length the long-expected sunset sees,</blockquote><cite>Od. 13.40 · candidate context: afflicted, appetite, blood, empty</cite></li>
-     <li class="variant"><blockquote lang="en">Aurora, that the golden hills repose. And Menelaus, good-at-martial-cries, From Helen’s bed rais’d, to his guest applies</blockquote><cite>Od. 15.59 · candidate context: applies, aurora, bed, cries</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">δός, φίλος· οὐ μέν μοι δοκέεις ὁ κάκιστος Ἀχαιῶν</blockquote><cite class="greek-cite">Greek line · Od. 17.415</cite><blockquote lang="en">Bent to the door to eat. Yet could not leave Antinous so, but said: “Do you too give, Lov’d lord; your presence makes a show to me As you</blockquote><cite>Translation passage · Od. 17.415 · nearby words: antinous, bent, door, eat</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">ἤδη γὰρ τετέλεσται ἅ μοι φίλος ἤθελε θυμός,</blockquote><cite class="greek-cite">Greek line · Od. 13.40</cite><blockquote lang="en">empty heat and appetite to food, His knees afflicted with his spirit-spent blood) At length the long-expected sunset sees,</blockquote><cite>Translation passage · Od. 13.40 · nearby words: afflicted, appetite, blood, empty</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">τὸν δʼ ὡς οὖν ἐνόησεν Ὀδυσσῆος φίλος υἱός,</blockquote><cite class="greek-cite">Greek line · Od. 15.59</cite><blockquote lang="en">Aurora, that the golden hills repose. And Menelaus, good-at-martial-cries, From Helen’s bed rais’d, to his guest applies</blockquote><cite>Translation passage · Od. 15.59 · nearby words: applies, aurora, bed, cries</cite></li>
     </ul>
    </article>
 <article class="variation-card" data-variation-case="συβωτησ" data-stability="0.090909">
     <div class="term-heading">
      <h3 class="greek-term" lang="grc">συβώτης</h3>
      <span class="transliteration">sybōtēs</span>
-     <span class="stability">stability 9.1%</span>
+     <span class="stability" title="Share of passages containing this Greek word where its most frequent nearby context word appears.">recurring nearby word 9%</span>
     </div>
     <ul class="variants">
-     <li class="variant"><blockquote lang="en">Then troop’d the lusty Wooers in; and then Came all from spring; at their heels loaded men With slaughter’d brawns, of all the herd the prize, That had been long</blockquote><cite>Od. 20.162 · candidate context: been, brawns, heels, herd</cite></li>
-     <li class="variant"><blockquote lang="en">roasted they dispos’d bewixt Their then observers, wine in flagons mixt. The bowls Eumæus brought, Philœtius bread, Melanthius fill’d the wine. Thus drank and fed The feastful Wooers. Then the prince, in grace Of</blockquote><cite>Od. 20.253 · candidate context: bewixt, bowls, bread, dispos</cite></li>
-     <li class="variant"><blockquote lang="en">who least, had learn’d humanity. However, no thought touch’d Minerva’s mind, That anyone should ’scape his wreak design’d. He handsomely became all, crept about To</blockquote><cite>Od. 17.372 · candidate context: anyone, became, crept, design</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">ἦλθον ἀπὸ κρήνης· ἐπὶ δέ σφισιν ἦλθε συβώτης</blockquote><cite class="greek-cite">Greek line · Od. 20.162</cite><blockquote lang="en">Then troop’d the lusty Wooers in; and then Came all from spring; at their heels loaded men With slaughter’d brawns, of all the herd the prize, That had been long</blockquote><cite>Translation passage · Od. 20.162 · nearby words: been, brawns, heels, herd</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">κρητῆρσιν κερόωντο· κύπελλα δὲ νεῖμε συβώτης.</blockquote><cite class="greek-cite">Greek line · Od. 20.253</cite><blockquote lang="en">roasted they dispos’d bewixt Their then observers, wine in flagons mixt. The bowls Eumæus brought, Philœtius bread, Melanthius fill’d the wine. Thus drank and fed The feastful Wooers. Then the prince, in grace Of</blockquote><cite>Translation passage · Od. 20.253 · nearby words: bewixt, bowls, bread, dispos</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">ἦ τοι μέν οἱ δεῦρο συβώτης ἡγεμόνευεν,</blockquote><cite class="greek-cite">Greek line · Od. 17.372</cite><blockquote lang="en">who least, had learn’d humanity. However, no thought touch’d Minerva’s mind, That anyone should ’scape his wreak design’d. He handsomely became all, crept about To</blockquote><cite>Translation passage · Od. 17.372 · nearby words: anyone, became, crept, design</cite></li>
     </ul>
    </article>
 <article class="variation-card" data-variation-case="τοξον" data-stability="0.275">
     <div class="term-heading">
      <h3 class="greek-term" lang="grc">τόξον</h3>
      <span class="transliteration">toxon</span>
-     <span class="stability">stability 27.5%</span>
+     <span class="stability" title="Share of passages containing this Greek word where its most frequent nearby context word appears.">recurring nearby word 28%</span>
     </div>
     <ul class="variants">
-     <li class="variant"><blockquote lang="en">well compos’d and great, his parents good? And therefore give the bow to him, to try His birth and breeding by his chivalry. If his arms draw it, and that Phœbus stands So great a glory to his</blockquote><cite>Od. 21.344 · candidate context: arms, birth, bow, breeding</cite></li>
-     <li class="variant"><blockquote lang="en">of sects Amongst the people would breed shame and fear, Lest any worst Greek said: ‘See, men that were Of mean deservings will presume t’ aspire To his wife’s bed, whom all men did admire For</blockquote><cite>Od. 21.336 · candidate context: admire, amongst, aspire, bed</cite></li>
-     <li class="variant"><blockquote lang="en">reach to, sit, and all things hear That we speak freely,—which no begging guest Did ever yet,—but thou must make request To mix with us in merit of the Queen. But wine inflames thee, that hath</blockquote><cite>Od. 21.314 · candidate context: begging, freely, hear, inflames</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">μῆτερ ἐμή, τόξον μὲν Ἀχαιῶν οὔ τις ἐμεῖο</blockquote><cite class="greek-cite">Greek line · Od. 21.344</cite><blockquote lang="en">well compos’d and great, his parents good? And therefore give the bow to him, to try His birth and breeding by his chivalry. If his arms draw it, and that Phœbus stands So great a glory to his</blockquote><cite>Translation passage · Od. 21.344 · nearby words: arms, birth, bow, breeding</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">ἀλλʼ ἄγε οἱ δότε τόξον ἐΰξοον, ὄφρα ἴδωμεν.</blockquote><cite class="greek-cite">Greek line · Od. 21.336</cite><blockquote lang="en">of sects Amongst the people would breed shame and fear, Lest any worst Greek said: ‘See, men that were Of mean deservings will presume t’ aspire To his wife’s bed, whom all men did admire For</blockquote><cite>Translation passage · Od. 21.336 · nearby words: admire, amongst, aspire, bed</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">ἔλπεαι, αἴ χʼ ὁ ξεῖνος Ὀδυσσῆος μέγα τόξον</blockquote><cite class="greek-cite">Greek line · Od. 21.314</cite><blockquote lang="en">reach to, sit, and all things hear That we speak freely,—which no begging guest Did ever yet,—but thou must make request To mix with us in merit of the Queen. But wine inflames thee, that hath</blockquote><cite>Translation passage · Od. 21.314 · nearby words: begging, freely, hear, inflames</cite></li>
     </ul>
    </article></div>
-   <aside class="method-note"><strong>Stability is narrow by design.</strong> It is the share of Greek occurrences whose line window contains the modal candidate context token. It does not measure semantic consistency, freedom, fidelity, or quality.</aside>
+   <aside class="method-note"><strong>What “recurring nearby word” measures.</strong> For each Greek word, we look at the words near it in each translation passage, leaving out common words. We find the nearby word that appears in the most passages, then show the percentage of passages where it appears. This measures recurrence in nearby context, not a direct translation or a measure of meaning, fidelity, quality, or intentional choice.</aside>
   </section>
 
   <section class="section-block" aria-labelledby="siblings-heading">
    <p class="section-label">Statistical comparison</p>
    <h2 id="siblings-heading">Against its siblings</h2>
-   <p class="narrative" data-final-narrative>Chapman’s Odyssey completes the first full English Homer in the atlas, recasting the poem in expansive rhymed pentameter and a vocabulary of wisdom and pilgrimage. The corpus contains 140625 tokens and 8434 unique forms. Its score-ranked formula list begins with “of all the,” recorded 67 times; this first position does not mean it has the highest raw count. For scale within other English translations, Murray contains 133986 tokens. Read together, the atlas context and corpus evidence show how this version occupies its declared cohort without converting length, vocabulary counts, or recurrence into claims about merit, fidelity, intention, or reception. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora.</p>
+   <p class="narrative" data-final-narrative>Chapman’s Odyssey completes the first full English Homer in the atlas, recasting the poem in expansive rhymed pentameter and a vocabulary of wisdom and pilgrimage. The corpus contains 140625 words and 8434 distinct word forms. Its score-ranked formula list begins with “of all the,” recorded 67 times; this first position does not mean it has the highest raw count. For scale within other English translations, Murray contains 133986 words. Read together, the atlas context and corpus evidence show how this version occupies its declared cohort without converting length, vocabulary counts, or recurrence into claims about merit, fidelity, intention, or reception. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora.</p>
   </section>
 
   <section class="cta-panel" aria-labelledby="continue-heading">

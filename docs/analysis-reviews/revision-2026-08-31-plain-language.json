@@ -1,0 +1,189 @@
+{
+  "id": "revision-2026-08-31-plain-language",
+  "date": "2026-08-31",
+  "scope": "Owner-requested clarity pass on /translations/analysis/: Greek line quotes in rendering-variation cards (accent-exact selection), stability renamed and explained, token/TTR terminology replaced in all user-facing copy incl. display-layer map over reviewed narratives (final.json untouched).",
+  "roles": [
+    {
+      "role": "reviewer1",
+      "model": "gpt-5.6-terra/high",
+      "focus": "textual accuracy, method fidelity, philology",
+      "output": "copyrev1.json"
+    },
+    {
+      "role": "reviewer2",
+      "model": "gpt-5.6-terra/high",
+      "focus": "lay-reader clarity and usefulness (independent)",
+      "output": "copyrev2.json"
+    },
+    {
+      "role": "arbiter",
+      "model": "gpt-5.6-sol/high",
+      "focus": "final wording decisions",
+      "output": "copyarb.json"
+    }
+  ],
+  "keyFindings": [
+    "Both reviewers: 'usual wording'/'habitual choice' overstated modal-candidate share as a rendering claim; final copy describes context-word recurrence only ('recurring nearby word').",
+    "Reviewer1: marks-stripping Greek line lookup plus non-exact variant fallback could quote a line lacking the exact word (dios vs Dios); implementation changed to strict accent-exact-only selection, verifier asserts the invariant per quoted line.",
+    "Reviewer2: remaining jargon in method notes and labels; arbiter adopted plain-language versions with compact labels."
+  ],
+  "decision": "Arbiter final wording for items 1-8 applied verbatim to the generator; deeper simplification of the 24 reviewed narratives deferred to a separate re-arbitration.",
+  "reviews": {
+    "copyrev1": {
+      "reviewer": "R1",
+      "verdicts": [
+        {
+          "item": 1,
+          "verdict": "revise",
+          "revision": "Use “recurring nearby word NN%” and the title “Share of occurrences in which the most frequent retained nearby context word also appears.”",
+          "reason": "The numerator is the occurrence count of one retained candidate word in line windows, after the corpus-derived stoplist; it is not a demonstrated rendering choice. “Usual wording” also suggests a phrase-level translation rather than recurrence of one context word."
+        },
+        {
+          "item": 2,
+          "verdict": "revise",
+          "revision": "Replace the aside with: “For each Greek form, we collect the retained words in the surrounding translation window. The most frequent of those words is the recurring nearby word; the percentage is the share of occurrences whose window contains it. This is a context-word recurrence measure, not a translation alignment or a measure of meaning, fidelity, quality, or intentional habit.”",
+          "reason": "“Habitual choice” and “travels with” overstate a co-occurrence calculation as a translator-selected rendering. Each candidate is deduplicated within an occurrence and common corpus words are removed; the computation supports repeated presence in windows, not a translation relationship or intentional habit."
+        },
+        {
+          "item": 3,
+          "verdict": "revise",
+          "revision": "No copy-only revision preserves the stated guarantee. Enforce accentFold token equality when selecting the Greek line and remove the non-exact variant fallback; then retain the proposed sentence. If the implementation is not changed, say “The Greek line associated with the selected occurrence is quoted first, then its translation window.”",
+          "reason": "The current data selection yields three strict surface matches per card, but greekQuoteFor locates lines with a marks-stripping substring fold and chooseVariationCases can fall back to non-exact variants. Thus the generator does not invariantly guarantee that every displayed quotation contains the headline surface. The grave-to-acute fold itself is philologically sound: grave is the contextual orthographic alternant of acute, not a lexical contrast, and it retains breathings, circumflexes, diaereses, and iota subscripts; δῖος and Διός remain distinct."
+        },
+        {
+          "item": 4,
+          "verdict": "accept",
+          "revision": "No change.",
+          "reason": "The prose accurately describes lowercased Unicode letter-and-mark word runs without stemming, the unique-forms/total-words ratio, punctuation-split sentence lengths, three-to-six-word recurring n-grams, and the non-alignment status of candidate context words."
+        },
+        {
+          "item": 5,
+          "verdict": "accept",
+          "revision": "No change.",
+          "reason": "A distinct-word-form count is a surface-form measure, so grammar or inflection, spelling, and corpus conventions can all affect it; the caution does not imply a stronger lexical claim."
+        },
+        {
+          "item": 6,
+          "verdict": "accept",
+          "revision": "No change.",
+          "reason": "The labels faithfully rename the computed token count, unique normalized word-form count, type-token ratio, and mean punctuation-split sentence length without changing their definitions."
+        },
+        {
+          "item": 7,
+          "verdict": "accept",
+          "revision": "No change.",
+          "reason": "The displayed list is the first ten recurring three-to-six-word n-grams ranked by count times n; “count-times-length score” states that ordering correctly."
+        },
+        {
+          "item": 8,
+          "verdict": "accept",
+          "revision": "No change.",
+          "reason": "The display-layer substitutions change only the reader-facing names of the same numerical measures. The cited Butler values, 117938 and 6322, match the statistics index; rendered number formatting may add separators."
+        }
+      ],
+      "overall": "REVISE items 1-3; accept items 4-8. “Usual wording” is not an honest standalone name for modal-candidate share unless it is explicitly framed as recurrence of a retained nearby context word rather than a rendering. Grave-to-acute normalization creates no lexical false match by itself, but the broader marks-stripping quote lookup and fallback mean the promised exact Greek quotation is not guaranteed by the generator."
+    },
+    "copyrev2": {
+      "reviewer": "R2",
+      "verdicts": [
+        {
+          "item": 1,
+          "verdict": "revise",
+          "revision": "Use the chip label \"same nearby word 13%\" and the title \"In 13% of passages containing this Greek word, the most common nearby English word appears. This is about nearby wording, not a direct translation.\"",
+          "reason": "\"Usual wording\" is friendlier than \"stability\", but it does not say what the percentage counts. The tooltip's \"most frequent nearby rendering choice\" is abstract and can still sound like a translation claim."
+        },
+        {
+          "item": 2,
+          "verdict": "revise",
+          "revision": "Replace with: \"What ‘same nearby word’ measures. For each Greek word, we look at the English words near it in every sampled passage. We find the nearby English word that appears most often, then show the percentage of passages where it appears again. This measures a repeated local wording pattern, not meaning, translation accuracy, or quality.\"",
+          "reason": "The current explanation is approachable, but \"travels with\" and \"habitual choice\" suggest the English word is the translator's chosen equivalent for the Greek, while the page says these are only context words."
+        },
+        {
+          "item": 3,
+          "verdict": "revise",
+          "revision": "Keep the first sentence, then replace the technical explanation with: \"Each example is labeled ‘Greek line containing [word]’ and ‘English passage nearby.’ The highlighted nearby English words help compare the surrounding wording; they are not claimed to be direct translations of the Greek word.\" Add those two visible labels to every pair of quotations.",
+          "reason": "The Greek-first order is visible, but it is not self-explanatory to a reader who cannot read Greek: the English excerpts often seem unrelated to the displayed Greek word. \"Exact sidecars,\" \"proportional line window,\" \"heuristic,\" and \"word alignments\" are specialist terms that do not solve that problem."
+        },
+        {
+          "item": 4,
+          "verdict": "revise",
+          "revision": "Replace with: \"How we count. We count each uninterrupted string of letters as a word after converting it to lowercase. We do not group related forms, so ‘sing’ and ‘singing’ count separately. Vocabulary variety is the number of different written word forms divided by the total number of words. We estimate sentence length by splitting at punctuation. Here, ‘formula’ means a repeated phrase of three to six words. The listed English words are nearby context words, not proven translations of the Greek word. Comparisons across languages are only descriptive: languages differ in spelling and in how they change word endings.\"",
+          "reason": "The examples help, but \"stemming,\" \"rendering candidates,\" \"inflection,\" and \"corpus\" are jargon for the intended reader. The current note also makes the reader decode an implementation definition before learning its practical consequence."
+        },
+        {
+          "item": 5,
+          "verdict": "revise",
+          "revision": "Use: \"A higher vocabulary-variety figure can result from grammar, spelling, or the way an edition was prepared—not just from using a wider range of words. Sentence length is estimated by splitting at punctuation.\"",
+          "reason": "This is a meaningful improvement over TTR/morphology/orthography, but \"distinct-word figure\" and especially \"corpus conventions\" remain opaque."
+        },
+        {
+          "item": 6,
+          "verdict": "revise",
+          "revision": "Use labels \"total words\", \"different written word forms\", \"vocabulary variety (different forms ÷ total words)\", and \"average words per sentence\" in the tiles, legend, and table.",
+          "reason": "\"Words\" is clear, but \"distinct word forms\" and the bare formula \"distinct ÷ total words\" are not immediately interpretable. \"Mean sentence length\" is understandable to some readers but less direct than \"average words per sentence\"."
+        },
+        {
+          "item": 7,
+          "verdict": "revise",
+          "revision": "Use: \"The ten repeated phrases of three to six words that rank highest when we multiply how often each phrase appears by its length.\"",
+          "reason": "\"Highest-ranked\" hides the criterion, and \"count-times-length score\" is compact but forces a lay reader to translate technical shorthand."
+        },
+        {
+          "item": 8,
+          "verdict": "revise",
+          "revision": "Retain the new \"words\" and \"distinct word forms\" substitutions, but simplify the remaining sentence to: \"Butler's repeated-phrase list starts with ‘the house of,’ which appears 70 times. It is first because of the ranking method, not because it appears more often than every other phrase. Compared with the other English translations here, Murray has 133,986 words. These counts describe visible features of the texts; they do not judge quality, faithfulness, the translator's intentions, or readers' responses.\"",
+          "reason": "The display map removes AI-sounding terminology, but \"score-ranked,\" \"atlas context,\" \"declared cohort,\" \"corpus evidence,\" and \"supplied corpora\" still make the most useful take-away unnecessarily academic."
+        }
+      ],
+      "overall": "revise — The revision removes the three reported terms, but the most consequential section still leaves a non-Greek reader unable to tell what connects the Greek line to the English passage. Add explicit pair labels and plainly state that the nearby English words show context rather than direct translations; then simplify the remaining methodological labels."
+    },
+    "copyarb": {
+      "decisions": [
+        {
+          "item": 1,
+          "finalWording": "Chip: ‘recurring nearby word NN%’. Title: ‘Share of passages containing this Greek word where its most frequent nearby context word appears.’",
+          "rationale": "This names the computed recurrence directly and stays within the compact-label constraint. Unlike ‘usual wording’, ‘habitual choice’, or ‘rendering choice’, it does not imply that the modal candidate translates the Greek word. ‘Nearby context word’ also works for translations that are not in English."
+        },
+        {
+          "item": 2,
+          "finalWording": "What ‘recurring nearby word’ measures. For each Greek word, we look at the words near it in each translation passage, leaving out common words. We find the nearby word that appears in the most passages, then show the percentage of passages where it appears. This measures recurrence in nearby context, not a direct translation or a measure of meaning, fidelity, quality, or intentional choice.",
+          "rationale": "This keeps the lay explanation while matching the actual per-passage context-window calculation. It avoids ‘travels with’ and ‘habitual choice’, which overstate co-occurrence as a translator-selected equivalent, and it avoids assuming that every translation is English."
+        },
+        {
+          "item": 3,
+          "finalWording": "Intro: ‘The Greek line containing the word appears first, followed by the nearby passage in the translation. Highlighted nearby words show recurring context, not direct translations of the Greek word.’ Pair labels: ‘Greek line’ and ‘Translation passage’.",
+          "rationale": "Strict accent-exact-only variant selection and removal of the non-exact fallback make the Greek-line claim valid. The second sentence and compact labels make the order understandable without implying word-level alignment, and ‘translation passage’ is language-neutral."
+        },
+        {
+          "item": 4,
+          "finalWording": "How we count. A ‘word’ here is an unbroken run of letters, including accents, converted to lowercase. We do not group related forms, so ‘sing’ and ‘singing’ count separately. Vocabulary variety is the number of distinct written word forms divided by the total number of words. We estimate sentence length by splitting at punctuation. Here, ‘formula’ means only a recurring phrase of three to six words; it does not claim oral origin. The words listed beside Greek forms are nearby context words, not proven translations of the Greek word. Comparisons across languages are descriptive only: languages differ in spelling and in how their word forms change.",
+          "rationale": "This preserves every methodological qualification accepted by the accuracy review while replacing ‘stemming’, ‘rendering candidates’, ‘inflection’, and ‘corpus’ with plainer explanations. It also avoids English-only wording."
+        },
+        {
+          "item": 5,
+          "finalWording": "A higher vocabulary-variety value can result from grammar, spelling, or how an edition was prepared—not just from using a wider range of words. Sentence length is estimated by splitting at punctuation.",
+          "rationale": "This retains the accurate caution while replacing ‘distinct-word figure’ and ‘corpus conventions’ with language a non-specialist can understand on first reading."
+        },
+        {
+          "item": 6,
+          "finalWording": "Tiles and chart legend: ‘Words’; ‘Distinct word forms’; ‘Vocabulary variety (distinct ÷ total)’; ‘Average sentence length’. Overview table headers: ‘Words’; ‘Vocabulary variety’.",
+          "rationale": "These labels accurately name the four calculations, avoid token/type-token jargon, and meet the compact-label limit. The parenthetical gives the ratio’s meaning without turning the label into a sentence."
+        },
+        {
+          "item": 7,
+          "finalWording": "The ten repeated phrases of three to six words that rank highest when we multiply how often each phrase appears by its length.",
+          "rationale": "This states the count-times-length ordering in plain language and avoids unexplained scoring shorthand."
+        },
+        {
+          "item": 8,
+          "finalWording": "Mechanical display map only: ‘tokens’ → ‘words’; ‘token’ → ‘word’; ‘unique forms’ → ‘distinct word forms’. Example: ‘The corpus contains 117938 words and 6322 distinct word forms.’ All other wording in the 24 reviewed narratives remains unchanged.",
+          "rationale": "The substitutions remove the targeted terminology without changing the reviewed narratives or their claims. The broader rewrite proposed by R2 is outside this pass’s binding scope."
+        }
+      ],
+      "deferred": [
+        "Any simplification or rewriting of the 24 reviewed narratives beyond the item 8 mechanical terminology map is deferred to a separate re-arbitration."
+      ],
+      "summary": "Final wording adopts a language-neutral, plain-language account of nearby context-word recurrence; it never presents the modal candidate as a rendering or translation of the Greek. The Greek-first explanation is approved on the binding assumption that strict accent-exact-only selection replaces the fallback. Method and label copy is simplified while remaining faithful to the calculations, and narrative changes are limited to the authorized mechanical terminology map."
+    }
+  }
+}
