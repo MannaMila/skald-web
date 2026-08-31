@@ -1,0 +1,451 @@
+{
+  "id": "greek-words-2026-08-31",
+  "date": "2026-08-31",
+  "scope": "New page /translations/greek-words/: ten most interesting Greek words in the Odyssey, verbatim per-translation renderings at flagship lines, editorial ranking. 120 renderings machine-verified verbatim; 19 recorded omissions.",
+  "roles": [
+    {
+      "role": "draft",
+      "model": "gpt-5.6-terra/high",
+      "focus": "selection, verbatim extraction, narratives"
+    },
+    {
+      "role": "reviewer1",
+      "model": "gpt-5.6-terra/high",
+      "focus": "philology, accuracy, citations — 9 revisions (pun loci, LSJ headwords, nostalgia coinage, psyche omits mislabels, xeinos line)"
+    },
+    {
+      "role": "reviewer2",
+      "model": "gpt-5.6-terra/high",
+      "focus": "reader interest, ranking — reorder for web entry, lede, descendant threads; pepnymenos flagged weakest"
+    },
+    {
+      "role": "arbiter",
+      "model": "gpt-5.6-sol/high",
+      "focus": "final selection/order/copy — swapped pepnymenos out for amymon, wine-dark sea to #1"
+    }
+  ],
+  "decision": "Arbiter final applied; two mechanical transcription slips (curly vs straight apostrophe in Cowper; missing accent in xeinoi surface form) corrected against the corpus and re-verified. Machine verification: 120/120 renderings verbatim, Greek lines exact, jargon guards pass.",
+  "reviews": {
+    "gw-r1": {
+      "schemaVersion": 1,
+      "role": "reviewer-1-philology-textual-accuracy-citations",
+      "overallVerdict": "revise",
+      "scope": "Semantic rendering, genuine omission, Homeric language, source form, morphology, and selection only; no substring or Greek-line verification was repeated.",
+      "global": {
+        "surfaceForms": {
+          "verdict": "revise",
+          "finding": "Every quoted surface form is present and morphologically appropriate, but the draft supplies forms without morphology labels. Add the following labels rather than leaving a reader to infer them.",
+          "requiredReplacement": {
+            "πολύτροπος": "πολύτροπον: accusative singular masculine adjective, agreeing with ἄνδρα",
+            "μῆτις": "μῆτις: nominative singular feminine noun, coordinated with ὄνομα as subject of ἐξαπάτησεν",
+            "νόστος": "νόστον: accusative singular masculine noun, object of ἀρνύμενος",
+            "ἀτασθαλίη": "ἀτασθαλίῃσιν: epic dative plural feminine noun, a causal/instrumental dative",
+            "οἶνοψ πόντος": "οἴνοπα πόντον: accusative singular masculine adjective plus noun, governed by ἐπί",
+            "θυμός": "θυμόν: accusative singular masculine noun in κατὰ θυμόν",
+            "κλέος": "κλέος: nominative singular neuter noun, subject of ἵκει",
+            "ξεῖνος": "ξεῖνοι: nominative plural masculine nouns, coordinated with πτωχοί",
+            "ψυχή": "ψυχή: nominative singular feminine noun, subject of ἦλθεν",
+            "πεπνυμένος": "πεπνυμένος: nominative singular masculine perfect middle-passive participle used adjectivally, agreeing with Τηλέμαχος"
+          }
+        },
+        "sourceFormCorrections": [
+          "For the Homeric form ἀτασθαλίη, cite LSJ, s.v. ἀτασθαλία (with Ionic ἀτασθαλίη), not LSJ, s.v. ἀτασθαλίη.",
+          "For ξεῖνος, retain LSJ, s.v. ξένος, but cite Cunliffe, s.v. ξεῖνος.",
+          "For πεπνυμένος, replace LSJ, s.v. πινύσκω with LSJ, s.v. πέπνυμαι. The participle is the Epic perfect middle-passive with present force; it is not an inflected form of πινύσκω."
+        ]
+      },
+      "verdicts": [
+        {
+          "headword": "πολύτροπος",
+          "verdict": "revise",
+          "renderingAssessment": "accept: the selected English and non-English phrases are renderings of πολύτροπος, and the Hobbes and Worsley records are defensible paraphrastic omissions rather than fabricated equivalents.",
+          "requiredReplacement": {
+            "narrative": "At the poem’s opening, πολύτροπος tells us that Odysseus has many ‘turns’ or ways, but it does not settle whether those are journeys, shifts of mind, or stratagems. That range is why Butler’s “ingenious” makes him inventive, Morris’s “Shifty” gives him a more suspicious cast, and Johnston’s “resourceful” makes him practical. Murray’s “many devices” chooses tactical intelligence. No one English adjective carries every possibility, and the first word about Odysseus begins the poem’s question of how to value his flexibility."
+          },
+          "reason": "The current phrase ‘morally slippery’ overstates what Morris’s ‘Shifty’ alone establishes; the replacement keeps the contrast while avoiding a moral verdict embedded in the gloss."
+        },
+        {
+          "headword": "μῆτις",
+          "verdict": "revise",
+          "renderingAssessment": "accept: every selected phrase represents μῆτις, sometimes in a condensed rendering of the coordinated expression ‘my name and faultless μῆτις’; none is merely a co-occurring phrase. Worsley’s ‘shrewd illusion’ is a compression, but still a genuine paraphrase of the name-and-resource combination.",
+          "requiredReplacement": {
+            "narrative": "μῆτις is practical intelligence: the capacity for an apt, opportunistic plan, rather than mere abstract cleverness. At 9.414 it is paired with Odysseus’s name, Οὖτις; the joke has just worked because the Cyclops’ ‘Nobody is hurting me’ (9.408) is heard by his neighbours as ‘no one is hurting you’ (μή τίς, 9.410). Butler’s “clever stratagem,” Murray’s “cunning device,” and Chapman’s “wit” make different choices between a plan and a mental capacity. Homer joins the name to the intelligence, so an English version must decide how much of the achievement lies in wordplay and how much in design.",
+            "sources": [
+              "Homer, Odyssey 9.408-414",
+              "LSJ, s.v. μῆτις",
+              "Cunliffe, A Lexicon of the Homeric Dialect, s.v. μῆτις"
+            ]
+          },
+          "reason": "The draft’s ‘Οὖτις/μή τις’ shorthand needs the actual sequence and loci: Οὖτις at 9.408, μή τίς at 9.410, and μῆτις at 9.414."
+        },
+        {
+          "headword": "νόστος",
+          "verdict": "revise",
+          "renderingAssessment": "accept: the selected phrases genuinely render νόστον, even when a translation combines the paired Greek objects ‘life’ and ‘return’ in one English expression. Worsley genuinely paraphrases the return away by replacing the pair with rescue from a watery grave.",
+          "requiredReplacement": {
+            "narrative": "νόστος is more than travel in the right direction. It is a return home; at 1.5, specifically, the return of Odysseus’s companions. English has no single everyday noun that does all that work. Butler makes it an action, “bring his men safely home”; Murray makes it “the return of his comrades”; Pope turns it into reaching a “natal shore.” Those choices matter because the poem does not treat arrival as simple success. A return can be delayed, damaged, denied, or earned at terrible cost. The later learned word ‘nostalgia’ combines νόστος with ἄλγος, ‘pain’; Homeric νόστος itself means homecoming, not the modern feeling of nostalgia.",
+            "sources": [
+              "Homer, Odyssey 1.5",
+              "LSJ, s.v. νόστος",
+              "Cunliffe, A Lexicon of the Homeric Dialect, s.v. νόστος",
+              "OED, s.v. nostalgia"
+            ]
+          },
+          "reason": "The etymological afterlife requested by the brief needs the crucial qualification that nostalgia is a later learned compound, not an ancient synonym for νόστος."
+        },
+        {
+          "headword": "ἀτασθαλίη",
+          "verdict": "revise",
+          "renderingAssessment": "accept: the selected phrases are genuine renderings of the noun or close paraphrases of it; none is a rendering of a different nearby Greek word alone.",
+          "requiredReplacement": {
+            "headword": "ἀτασθαλίη",
+            "translit": "atasthaliē",
+            "sources": [
+              "Homer, Odyssey 1.7",
+              "LSJ, s.v. ἀτασθαλία",
+              "Cunliffe, A Lexicon of the Homeric Dialect, s.v. ἀτασθαλίη"
+            ],
+            "sentence": "Replace ‘The plural matters too: the line blames their accumulated acts, not a single lapse.’ with ‘The plural can present the disaster as the result of reckless acts, rather than one neutral mistake.’"
+          },
+          "reason": "ἀτασθαλίαι is a nominative-plural form, not the lexicon headword; LSJ’s citation form is ἀτασθαλία. The stronger plural claim in the draft treats a lexical plural as proof of a specific accumulated-action reading."
+        },
+        {
+          "headword": "οἶνοψ πόντος",
+          "verdict": "accept",
+          "renderingAssessment": "accept: the retained phrases genuinely render the sea expression, and Butler, Pope, Chapman, and Hobbes genuinely omit it at this locus rather than supplying a separate equivalent.",
+          "reason": "The narrative is accurate in treating ‘wine-dark’ as a conventional but not uniquely compulsory rendering of οἶνοψ, and the lexicon citations are correctly formed."
+        },
+        {
+          "headword": "θυμός",
+          "verdict": "revise",
+          "renderingAssessment": "accept: ‘heart,’ ‘breast,’ and ‘spirit’ are genuine renderings at this locus; the omission records are semantically sound where a translator makes Odysseus simply suffer without a separate inner-life equivalent.",
+          "requiredReplacement": {
+            "narrative": "θυμός is often translated ‘heart,’ but in Homer it can name a person’s inner life: feeling, desire, resolve, or thought active within them. It is not simply the modern emotion called the heart, nor simply the mind. In this opening line Murray and Cotterill preserve “heart,” while Johnston chooses “spirit.” Palmer’s “own breast” makes the suffering bodily. Several translators simply say that Odysseus suffers. Each choice affects how we hear later passages in which θυμός is stirred, restrained, or made to deliberate. Greek can keep this inner life bodily and responsive; English usually divides the work among heart, mind, soul, and will."
+          },
+          "reason": "The revised wording avoids treating θυμός as a single anatomical ‘seat’ or as a settled Homeric theory of psychology while preserving its unusually broad range."
+        },
+        {
+          "headword": "κλέος",
+          "verdict": "revise",
+          "renderingAssessment": "accept: ‘fame,’ ‘renown,’ ‘glory,’ ‘rumour,’ and Chapman’s audible ‘facts ... resound’ are genuine renderings or paraphrases of κλέος, not material from the adjacent clause alone.",
+          "requiredReplacement": {
+            "sentence": "Replace ‘κλέος is fame, but its oldest sense points to what people hear and pass on.’ with ‘κλέος can mean fame or report: a reputation that people hear and pass on.’"
+          },
+          "reason": "‘Oldest sense’ is an etymological claim not supported by the cited lexica as given. The replacement states the Homeric semantic point without making an undocumented historical-linguistic claim."
+        },
+        {
+          "headword": "ξεῖνος",
+          "verdict": "revise",
+          "renderingAssessment": "revise: the English phrases ‘all strangers and beggars,’ ‘guests and bedesmen,’ and their equivalents render the lexical repetition at 14.58 (ξεῖνοι τε πτωχοί τε), not the singular ξεῖνον selected at 14.57. They are not false translations of the lemma, but they do not satisfy the stated flagship-token rule.",
+          "requiredReplacement": {
+            "flagship": {
+              "location": "14.58",
+              "greekLine": "ξεῖνοί τε πτωχοί τε· δόσις δʼ ὀλίγη τε φίλη τε",
+              "surfaceForm": "ξεῖνοι"
+            },
+            "narrative": "ξεῖνος can designate either a stranger or a guest, and the two senses are deliberately close in the Odyssey. English usually forces a choice. Butler says “strangers and beggars”; Cotterill says “Beggars and guests”; Morris combines “guests and bedesmen.” In Eumaeus’s speech, the word’s range matters: a visitor may be unknown and vulnerable while still owed welcome. The rule is grounded in Zeus, so insulting such a person is more than bad manners. Translating only ‘guest’ can make the relation too settled; translating only ‘stranger’ can hide the obligation of welcome.",
+            "sources": [
+              "Homer, Odyssey 14.57-58",
+              "LSJ, s.v. ξένος",
+              "Cunliffe, A Lexicon of the Homeric Dialect, s.v. ξεῖνος"
+            ]
+          },
+          "reason": "Moving the flagship one line gives the displayed English evidence its exact Homeric token and improves the account of the hospitality rule."
+        },
+        {
+          "headword": "ψυχή",
+          "verdict": "revise",
+          "renderingAssessment": "revise: Butler, Palmer, Bryant, Pope, Chapman, Morris, Worsley, Cotterill, and Johnston supply genuine equivalents at 11.51. But the three omits:true claims for Butcher-Lang, Cowper, and Hobbes are false semantic claims: each translator renders the opening ψυχή in the immediately preceding source segment.",
+          "requiredReplacement": {
+            "butcher-lang": "Remove omits:true. Its preceding source segment renders the line as ‘And first came the soul of Elpenor, my companion.’",
+            "cowper": "Remove omits:true. Its preceding source segment renders the line as ‘The spirit, first, of my companion came, / Elpenor.’",
+            "hobbes": "Remove omits:true. Its preceding source segment renders the line as ‘First came my soldier Elpenor’s spirit.’",
+            "routingRequirement": "Those three replacements fall in the source segment immediately before the one labelled 11.51. Correct the source segment alignment, or choose a flagship whose semantic rendering is in the segment that contains the Greek line; do not publish an omission claim merely to preserve the current chunk boundary."
+          },
+          "reason": "This is a source-routing problem, not a translator’s omission. The existing claims therefore violate the brief’s requirement that omits:true mean that the word was actually paraphrased away."
+        },
+        {
+          "headword": "πεπνυμένος",
+          "verdict": "revise",
+          "renderingAssessment": "accept in isolation: ‘discreet,’ ‘wise,’ ‘prudent,’ ‘heedful,’ ‘sage,’ and Johnston’s looser ‘Noble’ are genuine renderings of the epithet, and the three omission records are defensible where the epithet disappears.",
+          "requiredReplacement": {
+            "sources": [
+              "Homer, Odyssey 1.213",
+              "LSJ, s.v. πέπνυμαι",
+              "Cunliffe, A Lexicon of the Homeric Dialect, s.v. πεπνυμένος",
+              "Skald translation statistics, corpus context only: 12 distinct recurring nearby English words across the 13 English translations for πεπνυμένος"
+            ],
+            "narrative": "πεπνυμένος is a repeated epithet for Telemachus, but English translators do not settle on one stable equivalent. At this line Palmer has “discreet,” Murray “wise,” Bryant “prudent,” Morris “heedful,” and Johnston “Noble.” The bundled corpus’s per-translation recurring-nearby-word summaries produce 12 different English words across the 13 English translations, so the variation is visible without treating those nearby words as direct matches. The participle means ‘wise’ or ‘of sound understanding’; it can describe someone capable of speaking and judging well, not necessarily an old sage. The variation makes Telemachus appear tactful, sensible, attentive, or dignified before the poem has shown what kind of maturity he will achieve."
+          },
+          "reason": "The LSJ citation is currently wrong, and the source should identify πεπνυμένος as an Epic perfect participle with present force. This word is also the one that should yield its place if the selection correction below is adopted."
+        }
+      ],
+      "selectionAssessment": {
+        "verdict": "revise",
+        "requiredReplacement": {
+          "remove": "πεπνυμένος",
+          "insert": "ἀμύμων",
+          "why": "ἀμύμων at Odyssey 1.29 should take the final slot. It is a genuine translation and textual crux: the formulaic ‘blameless’ is applied to Aegisthus immediately before Zeus explains his culpable, warned-against conduct. That tension between formulaic diction and local moral judgment is more philologically distinctive than a relatively straightforward ‘wise/prudent’ epithet for Telemachus."
+        },
+        "rejectedItems": [
+          {
+            "headword": "ἀμύμων",
+            "verdict": "promote",
+            "replacementWhyNot": "Include this word in place of πεπνυμένος: its application to Aegisthus at 1.29 is a precise, consequential formulaic-epithet problem, not merely one more instance of adjective variation."
+          },
+          {
+            "headword": "δαίμων",
+            "verdict": "retain-rejection",
+            "replacementWhyNot": "Keep it out only because its range—god, divine agency, or a god-sent fate—would require its own focused entry. The present page already has ten more tightly framed demonstrations of translation choice."
+          },
+          {
+            "headword": "γλαυκῶπις",
+            "verdict": "retain-rejection",
+            "replacementWhyNot": "Keep it out to preserve range after adding ἀμύμων, but replace the present rationale. Its semantic problem is real: ‘grey-eyed,’ ‘gleaming-eyed,’ and ‘owl-eyed’ are competing ways of approaching Athena’s epithet. Do not claim that it is usually simply retained or left unmarked without evidence."
+          },
+          {
+            "headword": "πολύμητις",
+            "verdict": "retain-rejection",
+            "replacementWhyNot": "Keep the rejection: this formulaic compound would substantially repeat the page’s accounts of μῆτις and πολύτροπος, while ἀμύμων adds a distinct problem of formula, ethics, and context."
+          }
+        ]
+      },
+      "blockingIssues": [
+        "Do not retain the three ψυχή omits:true records: they assert translator omission where the translators in fact supply ‘soul’ or ‘spirit’ in an adjacent source segment.",
+        "Do not retain the ξεῖνος flagship at 14.57 with rendering phrases drawn from 14.58; move the flagship to 14.58 or replace every rendering with a phrase for the singular token at 14.57.",
+        "Do not retain LSJ, s.v. πινύσκω for πεπνυμένος or LSJ, s.v. ἀτασθαλίη for ἀτασθαλίη."
+      ]
+    },
+    "gw-r2": {
+      "reviewer": "Reviewer 2 — reader interest, clarity, and ranking",
+      "scope": "Independent general-reader review of greek-words-draft.json. This review assesses presentation and selection, not Greek accuracy or source verification.",
+      "overallVerdict": "REVISE BEFORE PUBLISHING",
+      "overallAssessment": "The draft has an excellent premise and unusually good evidence for a web page: it lets a reader see translation choices instead of merely being told that Greek is untranslatable. Its strongest entries turn a word into a scene—the opening description of Odysseus, the Nobody joke, the sea, the dead Elpenor, and a person at the door. The page is currently ordered like a miniature classics seminar: thematic importance first, public hook fifth, English-descendant hooks ninth. For a curious non-classicist, lead with the memorable puzzle, then keep giving them scenes, surprises, and connections to words they already know. Trim the procedural language, especially in the method and the πεπνυμένος entry.",
+      "lede": {
+        "verdict": "MISSING — ADD",
+        "readerNeed": "A web visitor needs, before the list begins, a promise that this is about enjoyable moments in the Odyssey rather than a vocabulary lesson.",
+        "suggestedRewrite": "Ten Greek words can make a familiar Odyssey strange again. Each appears in a vivid moment—a trick, a homecoming, a stranger at the door, a sea that refuses to be simply blue—and each has forced translators to choose what to keep. Read the choices side by side and the poem starts to sound less fixed, more alive."
+      },
+      "method": {
+        "verdict": "REWRITE FOR THE PAGE; KEEP THE FULL VERSION AS A SOURCE NOTE",
+        "readerConcern": "The current paragraph is trustworthy but begins with implementation detail: filenames, chunks, verbatim substrings, and a corpus-wide count. That interrupts the invitation to read. A general reader needs the human method first; the audit trail can sit behind a 'How we checked this' disclosure.",
+        "suggestedPageRewrite": "This is an editorial selection, not a claim that Greek has an objective top ten. For each word, we compare the same Homeric moment across translations. Where English has no neat one-word answer, the contrast is the point: translators may choose a literal image, a clearer meaning, a different mood, or no separate equivalent at all.",
+        "suggestedSourceNote": "Greek text and translation excerpts were checked against Skald's edition-locked Odyssey sources. Quoted English phrases occur in the translation passage for the cited line; entries marked 'no separate equivalent' do not invent a match. Non-English examples appear only when they clarify that entry's specific problem.",
+        "removeFromReaderFacingCopy": [
+          "matching Odyssey greek.json file",
+          "verbatim substring of the translation chunk",
+          "Murray is stored as loeb.json",
+          "the corpus-wide recurring-nearby-word count"
+        ]
+      },
+      "ranking": {
+        "verdict": "REORDER",
+        "currentSequenceAssessment": "The current first four form a coherent argument about Odysseus, return, and responsibility. But a reader arriving from the web is more likely to enter through 'wine-dark sea' or the Nobody joke than through an abstract adjective. The current order also delays two satisfying English bridges—nostalgia and psyche—and keeps ξένος, with its immediate social stakes, too late.",
+        "recommendedOrder": [
+          {
+            "rank": 1,
+            "headword": "οἶνοψ πόντος",
+            "rankReason": "Start with the phrase many visitors recognise and the quickest proof that translation is a real, pleasurable problem rather than word substitution."
+          },
+          {
+            "rank": 2,
+            "headword": "μῆτις",
+            "rankReason": "Follow the visual puzzle with the Nobody joke, where a language choice immediately changes what happens in the story."
+          },
+          {
+            "rank": 3,
+            "headword": "πολύτροπος",
+            "rankReason": "Now return to the poem's first portrait of Odysseus and ask what kind of hero the previous trick has introduced."
+          },
+          {
+            "rank": 4,
+            "headword": "νόστος",
+            "rankReason": "Move from the hero's shifting intelligence to what drives the whole journey, with nostalgia as an inviting English bridge."
+          },
+          {
+            "rank": 5,
+            "headword": "ξεῖνος",
+            "rankReason": "A stranger at the door makes the poem's ethics concrete and gives the middle of the list a human, present-day charge."
+          },
+          {
+            "rank": 6,
+            "headword": "ψυχή",
+            "rankReason": "The familiar English 'psyche' draws readers into a vivid underworld scene and overturns their expectation of what a soul is."
+          },
+          {
+            "rank": 7,
+            "headword": "κλέος",
+            "rankReason": "After the underworld, ask what outlives a person: the stories, praise, and rumours people keep repeating."
+          },
+          {
+            "rank": 8,
+            "headword": "θυμός",
+            "rankReason": "This extends the inner-life thread, showing why 'heart' is too small a container for Homeric feeling and will."
+          },
+          {
+            "rank": 9,
+            "headword": "ἀτασθαλίαι",
+            "rankReason": "Its sharp argument about self-destruction is valuable, but it is a less immediate hook once the page has already shown the poem's people and stakes."
+          },
+          {
+            "rank": 10,
+            "headword": "πεπνυμένος",
+            "rankReason": "Keep only if the page needs a quiet final note about Telemachus growing into judgment; otherwise replace it with a stronger scene or a word that gives Penelope a distinct presence."
+          }
+        ]
+      },
+      "foregroundRenderingContrasts": [
+        {
+          "headword": "οἶνοψ πόντος",
+          "contrast": "'wine-dark sea' / 'dark blue deep' / 'gloomy flood'",
+          "why": "This is the cleanest first-screen demonstration of three legitimate translation impulses: preserve a strange image, make a visual colour explicit, or carry the mood instead."
+        },
+        {
+          "headword": "μῆτις",
+          "contrast": "'clever stratagem' / 'cunning device' / 'wit ... and name'",
+          "why": "These make a reader feel the choice between a plan, a thing, and the mind-and-language act that makes the Nobody joke work."
+        },
+        {
+          "headword": "πολύτροπος",
+          "contrast": "'ingenious' / 'resourceful' / 'Shifty'",
+          "why": "The contrast gives Odysseus a recognisably different moral character in three short, memorable words."
+        },
+        {
+          "headword": "ξεῖνος",
+          "contrast": "'stranger' / 'guest' / 'strangers and beggars'",
+          "why": "It exposes an ethical choice English forces too early: is the person outside the household unknown, welcomed, poor, or all three?"
+        },
+        {
+          "headword": "ψυχή",
+          "contrast": "'ghost' / 'spirit' / 'soul' / 'shade'",
+          "why": "The competing English afterlife words come with familiar but conflicting pictures; Elpenor makes the distinction emotionally legible."
+        },
+        {
+          "headword": "ἀτασθαλίαι",
+          "contrast": "'stupidity' / 'sheer folly' / 'impious folly' / 'insolence'",
+          "why": "Foreground this as a scale of blame, from an everyday bad decision to defiance with religious consequences."
+        }
+      ],
+      "wordReviews": [
+        {
+          "headword": "πολύτροπος",
+          "currentRank": 1,
+          "recommendedRank": 3,
+          "verdict": "KEEP — REWRITE LIGHTLY AND MOVE",
+          "readerInterest": "High. It opens the poem and gives readers a question they can carry through the page: is Odysseus admirable, slippery, or both?",
+          "clarityNotes": "'At the poem's first adjective' and 'the word sets a continuing question' are more schoolroom than scene. Start with the hero and let the three English choices do the work.",
+          "suggestedNarrative": "The Odyssey's first description of Odysseus already makes him hard to pin down. πολύτροπος can suggest a man of many turns and many ways: clever, adaptable, perhaps too ready to twist a situation. That is why Butler's 'ingenious,' Johnston's 'resourceful,' and Morris's 'Shifty' feel like three different heroes. Murray's 'man of many devices' keeps several possibilities open. The Greek leaves us with a question the whole poem keeps testing: is Odysseus great because he can adapt—or dangerous because he can always find a new angle?",
+          "rankReasonRewrite": "The poem's first portrait of Odysseus asks what kind of cleverness we are being invited to admire."
+        },
+        {
+          "headword": "μῆτις",
+          "currentRank": 2,
+          "recommendedRank": 2,
+          "verdict": "KEEP — REWRITE",
+          "readerInterest": "Very high. The Nobody joke is a perfect demonstration that one Greek word can be plot, language, and character at once.",
+          "clarityNotes": "'The noun seals the joke' is linguistic shorthand. Tell the joke's consequence in plain English: the Cyclops says Nobody hurt him, so no one comes to help.",
+          "suggestedNarrative": "μῆτις is the kind of intelligence that wins by timing, disguise, and knowing what another person will hear. Here it looks back at Odysseus's best-known trick: he told the Cyclops his name was 'Nobody.' When the Cyclops cried out that Nobody was hurting him, the other Cyclopes left him alone. Translators make the victory a 'clever stratagem,' a 'cunning device,' or, in Chapman, a matter of 'wit / And name.' The choice matters: was the triumph the plan, the wordplay, or Odysseus's quick mind? In Homer, it is all three at once.",
+          "rankReasonRewrite": "The Nobody joke makes a word for intelligence visible as a live, high-stakes trick."
+        },
+        {
+          "headword": "νόστος",
+          "currentRank": 3,
+          "recommendedRank": 4,
+          "verdict": "KEEP — REWRITE AND FOREGROUND ENGLISH DESCENDANT",
+          "readerInterest": "High. It names the emotional engine of the Odyssey, and 'nostalgia' gives a non-specialist an immediate way in.",
+          "clarityNotes": "The existing account is good but does not take its easiest reader bridge. Avoid beginning with the abstract contrast 'more than travel in the right direction.'",
+          "suggestedNarrative": "νόστος means a return home, but it carries more feeling than an itinerary does. It is the return to a household, a family, and a place after danger and absence. Its name survives in 'nostalgia': literally, the pain of wanting to come home. Translators turn it into action—'bring his men safely home'—or a thing hoped for, 'the return of his comrades.' 'Homecoming' keeps the theme in view, but it can sound grander than the plain, urgent wish at the centre of the poem: to get back, and to find home still there.",
+          "rankReasonRewrite": "The Odyssey's driving hope becomes newly personal once readers notice the word inside 'nostalgia.'"
+        },
+        {
+          "headword": "ἀτασθαλίαι",
+          "currentRank": 4,
+          "recommendedRank": 9,
+          "verdict": "KEEP — TIGHTEN AND MOVE DOWN",
+          "readerInterest": "Medium. The moral stakes are clear, but this is a less inviting early stop than a trick, a guest at the door, or an underworld encounter.",
+          "clarityNotes": "The explanation is clear; 'moral temperature' is a good critical idea but not a phrase the page needs. Begin with the ordinary distinction between an error and conduct that ruins you.",
+          "suggestedNarrative": "This is not an 'oops.' ἀτασθαλίαι names reckless behaviour that helps bring ruin on the people who choose it. Translators set the blame at different levels: Johnston's 'stupidity' is blunt and everyday; Butler's 'sheer folly' is more tragic; Pope's 'impious folly' makes the offence against the gods; Hobbes's 'insolence' makes it defiant. The plural matters because the crew's end comes from a pattern of choices, not one unlucky slip. The gods matter in the Odyssey, but this opening line says people can help cause their own disaster.",
+          "rankReasonRewrite": "It makes the poem's question of blame unmistakable, but works best after readers are already invested in its people."
+        },
+        {
+          "headword": "οἶνοψ πόντος",
+          "currentRank": 5,
+          "recommendedRank": 1,
+          "verdict": "KEEP — MOVE TO OPENING",
+          "readerInterest": "Exceptional. 'Wine-dark sea' is both famous and genuinely puzzling; no prior knowledge of Homer is required to care about it.",
+          "clarityNotes": "The existing narrative has the right point. Replace 'paint-chart colour' with plainer language and lead with the reader's natural question: why call the sea wine-dark?",
+          "suggestedNarrative": "Why does Homer call the sea 'wine-dark'? The phrase is famous because it sounds wrong in English, and no translation makes the puzzle disappear. Palmer, Murray, and Johnston keep 'wine-dark.' Bryant gives us a 'dark blue deep.' Cowper leaves colour behind for a 'gloomy flood.' Each choice gives up something different: Homer's strange image, a clear picture, or the sea's threatening mood. That is why the phrase lasts. It asks us to see the sea through an image we cannot quite settle.",
+          "rankReasonRewrite": "The page's most recognisable puzzle is the fastest invitation to see translation as interpretation."
+        },
+        {
+          "headword": "θυμός",
+          "currentRank": 6,
+          "recommendedRank": 8,
+          "verdict": "KEEP — REWRITE FOR A SCENE",
+          "readerInterest": "Medium-high. The idea is rewarding, but the current definition arrives as a list of abstractions before the reader has a feeling for it.",
+          "clarityNotes": "'Seat of feeling, appetite, resolve, and inward debate' is accurate-sounding but dense. Use a familiar contrast—heart, guts, and will—and return to what Odysseus is enduring in the line.",
+          "suggestedNarrative": "When Odysseus suffers at sea, Homer says the pain is in his θυμός. 'Heart' is often the nearest English choice, but it is not enough. θυμός can be where a person feels hurt, gathers courage, wants something fiercely, or argues with himself. Murray's 'heart' makes the pain emotional; Palmer's 'own breast' makes it bodily; Johnston's 'spirit' makes it less physical. English splits heart, mind, soul, and will into separate places. Homer lets one inner force do all of that work.",
+          "rankReasonRewrite": "It reveals an inner life that English divides into heart, spirit, appetite, and will."
+        },
+        {
+          "headword": "κλέος",
+          "currentRank": 7,
+          "recommendedRank": 7,
+          "verdict": "KEEP — REWRITE LIGHTLY",
+          "readerInterest": "High. Readers understand fame immediately, and the entry turns that familiar idea into a question about who controls a story.",
+          "clarityNotes": "'Its oldest sense points to' is scholarly throat-clearing. Say directly that this fame is made of what people hear and repeat.",
+          "suggestedNarrative": "κλέος is fame—but fame made out of stories people hear and pass on. When Odysseus introduces himself, he says his κλέος reaches heaven. Butler gives him 'fame,' Morris gives him 'glory,' and Worsley gives him 'rumour.' Those are not just tones of praise. They change whether we hear a hero honoured for his deeds or a name growing because everyone keeps talking about it. The Odyssey knows that a reputation is made by storytelling, and that the story which survives may not be the whole one.",
+          "rankReasonRewrite": "It turns heroic fame into the more unsettling question of which stories and versions of a person endure."
+        },
+        {
+          "headword": "ξεῖνος",
+          "currentRank": 8,
+          "recommendedRank": 5,
+          "verdict": "KEEP — REWRITE AND MOVE UP",
+          "readerInterest": "Very high. A vulnerable person at the door gives readers an ethical scene they can understand instantly.",
+          "clarityNotes": "The explanation is sound but abstract in its first sentence. The modern English link is worth one carefully framed sentence: the same Greek root lies behind 'xenophobia,' while Homeric ξένος can also mean a guest owed welcome.",
+          "suggestedNarrative": "A ξένος is the person at your door before you know whether to call them a stranger or a guest. The same Greek root lies behind 'xenophobia,' but in Homer the word can also name someone owed food, shelter, and protection. That is why English translations pull apart 'stranger,' 'guest,' and 'beggar.' In Eumaeus's speech, this is more than politeness: to insult a vulnerable visitor is to offend Zeus. Translate only 'guest' and the risk of the unknown disappears; translate only 'stranger' and so does the duty to welcome.",
+          "rankReasonRewrite": "A single word holds fear of the outsider and the duty to welcome them together."
+        },
+        {
+          "headword": "ψυχή",
+          "currentRank": 9,
+          "recommendedRank": 6,
+          "verdict": "KEEP — REWRITE LIGHTLY AND MOVE UP",
+          "readerInterest": "Very high. 'Psyche' is a satisfying English bridge, and Elpenor gives it a precise, moving scene rather than a dictionary definition.",
+          "clarityNotes": "The current version is strong. State the modern-English bridge sooner and shorten the final generalization so the dead companion stays in focus.",
+          "suggestedNarrative": "ψυχή gave English 'psyche,' but Homer is not talking about a modern inner self. In the underworld, Elpenor's ψυχή is recognisable and able to speak, yet it no longer has the full life of a body. Translators call it a 'ghost,' 'spirit,' 'soul,' 'shade,' or 'phantom.' Each brings a different afterlife with it. 'Soul' can suggest a whole person continuing; 'shade' a thinner remnant. Elpenor can still ask for burial, which makes the gap between being present and being alive impossible to ignore.",
+          "rankReasonRewrite": "The familiar word 'psyche' opens onto an underworld scene that makes its older meaning strange again."
+        },
+        {
+          "headword": "πεπνυμένος",
+          "currentRank": 10,
+          "recommendedRank": 10,
+          "verdict": "REPLACE IF POSSIBLE; OTHERWISE REWRITE HEAVILY",
+          "readerInterest": "Low as currently framed. A repeated adjective for Telemachus can be a rewarding close, but it has no built-in puzzle, visual image, or dramatic turn to compete with the other nine.",
+          "clarityNotes": "The sentence about 'bundled corpus' and '12 different English words across 13 translations' is internal analysis, not a reader experience. It risks making a likely reader doubt whether the quoted renderings are direct matches. Remove it entirely. The most notable omission from the whole selection is a word with Penelope or the household at its centre; if a comparably well-anchored candidate exists, it would be a better tenth entry.",
+          "suggestedNarrativeIfRetained": "Telemachus is repeatedly called πεπνυμένος. It does not mean that he is an ancient sage; it suggests a young man who can understand what is happening and answer with judgment. Translators quietly decide how far along he already is: 'wise' makes him sound fully formed, 'prudent' makes him sensible, 'heedful' lets us see him learning, and 'noble' shifts attention from judgment to status. In a poem about growing into adulthood, that small choice changes how soon we believe Telemachus has begun to become his father's son.",
+          "rankReasonRewrite": "A quiet final word about whether Telemachus is already wise or still learning to become so."
+        }
+      ],
+      "missingForReaders": [
+        {
+          "need": "A visible 'what became of this word in English?' thread",
+          "recommendation": "Add a small, consistent 'Still with us?' callout only where it is genuinely illuminating: νόστος → nostalgia; ψυχή → psyche; ξένος → xeno- / xenophobia. Do not force an English-descendant note onto every entry."
+        },
+        {
+          "need": "A woman- and household-centred perspective",
+          "recommendation": "Nine of the ten selected entries are framed through Odysseus, his crew, Telemachus, or general heroism. If the source material supports an equally strong candidate tied to Penelope, weaving, recognition, or the household, use it to replace πεπνυμένος. The page would then feel more like the Odyssey rather than only its hero's adventure."
+        },
+        {
+          "need": "A reader-facing explanation of the display",
+          "recommendation": "Before the first comparison, add one short key: 'The Greek phrase is the same; the English options are different translators' answers.' This prevents readers from treating the list as a quiz with one correct translation."
+        },
+        {
+          "need": "A final invitation rather than a terminus",
+          "recommendation": "Close with a link or prompt to read the cited scene in parallel translations. The page's promise is best fulfilled by letting readers test one of these choices in context."
+        }
+      ]
+    }
+  }
+}
