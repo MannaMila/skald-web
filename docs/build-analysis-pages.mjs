@@ -351,6 +351,7 @@ function buildOverview(records) {
   <h1>Twenty-four translations, seen from the surface.</h1>
   <p class="lede">This analysis counts the visible words in every bundled translation and looks for recurring three-to-six-word formulas. It also places the same Greek forms beside aligned or estimated line windows, making changes in the surrounding wording visible without pretending that an automated window is a word-for-word alignment.</p>
   <aside class="method-note"><strong>How we count.</strong> A “word” here is an unbroken run of letters, including accents, converted to lowercase. We do not group related forms, so “sing” and “singing” count separately. Vocabulary variety is the number of distinct written word forms divided by the total number of words. We estimate sentence length by splitting at punctuation. Here, “formula” means only a recurring phrase of three to six words; it does not claim oral origin. The words listed beside Greek forms are nearby context words, not proven translations of the Greek word. Comparisons across languages are descriptive only: languages differ in spelling and in how their word forms change.</aside>
+  <p class="gw-companion"><a class="pill" href="/translations/greek-words/">Companion piece: ten Greek words translators can’t agree on →</a></p>
   <section class="section-block" aria-labelledby="translations-heading">
    <p class="section-label">The corpus</p>
    <h2 id="translations-heading">All 24 Skald translations</h2>

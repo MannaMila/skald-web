@@ -1,0 +1,905 @@
+{
+ "selection": [
+  {
+   "rank": 1,
+   "headword": "οἶνοψ πόντος",
+   "translit": "oinops pontos",
+   "gloss": "wine-faced sea",
+   "flagship": {
+    "location": "1.183",
+    "greekLine": "πλέων ἐπὶ οἴνοπα πόντον ἐπʼ ἀλλοθρόους ἀνθρώπους,",
+    "surfaceForm": "οἴνοπα πόντον"
+   },
+   "renderings": [
+    {
+     "translationId": "butler",
+     "omits": true,
+     "note": "No separate English equivalent appears in the chunk containing this line."
+    },
+    {
+     "translationId": "palmer",
+     "phrase": "wine-dark sea",
+     "window": "wine-dark sea"
+    },
+    {
+     "translationId": "murray",
+     "phrase": "wine-dark sea",
+     "window": "wine-dark sea"
+    },
+    {
+     "translationId": "butcher-lang",
+     "phrase": "wine-dark sea",
+     "window": "wine-dark sea"
+    },
+    {
+     "translationId": "cowper",
+     "phrase": "Athwart the gloomy flood",
+     "window": "Athwart the gloomy flood"
+    },
+    {
+     "translationId": "bryant",
+     "phrase": "across the dark blue deep",
+     "window": "across the dark blue deep"
+    },
+    {
+     "translationId": "pope",
+     "omits": true,
+     "note": "No separate English equivalent appears in the chunk containing this line."
+    },
+    {
+     "translationId": "chapman",
+     "omits": true,
+     "note": "No separate English equivalent appears in the chunk containing this line."
+    },
+    {
+     "translationId": "hobbes",
+     "omits": true,
+     "note": "No separate English equivalent appears in the chunk containing this line."
+    },
+    {
+     "translationId": "morris",
+     "phrase": "o’er the wine-dark sea",
+     "window": "o’er the wine-dark sea"
+    },
+    {
+     "translationId": "worsley",
+     "phrase": "o’er the wine-dark sea",
+     "window": "o’er the wine-dark sea"
+    },
+    {
+     "translationId": "cotterill",
+     "phrase": "Sailing the wine-dark deep",
+     "window": "Sailing the wine-dark deep"
+    },
+    {
+     "translationId": "johnston",
+     "phrase": "sailing across the wine-dark sea",
+     "window": "sailing across the wine-dark sea"
+    }
+   ],
+   "notableOther": [
+    {
+     "translationId": "voss",
+     "phrase": "Über das dunkle Meer",
+     "window": "Über das dunkle Meer"
+    },
+    {
+     "translationId": "leconte",
+     "phrase": "la noire mer",
+     "window": "la noire mer"
+    },
+    {
+     "translationId": "segala",
+     "phrase": "el vinoso ponto",
+     "window": "el vinoso ponto"
+    }
+   ],
+   "narrative": "Why does Homer call the sea “wine-dark”? The phrase is famous because it sounds strange in English, and no translation makes the puzzle disappear. οἶνοψ links wine with the sea’s appearance without supplying one tidy colour. Palmer, Murray, and Johnston keep “wine-dark.” Bryant gives us a “dark blue deep,” while Cowper leaves colour behind for a “gloomy flood.” Segalá keeps the wine image in Spanish; Voß gives only a dark sea. Each choice gives up something different: Homer’s unsettling image, a clearer picture, or the water’s threatening mood. The phrase lasts because it asks us to see the sea through an image we cannot quite settle.",
+   "sources": [
+    "Homer, Odyssey 1.183",
+    "LSJ, s.v. οἶνοψ",
+    "Cunliffe, A Lexicon of the Homeric Dialect, s.v. οἶνοψ"
+   ]
+  },
+  {
+   "rank": 2,
+   "headword": "μῆτις",
+   "translit": "metis",
+   "gloss": "cunning intelligence; resourceful counsel",
+   "flagship": {
+    "location": "9.414",
+    "greekLine": "ὡς ὄνομʼ ἐξαπάτησεν ἐμὸν καὶ μῆτις ἀμύμων.",
+    "surfaceForm": "μῆτις"
+   },
+   "renderings": [
+    {
+     "translationId": "butler",
+     "phrase": "clever stratagem",
+     "window": "clever stratagem"
+    },
+    {
+     "translationId": "palmer",
+     "phrase": "my name, that clever notion",
+     "window": "my name, that clever notion"
+    },
+    {
+     "translationId": "murray",
+     "phrase": "my name and cunning device",
+     "window": "my name and cunning device"
+    },
+    {
+     "translationId": "butcher-lang",
+     "phrase": "my name and cunning counsel",
+     "window": "my name and cunning counsel"
+    },
+    {
+     "translationId": "cowper",
+     "phrase": "Slight stratagem!",
+     "window": "Slight stratagem!"
+    },
+    {
+     "translationId": "bryant",
+     "phrase": "my shrewd device",
+     "window": "my shrewd device"
+    },
+    {
+     "translationId": "pope",
+     "phrase": "effect of conduct and of art",
+     "window": "effect of conduct and of art"
+    },
+    {
+     "translationId": "chapman",
+     "phrase": "my wit\nAnd name deceiv’d him",
+     "window": "my wit\nAnd name deceiv’d him"
+    },
+    {
+     "translationId": "hobbes",
+     "phrase": "with my name the mighty clown\nI so deceived had, and gull’d by craft",
+     "window": "with my name the mighty clown\nI so deceived had, and gull’d by craft"
+    },
+    {
+     "translationId": "morris",
+     "phrase": "my name that had so beguiled him and my worthy rede",
+     "window": "my name that had so beguiled him and my worthy rede"
+    },
+    {
+     "translationId": "worsley",
+     "phrase": "the shrewd illusion",
+     "window": "the shrewd illusion"
+    },
+    {
+     "translationId": "cotterill",
+     "phrase": "Nobody name of my faultless cunning",
+     "window": "Nobody name of my faultless cunning"
+    },
+    {
+     "translationId": "johnston",
+     "phrase": "my cunning name had pulled off such a trick",
+     "window": "my cunning name had pulled off such a trick"
+    }
+   ],
+   "notableOther": [
+    {
+     "translationId": "voss",
+     "phrase": "mein trefflicher Einfall",
+     "window": "mein trefflicher Einfall"
+    },
+    {
+     "translationId": "leconte",
+     "phrase": "ma ruse irréprochable",
+     "window": "ma ruse irréprochable"
+    },
+    {
+     "translationId": "segala",
+     "phrase": "mi excelente artificio",
+     "window": "mi excelente artificio"
+    }
+   ],
+   "narrative": "In the Cyclops’ cave, μῆτις is intelligence that works through timing, planning, and knowing what another person will hear. Polyphemus cries that Οὖτις, “Nobody,” is killing him at 9.408. His neighbours answer at 9.410 that if μή τίς, “no one,” is attacking him, they cannot help. At 9.414 Odysseus names the power behind the escape: his μῆτις, joined to his false name. Butler calls it a “clever stratagem,” Murray a “cunning device,” and Chapman makes it “wit / And name.” The choice matters: was the triumph the plan, the wordplay, or Odysseus’s quick mind? Homer makes it all three at once.",
+   "sources": [
+    "Homer, Odyssey 9.408-414",
+    "LSJ, s.v. μῆτις",
+    "Cunliffe, A Lexicon of the Homeric Dialect, s.v. μῆτις"
+   ]
+  },
+  {
+   "rank": 3,
+   "headword": "πολύτροπος",
+   "translit": "polytropos",
+   "gloss": "much-turning; versatile",
+   "flagship": {
+    "location": "1.1",
+    "greekLine": "ἄνδρα μοι ἔννεπε, μοῦσα, πολύτροπον, ὃς μάλα πολλὰ",
+    "surfaceForm": "πολύτροπον"
+   },
+   "renderings": [
+    {
+     "translationId": "butler",
+     "phrase": "ingenious hero",
+     "window": "ingenious hero"
+    },
+    {
+     "translationId": "palmer",
+     "phrase": "adventurous man",
+     "window": "adventurous man"
+    },
+    {
+     "translationId": "murray",
+     "phrase": "man of many devices",
+     "window": "man of many devices"
+    },
+    {
+     "translationId": "butcher-lang",
+     "phrase": "man, so ready at need",
+     "window": "man, so ready at need"
+    },
+    {
+     "translationId": "cowper",
+     "phrase": "for shrewdness famed\nAnd genius versatile",
+     "window": "for shrewdness famed\nAnd genius versatile"
+    },
+    {
+     "translationId": "bryant",
+     "phrase": "sagacious man",
+     "window": "sagacious man"
+    },
+    {
+     "translationId": "pope",
+     "phrase": "wisdom’s various arts renown’d",
+     "window": "wisdom’s various arts renown’d"
+    },
+    {
+     "translationId": "chapman",
+     "phrase": "Wound with his wisdom",
+     "window": "Wound with his wisdom"
+    },
+    {
+     "translationId": "hobbes",
+     "omits": true,
+     "note": "No separate English equivalent appears in the chunk containing this line."
+    },
+    {
+     "translationId": "morris",
+     "phrase": "the Shifty",
+     "window": "the Shifty"
+    },
+    {
+     "translationId": "worsley",
+     "omits": true,
+     "note": "No separate English equivalent appears in the chunk containing this line."
+    },
+    {
+     "translationId": "cotterill",
+     "phrase": "man so wary and wise",
+     "window": "man so wary and wise"
+    },
+    {
+     "translationId": "johnston",
+     "phrase": "resourceful man",
+     "window": "resourceful man"
+    }
+   ],
+   "notableOther": [
+    {
+     "translationId": "voss",
+     "phrase": "vielgewanderten Mannes",
+     "window": "vielgewanderten Mannes"
+    },
+    {
+     "translationId": "leconte",
+     "phrase": "cet homme subtil",
+     "window": "cet homme subtil"
+    },
+    {
+     "translationId": "segala",
+     "phrase": "varón de multiforme ingenio",
+     "window": "varón de multiforme ingenio"
+    }
+   ],
+   "narrative": "The Odyssey’s first description of Odysseus makes him hard to pin down. πολύτροπος suggests a man of many turns or many ways, but does not settle whether those are journeys, shifts of mind, or stratagems. Butler’s “ingenious” makes him inventive; Johnston’s “resourceful” makes him practical; Morris’s “Shifty” gives him a more suspicious cast. Murray’s “man of many devices” chooses tactical intelligence while keeping the sense plural. No one English adjective carries every possibility. Before Odysseus has done anything on the page, the Greek opens a question that the poem keeps testing: how should we value a hero whose great strength is his ability to change his approach?",
+   "sources": [
+    "Homer, Odyssey 1.1",
+    "LSJ, s.v. πολύτροπος",
+    "Cunliffe, A Lexicon of the Homeric Dialect, s.v. πολύτροπος"
+   ]
+  },
+  {
+   "rank": 4,
+   "headword": "νόστος",
+   "translit": "nostos",
+   "gloss": "return home; homecoming",
+   "flagship": {
+    "location": "1.5",
+    "greekLine": "ἀρνύμενος ἥν τε ψυχὴν καὶ νόστον ἑταίρων.",
+    "surfaceForm": "νόστον"
+   },
+   "renderings": [
+    {
+     "translationId": "butler",
+     "phrase": "bring his men safely home",
+     "window": "bring his men safely home"
+    },
+    {
+     "translationId": "palmer",
+     "phrase": "men’s safe return",
+     "window": "men’s safe return"
+    },
+    {
+     "translationId": "murray",
+     "phrase": "the return of his comrades",
+     "window": "the return of his comrades"
+    },
+    {
+     "translationId": "butcher-lang",
+     "phrase": "the return of his company",
+     "window": "the return of his company"
+    },
+    {
+     "translationId": "cowper",
+     "phrase": "conduct\nHis followers to their home",
+     "window": "conduct\nHis followers to their home"
+    },
+    {
+     "translationId": "bryant",
+     "phrase": "bring back\nHis comrades to their homes",
+     "window": "bring back\nHis comrades to their homes"
+    },
+    {
+     "translationId": "pope",
+     "phrase": "Safe with his friends to gain his natal shore",
+     "window": "Safe with his friends to gain his natal shore"
+    },
+    {
+     "translationId": "chapman",
+     "phrase": "friends in their retreat for home",
+     "window": "friends in their retreat for home"
+    },
+    {
+     "translationId": "hobbes",
+     "phrase": "bring home his crew",
+     "window": "bring home his crew"
+    },
+    {
+     "translationId": "morris",
+     "phrase": "fellow-farers’ return",
+     "window": "fellow-farers’ return"
+    },
+    {
+     "translationId": "worsley",
+     "omits": true,
+     "note": "No separate English equivalent appears in the chunk containing this line."
+    },
+    {
+     "translationId": "cotterill",
+     "phrase": "bring home safely his comrades",
+     "window": "bring home safely his comrades"
+    },
+    {
+     "translationId": "johnston",
+     "phrase": "lead his comrades home",
+     "window": "lead his comrades home"
+    }
+   ],
+   "notableOther": [],
+   "narrative": "At the poem’s opening, νόστος names the return Odysseus is trying to win for his companions: not travel in the right direction, but arrival home after dangerous absence. Butler turns it into action, “bring his men safely home”; Murray makes it “the return of his comrades”; Pope imagines reaching a “natal shore.” The modern word “nostalgia” is still with us, but it is a later learned coinage combining νόστος with ἄλγος, “pain.” Homeric νόστος itself means homecoming, not the modern feeling of nostalgia. That difference matters because a return in the Odyssey can be delayed, damaged, denied, or achieved at terrible cost.",
+   "sources": [
+    "Homer, Odyssey 1.5",
+    "LSJ, s.v. νόστος",
+    "Cunliffe, A Lexicon of the Homeric Dialect, s.v. νόστος",
+    "OED, s.v. nostalgia"
+   ]
+  },
+  {
+   "rank": 5,
+   "headword": "ξεῖνος",
+   "translit": "xeinos",
+   "gloss": "guest; stranger",
+   "flagship": {
+    "location": "14.58",
+    "greekLine": "ξεῖνοί τε πτωχοί τε· δόσις δʼ ὀλίγη τε φίλη τε",
+    "surfaceForm": "ξεῖνοί"
+   },
+   "renderings": [
+    {
+     "translationId": "butler",
+     "phrase": "all strangers and beggars are from Jove",
+     "window": "all strangers and beggars are from Jove"
+    },
+    {
+     "translationId": "palmer",
+     "phrase": "in the charge of Zeus all strangers and beggars stand",
+     "window": "in the charge of Zeus all strangers and beggars stand"
+    },
+    {
+     "translationId": "murray",
+     "phrase": "from Zeus are all strangers and beggars",
+     "window": "from Zeus are all strangers and beggars"
+    },
+    {
+     "translationId": "butcher-lang",
+     "phrase": "from Zeus are all strangers and beggars",
+     "window": "from Zeus are all strangers and beggars"
+    },
+    {
+     "translationId": "cowper",
+     "phrase": "all the strangers are the care of Jove",
+     "window": "all the strangers are the care of Jove"
+    },
+    {
+     "translationId": "bryant",
+     "phrase": "strangers and the poor are sent\nBy Jove",
+     "window": "strangers and the poor are sent\nBy Jove"
+    },
+    {
+     "translationId": "pope",
+     "phrase": "’Tis Jove that sends the stranger and the poor",
+     "window": "’Tis Jove that sends the stranger and the poor"
+    },
+    {
+     "translationId": "chapman",
+     "phrase": "Poor men, and unplac’d\nIn free seats of their own, are all from Jove",
+     "window": "Poor men, and unplac’d\nIn free seats of their own, are all from Jove"
+    },
+    {
+     "translationId": "hobbes",
+     "phrase": "The poor and stranger are in God’s hand ever",
+     "window": "The poor and stranger are in God’s hand ever"
+    },
+    {
+     "translationId": "morris",
+     "phrase": "guests and bedesmen all,\nFrom Zeus they are",
+     "window": "guests and bedesmen all,\nFrom Zeus they are"
+    },
+    {
+     "translationId": "worsley",
+     "phrase": "All strangers and all poor by Zeus are brought",
+     "window": "All strangers and all poor by Zeus are brought"
+    },
+    {
+     "translationId": "cotterill",
+     "phrase": "’Tis Zeus our Father that sendeth\nBeggars and guests",
+     "window": "’Tis Zeus our Father that sendeth\nBeggars and guests"
+    },
+    {
+     "translationId": "johnston",
+     "phrase": "for every guest and beggar comes from Zeus",
+     "window": "for every guest and beggar comes from Zeus"
+    }
+   ],
+   "notableOther": [],
+   "narrative": "At Eumaeus’s door, a ξεῖνος is the person who may be both stranger and guest before anyone knows where he belongs. English usually forces the choice too soon. Butler says “strangers and beggars,” Cotterill says “Beggars and guests,” and Morris joins “guests and bedesmen.” The same Greek root is still with us in “xeno-” and “xenophobia,” words that stress the outsider; Homer’s word can also name someone owed food, shelter, and protection. Eumaeus grounds that duty in Zeus, so insulting a vulnerable visitor is more than bad manners. Translate only “guest” and the risk of the unknown fades; translate only “stranger” and so does the duty to welcome.",
+   "sources": [
+    "Homer, Odyssey 14.57-58",
+    "LSJ, s.v. ξένος",
+    "Cunliffe, A Lexicon of the Homeric Dialect, s.v. ξεῖνος"
+   ]
+  },
+  {
+   "rank": 6,
+   "headword": "ψυχή",
+   "translit": "psyche",
+   "gloss": "life-breath; soul or shade",
+   "flagship": {
+    "location": "11.65",
+    "greekLine": "ἀστραγάλων ἐάγη, ψυχὴ δʼ Ἄϊδόσδε κατῆλθε.",
+    "surfaceForm": "ψυχὴ"
+   },
+   "renderings": [
+    {
+     "translationId": "butler",
+     "phrase": "my soul came down to the house of Hades",
+     "window": "my soul came down to the house of Hades"
+    },
+    {
+     "translationId": "palmer",
+     "phrase": "my soul came down to the house of Hades",
+     "window": "my soul came down to the house of Hades"
+    },
+    {
+     "translationId": "murray",
+     "phrase": "my spirit went down to the house of Hades",
+     "window": "my spirit went down to the house of Hades"
+    },
+    {
+     "translationId": "butcher-lang",
+     "phrase": "my spirit went down to the house of Hades",
+     "window": "my spirit went down to the house of Hades"
+    },
+    {
+     "translationId": "cowper",
+     "phrase": "my spirit sought the shades",
+     "window": "my spirit sought the shades"
+    },
+    {
+     "translationId": "bryant",
+     "phrase": "my soul went down\nTo Hades",
+     "window": "my soul went down\nTo Hades"
+    },
+    {
+     "translationId": "pope",
+     "phrase": "my soul descends to hell",
+     "window": "my soul descends to hell"
+    },
+    {
+     "translationId": "chapman",
+     "phrase": "My soul thus visit this infernal shade",
+     "window": "My soul thus visit this infernal shade"
+    },
+    {
+     "translationId": "hobbes",
+     "omits": true,
+     "note": "Elpenor’s descent is narrated without a separate English equivalent for ψυχή."
+    },
+    {
+     "translationId": "morris",
+     "phrase": "unto Hades and his house my soul must fare",
+     "window": "unto Hades and his house my soul must fare"
+    },
+    {
+     "translationId": "worsley",
+     "phrase": "my soul in Hades refuge found",
+     "window": "my soul in Hades refuge found"
+    },
+    {
+     "translationId": "cotterill",
+     "phrase": "my spirit departed to Hades",
+     "window": "my spirit departed to Hades"
+    },
+    {
+     "translationId": "johnston",
+     "phrase": "My shade departed,\nand went down to Hades",
+     "window": "My shade departed,\nand went down to Hades"
+    }
+   ],
+   "notableOther": [],
+   "narrative": "Elpenor tells Odysseus how a drunken fall broke his neck and his ψυχή went down to Hades. English “psyche” comes from this Greek word, but Homer is not describing a modern inner self. Translators make what leaves the body a “soul,” a “spirit,” or a “shade”; Hobbes tells the fall without naming it separately. Each choice brings a different picture of death. “Soul” can suggest a whole person continuing, while “shade” sounds thinner and diminished. Yet Elpenor can speak, remember, and plead for burial. The scene keeps him recognisably present while making the loss of bodily life impossible to ignore.",
+   "sources": [
+    "Homer, Odyssey 11.65",
+    "LSJ, s.v. ψυχή",
+    "Cunliffe, A Lexicon of the Homeric Dialect, s.v. ψυχή"
+   ]
+  },
+  {
+   "rank": 7,
+   "headword": "κλέος",
+   "translit": "kleos",
+   "gloss": "fame; report or renown",
+   "flagship": {
+    "location": "9.20",
+    "greekLine": "ἀνθρώποισι μέλω, καί μευ κλέος οὐρανὸν ἵκει.",
+    "surfaceForm": "κλέος"
+   },
+   "renderings": [
+    {
+     "translationId": "butler",
+     "phrase": "my fame ascends to heaven",
+     "window": "my fame ascends to heaven"
+    },
+    {
+     "translationId": "palmer",
+     "phrase": "my renown reaches to heaven",
+     "window": "my renown reaches to heaven"
+    },
+    {
+     "translationId": "murray",
+     "phrase": "my fame reaches unto heaven",
+     "window": "my fame reaches unto heaven"
+    },
+    {
+     "translationId": "butcher-lang",
+     "phrase": "my fame reaches unto heaven",
+     "window": "my fame reaches unto heaven"
+    },
+    {
+     "translationId": "cowper",
+     "phrase": "renown'd to heaven",
+     "window": "renown'd to heaven"
+    },
+    {
+     "translationId": "bryant",
+     "phrase": "my fame\nHath reached to heaven",
+     "window": "my fame\nHath reached to heaven"
+    },
+    {
+     "translationId": "pope",
+     "phrase": "high heaven my fame",
+     "window": "high heaven my fame"
+    },
+    {
+     "translationId": "chapman",
+     "phrase": "my facts as high as heav’n resound",
+     "window": "my facts as high as heav’n resound"
+    },
+    {
+     "translationId": "hobbes",
+     "phrase": "known I am by fame up to the skies",
+     "window": "known I am by fame up to the skies"
+    },
+    {
+     "translationId": "morris",
+     "phrase": "my glory to the heavens aloft doth speed",
+     "window": "my glory to the heavens aloft doth speed"
+    },
+    {
+     "translationId": "worsley",
+     "phrase": "my rumour to the skies hath gone",
+     "window": "my rumour to the skies hath gone"
+    },
+    {
+     "translationId": "cotterill",
+     "phrase": "the fame of it reacheth to heaven",
+     "window": "the fame of it reacheth to heaven"
+    },
+    {
+     "translationId": "johnston",
+     "phrase": "my fame stretches all the way to heaven",
+     "window": "my fame stretches all the way to heaven"
+    }
+   ],
+   "notableOther": [],
+   "narrative": "When Odysseus finally names himself, he boasts that his κλέος reaches heaven. κλέος can mean fame or report: a reputation that people hear and pass on. Butler and Murray choose “fame,” Morris raises it to “glory,” and Worsley gives the more unsettled “rumour.” Chapman makes the deeds themselves audible: his “facts ... resound.” These are not merely different levels of praise. They change whether we hear a hero honoured for what he did or a name growing because people keep talking. The Odyssey knows that stories make a reputation as well as preserve one, and that the version which survives may never be the whole person.",
+   "sources": [
+    "Homer, Odyssey 9.20",
+    "LSJ, s.v. κλέος",
+    "Cunliffe, A Lexicon of the Homeric Dialect, s.v. κλέος"
+   ]
+  },
+  {
+   "rank": 8,
+   "headword": "θυμός",
+   "translit": "thymos",
+   "gloss": "heart; inner drive",
+   "flagship": {
+    "location": "1.4",
+    "greekLine": "πολλὰ δʼ ὅ γʼ ἐν πόντῳ πάθεν ἄλγεα ὃν κατὰ θυμόν,",
+    "surfaceForm": "θυμόν"
+   },
+   "renderings": [
+    {
+     "translationId": "butler",
+     "omits": true,
+     "note": "No separate English equivalent appears in the chunk containing this line."
+    },
+    {
+     "translationId": "palmer",
+     "phrase": "many a pang he bore in his own breast",
+     "window": "many a pang he bore in his own breast"
+    },
+    {
+     "translationId": "murray",
+     "phrase": "woes he suffered in his heart",
+     "window": "woes he suffered in his heart"
+    },
+    {
+     "translationId": "butcher-lang",
+     "phrase": "woes he suffered in his heart",
+     "window": "woes he suffered in his heart"
+    },
+    {
+     "translationId": "cowper",
+     "omits": true,
+     "note": "No separate English equivalent appears in the chunk containing this line."
+    },
+    {
+     "translationId": "bryant",
+     "omits": true,
+     "note": "No separate English equivalent appears in the chunk containing this line."
+    },
+    {
+     "translationId": "pope",
+     "omits": true,
+     "note": "No separate English equivalent appears in the chunk containing this line."
+    },
+    {
+     "translationId": "chapman",
+     "omits": true,
+     "note": "No separate English equivalent appears in the chunk containing this line."
+    },
+    {
+     "translationId": "hobbes",
+     "omits": true,
+     "note": "No separate English equivalent appears in the chunk containing this line."
+    },
+    {
+     "translationId": "morris",
+     "phrase": "Many a grief of heart",
+     "window": "Many a grief of heart"
+    },
+    {
+     "translationId": "worsley",
+     "phrase": "a weight of sorrows in the deep\nBrooding he bore",
+     "window": "a weight of sorrows in the deep\nBrooding he bore"
+    },
+    {
+     "translationId": "cotterill",
+     "phrase": "Many a woe he endured in his heart",
+     "window": "Many a woe he endured in his heart"
+    },
+    {
+     "translationId": "johnston",
+     "phrase": "his spirit suffered many torments",
+     "window": "his spirit suffered many torments"
+    }
+   ],
+   "notableOther": [],
+   "narrative": "As Odysseus suffers at sea, Homer says the pain is in his θυμός. “Heart” is often the nearest English choice, but the word can name a person’s active inner life: feeling, desire, resolve, or thought. Murray and Cotterill use “heart,” Palmer’s “own breast” makes the suffering bodily, and Johnston chooses “spirit.” Several translators simply say that Odysseus suffers. Later, θυμός can be stirred, restrained, or made to deliberate, without laying out one fixed theory of the mind or body. Greek keeps this inner life responsive and physical; English usually divides the work among heart, mind, soul, and will.",
+   "sources": [
+    "Homer, Odyssey 1.4",
+    "LSJ, s.v. θυμός",
+    "Cunliffe, A Lexicon of the Homeric Dialect, s.v. θυμός"
+   ]
+  },
+  {
+   "rank": 9,
+   "headword": "ἀτασθαλίη",
+   "translit": "atasthaliē",
+   "gloss": "wild recklessness; ruinous folly",
+   "flagship": {
+    "location": "1.7",
+    "greekLine": "αὐτῶν γὰρ σφετέρῃσιν ἀτασθαλίῃσιν ὄλοντο,",
+    "surfaceForm": "ἀτασθαλίῃσιν"
+   },
+   "renderings": [
+    {
+     "translationId": "butler",
+     "phrase": "their own sheer folly",
+     "window": "their own sheer folly"
+    },
+    {
+     "translationId": "palmer",
+     "phrase": "their own perversity",
+     "window": "their own perversity"
+    },
+    {
+     "translationId": "murray",
+     "phrase": "their own blind folly",
+     "window": "their own blind folly"
+    },
+    {
+     "translationId": "butcher-lang",
+     "phrase": "the blindness of their own hearts",
+     "window": "the blindness of their own hearts"
+    },
+    {
+     "translationId": "cowper",
+     "phrase": "self-destroy'd\nBy their own fault; infatuate!",
+     "window": "self-destroy'd\nBy their own fault; infatuate!"
+    },
+    {
+     "translationId": "bryant",
+     "phrase": "Through their own folly",
+     "window": "Through their own folly"
+    },
+    {
+     "translationId": "pope",
+     "phrase": "their impious folly",
+     "window": "their impious folly"
+    },
+    {
+     "translationId": "chapman",
+     "phrase": "their own impieties",
+     "window": "their own impieties"
+    },
+    {
+     "translationId": "hobbes",
+     "phrase": "their own insolence",
+     "window": "their own insolence"
+    },
+    {
+     "translationId": "morris",
+     "phrase": "their own souls’ folly",
+     "window": "their own souls’ folly"
+    },
+    {
+     "translationId": "worsley",
+     "phrase": "their own foolishness,\nSelf-blinded",
+     "window": "their own foolishness,\nSelf-blinded"
+    },
+    {
+     "translationId": "cotterill",
+     "phrase": "their own act of infatuate madness",
+     "window": "their own act of infatuate madness"
+    },
+    {
+     "translationId": "johnston",
+     "phrase": "their own stupidity",
+     "window": "their own stupidity"
+    }
+   ],
+   "notableOther": [],
+   "narrative": "The crew’s destruction is not presented as one unlucky mistake. ἀτασθαλίη names reckless, self-willed behaviour that helps bring ruin on the people who choose it. Johnston’s “stupidity” sounds blunt and everyday; Butler’s “sheer folly” is more tragic; Pope’s “impious folly” makes the offence religious; Hobbes’s “insolence” makes it defiant. The form in this line is plural, and the plural can present the disaster as the result of reckless acts rather than one neutral mistake. The gods still shape events, but the poem’s opening gives the men a share in their own loss. Translation decides how sharply we hear that blame.",
+   "sources": [
+    "Homer, Odyssey 1.7",
+    "LSJ, s.v. ἀτασθαλία",
+    "Cunliffe, A Lexicon of the Homeric Dialect, s.v. ἀτασθαλίη"
+   ]
+  },
+  {
+   "rank": 10,
+   "headword": "ἀμύμων",
+   "translit": "amymōn",
+   "gloss": "blameless; faultless",
+   "flagship": {
+    "location": "1.29",
+    "greekLine": "μνήσατο γὰρ κατὰ θυμὸν ἀμύμονος Αἰγίσθοιο,",
+    "surfaceForm": "ἀμύμονος"
+   },
+   "renderings": [
+    {
+     "translationId": "butler",
+     "omits": true,
+     "note": "No separate English equivalent appears in the chunk containing this line."
+    },
+    {
+     "translationId": "palmer",
+     "phrase": "gentle Aegisthus",
+     "window": "gentle Aegisthus"
+    },
+    {
+     "translationId": "murray",
+     "phrase": "noble Aegisthus",
+     "window": "noble Aegisthus"
+    },
+    {
+     "translationId": "butcher-lang",
+     "phrase": "noble Aegisthus",
+     "window": "noble Aegisthus"
+    },
+    {
+     "translationId": "cowper",
+     "omits": true,
+     "note": "No separate English equivalent appears in the chunk containing this line."
+    },
+    {
+     "translationId": "bryant",
+     "omits": true,
+     "note": "No separate English equivalent appears in the chunk containing this line."
+    },
+    {
+     "translationId": "pope",
+     "omits": true,
+     "note": "No separate English equivalent appears in the chunk containing this line."
+    },
+    {
+     "translationId": "chapman",
+     "phrase": "Faultful Ægisthus",
+     "window": "Faultful Ægisthus"
+    },
+    {
+     "translationId": "hobbes",
+     "omits": true,
+     "note": "No separate English equivalent appears in the chunk containing this line."
+    },
+    {
+     "translationId": "morris",
+     "phrase": "Ægisthus the noble one",
+     "window": "Ægisthus the noble one"
+    },
+    {
+     "translationId": "worsley",
+     "phrase": "Blameless Ægisthus",
+     "window": "Blameless Ægisthus"
+    },
+    {
+     "translationId": "cotterill",
+     "phrase": "the noble Aegisthus",
+     "window": "the noble Aegisthus"
+    },
+    {
+     "translationId": "johnston",
+     "phrase": "royal Aegisthus",
+     "window": "royal Aegisthus"
+    }
+   ],
+   "notableOther": [],
+   "narrative": "Zeus remembers Aegisthus with ἀμύμων, a praising word often rendered “blameless,” then immediately explains why Aegisthus is to blame. He took Agamemnon’s wife, killed him on his return, and ignored a divine warning about the revenge to come. Worsley keeps the shock with “Blameless Ægisthus.” Palmer softens it to “gentle,” Murray and others choose “noble,” and several translators leave the word out. Chapman goes the other way with “Faultful Ægisthus,” making the local judgment explicit. The mismatch shows how a familiar heroic label can rub against the scene around it. Translation must either preserve that tension, smooth it, or resolve it for the reader.",
+   "sources": [
+    "Homer, Odyssey 1.29-43",
+    "LSJ, s.v. ἀμύμων",
+    "Cunliffe, A Lexicon of the Homeric Dialect, s.v. ἀμύμων"
+   ]
+  }
+ ],
+ "lede": "Ten Greek words can make a familiar Odyssey strange again. Each appears in a vivid moment—a trick, a homecoming, a stranger at the door, a sea that refuses to be simply blue—and each has forced translators to choose what to keep. The Greek stays the same; the English options are different translators’ answers. Read them side by side and the poem starts to sound less fixed, more alive.",
+ "method": "This is an editorial selection, not a claim that Greek has an objective top ten. For each word, we compare the same Homeric moment across translations. Greek lines and excerpts were checked against Skald’s edition-locked Odyssey sources; every quoted phrase appears in the translation passage covering the cited line. When that passage gives no separate equivalent, the entry says so rather than inventing one. Non-English examples appear only where they clarify the particular choice."
+}
