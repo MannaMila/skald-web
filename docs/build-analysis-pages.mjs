@@ -446,6 +446,7 @@ function buildDetail({ entry, stats, atlasRecord, sourceRecord, finalRecord }) {
    <div><h2 id="continue-heading">Keep the edition in context.</h2><p>Open its full atlas record, or read it beside the Greek and the other bundled translations in Skald.</p></div>
    <div class="cta-links">
     <a class="pill" href="/translations/#${h(atlasRecord.id)}">Atlas record</a>
+    <a class="pill" href="/translators/#${h(entry.id)}">Translator biography</a>
     <a class="pill" href="${h(apple)}" target="_blank" rel="noreferrer">App Store</a>
     <a class="pill" href="${h(play)}" target="_blank" rel="noreferrer">Google Play</a>
    </div>
