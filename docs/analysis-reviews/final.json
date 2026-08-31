@@ -1,0 +1,1151 @@
+{
+  "schemaVersion": 1,
+  "role": "arbiter",
+  "basis": [
+    "docs/analysis-reviews/source.json",
+    "docs/analysis-reviews/draft.json",
+    "docs/analysis-reviews/review1.json",
+    "docs/analysis-reviews/review2.json"
+  ],
+  "decision": "Ship only the review2 narratives accepted here; draft and intermediate review prose remain audit records.",
+  "records": [
+    {
+      "id": "murray",
+      "atlasId": "EN-1919-MURRAY",
+      "narrative": "The atlas places Murray in the Loeb tradition: Greek and English facing one another, with the translation serving generations of students as a line-by-line scholarly companion. The corpus contains 133986 tokens and 5749 unique forms. Its score-ranked formula list begins with “so he spoke and,” recorded 122 times; this first position does not mean it has the highest raw count. For scale within other English translations, Butler contains 117938 tokens. The comparison therefore joins publication history to observable corpus structure, keeping the historical portrait vivid while letting the measurements describe only textual scale, lexical distribution, and repeated phrasing. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora.",
+      "wordCount": 121,
+      "headline": {
+        "tokens": 133986,
+        "uniqueForms": 5749,
+        "typeTokenRatio": 0.042907,
+        "meanSentenceLength": 30.737784
+      },
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 133986 tokens.",
+          "metric": "tokens",
+          "value": 133986,
+          "source": "/records/0/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 5749 unique forms.",
+          "metric": "uniqueForms",
+          "value": 5749,
+          "source": "/records/0/headline/uniqueForms"
+        },
+        {
+          "claim": "The first-listed score-ranked formula is recorded 122 times.",
+          "metric": "topFormulaCount",
+          "value": 122,
+          "source": "/records/0/topFormulas/0/count"
+        },
+        {
+          "claim": "Butler contains 117938 tokens.",
+          "metric": "peerTokens",
+          "value": 117938,
+          "source": "/records/0/peers/0/headline/tokens"
+        }
+      ],
+      "arbiterDecision": "accept-review2",
+      "reviewTrail": {
+        "sourceIndex": 0,
+        "draftWordCount": 163,
+        "review1Verdict": "revise",
+        "review2Verdict": "revise",
+        "review1IssuesResolved": 1,
+        "review2IssuesResolved": 1
+      }
+    },
+    {
+      "id": "butler",
+      "atlasId": "EN-1900-BUTLER",
+      "narrative": "Butler enters the atlas as a deliberate departure from stately Victorian prose, shaped to move like a novel and closely tied to his provocative authorship theory. The corpus contains 117938 tokens and 6322 unique forms. Its score-ranked formula list begins with “the house of,” recorded 70 times; this first position does not mean it has the highest raw count. For scale within other English translations, Murray contains 133986 tokens. Read together, the atlas context and corpus evidence show how this version occupies its declared cohort without converting length, vocabulary counts, or recurrence into claims about merit, fidelity, intention, or reception. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora.",
+      "wordCount": 123,
+      "headline": {
+        "tokens": 117938,
+        "uniqueForms": 6322,
+        "typeTokenRatio": 0.053604,
+        "meanSentenceLength": 30.922391
+      },
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 117938 tokens.",
+          "metric": "tokens",
+          "value": 117938,
+          "source": "/records/1/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 6322 unique forms.",
+          "metric": "uniqueForms",
+          "value": 6322,
+          "source": "/records/1/headline/uniqueForms"
+        },
+        {
+          "claim": "The first-listed score-ranked formula is recorded 70 times.",
+          "metric": "topFormulaCount",
+          "value": 70,
+          "source": "/records/1/topFormulas/0/count"
+        },
+        {
+          "claim": "Murray contains 133986 tokens.",
+          "metric": "peerTokens",
+          "value": 133986,
+          "source": "/records/1/peers/0/headline/tokens"
+        }
+      ],
+      "arbiterDecision": "accept-review2",
+      "reviewTrail": {
+        "sourceIndex": 1,
+        "draftWordCount": 162,
+        "review1Verdict": "revise",
+        "review2Verdict": "revise",
+        "review1IssuesResolved": 1,
+        "review2IssuesResolved": 1
+      }
+    },
+    {
+      "id": "butcher-lang",
+      "atlasId": "EN-1879-BUTCHER-LANG",
+      "narrative": "Butcher and Lang represent the Victorian prose standard in the atlas, with deliberately archaic, scriptural coloring that later translators used as a point of contrast. The corpus contains 135560 tokens and 6093 unique forms. Its score-ranked formula list begins with “odysseus of many counsels,” recorded 66 times; this first position does not mean it has the highest raw count. For scale within other English translations, Murray contains 133986 tokens. This is a bounded comparison: the history identifies the translation’s formal setting, while the statistics locate its scale and verbal patterning among the peers actually declared in the source. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora.",
+      "wordCount": 121,
+      "headline": {
+        "tokens": 135560,
+        "uniqueForms": 6093,
+        "typeTokenRatio": 0.044947,
+        "meanSentenceLength": 30.914481
+      },
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 135560 tokens.",
+          "metric": "tokens",
+          "value": 135560,
+          "source": "/records/2/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 6093 unique forms.",
+          "metric": "uniqueForms",
+          "value": 6093,
+          "source": "/records/2/headline/uniqueForms"
+        },
+        {
+          "claim": "The first-listed score-ranked formula is recorded 66 times.",
+          "metric": "topFormulaCount",
+          "value": 66,
+          "source": "/records/2/topFormulas/0/count"
+        },
+        {
+          "claim": "Murray contains 133986 tokens.",
+          "metric": "peerTokens",
+          "value": 133986,
+          "source": "/records/2/peers/0/headline/tokens"
+        }
+      ],
+      "arbiterDecision": "accept-review2",
+      "reviewTrail": {
+        "sourceIndex": 2,
+        "draftWordCount": 165,
+        "review1Verdict": "revise",
+        "review2Verdict": "revise",
+        "review1IssuesResolved": 1,
+        "review2IssuesResolved": 1
+      }
+    },
+    {
+      "id": "pope",
+      "atlasId": "EN-1725-POPE",
+      "narrative": "The atlas describes Pope’s Odyssey as a collaborative workshop unified by heroic couplets, with several hands polished into a single, highly recognizable English verse manner. The corpus contains 112547 tokens and 8258 unique forms. Its score-ranked formula list begins with “o er the,” recorded 151 times; this first position does not mean it has the highest raw count. For scale within other English translations, Murray contains 133986 tokens. The result is a clearer profile of form and corpus patterning, grounded in the stated comparison group and careful not to treat measured differences as judgments about literary success or accuracy. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora.",
+      "wordCount": 122,
+      "headline": {
+        "tokens": 112547,
+        "uniqueForms": 8258,
+        "typeTokenRatio": 0.073374,
+        "meanSentenceLength": 24.413666
+      },
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 112547 tokens.",
+          "metric": "tokens",
+          "value": 112547,
+          "source": "/records/3/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 8258 unique forms.",
+          "metric": "uniqueForms",
+          "value": 8258,
+          "source": "/records/3/headline/uniqueForms"
+        },
+        {
+          "claim": "The first-listed score-ranked formula is recorded 151 times.",
+          "metric": "topFormulaCount",
+          "value": 151,
+          "source": "/records/3/topFormulas/0/count"
+        },
+        {
+          "claim": "Murray contains 133986 tokens.",
+          "metric": "peerTokens",
+          "value": 133986,
+          "source": "/records/3/peers/0/headline/tokens"
+        }
+      ],
+      "arbiterDecision": "accept-review2",
+      "reviewTrail": {
+        "sourceIndex": 3,
+        "draftWordCount": 164,
+        "review1Verdict": "revise",
+        "review2Verdict": "revise",
+        "review1IssuesResolved": 1,
+        "review2IssuesResolved": 1
+      }
+    },
+    {
+      "id": "cowper",
+      "atlasId": "EN-1791-COWPER",
+      "narrative": "Cowper’s blank verse appears in the atlas as an explicit answer to Pope’s rhyme, exchanging couplet form for a closer, deliberately plainer metrical approach. The corpus contains 115040 tokens and 8365 unique forms. Its score-ranked formula list begins with “o er the,” recorded 51 times; this first position does not mean it has the highest raw count. For scale within other English translations, Murray contains 133986 tokens. The comparison therefore joins publication history to observable corpus structure, keeping the historical portrait vivid while letting the measurements describe only textual scale, lexical distribution, and repeated phrasing. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora. That focus keeps the comparison useful without asking the data to support more than it can.",
+      "wordCount": 134,
+      "headline": {
+        "tokens": 115040,
+        "uniqueForms": 8365,
+        "typeTokenRatio": 0.072714,
+        "meanSentenceLength": 23.221639
+      },
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 115040 tokens.",
+          "metric": "tokens",
+          "value": 115040,
+          "source": "/records/4/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 8365 unique forms.",
+          "metric": "uniqueForms",
+          "value": 8365,
+          "source": "/records/4/headline/uniqueForms"
+        },
+        {
+          "claim": "The first-listed score-ranked formula is recorded 51 times.",
+          "metric": "topFormulaCount",
+          "value": 51,
+          "source": "/records/4/topFormulas/0/count"
+        },
+        {
+          "claim": "Murray contains 133986 tokens.",
+          "metric": "peerTokens",
+          "value": 133986,
+          "source": "/records/4/peers/0/headline/tokens"
+        }
+      ],
+      "arbiterDecision": "accept-review2",
+      "reviewTrail": {
+        "sourceIndex": 4,
+        "draftWordCount": 164,
+        "review1Verdict": "revise",
+        "review2Verdict": "revise",
+        "review1IssuesResolved": 1,
+        "review2IssuesResolved": 1
+      }
+    },
+    {
+      "id": "chapman",
+      "atlasId": "EN-1615-CHAPMAN",
+      "narrative": "Chapman’s Odyssey completes the first full English Homer in the atlas, recasting the poem in expansive rhymed pentameter and a vocabulary of wisdom and pilgrimage. The corpus contains 140625 tokens and 8434 unique forms. Its score-ranked formula list begins with “of all the,” recorded 67 times; this first position does not mean it has the highest raw count. For scale within other English translations, Murray contains 133986 tokens. Read together, the atlas context and corpus evidence show how this version occupies its declared cohort without converting length, vocabulary counts, or recurrence into claims about merit, fidelity, intention, or reception. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora.",
+      "wordCount": 122,
+      "headline": {
+        "tokens": 140625,
+        "uniqueForms": 8434,
+        "typeTokenRatio": 0.059975,
+        "meanSentenceLength": 32.95641
+      },
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 140625 tokens.",
+          "metric": "tokens",
+          "value": 140625,
+          "source": "/records/5/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 8434 unique forms.",
+          "metric": "uniqueForms",
+          "value": 8434,
+          "source": "/records/5/headline/uniqueForms"
+        },
+        {
+          "claim": "The first-listed score-ranked formula is recorded 67 times.",
+          "metric": "topFormulaCount",
+          "value": 67,
+          "source": "/records/5/topFormulas/0/count"
+        },
+        {
+          "claim": "Murray contains 133986 tokens.",
+          "metric": "peerTokens",
+          "value": 133986,
+          "source": "/records/5/peers/0/headline/tokens"
+        }
+      ],
+      "arbiterDecision": "accept-review2",
+      "reviewTrail": {
+        "sourceIndex": 5,
+        "draftWordCount": 164,
+        "review1Verdict": "revise",
+        "review2Verdict": "revise",
+        "review1IssuesResolved": 1,
+        "review2IssuesResolved": 1
+      }
+    },
+    {
+      "id": "segala",
+      "atlasId": "ES-1912-SEGALA",
+      "narrative": "Segalá’s stately Spanish prose became a durable classroom Homer, accompanied in early editions by classical illustrations and repeatedly returned to by Spanish-language publishers. The corpus contains 118573 tokens and 12235 unique forms. Its score-ranked formula list begins with “en el palacio,” recorded 114 times; this first position does not mean it has the highest raw count. For scale within other historical prose translations, Murray contains 133986 tokens. This is a bounded comparison: the history identifies the translation’s formal setting, while the statistics locate its scale and verbal patterning among the peers actually declared in the source. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora. That focus keeps the comparison useful without asking the data to support more than it can.",
+      "wordCount": 135,
+      "headline": {
+        "tokens": 118573,
+        "uniqueForms": 12235,
+        "typeTokenRatio": 0.103185,
+        "meanSentenceLength": 27.460167
+      },
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 118573 tokens.",
+          "metric": "tokens",
+          "value": 118573,
+          "source": "/records/6/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 12235 unique forms.",
+          "metric": "uniqueForms",
+          "value": 12235,
+          "source": "/records/6/headline/uniqueForms"
+        },
+        {
+          "claim": "The first-listed score-ranked formula is recorded 114 times.",
+          "metric": "topFormulaCount",
+          "value": 114,
+          "source": "/records/6/topFormulas/0/count"
+        },
+        {
+          "claim": "Murray contains 133986 tokens.",
+          "metric": "peerTokens",
+          "value": 133986,
+          "source": "/records/6/peers/0/headline/tokens"
+        }
+      ],
+      "arbiterDecision": "accept-review2",
+      "reviewTrail": {
+        "sourceIndex": 6,
+        "draftWordCount": 164,
+        "review1Verdict": "revise",
+        "review2Verdict": "revise",
+        "review1IssuesResolved": 1,
+        "review2IssuesResolved": 1
+      }
+    },
+    {
+      "id": "leconte",
+      "atlasId": "FR-1867-LECONTE",
+      "narrative": "Leconte de Lisle’s French prose deliberately restored Greek names and rejected long-standing Latinized conventions, giving the atlas a sharply defined historical and linguistic point of comparison. The corpus contains 118797 tokens and 8125 unique forms. Its score-ranked formula list begins with “parla ainsi et,” recorded 210 times; this first position does not mean it has the highest raw count. For scale within other Français translations, Dacier contains 143271 tokens. The result is a clearer profile of form and corpus patterning, grounded in the stated comparison group and careful not to treat measured differences as judgments about literary success or accuracy. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora.",
+      "wordCount": 123,
+      "headline": {
+        "tokens": 118797,
+        "uniqueForms": 8125,
+        "typeTokenRatio": 0.068394,
+        "meanSentenceLength": 24.038244
+      },
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 118797 tokens.",
+          "metric": "tokens",
+          "value": 118797,
+          "source": "/records/7/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 8125 unique forms.",
+          "metric": "uniqueForms",
+          "value": 8125,
+          "source": "/records/7/headline/uniqueForms"
+        },
+        {
+          "claim": "The first-listed score-ranked formula is recorded 210 times.",
+          "metric": "topFormulaCount",
+          "value": 210,
+          "source": "/records/7/topFormulas/0/count"
+        },
+        {
+          "claim": "Dacier contains 143271 tokens.",
+          "metric": "peerTokens",
+          "value": 143271,
+          "source": "/records/7/peers/0/headline/tokens"
+        }
+      ],
+      "arbiterDecision": "accept-review2",
+      "reviewTrail": {
+        "sourceIndex": 7,
+        "draftWordCount": 164,
+        "review1Verdict": "revise",
+        "review2Verdict": "revise",
+        "review1IssuesResolved": 1,
+        "review2IssuesResolved": 1
+      }
+    },
+    {
+      "id": "voss",
+      "atlasId": "DE-1781-VOSS",
+      "narrative": "Voß stands in the atlas as the German hexameter benchmark, repeatedly revised and influential enough that later German Homers had to engage with its metrical choice. The corpus contains 109003 tokens and 11565 unique forms. Its score-ranked formula list begins with “also sprach er,” recorded 175 times; this first position does not mean it has the highest raw count. For scale within other hexameter verse translations, Cotterill contains 145162 tokens. The comparison therefore joins publication history to observable corpus structure, keeping the historical portrait vivid while letting the measurements describe only textual scale, lexical distribution, and repeated phrasing. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora.",
+      "wordCount": 121,
+      "headline": {
+        "tokens": 109003,
+        "uniqueForms": 11565,
+        "typeTokenRatio": 0.106098,
+        "meanSentenceLength": 20.958085
+      },
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 109003 tokens.",
+          "metric": "tokens",
+          "value": 109003,
+          "source": "/records/8/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 11565 unique forms.",
+          "metric": "uniqueForms",
+          "value": 11565,
+          "source": "/records/8/headline/uniqueForms"
+        },
+        {
+          "claim": "The first-listed score-ranked formula is recorded 175 times.",
+          "metric": "topFormulaCount",
+          "value": 175,
+          "source": "/records/8/topFormulas/0/count"
+        },
+        {
+          "claim": "Cotterill contains 145162 tokens.",
+          "metric": "peerTokens",
+          "value": 145162,
+          "source": "/records/8/peers/0/headline/tokens"
+        }
+      ],
+      "arbiterDecision": "accept-review2",
+      "reviewTrail": {
+        "sourceIndex": 8,
+        "draftWordCount": 164,
+        "review1Verdict": "revise",
+        "review2Verdict": "revise",
+        "review1IssuesResolved": 1,
+        "review2IssuesResolved": 1
+      }
+    },
+    {
+      "id": "johnston",
+      "atlasId": "EN-2006-JOHNSTON",
+      "narrative": "Johnston’s blank-verse Odyssey moved from an online edition to print and audio before entering the public domain, a publication path unusually visible in the atlas. The corpus contains 129664 tokens and 6755 unique forms. Its score-ranked formula list begins with “answered him and said,” recorded 80 times; this first position does not mean it has the highest raw count. For scale within other English translations, Murray contains 133986 tokens. Read together, the atlas context and corpus evidence show how this version occupies its declared cohort without converting length, vocabulary counts, or recurrence into claims about merit, fidelity, intention, or reception. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora.",
+      "wordCount": 123,
+      "headline": {
+        "tokens": 129664,
+        "uniqueForms": 6755,
+        "typeTokenRatio": 0.052096,
+        "meanSentenceLength": 18.898703
+      },
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 129664 tokens.",
+          "metric": "tokens",
+          "value": 129664,
+          "source": "/records/9/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 6755 unique forms.",
+          "metric": "uniqueForms",
+          "value": 6755,
+          "source": "/records/9/headline/uniqueForms"
+        },
+        {
+          "claim": "The first-listed score-ranked formula is recorded 80 times.",
+          "metric": "topFormulaCount",
+          "value": 80,
+          "source": "/records/9/topFormulas/0/count"
+        },
+        {
+          "claim": "Murray contains 133986 tokens.",
+          "metric": "peerTokens",
+          "value": 133986,
+          "source": "/records/9/peers/0/headline/tokens"
+        }
+      ],
+      "arbiterDecision": "accept-review2",
+      "reviewTrail": {
+        "sourceIndex": 9,
+        "draftWordCount": 165,
+        "review1Verdict": "revise",
+        "review2Verdict": "revise",
+        "review1IssuesResolved": 1,
+        "review2IssuesResolved": 1
+      }
+    },
+    {
+      "id": "bryant",
+      "atlasId": "EN-1871-BRYANT",
+      "narrative": "Bryant’s American blank verse retains Latin names and a grave register; the atlas situates it as a major poetic Odyssey from the translator’s later career. The corpus contains 118115 tokens and 6934 unique forms. Its score-ranked formula list begins with “he spake and,” recorded 94 times; this first position does not mean it has the highest raw count. For scale within other English translations, Murray contains 133986 tokens. This is a bounded comparison: the history identifies the translation’s formal setting, while the statistics locate its scale and verbal patterning among the peers actually declared in the source. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora.",
+      "wordCount": 120,
+      "headline": {
+        "tokens": 118115,
+        "uniqueForms": 6934,
+        "typeTokenRatio": 0.058705,
+        "meanSentenceLength": 25.384698
+      },
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 118115 tokens.",
+          "metric": "tokens",
+          "value": 118115,
+          "source": "/records/10/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 6934 unique forms.",
+          "metric": "uniqueForms",
+          "value": 6934,
+          "source": "/records/10/headline/uniqueForms"
+        },
+        {
+          "claim": "The first-listed score-ranked formula is recorded 94 times.",
+          "metric": "topFormulaCount",
+          "value": 94,
+          "source": "/records/10/topFormulas/0/count"
+        },
+        {
+          "claim": "Murray contains 133986 tokens.",
+          "metric": "peerTokens",
+          "value": 133986,
+          "source": "/records/10/peers/0/headline/tokens"
+        }
+      ],
+      "arbiterDecision": "accept-review2",
+      "reviewTrail": {
+        "sourceIndex": 10,
+        "draftWordCount": 164,
+        "review1Verdict": "revise",
+        "review2Verdict": "revise",
+        "review1IssuesResolved": 1,
+        "review2IssuesResolved": 1
+      }
+    },
+    {
+      "id": "palmer",
+      "atlasId": "EN-1884-PALMER",
+      "narrative": "Palmer’s American prose Odyssey grew from a partial publication into a complete classroom text, framed by the atlas as supple and faintly rhythmic in construction. The corpus contains 116728 tokens and 6545 unique forms. Its score-ranked formula list begins with “the son of,” recorded 106 times; this first position does not mean it has the highest raw count. For scale within other English translations, Murray contains 133986 tokens. The result is a clearer profile of form and corpus patterning, grounded in the stated comparison group and careful not to treat measured differences as judgments about literary success or accuracy. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora.",
+      "wordCount": 122,
+      "headline": {
+        "tokens": 116728,
+        "uniqueForms": 6545,
+        "typeTokenRatio": 0.056071,
+        "meanSentenceLength": 22.843053
+      },
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 116728 tokens.",
+          "metric": "tokens",
+          "value": 116728,
+          "source": "/records/11/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 6545 unique forms.",
+          "metric": "uniqueForms",
+          "value": 6545,
+          "source": "/records/11/headline/uniqueForms"
+        },
+        {
+          "claim": "The first-listed score-ranked formula is recorded 106 times.",
+          "metric": "topFormulaCount",
+          "value": 106,
+          "source": "/records/11/topFormulas/0/count"
+        },
+        {
+          "claim": "Murray contains 133986 tokens.",
+          "metric": "peerTokens",
+          "value": 133986,
+          "source": "/records/11/peers/0/headline/tokens"
+        }
+      ],
+      "arbiterDecision": "accept-review2",
+      "reviewTrail": {
+        "sourceIndex": 11,
+        "draftWordCount": 162,
+        "review1Verdict": "revise",
+        "review2Verdict": "revise",
+        "review1IssuesResolved": 1,
+        "review2IssuesResolved": 1
+      }
+    },
+    {
+      "id": "cotterill",
+      "atlasId": "EN-1911-COTTERILL",
+      "narrative": "Cotterill offers a sustained English experiment in hexameter, using long rolling lines to engage directly with the meter associated with Homer in the atlas account. The corpus contains 145162 tokens and 8231 unique forms. Its score-ranked formula list begins with “all of the,” recorded 169 times; this first position does not mean it has the highest raw count. For scale within other English translations, Murray contains 133986 tokens. The comparison therefore joins publication history to observable corpus structure, keeping the historical portrait vivid while letting the measurements describe only textual scale, lexical distribution, and repeated phrasing. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora. That focus keeps the comparison useful without asking the data to support more than it can.",
+      "wordCount": 135,
+      "headline": {
+        "tokens": 145162,
+        "uniqueForms": 8231,
+        "typeTokenRatio": 0.056702,
+        "meanSentenceLength": 29.178291
+      },
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 145162 tokens.",
+          "metric": "tokens",
+          "value": 145162,
+          "source": "/records/12/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 8231 unique forms.",
+          "metric": "uniqueForms",
+          "value": 8231,
+          "source": "/records/12/headline/uniqueForms"
+        },
+        {
+          "claim": "The first-listed score-ranked formula is recorded 169 times.",
+          "metric": "topFormulaCount",
+          "value": 169,
+          "source": "/records/12/topFormulas/0/count"
+        },
+        {
+          "claim": "Murray contains 133986 tokens.",
+          "metric": "peerTokens",
+          "value": 133986,
+          "source": "/records/12/peers/0/headline/tokens"
+        }
+      ],
+      "arbiterDecision": "accept-review2",
+      "reviewTrail": {
+        "sourceIndex": 12,
+        "draftWordCount": 162,
+        "review1Verdict": "revise",
+        "review2Verdict": "revise",
+        "review1IssuesResolved": 1,
+        "review2IssuesResolved": 1
+      }
+    },
+    {
+      "id": "morris",
+      "atlasId": "EN-1887-MORRIS",
+      "narrative": "Morris turns the Odyssey toward northern romance in the atlas, using long rhymed couplets and a deliberately saga-colored vocabulary that includes “menfolk” and “fellow-farers.” The corpus contains 147844 tokens and 6390 unique forms. Its score-ranked formula list begins with “he spake and,” recorded 122 times; this first position does not mean it has the highest raw count. For scale within other English translations, Murray contains 133986 tokens. Read together, the atlas context and corpus evidence show how this version occupies its declared cohort without converting length, vocabulary counts, or recurrence into claims about merit, fidelity, intention, or reception. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora.",
+      "wordCount": 121,
+      "headline": {
+        "tokens": 147844,
+        "uniqueForms": 6390,
+        "typeTokenRatio": 0.043221,
+        "meanSentenceLength": 41.953462
+      },
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 147844 tokens.",
+          "metric": "tokens",
+          "value": 147844,
+          "source": "/records/13/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 6390 unique forms.",
+          "metric": "uniqueForms",
+          "value": 6390,
+          "source": "/records/13/headline/uniqueForms"
+        },
+        {
+          "claim": "The first-listed score-ranked formula is recorded 122 times.",
+          "metric": "topFormulaCount",
+          "value": 122,
+          "source": "/records/13/topFormulas/0/count"
+        },
+        {
+          "claim": "Murray contains 133986 tokens.",
+          "metric": "peerTokens",
+          "value": 133986,
+          "source": "/records/13/peers/0/headline/tokens"
+        }
+      ],
+      "arbiterDecision": "accept-review2",
+      "reviewTrail": {
+        "sourceIndex": 13,
+        "draftWordCount": 164,
+        "review1Verdict": "revise",
+        "review2Verdict": "revise",
+        "review1IssuesResolved": 1,
+        "review2IssuesResolved": 1
+      }
+    },
+    {
+      "id": "worsley",
+      "atlasId": "EN-1862-WORSLEY",
+      "narrative": "Worsley builds his Odyssey in the stanza associated with Spenser, openly defending that choice against contemporary objections and sustaining it across the complete poem. The corpus contains 116110 tokens and 8027 unique forms. Its score-ranked formula list begins with “o er the,” recorded 73 times; this first position does not mean it has the highest raw count. For scale within other English translations, Murray contains 133986 tokens. This is a bounded comparison: the history identifies the translation’s formal setting, while the statistics locate its scale and verbal patterning among the peers actually declared in the source. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora. That focus keeps the comparison useful without asking the data to support more than it can.",
+      "wordCount": 135,
+      "headline": {
+        "tokens": 116110,
+        "uniqueForms": 8027,
+        "typeTokenRatio": 0.069133,
+        "meanSentenceLength": 23.647658
+      },
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 116110 tokens.",
+          "metric": "tokens",
+          "value": 116110,
+          "source": "/records/14/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 8027 unique forms.",
+          "metric": "uniqueForms",
+          "value": 8027,
+          "source": "/records/14/headline/uniqueForms"
+        },
+        {
+          "claim": "The first-listed score-ranked formula is recorded 73 times.",
+          "metric": "topFormulaCount",
+          "value": 73,
+          "source": "/records/14/topFormulas/0/count"
+        },
+        {
+          "claim": "Murray contains 133986 tokens.",
+          "metric": "peerTokens",
+          "value": 133986,
+          "source": "/records/14/peers/0/headline/tokens"
+        }
+      ],
+      "arbiterDecision": "accept-review2",
+      "reviewTrail": {
+        "sourceIndex": 14,
+        "draftWordCount": 164,
+        "review1Verdict": "revise",
+        "review2Verdict": "revise",
+        "review1IssuesResolved": 1,
+        "review2IssuesResolved": 1
+      }
+    },
+    {
+      "id": "pindemonte",
+      "atlasId": "IT-1822-PINDEMONTE",
+      "narrative": "Pindemonte’s Italian blank verse became a long-lived national reference point, with musical hendecasyllables and an opening that the atlas identifies as especially memorable. The corpus contains 107050 tokens and 14353 unique forms. Its score-ranked formula list begins with “se non che,” recorded 21 times; this first position does not mean it has the highest raw count. For scale within other unrhymed or accentual verse translations, Cowper contains 115040 tokens. The result is a clearer profile of form and corpus patterning, grounded in the stated comparison group and careful not to treat measured differences as judgments about literary success or accuracy. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora.",
+      "wordCount": 123,
+      "headline": {
+        "tokens": 107050,
+        "uniqueForms": 14353,
+        "typeTokenRatio": 0.134078,
+        "meanSentenceLength": 22.922912
+      },
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 107050 tokens.",
+          "metric": "tokens",
+          "value": 107050,
+          "source": "/records/15/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 14353 unique forms.",
+          "metric": "uniqueForms",
+          "value": 14353,
+          "source": "/records/15/headline/uniqueForms"
+        },
+        {
+          "claim": "The first-listed score-ranked formula is recorded 21 times.",
+          "metric": "topFormulaCount",
+          "value": 21,
+          "source": "/records/15/topFormulas/0/count"
+        },
+        {
+          "claim": "Cowper contains 115040 tokens.",
+          "metric": "peerTokens",
+          "value": 115040,
+          "source": "/records/15/peers/0/headline/tokens"
+        }
+      ],
+      "arbiterDecision": "accept-review2",
+      "reviewTrail": {
+        "sourceIndex": 15,
+        "draftWordCount": 168,
+        "review1Verdict": "revise",
+        "review2Verdict": "revise",
+        "review1IssuesResolved": 1,
+        "review2IssuesResolved": 1
+      }
+    },
+    {
+      "id": "zhukovsky",
+      "atlasId": "RU-1849-ZHUKOVSKY",
+      "narrative": "Zhukovsky built his Russian hexameters from a detailed German interlinear because his Greek was limited, an unusual production history that gives the atlas comparison real texture. The corpus contains 98574 tokens and 18344 unique forms. Its score-ranked formula list begins with “так он сказал,” recorded 79 times; this first position does not mean it has the highest raw count. For scale within other hexameter verse translations, Voß contains 109003 tokens. The comparison therefore joins publication history to observable corpus structure, keeping the historical portrait vivid while letting the measurements describe only textual scale, lexical distribution, and repeated phrasing. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora.",
+      "wordCount": 121,
+      "headline": {
+        "tokens": 98574,
+        "uniqueForms": 18344,
+        "typeTokenRatio": 0.186094,
+        "meanSentenceLength": 24.917594
+      },
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 98574 tokens.",
+          "metric": "tokens",
+          "value": 98574,
+          "source": "/records/16/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 18344 unique forms.",
+          "metric": "uniqueForms",
+          "value": 18344,
+          "source": "/records/16/headline/uniqueForms"
+        },
+        {
+          "claim": "The first-listed score-ranked formula is recorded 79 times.",
+          "metric": "topFormulaCount",
+          "value": 79,
+          "source": "/records/16/topFormulas/0/count"
+        },
+        {
+          "claim": "Voß contains 109003 tokens.",
+          "metric": "peerTokens",
+          "value": 109003,
+          "source": "/records/16/peers/0/headline/tokens"
+        }
+      ],
+      "arbiterDecision": "accept-review2",
+      "reviewTrail": {
+        "sourceIndex": 16,
+        "draftWordCount": 164,
+        "review1Verdict": "revise",
+        "review2Verdict": "revise",
+        "review1IssuesResolved": 1,
+        "review2IssuesResolved": 1
+      }
+    },
+    {
+      "id": "vosmaer",
+      "atlasId": "NL-1889-VOSMAER",
+      "narrative": "Vosmaer’s Dutch hexameter Odyssey, completed near the end of his life, joined his Iliad as a paired Homer that remained prominent for decades. The corpus contains 128485 tokens and 11715 unique forms. Its score-ranked formula list begins with “alzoo sprak hij,” recorded 126 times; this first position does not mean it has the highest raw count. For scale within other hexameter verse translations, Voß contains 109003 tokens. Read together, the atlas context and corpus evidence show how this version occupies its declared cohort without converting length, vocabulary counts, or recurrence into claims about merit, fidelity, intention, or reception. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora.",
+      "wordCount": 121,
+      "headline": {
+        "tokens": 128485,
+        "uniqueForms": 11715,
+        "typeTokenRatio": 0.091178,
+        "meanSentenceLength": 30.324522
+      },
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 128485 tokens.",
+          "metric": "tokens",
+          "value": 128485,
+          "source": "/records/17/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 11715 unique forms.",
+          "metric": "uniqueForms",
+          "value": 11715,
+          "source": "/records/17/headline/uniqueForms"
+        },
+        {
+          "claim": "The first-listed score-ranked formula is recorded 126 times.",
+          "metric": "topFormulaCount",
+          "value": 126,
+          "source": "/records/17/topFormulas/0/count"
+        },
+        {
+          "claim": "Voß contains 109003 tokens.",
+          "metric": "peerTokens",
+          "value": 109003,
+          "source": "/records/17/peers/0/headline/tokens"
+        }
+      ],
+      "arbiterDecision": "accept-review2",
+      "reviewTrail": {
+        "sourceIndex": 17,
+        "draftWordCount": 164,
+        "review1Verdict": "revise",
+        "review2Verdict": "revise",
+        "review1IssuesResolved": 1,
+        "review2IssuesResolved": 1
+      }
+    },
+    {
+      "id": "wilster",
+      "atlasId": "DA-1837-WILSTER",
+      "narrative": "Wilster’s complete Danish Odyssey combines hexameter with archaism, colloquial ease, and Romantic coloring, and the atlas records a long history of reprinting. The corpus contains 122876 tokens and 10095 unique forms. Its score-ranked formula list begins with “saa han taled og,” recorded 58 times; this first position does not mean it has the highest raw count. For scale within other hexameter verse translations, Voß contains 109003 tokens. This is a bounded comparison: the history identifies the translation’s formal setting, while the statistics locate its scale and verbal patterning among the peers actually declared in the source. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora. That focus keeps the comparison useful without asking the data to support more than it can.",
+      "wordCount": 135,
+      "headline": {
+        "tokens": 122876,
+        "uniqueForms": 10095,
+        "typeTokenRatio": 0.082156,
+        "meanSentenceLength": 27.130934
+      },
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 122876 tokens.",
+          "metric": "tokens",
+          "value": 122876,
+          "source": "/records/18/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 10095 unique forms.",
+          "metric": "uniqueForms",
+          "value": 10095,
+          "source": "/records/18/headline/uniqueForms"
+        },
+        {
+          "claim": "The first-listed score-ranked formula is recorded 58 times.",
+          "metric": "topFormulaCount",
+          "value": 58,
+          "source": "/records/18/topFormulas/0/count"
+        },
+        {
+          "claim": "Voß contains 109003 tokens.",
+          "metric": "peerTokens",
+          "value": 109003,
+          "source": "/records/18/peers/0/headline/tokens"
+        }
+      ],
+      "arbiterDecision": "accept-review2",
+      "reviewTrail": {
+        "sourceIndex": 18,
+        "draftWordCount": 165,
+        "review1Verdict": "revise",
+        "review2Verdict": "revise",
+        "review1IssuesResolved": 1,
+        "review2IssuesResolved": 1
+      }
+    },
+    {
+      "id": "dacier",
+      "atlasId": "FR-1716-DACIER",
+      "narrative": "Dacier’s learned French prose emerged amid the dispute between Ancients and Moderns, and her scholarship later informed Pope even where their judgments diverged. The corpus contains 143271 tokens and 9962 unique forms. Its score-ranked formula list begins with “en même temps,” recorded 91 times; this first position does not mean it has the highest raw count. For scale within other Français translations, Leconte de Lisle contains 118797 tokens. The result is a clearer profile of form and corpus patterning, grounded in the stated comparison group and careful not to treat measured differences as judgments about literary success or accuracy. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora.",
+      "wordCount": 122,
+      "headline": {
+        "tokens": 143271,
+        "uniqueForms": 9962,
+        "typeTokenRatio": 0.069533,
+        "meanSentenceLength": 28.867822
+      },
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 143271 tokens.",
+          "metric": "tokens",
+          "value": 143271,
+          "source": "/records/19/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 9962 unique forms.",
+          "metric": "uniqueForms",
+          "value": 9962,
+          "source": "/records/19/headline/uniqueForms"
+        },
+        {
+          "claim": "The first-listed score-ranked formula is recorded 91 times.",
+          "metric": "topFormulaCount",
+          "value": 91,
+          "source": "/records/19/topFormulas/0/count"
+        },
+        {
+          "claim": "Leconte de Lisle contains 118797 tokens.",
+          "metric": "peerTokens",
+          "value": 118797,
+          "source": "/records/19/peers/0/headline/tokens"
+        }
+      ],
+      "arbiterDecision": "accept-review2",
+      "reviewTrail": {
+        "sourceIndex": 19,
+        "draftWordCount": 164,
+        "review1Verdict": "revise",
+        "review2Verdict": "revise",
+        "review1IssuesResolved": 1,
+        "review2IssuesResolved": 1
+      }
+    },
+    {
+      "id": "tchernichovsky",
+      "atlasId": "HE-1940-TCHERNICHOVSKY",
+      "narrative": "Tchernichovsky brought the complete Odyssey into Hebrew dactylic hexameter, establishing the landmark edition that later publishers kept available in print and online. The corpus contains 85572 tokens and 21611 unique forms. Its score-ranked formula list begins with “אוֹדִיסֵס הָאִישׁ רַב,” recorded 118 times; this first position does not mean it has the highest raw count. For scale within other hexameter verse translations, Voß contains 109003 tokens. The comparison therefore joins publication history to observable corpus structure, keeping the historical portrait vivid while letting the measurements describe only textual scale, lexical distribution, and repeated phrasing. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora. That focus keeps the comparison useful without asking the data to support more than it can.",
+      "wordCount": 133,
+      "headline": {
+        "tokens": 85572,
+        "uniqueForms": 21611,
+        "typeTokenRatio": 0.252548,
+        "meanSentenceLength": 19.577213
+      },
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 85572 tokens.",
+          "metric": "tokens",
+          "value": 85572,
+          "source": "/records/20/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 21611 unique forms.",
+          "metric": "uniqueForms",
+          "value": 21611,
+          "source": "/records/20/headline/uniqueForms"
+        },
+        {
+          "claim": "The first-listed score-ranked formula is recorded 118 times.",
+          "metric": "topFormulaCount",
+          "value": 118,
+          "source": "/records/20/topFormulas/0/count"
+        },
+        {
+          "claim": "Voß contains 109003 tokens.",
+          "metric": "peerTokens",
+          "value": 109003,
+          "source": "/records/20/peers/0/headline/tokens"
+        }
+      ],
+      "arbiterDecision": "accept-review2",
+      "reviewTrail": {
+        "sourceIndex": 20,
+        "draftWordCount": 164,
+        "review1Verdict": "revise",
+        "review2Verdict": "revise",
+        "review1IssuesResolved": 1,
+        "review2IssuesResolved": 1
+      }
+    },
+    {
+      "id": "hobbes",
+      "atlasId": "EN-1675-HOBBES",
+      "narrative": "Hobbes approached Homer late in life, after his political works, producing a complete rhymed Odyssey that the atlas characterizes through its direct narrative emphasis. The corpus contains 93977 tokens and 5915 unique forms. Its score-ranked formula list begins with “and to the,” recorded 35 times; this first position does not mean it has the highest raw count. For scale within other English translations, Murray contains 133986 tokens. Read together, the atlas context and corpus evidence show how this version occupies its declared cohort without converting length, vocabulary counts, or recurrence into claims about merit, fidelity, intention, or reception. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora.",
+      "wordCount": 121,
+      "headline": {
+        "tokens": 93977,
+        "uniqueForms": 5915,
+        "typeTokenRatio": 0.062941,
+        "meanSentenceLength": 23.845978
+      },
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 93977 tokens.",
+          "metric": "tokens",
+          "value": 93977,
+          "source": "/records/21/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 5915 unique forms.",
+          "metric": "uniqueForms",
+          "value": 5915,
+          "source": "/records/21/headline/uniqueForms"
+        },
+        {
+          "claim": "The first-listed score-ranked formula is recorded 35 times.",
+          "metric": "topFormulaCount",
+          "value": 35,
+          "source": "/records/21/topFormulas/0/count"
+        },
+        {
+          "claim": "Murray contains 133986 tokens.",
+          "metric": "peerTokens",
+          "value": 133986,
+          "source": "/records/21/peers/0/headline/tokens"
+        }
+      ],
+      "arbiterDecision": "accept-review2",
+      "reviewTrail": {
+        "sourceIndex": 21,
+        "draftWordCount": 164,
+        "review1Verdict": "revise",
+        "review2Verdict": "revise",
+        "review1IssuesResolved": 1,
+        "review2IssuesResolved": 1
+      }
+    },
+    {
+      "id": "polylas",
+      "atlasId": "EL-1875-POLYLAS",
+      "narrative": "Polylas brings the Odyssey into Modern Greek through demotic language and the unrhymed iambic line of folk song, while retaining traces of older usage. The corpus contains 103091 tokens and 14786 unique forms. Its score-ranked formula list begins with “ς το σπίτι,” recorded 136 times; this first position does not mean it has the highest raw count. For scale within other unrhymed or accentual verse translations, Cowper contains 115040 tokens. This is a bounded comparison: the history identifies the translation’s formal setting, while the statistics locate its scale and verbal patterning among the peers actually declared in the source. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora.",
+      "wordCount": 122,
+      "headline": {
+        "tokens": 103091,
+        "uniqueForms": 14786,
+        "typeTokenRatio": 0.143427,
+        "meanSentenceLength": 36.557092
+      },
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 103091 tokens.",
+          "metric": "tokens",
+          "value": 103091,
+          "source": "/records/22/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 14786 unique forms.",
+          "metric": "uniqueForms",
+          "value": 14786,
+          "source": "/records/22/headline/uniqueForms"
+        },
+        {
+          "claim": "The first-listed score-ranked formula is recorded 136 times.",
+          "metric": "topFormulaCount",
+          "value": 136,
+          "source": "/records/22/topFormulas/0/count"
+        },
+        {
+          "claim": "Cowper contains 115040 tokens.",
+          "metric": "peerTokens",
+          "value": 115040,
+          "source": "/records/22/peers/0/headline/tokens"
+        }
+      ],
+      "arbiterDecision": "accept-review2",
+      "reviewTrail": {
+        "sourceIndex": 22,
+        "draftWordCount": 168,
+        "review1Verdict": "revise",
+        "review2Verdict": "revise",
+        "review1IssuesResolved": 1,
+        "review2IssuesResolved": 1
+      }
+    },
+    {
+      "id": "lagerlof",
+      "atlasId": "SV-1908-LAGERLOF",
+      "narrative": "Lagerlöf’s Swedish hexameters occupy a durable place in the atlas, later modernized and also reissued in their original form by the Swedish Academy. The corpus contains 122053 tokens and 11031 unique forms. Its score-ranked formula list begins with “svarade då den,” recorded 118 times; this first position does not mean it has the highest raw count. For scale within other hexameter verse translations, Voß contains 109003 tokens. The result is a clearer profile of form and corpus patterning, grounded in the stated comparison group and careful not to treat measured differences as judgments about literary success or accuracy. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora.",
+      "wordCount": 121,
+      "headline": {
+        "tokens": 122053,
+        "uniqueForms": 11031,
+        "typeTokenRatio": 0.090379,
+        "meanSentenceLength": 28.42408
+      },
+      "numericClaims": [
+        {
+          "claim": "The corpus contains 122053 tokens.",
+          "metric": "tokens",
+          "value": 122053,
+          "source": "/records/23/headline/tokens"
+        },
+        {
+          "claim": "The corpus contains 11031 unique forms.",
+          "metric": "uniqueForms",
+          "value": 11031,
+          "source": "/records/23/headline/uniqueForms"
+        },
+        {
+          "claim": "The first-listed score-ranked formula is recorded 118 times.",
+          "metric": "topFormulaCount",
+          "value": 118,
+          "source": "/records/23/topFormulas/0/count"
+        },
+        {
+          "claim": "Voß contains 109003 tokens.",
+          "metric": "peerTokens",
+          "value": 109003,
+          "source": "/records/23/peers/0/headline/tokens"
+        }
+      ],
+      "arbiterDecision": "accept-review2",
+      "reviewTrail": {
+        "sourceIndex": 23,
+        "draftWordCount": 164,
+        "review1Verdict": "revise",
+        "review2Verdict": "revise",
+        "review1IssuesResolved": 1,
+        "review2IssuesResolved": 1
+      }
+    }
+  ],
+  "summary": {
+    "accepted": 24,
+    "amended": 0,
+    "rejected": 0,
+    "wordRange": [
+      120,
+      135
+    ],
+    "numericClaims": 96
+  }
+}
