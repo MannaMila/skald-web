@@ -94,12 +94,19 @@
  const GA_ID="G-K0V3J9TLBF";
  window.dataLayer=window.dataLayer||[];
  function gtag(){dataLayer.push(arguments)}
- /* Analytics: same consent-mode pattern as the atlases. */
- if(navigator.globalPrivacyControl||(navigator.doNotTrack==="1")){
-  gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
- }else{
-  gtag('consent','default',{analytics_storage:'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
- }
+ /* Region-scoped consent defaults — same pattern as the translation atlas:
+    analytics denied by default across EU/EEA/UK/CH (Google resolves region),
+    granted elsewhere; /assets/consent.js layers the opt-in banner. */
+ gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',
+  ad_user_data:'denied',ad_personalization:'denied',
+  region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE',
+   'IS','IT','LI','LT','LU','LV','MT','NL','NO','PL','PT','RO','SE','SI','SK',
+   'ES','CH','GB']});
+ gtag('consent','default',{analytics_storage:'granted',ad_storage:'denied',
+  ad_user_data:'denied',ad_personalization:'denied'});
+ const gaScript=document.createElement('script');gaScript.async=true;
+ gaScript.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(GA_ID);
+ document.head.appendChild(gaScript);
  gtag('js',new Date());
  gtag('config',GA_ID,{page_title:'Skald Translators',cookie_prefix:'skm'});
  function track(name,params){if(GA_ID)gtag('event',name,params)}
