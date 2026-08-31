@@ -120,6 +120,17 @@ for (const entry of statsIndex.translations) {
   const cases = countMatches(html, /data-variation-case="[^"]+"/g);
   assert.ok(cases >= 4 && cases <= 6, `${entry.id}: has 4-6 rendering-variation cases`);
   assert.equal(countMatches(html, /class="transliteration"/g), cases, `${entry.id}: every variation case has a transliteration`);
+  assert.equal(countMatches(html, /class="greek-line"/g), cases * 3, `${entry.id}: every variant quotes its Greek line`);
+  const accentFold = (value) => value.normalize('NFD').toLowerCase().replaceAll('̀', '́').replaceAll('ς', 'σ').normalize('NFC');
+  for (const card of html.match(/<article class="variation-card"[\s\S]*?<\/article>/g) || []) {
+    const surface = card.match(/class="greek-term" lang="grc">([^<]+)</)[1];
+    for (const [, line] of card.matchAll(/class="greek-line" lang="grc">([^<]+)</g)) {
+      assert.ok(accentFold(line).includes(accentFold(surface)), `${entry.id}: quoted Greek line contains ${surface} exactly`);
+    }
+  }
+  for (const jargon of ['>tokens<', '>unique forms<', '>type-token ratio<', '>TTR<', 'class="stability">stability']) {
+    assert.ok(!html.includes(jargon), `${entry.id}: no user-facing jargon (${jargon})`);
+  }
   variationCasesChecked += cases;
 
   assert.ok(html.includes(`https://skald.mannamila.com/translations/analysis/${entry.id}/`), `${entry.id}: canonical URL is present`);

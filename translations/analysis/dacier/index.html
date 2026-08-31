@@ -38,10 +38,10 @@
   <p class="lede">A surface-form portrait of this <em>Odyssey</em>: corpus scale, recurring wording, line-window variation around Greek forms, and a comparison with other Français translations.</p>
   <p class="meta-line">Atlas edition year: 1716 · Statistics corpus year: 1716 · All 24 books</p>
   <div class="stats-grid" aria-label="Headline corpus statistics">
-   <div class="stat"><strong data-claim-tokens="143271">143,271</strong><span>tokens</span></div>
-   <div class="stat"><strong data-claim-unique-forms="9962">9,962</strong><span>unique forms</span></div>
-   <div class="stat"><strong data-claim-ttr="0.069533">0.0695</strong><span>type-token ratio</span></div>
-   <div class="stat"><strong data-claim-mean-sentence="28.867822">28.87</strong><span>mean sentence length</span></div>
+   <div class="stat"><strong data-claim-tokens="143271">143,271</strong><span>words</span></div>
+   <div class="stat"><strong data-claim-unique-forms="9962">9,962</strong><span>distinct word forms</span></div>
+   <div class="stat"><strong data-claim-ttr="0.069533">0.0695</strong><span>vocabulary variety (distinct ÷ total)</span></div>
+   <div class="stat"><strong data-claim-mean-sentence="28.867822">28.87</strong><span>average sentence length</span></div>
   </div>
   <div class="viz-card">
    <svg viewBox="0 0 700 250" role="img" aria-labelledby="viz-title viz-desc">
@@ -49,22 +49,22 @@
     <desc id="viz-desc">Copper bars show this translation; pale bars show the peer median for four surface-form metrics.</desc>
     <rect x="0" y="0" width="12" height="12" rx="2" fill="#9e5725"/><text x="19" y="10" fill="#2a2118" font-size="11">Dacier</text>
     <rect x="150" y="0" width="12" height="8" rx="2" fill="#c69260"/><text x="169" y="9" fill="#6f6150" font-size="11">Peer median</text>
-    <text x="0" y="65" fill="#2a2118" font-size="13">Tokens</text>
+    <text x="0" y="65" fill="#2a2118" font-size="13">Words</text>
       <rect x="150" y="50" width="370" height="12" rx="2" fill="#9e5725"/>
       <rect x="150" y="66" width="307" height="8" rx="2" fill="#c69260"/>
       <text x="535" y="60" fill="#2a2118" font-size="12">143,271</text>
       <text x="535" y="75" fill="#6f6150" font-size="10">median 118,797</text>
-<text x="0" y="113" fill="#2a2118" font-size="13">Unique forms</text>
+<text x="0" y="113" fill="#2a2118" font-size="13">Distinct word forms</text>
       <rect x="150" y="98" width="370" height="12" rx="2" fill="#9e5725"/>
       <rect x="150" y="114" width="302" height="8" rx="2" fill="#c69260"/>
       <text x="535" y="108" fill="#2a2118" font-size="12">9,962</text>
       <text x="535" y="123" fill="#6f6150" font-size="10">median 8,125</text>
-<text x="0" y="161" fill="#2a2118" font-size="13">Type-token ratio</text>
+<text x="0" y="161" fill="#2a2118" font-size="13">Vocabulary variety</text>
       <rect x="150" y="146" width="370" height="12" rx="2" fill="#9e5725"/>
       <rect x="150" y="162" width="364" height="8" rx="2" fill="#c69260"/>
       <text x="535" y="156" fill="#2a2118" font-size="12">0.0695</text>
       <text x="535" y="171" fill="#6f6150" font-size="10">median 0.0684</text>
-<text x="0" y="209" fill="#2a2118" font-size="13">Mean sentence length</text>
+<text x="0" y="209" fill="#2a2118" font-size="13">Average sentence length</text>
       <rect x="150" y="194" width="370" height="12" rx="2" fill="#9e5725"/>
       <rect x="150" y="210" width="308" height="8" rx="2" fill="#c69260"/>
       <text x="535" y="204" fill="#2a2118" font-size="12">28.87</text>
@@ -72,12 +72,12 @@
    </svg>
    <p class="viz-note">Comparison basis: other Français translations (1 peers). Each metric has its own scale. Cross-language style-group values are descriptive only.</p>
   </div>
-  <aside class="method-note"><strong>Read the bars cautiously.</strong> These are surface-form statistics. A higher TTR can reflect morphology, orthography, or corpus conventions as well as vocabulary; the sentence figure comes from a simple punctuation split. The chart describes this corpus and its declared peers, not translation quality.</aside>
+  <aside class="method-note"><strong>Read the bars cautiously.</strong> A higher vocabulary-variety value can result from grammar, spelling, or how an edition was prepared—not just from using a wider range of words. Sentence length is estimated by splitting at punctuation. The chart describes this corpus and its declared peers, not translation quality.</aside>
 
   <section class="section-block" aria-labelledby="formulas-heading">
    <p class="section-label">Repeated wording</p>
    <h2 id="formulas-heading">The translator’s formulas</h2>
-   <p>The ten highest-ranked chunk-local three-to-six-word n-grams, ordered by the source method’s count-times-length score. Overlapping phrases can describe the same recurring line.</p>
+   <p>The ten repeated phrases of three to six words that rank highest when we multiply how often each phrase appears by its length. Overlapping phrases can describe the same recurring line.</p>
    <ol class="formula-list"><li class="formula-item" data-formula-count="91">
     <span class="formula-phrase">“en même temps”</span>
     <span class="formula-meta">91 occurrences · Od. 1.125 and 1.280</span>
@@ -123,74 +123,74 @@
   <section class="section-block" aria-labelledby="variation-heading">
    <p class="section-label">Line-window evidence</p>
    <h2 id="variation-heading">One Greek word, many choices</h2>
-   <p>Each card follows one Greek surface form into three visibly different passages in this translation. Exact sidecars are used where available; otherwise the source uses a proportional line window. The quoted text is real corpus text, but the candidate context words are heuristic—not word alignments or claims that one listed word translates the Greek.</p>
+   <p>Each card follows one Greek word into three visibly different passages in this translation. The Greek line containing the word appears first, followed by the nearby passage in the translation. The listed nearby words show recurring context, not direct translations of the Greek word.</p>
    <div class="variation-grid"><article class="variation-card" data-variation-case="διοσ" data-stability="0.033149">
     <div class="term-heading">
      <h3 class="greek-term" lang="grc">δῖος</h3>
      <span class="transliteration">dios</span>
-     <span class="stability">stability 3.3%</span>
+     <span class="stability" title="Share of passages containing this Greek word where its most frequent nearby context word appears.">recurring nearby word 3%</span>
     </div>
     <ul class="variants">
-     <li class="variant"><blockquote lang="fr">autel une génisse d’un an qui n’a jamais porté le joug, et dont je ferai dorer les cornes pour la rendre plus agréable à vos yeux. » Ainsi pria Nestor, et la déesse écouta favorablement sa prière. Ensuite</blockquote><cite>Od. 3.394 · candidate context: agréable, an, autel, cornes</cite></li>
-     <li class="variant"><blockquote lang="fr">matin mendier 1. Crunes est un lieu de la côte du Péloponèse, ainsi appelé, comme nous dirions les fontaines. Chalcis est un fleuve voisin et un bourg sur ce fleuve. 2. Phées ou Phèse est sur la côte au bas de l’Élide,</blockquote><cite>Od. 15.297 · candidate context: appelé, bas, bourg, chalcis</cite></li>
-     <li class="variant"><blockquote lang="fr">lorsque dans le riche pays des Phéaciens, vous daignâtes m’encourager par vos paroles et me conduire vous-même jusque dans la ville. Aujourd’hui j’embrasse vos genoux, et je vous conjure,</blockquote><cite>Od. 13.318 · candidate context: aujourd, conduire, conjure, daignâtes</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">αὐτὰρ ὁ πῖνε καὶ ἦσθε πολύτλας δῖος Ὀδυσσεύς.</blockquote><cite class="greek-cite">Greek line · Od. 7.177</cite><blockquote lang="fr">enfants. Une esclave apporte de l’eau dans une aiguière d’or, sur un bassin d’argent, et donne à laver à Ulysse. Elle dresse ensuite une table, et la maîtresse de l’office la</blockquote><cite>Translation passage · Od. 7.177 · nearby words: aiguière, apporte, argent, bassin</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">οὐ γάρ πω τέθνηκεν ἐπὶ χθονὶ δῖος Ὀρέστης.</blockquote><cite class="greek-cite">Greek line · Od. 11.461</cite><blockquote lang="fr">ne sait « pas. » « Pendant cette conversation pleine de tristesse et de larmes, je vois arriver l’âme d’Achille, celle de Patrocle, celle d’Antiloque et celle d’Ajax,</blockquote><cite>Translation passage · Od. 11.461 · nearby words: achille, ajax, antiloque, arriver</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">αὐτόθεν ἐξ ἑδρέων. ἀνὰ δʼ ἵστατο δῖος Ὀδυσσεύς,</blockquote><cite class="greek-cite">Greek line · Od. 13.56</cite><blockquote lang="fr">chacun, sans se lever de son siége, fait les libations aux dieux immortels qui habitent le brillant Olympe. Ulysse seul se leva, et présentant sa coupe à la reine, lui</blockquote><cite>Translation passage · Od. 13.56 · nearby words: brillant, chacun, coupe, habitent</cite></li>
     </ul>
    </article>
 <article class="variation-card" data-variation-case="πεπνυμενοσ" data-stability="0.056604">
     <div class="term-heading">
      <h3 class="greek-term" lang="grc">πεπνυμένος</h3>
      <span class="transliteration">pepnymenos</span>
-     <span class="stability">stability 5.7%</span>
+     <span class="stability" title="Share of passages containing this Greek word where its most frequent nearby context word appears.">recurring nearby word 6%</span>
     </div>
     <ul class="variants">
-     <li class="variant"><blockquote lang="fr">l’autel, lorsque le vaisseau arriva dans le port. On plie d’abord les voiles; on approche du rivage, et Télémaque descend le premier, conduit</blockquote><cite>Od. 3.20 · candidate context: abord, approche, arriva, autel</cite></li>
-     <li class="variant"><blockquote lang="fr">donne ordre à Hélène et à ses servantes de préparer le repas. En même temps arrive le fidèle Étéonée, fils de Boëthus, qui ne quittait jamais Ménélas. Le roi lui ordonne d’allumer</blockquote><cite>Od. 15.86 · candidate context: allumer, arrive, boëthus, donne</cite></li>
-     <li class="variant"><blockquote lang="fr">lèvres et ne peuvent assez s’étonner du courage de Télémaque et de la vigueur avec laquelle il vient de leur parler. Enfin Antinoüs, fils</blockquote><cite>Od. 1.388 · candidate context: antinoüs, assez, courage, enfin</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">ψεῦδος δʼ οὐκ ἐρέει· μάλα γὰρ πεπνυμένος ἐστί.</blockquote><cite class="greek-cite">Greek line · Od. 3.20</cite><blockquote lang="fr">l’autel, lorsque le vaisseau arriva dans le port. On plie d’abord les voiles; on approche du rivage, et Télémaque descend le premier, conduit</blockquote><cite>Translation passage · Od. 3.20 · nearby words: abord, approche, arriva, autel</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">τὸν δʼ αὖ Τηλέμαχος πεπνυμένος ἀντίον ηὔδα·</blockquote><cite class="greek-cite">Greek line · Od. 15.86</cite><blockquote lang="fr">donne ordre à Hélène et à ses servantes de préparer le repas. En même temps arrive le fidèle Étéonée, fils de Boëthus, qui ne quittait jamais Ménélas. Le roi lui ordonne d’allumer</blockquote><cite>Translation passage · Od. 15.86 · nearby words: allumer, arrive, boëthus, donne</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">τὸν δʼ αὖ Τηλέμαχος πεπνυμένος ἀντίον ηὔδα·</blockquote><cite class="greek-cite">Greek line · Od. 1.388</cite><blockquote lang="fr">lèvres et ne peuvent assez s’étonner du courage de Télémaque et de la vigueur avec laquelle il vient de leur parler. Enfin Antinoüs, fils</blockquote><cite>Translation passage · Od. 1.388 · nearby words: antinoüs, assez, courage, enfin</cite></li>
     </ul>
    </article>
 <article class="variation-card" data-variation-case="φιλοσ" data-stability="0.068182">
     <div class="term-heading">
      <h3 class="greek-term" lang="grc">φίλος</h3>
      <span class="transliteration">philos</span>
-     <span class="stability">stability 6.8%</span>
+     <span class="stability" title="Share of passages containing this Greek word where its most frequent nearby context word appears.">recurring nearby word 7%</span>
     </div>
     <ul class="variants">
-     <li class="variant"><blockquote lang="fr">ni plusieurs tuniques de rechange; chacun de nos bergers n’en a qu’un. Quand notre jeune prince, le fils, d’Ulysse, sera de</blockquote><cite>Od. 14.515 · candidate context: bergers, chacun, jeune, plusieurs</cite></li>
-     <li class="variant"><blockquote lang="fr">où règne Éole, roi et gardien des vents. Éole lui donne le Zéphire pour le conduire heureusement, et lui livre les autres vents enfermés et liés dans une outre. Pendant son sommeil, ses</blockquote><cite>Od. 10.2 · candidate context: conduire, donne, enfermés, gardien</cite></li>
-     <li class="variant"><blockquote lang="fr">sa taille. A son départ, je lui fis tous les honneurs qui étaient dus à sa naissance et à son mérite. Il était accompagné d’un héraut qui paraissait un peu plus âgé que lui, et je vous dirai comme il était fait; il avait les</blockquote><cite>Od. 19.254 · candidate context: accompagné, dirai, dus, départ</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">αὐτὰρ ἐπὴν ἔλθῃσιν Ὀδυσσῆος φίλος υἱός,</blockquote><cite class="greek-cite">Greek line · Od. 14.515</cite><blockquote lang="fr">ni plusieurs tuniques de rechange; chacun de nos bergers n’en a qu’un. Quand notre jeune prince, le fils, d’Ulysse, sera de</blockquote><cite>Translation passage · Od. 14.515 · nearby words: bergers, chacun, jeune, plusieurs</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">Αἴολος Ἱπποτάδης, φίλος ἀθανάτοισι θεοῖσιν,</blockquote><cite class="greek-cite">Greek line · Od. 10.2</cite><blockquote lang="fr">où règne Éole, roi et gardien des vents. Éole lui donne le Zéphire pour le conduire heureusement, et lui livre les autres vents enfermés et liés dans une outre. Pendant son sommeil, ses</blockquote><cite>Translation passage · Od. 10.2 · nearby words: conduire, donne, enfermés, gardien</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">ἐν μεγάροισιν ἐμοῖσι φίλος τʼ ἔσῃ αἰδοῖός τε·</blockquote><cite class="greek-cite">Greek line · Od. 19.254</cite><blockquote lang="fr">sa taille. A son départ, je lui fis tous les honneurs qui étaient dus à sa naissance et à son mérite. Il était accompagné d’un héraut qui paraissait un peu plus âgé que lui, et je vous dirai comme il était fait; il avait les</blockquote><cite>Translation passage · Od. 19.254 · nearby words: accompagné, dirai, dus, départ</cite></li>
     </ul>
    </article>
 <article class="variation-card" data-variation-case="συβωτησ" data-stability="0.121212">
     <div class="term-heading">
      <h3 class="greek-term" lang="grc">συβώτης</h3>
      <span class="transliteration">sybōtēs</span>
-     <span class="stability">stability 12.1%</span>
+     <span class="stability" title="Share of passages containing this Greek word where its most frequent nearby context word appears.">recurring nearby word 12%</span>
     </div>
     <ul class="variants">
-     <li class="variant"><blockquote lang="fr">était plein d’équité. Il en fit sept parts; il en offrit une aux Nymphes, une autre à Mercure, fils de Maïa, en accompagnant son offrande de prières. Ses trois bergers</blockquote><cite>Od. 14.449 · candidate context: accompagnant, bergers, maïa, mercure</cite></li>
-     <li class="variant"><blockquote lang="fr">Mon cher hôte, comment appelez-vous cet homme si vaillant et si riche qui a eu le bonheur de vous acheter pour vous donner l’intendance de ses troupeaux, et que vous dites que la querelle d’Agamemnon a fait périr</blockquote><cite>Od. 14.121 · candidate context: acheter, agamemnon, appelez, bonheur</cite></li>
-     <li class="variant"><blockquote lang="fr">Télémaque ne me fît des reproches, et les reproches des maîtres sont toujours fâcheux. Partons donc, car le soleil est déjà haut, et sur le soir le froid vous serait plus sensible. » « Je sais, je comprends;</blockquote><cite>Od. 17.184 · candidate context: comprends, déjà, froid, fâcheux</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">σῖτον δέ σφιν ἔνειμε Μεσαύλιος, ὅν ῥα συβώτης</blockquote><cite class="greek-cite">Greek line · Od. 14.449</cite><blockquote lang="fr">était plein d’équité. Il en fit sept parts; il en offrit une aux Nymphes, une autre à Mercure, fils de Maïa, en accompagnant son offrande de prières. Ses trois bergers</blockquote><cite>Translation passage · Od. 14.449 · nearby words: accompagnant, bergers, maïa, mercure</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">τὸν δʼ ἠμείβετʼ ἔπειτα συβώτης, ὄρχαμος ἀνδρῶν·</blockquote><cite class="greek-cite">Greek line · Od. 14.121</cite><blockquote lang="fr">Mon cher hôte, comment appelez-vous cet homme si vaillant et si riche qui a eu le bonheur de vous acheter pour vous donner l’intendance de ses troupeaux, et que vous dites que la querelle d’Agamemnon a fait périr</blockquote><cite>Translation passage · Od. 14.121 · nearby words: acheter, agamemnon, appelez, bonheur</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">τοῖσι δὲ μύθων ἦρχε συβώτης, ὄρχαμος ἀνδρῶν·</blockquote><cite class="greek-cite">Greek line · Od. 17.184</cite><blockquote lang="fr">Télémaque ne me fît des reproches, et les reproches des maîtres sont toujours fâcheux. Partons donc, car le soleil est déjà haut, et sur le soir le froid vous serait plus sensible. » « Je sais, je comprends;</blockquote><cite>Translation passage · Od. 17.184 · nearby words: comprends, déjà, froid, fâcheux</cite></li>
     </ul>
    </article>
 <article class="variation-card" data-variation-case="τοξον" data-stability="0.275">
     <div class="term-heading">
      <h3 class="greek-term" lang="grc">τόξον</h3>
      <span class="transliteration">toxon</span>
-     <span class="stability">stability 27.5%</span>
+     <span class="stability" title="Share of passages containing this Greek word where its most frequent nearby context word appears.">recurring nearby word 28%</span>
     </div>
     <ul class="variants">
-     <li class="variant"><blockquote lang="fr">l’arc, et promet d’épouser celui qui tendra le premier l’arc d’Ulysse, et qui fera passer le premier sa flèche dans plusieurs bagues disposées de suite. Le poëte fait l’histoire de cet arc, et raconte</blockquote><cite>Od. 21.3 · candidate context: arc, bagues, disposées, fera</cite></li>
-     <li class="variant"><blockquote lang="fr">devenu furieux, commit des insolences qui excitèrent la colère de ces héros; ils se jetèrent sur lui, le traînèrent hors de la salle du festin, et lui coupèrent le nez et les oreilles.</blockquote><cite>Od. 21.314 · candidate context: colère, commit, coupèrent, devenu</cite></li>
-     <li class="variant"><blockquote lang="fr">propose de remettre la partie au lendemain, parce que ce joui- à est une des fêtes d’Apollon, et que ce dieu refuse de les favoriser, parce qu’ils violent sa fête par cet exercice. Mais avant que de finir,</blockquote><cite>Od. 21.11 · candidate context: apollon, exercice, favoriser, finir</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">τόξον μνηστήρεσσι θέμεν πολιόν τε σίδηρον</blockquote><cite class="greek-cite">Greek line · Od. 21.3</cite><blockquote lang="fr">l’arc, et promet d’épouser celui qui tendra le premier l’arc d’Ulysse, et qui fera passer le premier sa flèche dans plusieurs bagues disposées de suite. Le poëte fait l’histoire de cet arc, et raconte</blockquote><cite>Translation passage · Od. 21.3 · nearby words: arc, bagues, disposées, fera</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">ἔλπεαι, αἴ χʼ ὁ ξεῖνος Ὀδυσσῆος μέγα τόξον</blockquote><cite class="greek-cite">Greek line · Od. 21.314</cite><blockquote lang="fr">devenu furieux, commit des insolences qui excitèrent la colère de ces héros; ils se jetèrent sur lui, le traînèrent hors de la salle du festin, et lui coupèrent le nez et les oreilles.</blockquote><cite>Translation passage · Od. 21.314 · nearby words: colère, commit, coupèrent, devenu</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">ἔνθα δὲ τόξον κεῖτο παλίντονον ἠδὲ φαρέτρη</blockquote><cite class="greek-cite">Greek line · Od. 21.11</cite><blockquote lang="fr">propose de remettre la partie au lendemain, parce que ce joui- à est une des fêtes d’Apollon, et que ce dieu refuse de les favoriser, parce qu’ils violent sa fête par cet exercice. Mais avant que de finir,</blockquote><cite>Translation passage · Od. 21.11 · nearby words: apollon, exercice, favoriser, finir</cite></li>
     </ul>
    </article></div>
-   <aside class="method-note"><strong>Stability is narrow by design.</strong> It is the share of Greek occurrences whose line window contains the modal candidate context token. It does not measure semantic consistency, freedom, fidelity, or quality.</aside>
+   <aside class="method-note"><strong>What “recurring nearby word” measures.</strong> For each Greek word, we look at the words near it in each translation passage, leaving out common words. We find the nearby word that appears in the most passages, then show the percentage of passages where it appears. This measures recurrence in nearby context, not a direct translation or a measure of meaning, fidelity, quality, or intentional choice.</aside>
   </section>
 
   <section class="section-block" aria-labelledby="siblings-heading">
    <p class="section-label">Statistical comparison</p>
    <h2 id="siblings-heading">Against its siblings</h2>
-   <p class="narrative" data-final-narrative>Dacier’s learned French prose emerged amid the dispute between Ancients and Moderns, and her scholarship later informed Pope even where their judgments diverged. The corpus contains 143271 tokens and 9962 unique forms. Its score-ranked formula list begins with “en même temps,” recorded 91 times; this first position does not mean it has the highest raw count. For scale within other Français translations, Leconte de Lisle contains 118797 tokens. The result is a clearer profile of form and corpus patterning, grounded in the stated comparison group and careful not to treat measured differences as judgments about literary success or accuracy. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora.</p>
+   <p class="narrative" data-final-narrative>Dacier’s learned French prose emerged amid the dispute between Ancients and Moderns, and her scholarship later informed Pope even where their judgments diverged. The corpus contains 143271 words and 9962 distinct word forms. Its score-ranked formula list begins with “en même temps,” recorded 91 times; this first position does not mean it has the highest raw count. For scale within other Français translations, Leconte de Lisle contains 118797 words. The result is a clearer profile of form and corpus patterning, grounded in the stated comparison group and careful not to treat measured differences as judgments about literary success or accuracy. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora.</p>
   </section>
 
   <section class="cta-panel" aria-labelledby="continue-heading">

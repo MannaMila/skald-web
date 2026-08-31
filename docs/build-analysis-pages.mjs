@@ -40,6 +40,57 @@ function extractAtlasData(html) {
   throw new Error('Atlas DATA object did not terminate');
 }
 
+const greekRoot = '/Volumes/Dev/Code/skald/core/src/main/assets/content/odyssey';
+const greekLinesByBook = new Map();
+for (const dir of fs.readdirSync(greekRoot).filter((name) => name.startsWith('odyssey-'))) {
+  const file = path.join(greekRoot, dir, 'greek.json');
+  if (!fs.existsSync(file)) continue;
+  const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+  greekLinesByBook.set(Number(data.book), new Map(data.lines.map((line) => [Number(line.n), line.t])));
+}
+if (greekLinesByBook.size !== 24) throw new Error(`Expected Greek text for 24 books, found ${greekLinesByBook.size}`);
+
+// Accent-preserving fold: lowercases, normalizes final sigma, and maps the grave accent to
+// acute (a context-driven substitution in polytonic Greek), but keeps all other diacritics —
+// so δῖος (godlike) and Διός (of Zeus) stay distinct where a marks-stripping fold conflates them.
+function accentFold(value) {
+  return value
+    .normalize('NFD')
+    .toLowerCase()
+    .replaceAll('̀', '́')
+    .replaceAll('ς', 'σ')
+    .normalize('NFC');
+}
+
+function occurrenceHasExactSurface(term, occurrence) {
+  const quote = greekQuoteFor(term, occurrence);
+  return quote != null && accentFold(quote.text).includes(accentFold(term.greek.surface));
+}
+
+function greekQuoteFor(term, occurrence) {
+  const [bookRaw, lineRaw] = String(occurrence.location).split('.');
+  const book = Number(bookRaw);
+  const locationLine = Number(lineRaw);
+  const byLine = greekLinesByBook.get(book);
+  if (!byLine || !Number.isFinite(locationLine)) return null;
+  const span = Array.isArray(occurrence.lineSpan) ? occurrence.lineSpan : [locationLine, locationLine];
+  const candidates = [locationLine];
+  for (let n = span[0]; n <= span[1]; n += 1) if (n !== locationLine) candidates.push(n);
+  const surface = accentFold(term.greek.surface);
+  const hit = candidates.find((n) => byLine.has(n) && accentFold(byLine.get(n)).includes(surface));
+  if (hit == null) return null;
+  return { location: `${book}.${hit}`, text: byLine.get(hit) };
+}
+
+// Display-layer terminology: the reviewed narratives in final.json stay verbatim in the
+// registry; only the rendered copy swaps corpus-linguistics jargon for plain words.
+function displayTerminology(text) {
+  return text
+    .replace(/\btokens\b/g, 'words')
+    .replace(/\btoken\b/g, 'word')
+    .replace(/\bunique forms\b/g, 'distinct word forms');
+}
+
 const atlas = extractAtlasData(fs.readFileSync(atlasPath, 'utf8'));
 const atlasBySkaldId = new Map(
   atlas.translations.filter((record) => record.skald).map((record) => [record.skald, record]),
@@ -156,7 +207,10 @@ function chooseVariationCases(stats) {
   const eligible = stats.renderingVariation.terms
     .filter((term) => term.greek.folded.length >= 4)
     .filter((term) => term.occurrenceCount >= 4 && term.occurrenceCount <= 500)
-    .map((term) => ({ term, variants: chooseVariants(term) }))
+    .map((term) => {
+      const exact = term.occurrences.filter((occurrence) => occurrenceHasExactSurface(term, occurrence));
+      return { term, variants: chooseVariants({ ...term, occurrences: exact }) };
+    })
     .filter(({ variants }) => variants.length >= 3)
     .sort((a, b) => score(b.term) - score(a.term)
       || a.term.greek.folded.localeCompare(b.term.greek.folded));
@@ -172,10 +226,10 @@ function chooseVariationCases(stats) {
 
 function comparisonSvg(record) {
   const metrics = [
-    ['tokens', 'Tokens', formatInteger],
-    ['uniqueForms', 'Unique forms', formatInteger],
-    ['typeTokenRatio', 'Type-token ratio', formatTtr],
-    ['meanSentenceLength', 'Mean sentence length', formatMean],
+    ['tokens', 'Words', formatInteger],
+    ['uniqueForms', 'Distinct word forms', formatInteger],
+    ['typeTokenRatio', 'Vocabulary variety', formatTtr],
+    ['meanSentenceLength', 'Average sentence length', formatMean],
   ];
   const rows = metrics.map(([key, label, formatter], index) => {
     const current = record.headline[key];
@@ -295,14 +349,14 @@ function buildOverview(records) {
  <main id="main-content">
   <p class="kicker">The Odyssey, measured without mistaking measurement for judgment</p>
   <h1>Twenty-four translations, seen from the surface.</h1>
-  <p class="lede">This analysis counts the visible forms in every bundled translation and looks for recurring three-to-six-word formulas. It also places the same Greek surface forms beside aligned or estimated line windows, making changes in the surrounding wording visible without pretending that an automated window is a word-for-word alignment.</p>
-  <aside class="method-note"><strong>Method boundary.</strong> Tokens are Unicode letter-and-mark runs, lowercased without stemming or lemmatization. TTR is unique surface forms divided by tokens; sentence length uses a punctuation split. “Formula” means a recurring chunk-local n-gram, not necessarily an oral formula. Rendering candidates are context words, not asserted translations. Cross-language totals are descriptive because tokenization and inflection differ.</aside>
+  <p class="lede">This analysis counts the visible words in every bundled translation and looks for recurring three-to-six-word formulas. It also places the same Greek forms beside aligned or estimated line windows, making changes in the surrounding wording visible without pretending that an automated window is a word-for-word alignment.</p>
+  <aside class="method-note"><strong>How we count.</strong> A “word” here is an unbroken run of letters, including accents, converted to lowercase. We do not group related forms, so “sing” and “singing” count separately. Vocabulary variety is the number of distinct written word forms divided by the total number of words. We estimate sentence length by splitting at punctuation. Here, “formula” means only a recurring phrase of three to six words; it does not claim oral origin. The words listed beside Greek forms are nearby context words, not proven translations of the Greek word. Comparisons across languages are descriptive only: languages differ in spelling and in how their word forms change.</aside>
   <section class="section-block" aria-labelledby="translations-heading">
    <p class="section-label">The corpus</p>
    <h2 id="translations-heading">All 24 Skald translations</h2>
    <div class="table-wrap">
     <table>
-     <thead><tr><th>Translation</th><th>Year</th><th>Language</th><th>Tokens</th><th>TTR</th><th>Top ranked formula</th></tr></thead>
+     <thead><tr><th>Translation</th><th>Year</th><th>Language</th><th>Words</th><th>Vocabulary variety</th><th>Top ranked formula</th></tr></thead>
      <tbody>${rows}</tbody>
     </table>
    </div>
@@ -327,10 +381,16 @@ function buildDetail({ entry, stats, atlasRecord, sourceRecord, finalRecord }) {
     <div class="term-heading">
      <h3 class="greek-term" lang="grc">${h(term.greek.surface)}</h3>
      <span class="transliteration">${h(transliterateGreek(term.greek.surface))}</span>
-     <span class="stability">stability ${(term.stability * 100).toFixed(1)}%</span>
+     <span class="stability" title="Share of passages containing this Greek word where its most frequent nearby context word appears.">recurring nearby word ${(term.stability * 100).toFixed(0)}%</span>
     </div>
     <ul class="variants">
-     ${variants.map((variant) => `<li class="variant"><blockquote lang="${h(entry.language)}">${h(variant.text)}</blockquote><cite>Od. ${h(variant.location)} · candidate context: ${h(variant.candidates.slice(0, 4).join(', ') || 'none after stoplist')}</cite></li>`).join('\n     ')}
+     ${variants.map((variant) => {
+    const greek = greekQuoteFor(term, variant);
+    const greekBlock = greek
+      ? `<blockquote class="greek-line" lang="grc">${h(greek.text)}</blockquote><cite class="greek-cite">Greek line · Od. ${h(greek.location)}</cite>`
+      : '';
+    return `<li class="variant">${greekBlock}<blockquote lang="${h(entry.language)}">${h(variant.text)}</blockquote><cite>Translation passage · Od. ${h(variant.location)} · nearby words: ${h(variant.candidates.slice(0, 4).join(', ') || 'none after common-word filter')}</cite></li>`;
+  }).join('\n     ')}
     </ul>
    </article>`).join('\n');
   const claimData = {
@@ -352,33 +412,33 @@ function buildDetail({ entry, stats, atlasRecord, sourceRecord, finalRecord }) {
   <p class="lede">A surface-form portrait of this <em>Odyssey</em>: corpus scale, recurring wording, line-window variation around Greek forms, and a comparison with ${h(sourceRecord.comparisonBasis)}.</p>
   <p class="meta-line">Atlas edition year: ${h(atlasRecord.year)} · Statistics corpus year: ${h(entry.year)} · All 24 books</p>
   <div class="stats-grid" aria-label="Headline corpus statistics">
-   <div class="stat"><strong data-claim-tokens="${stats.basics.tokens}">${formatInteger(stats.basics.tokens)}</strong><span>tokens</span></div>
-   <div class="stat"><strong data-claim-unique-forms="${stats.basics.uniqueForms}">${formatInteger(stats.basics.uniqueForms)}</strong><span>unique forms</span></div>
-   <div class="stat"><strong data-claim-ttr="${stats.basics.typeTokenRatio}">${formatTtr(stats.basics.typeTokenRatio)}</strong><span>type-token ratio</span></div>
-   <div class="stat"><strong data-claim-mean-sentence="${stats.basics.meanSentenceLength}">${formatMean(stats.basics.meanSentenceLength)}</strong><span>mean sentence length</span></div>
+   <div class="stat"><strong data-claim-tokens="${stats.basics.tokens}">${formatInteger(stats.basics.tokens)}</strong><span>words</span></div>
+   <div class="stat"><strong data-claim-unique-forms="${stats.basics.uniqueForms}">${formatInteger(stats.basics.uniqueForms)}</strong><span>distinct word forms</span></div>
+   <div class="stat"><strong data-claim-ttr="${stats.basics.typeTokenRatio}">${formatTtr(stats.basics.typeTokenRatio)}</strong><span>vocabulary variety (distinct ÷ total)</span></div>
+   <div class="stat"><strong data-claim-mean-sentence="${stats.basics.meanSentenceLength}">${formatMean(stats.basics.meanSentenceLength)}</strong><span>average sentence length</span></div>
   </div>
   ${comparisonSvg(sourceRecord)}
-  <aside class="method-note"><strong>Read the bars cautiously.</strong> These are surface-form statistics. A higher TTR can reflect morphology, orthography, or corpus conventions as well as vocabulary; the sentence figure comes from a simple punctuation split. The chart describes this corpus and its declared peers, not translation quality.</aside>
+  <aside class="method-note"><strong>Read the bars cautiously.</strong> A higher vocabulary-variety value can result from grammar, spelling, or how an edition was prepared—not just from using a wider range of words. Sentence length is estimated by splitting at punctuation. The chart describes this corpus and its declared peers, not translation quality.</aside>
 
   <section class="section-block" aria-labelledby="formulas-heading">
    <p class="section-label">Repeated wording</p>
    <h2 id="formulas-heading">The translator’s formulas</h2>
-   <p>The ten highest-ranked chunk-local three-to-six-word n-grams, ordered by the source method’s count-times-length score. Overlapping phrases can describe the same recurring line.</p>
+   <p>The ten repeated phrases of three to six words that rank highest when we multiply how often each phrase appears by its length. Overlapping phrases can describe the same recurring line.</p>
    <ol class="formula-list">${formulaItems}</ol>
   </section>
 
   <section class="section-block" aria-labelledby="variation-heading">
    <p class="section-label">Line-window evidence</p>
    <h2 id="variation-heading">One Greek word, many choices</h2>
-   <p>Each card follows one Greek surface form into three visibly different passages in this translation. Exact sidecars are used where available; otherwise the source uses a proportional line window. The quoted text is real corpus text, but the candidate context words are heuristic—not word alignments or claims that one listed word translates the Greek.</p>
+   <p>Each card follows one Greek word into three visibly different passages in this translation. The Greek line containing the word appears first, followed by the nearby passage in the translation. The listed nearby words show recurring context, not direct translations of the Greek word.</p>
    <div class="variation-grid">${variationItems}</div>
-   <aside class="method-note"><strong>Stability is narrow by design.</strong> It is the share of Greek occurrences whose line window contains the modal candidate context token. It does not measure semantic consistency, freedom, fidelity, or quality.</aside>
+   <aside class="method-note"><strong>What “recurring nearby word” measures.</strong> For each Greek word, we look at the words near it in each translation passage, leaving out common words. We find the nearby word that appears in the most passages, then show the percentage of passages where it appears. This measures recurrence in nearby context, not a direct translation or a measure of meaning, fidelity, quality, or intentional choice.</aside>
   </section>
 
   <section class="section-block" aria-labelledby="siblings-heading">
    <p class="section-label">Statistical comparison</p>
    <h2 id="siblings-heading">Against its siblings</h2>
-   <p class="narrative" data-final-narrative>${h(finalRecord.narrative)}</p>
+   <p class="narrative" data-final-narrative>${h(displayTerminology(finalRecord.narrative))}</p>
   </section>
 
   <section class="cta-panel" aria-labelledby="continue-heading">

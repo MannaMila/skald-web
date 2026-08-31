@@ -38,10 +38,10 @@
   <p class="lede">A surface-form portrait of this <em>Odyssey</em>: corpus scale, recurring wording, line-window variation around Greek forms, and a comparison with other English translations.</p>
   <p class="meta-line">Atlas edition year: 1675 · Statistics corpus year: 1675 · All 24 books</p>
   <div class="stats-grid" aria-label="Headline corpus statistics">
-   <div class="stat"><strong data-claim-tokens="93977">93,977</strong><span>tokens</span></div>
-   <div class="stat"><strong data-claim-unique-forms="5915">5,915</strong><span>unique forms</span></div>
-   <div class="stat"><strong data-claim-ttr="0.062941">0.0629</strong><span>type-token ratio</span></div>
-   <div class="stat"><strong data-claim-mean-sentence="23.845978">23.85</strong><span>mean sentence length</span></div>
+   <div class="stat"><strong data-claim-tokens="93977">93,977</strong><span>words</span></div>
+   <div class="stat"><strong data-claim-unique-forms="5915">5,915</strong><span>distinct word forms</span></div>
+   <div class="stat"><strong data-claim-ttr="0.062941">0.0629</strong><span>vocabulary variety (distinct ÷ total)</span></div>
+   <div class="stat"><strong data-claim-mean-sentence="23.845978">23.85</strong><span>average sentence length</span></div>
   </div>
   <div class="viz-card">
    <svg viewBox="0 0 700 250" role="img" aria-labelledby="viz-title viz-desc">
@@ -49,22 +49,22 @@
     <desc id="viz-desc">Copper bars show this translation; pale bars show the peer median for four surface-form metrics.</desc>
     <rect x="0" y="0" width="12" height="12" rx="2" fill="#9e5725"/><text x="19" y="10" fill="#2a2118" font-size="11">Hobbes</text>
     <rect x="150" y="0" width="12" height="8" rx="2" fill="#c69260"/><text x="169" y="9" fill="#6f6150" font-size="11">Peer median</text>
-    <text x="0" y="65" fill="#2a2118" font-size="13">Tokens</text>
+    <text x="0" y="65" fill="#2a2118" font-size="13">Words</text>
       <rect x="150" y="50" width="281" height="12" rx="2" fill="#9e5725"/>
       <rect x="150" y="66" width="370" height="8" rx="2" fill="#c69260"/>
       <text x="535" y="60" fill="#2a2118" font-size="12">93,977</text>
       <text x="535" y="75" fill="#6f6150" font-size="10">median 123,889.5</text>
-<text x="0" y="113" fill="#2a2118" font-size="13">Unique forms</text>
+<text x="0" y="113" fill="#2a2118" font-size="13">Distinct word forms</text>
       <rect x="150" y="98" width="320" height="12" rx="2" fill="#9e5725"/>
       <rect x="150" y="114" width="370" height="8" rx="2" fill="#c69260"/>
       <text x="535" y="108" fill="#2a2118" font-size="12">5,915</text>
       <text x="535" y="123" fill="#6f6150" font-size="10">median 6,844.5</text>
-<text x="0" y="161" fill="#2a2118" font-size="13">Type-token ratio</text>
+<text x="0" y="161" fill="#2a2118" font-size="13">Vocabulary variety</text>
       <rect x="150" y="146" width="370" height="12" rx="2" fill="#9e5725"/>
       <rect x="150" y="162" width="331" height="8" rx="2" fill="#c69260"/>
       <text x="535" y="156" fill="#2a2118" font-size="12">0.0629</text>
       <text x="535" y="171" fill="#6f6150" font-size="10">median 0.0564</text>
-<text x="0" y="209" fill="#2a2118" font-size="13">Mean sentence length</text>
+<text x="0" y="209" fill="#2a2118" font-size="13">Average sentence length</text>
       <rect x="150" y="194" width="323" height="12" rx="2" fill="#9e5725"/>
       <rect x="150" y="210" width="370" height="8" rx="2" fill="#c69260"/>
       <text x="535" y="204" fill="#2a2118" font-size="12">23.85</text>
@@ -72,12 +72,12 @@
    </svg>
    <p class="viz-note">Comparison basis: other English translations (12 peers). Each metric has its own scale. Cross-language style-group values are descriptive only.</p>
   </div>
-  <aside class="method-note"><strong>Read the bars cautiously.</strong> These are surface-form statistics. A higher TTR can reflect morphology, orthography, or corpus conventions as well as vocabulary; the sentence figure comes from a simple punctuation split. The chart describes this corpus and its declared peers, not translation quality.</aside>
+  <aside class="method-note"><strong>Read the bars cautiously.</strong> A higher vocabulary-variety value can result from grammar, spelling, or how an edition was prepared—not just from using a wider range of words. Sentence length is estimated by splitting at punctuation. The chart describes this corpus and its declared peers, not translation quality.</aside>
 
   <section class="section-block" aria-labelledby="formulas-heading">
    <p class="section-label">Repeated wording</p>
    <h2 id="formulas-heading">The translator’s formulas</h2>
-   <p>The ten highest-ranked chunk-local three-to-six-word n-grams, ordered by the source method’s count-times-length score. Overlapping phrases can describe the same recurring line.</p>
+   <p>The ten repeated phrases of three to six words that rank highest when we multiply how often each phrase appears by its length. Overlapping phrases can describe the same recurring line.</p>
    <ol class="formula-list"><li class="formula-item" data-formula-count="35">
     <span class="formula-phrase">“and to the”</span>
     <span class="formula-meta">35 occurrences · Od. 1.125 and 1.325</span>
@@ -123,74 +123,74 @@
   <section class="section-block" aria-labelledby="variation-heading">
    <p class="section-label">Line-window evidence</p>
    <h2 id="variation-heading">One Greek word, many choices</h2>
-   <p>Each card follows one Greek surface form into three visibly different passages in this translation. Exact sidecars are used where available; otherwise the source uses a proportional line window. The quoted text is real corpus text, but the candidate context words are heuristic—not word alignments or claims that one listed word translates the Greek.</p>
+   <p>Each card follows one Greek word into three visibly different passages in this translation. The Greek line containing the word appears first, followed by the nearby passage in the translation. The listed nearby words show recurring context, not direct translations of the Greek word.</p>
    <div class="variation-grid"><article class="variation-card" data-variation-case="διοσ" data-stability="0.027624">
     <div class="term-heading">
      <h3 class="greek-term" lang="grc">δῖος</h3>
      <span class="transliteration">dios</span>
-     <span class="stability">stability 2.8%</span>
+     <span class="stability" title="Share of passages containing this Greek word where its most frequent nearby context word appears.">recurring nearby word 3%</span>
     </div>
     <ul class="variants">
-     <li class="variant"><blockquote lang="en">LIB. VI. Nausicaa going to a river near that place to wash the clothes</blockquote><cite>Od. 6.1 · candidate context: clothes, going, lib, nausicaa</cite></li>
-     <li class="variant"><blockquote lang="en">goats and kine. Of wood of ev’ry sort</blockquote><cite>Od. 13.252 · candidate context: ev, goats, kine, ry</cite></li>
-     <li class="variant"><blockquote lang="en">lips, and silent mused At the strange boldness</blockquote><cite>Od. 1.390 · candidate context: boldness, lips, mused, silent</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">ὣς ὁ μὲν ἔνθα καθεῦδε πολύτλας δῖος Ὀδυσσεὺς</blockquote><cite class="greek-cite">Greek line · Od. 6.1</cite><blockquote lang="en">LIB. VI. Nausicaa going to a river near that place to wash the clothes</blockquote><cite>Translation passage · Od. 6.1 · nearby words: clothes, going, lib, nausicaa</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">οὐδʼ ὕλαον προσιόντα. νόησε δὲ δῖος Ὀδυσσεὺς</blockquote><cite class="greek-cite">Greek line · Od. 16.5</cite><blockquote lang="en">dinner, sent out to fetch hogs, And fire was made.</blockquote><cite>Translation passage · Od. 16.5 · nearby words: dinner, fetch, fire, hogs</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">τὴν μὲν ἰδὼν γήθησε πολύτλας δῖος Ὀδυσσεύς,</blockquote><cite class="greek-cite">Greek line · Od. 5.486</cite><blockquote lang="en">warm although cold weather ’twere. As when</blockquote><cite>Translation passage · Od. 5.486 · nearby words: although, cold, twere, warm</cite></li>
     </ul>
    </article>
 <article class="variation-card" data-variation-case="πεπνυμενοσ" data-stability="0.037736">
     <div class="term-heading">
      <h3 class="greek-term" lang="grc">πεπνυμένος</h3>
      <span class="transliteration">pepnymenos</span>
-     <span class="stability">stability 3.8%</span>
+     <span class="stability" title="Share of passages containing this Greek word where its most frequent nearby context word appears.">recurring nearby word 4%</span>
     </div>
     <ul class="variants">
-     <li class="variant"><blockquote lang="en">Determin’d by the Gods already is, And</blockquote><cite>Od. 3.239 · candidate context: already, determin</cite></li>
-     <li class="variant"><blockquote lang="en">flew, And seiz’d a great white tame goose</blockquote><cite>Od. 15.154 · candidate context: flew, goose, seiz, tame</cite></li>
-     <li class="variant"><blockquote lang="en">a gold cup, a brave pot or pan.</blockquote><cite>Od. 15.86 · candidate context: brave, cup, gold, pan</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">τὴν δʼ αὖ Τηλέμαχος πεπνυμένος ἀντίον ηὔδα·</blockquote><cite class="greek-cite">Greek line · Od. 3.239</cite><blockquote lang="en">Determin’d by the Gods already is, And</blockquote><cite>Translation passage · Od. 3.239 · nearby words: already, determin</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">τὸν δʼ αὖ Τηλέμαχος πεπνυμένος ἀντίον ηὔδα·</blockquote><cite class="greek-cite">Greek line · Od. 15.154</cite><blockquote lang="en">flew, And seiz’d a great white tame goose</blockquote><cite>Translation passage · Od. 15.154 · nearby words: flew, goose, seiz, tame</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">τὸν δʼ αὖ Τηλέμαχος πεπνυμένος ἀντίον ηὔδα·</blockquote><cite class="greek-cite">Greek line · Od. 15.86</cite><blockquote lang="en">a gold cup, a brave pot or pan.</blockquote><cite>Translation passage · Od. 15.86 · nearby words: brave, cup, gold, pan</cite></li>
     </ul>
    </article>
 <article class="variation-card" data-variation-case="φιλοσ" data-stability="0.068182">
     <div class="term-heading">
      <h3 class="greek-term" lang="grc">φίλος</h3>
      <span class="transliteration">philos</span>
-     <span class="stability">stability 6.8%</span>
+     <span class="stability" title="Share of passages containing this Greek word where its most frequent nearby context word appears.">recurring nearby word 7%</span>
     </div>
     <ul class="variants">
-     <li class="variant"><blockquote lang="en">best; Amongst the Greeks he hardly</blockquote><cite>Od. 19.254 · candidate context: amongst, greeks, hardly</cite></li>
-     <li class="variant"><blockquote lang="en">receives a fair wind for the present, and all the rest of the</blockquote><cite>Od. 10.2 · candidate context: present, receives, rest, wind</cite></li>
-     <li class="variant"><blockquote lang="en">sheep, And shaggy goat-skins near laid</blockquote><cite>Od. 14.515 · candidate context: goat, shaggy, sheep, skins</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">ἐν μεγάροισιν ἐμοῖσι φίλος τʼ ἔσῃ αἰδοῖός τε·</blockquote><cite class="greek-cite">Greek line · Od. 19.254</cite><blockquote lang="en">best; Amongst the Greeks he hardly</blockquote><cite>Translation passage · Od. 19.254 · nearby words: amongst, greeks, hardly</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">Αἴολος Ἱπποτάδης, φίλος ἀθανάτοισι θεοῖσιν,</blockquote><cite class="greek-cite">Greek line · Od. 10.2</cite><blockquote lang="en">receives a fair wind for the present, and all the rest of the</blockquote><cite>Translation passage · Od. 10.2 · nearby words: present, receives, rest, wind</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">αὐτὰρ ἐπὴν ἔλθῃσιν Ὀδυσσῆος φίλος υἱός,</blockquote><cite class="greek-cite">Greek line · Od. 14.515</cite><blockquote lang="en">sheep, And shaggy goat-skins near laid</blockquote><cite>Translation passage · Od. 14.515 · nearby words: goat, shaggy, sheep, skins</cite></li>
     </ul>
    </article>
 <article class="variation-card" data-variation-case="τοξον" data-stability="0.05">
     <div class="term-heading">
      <h3 class="greek-term" lang="grc">τόξον</h3>
      <span class="transliteration">toxon</span>
-     <span class="stability">stability 5.0%</span>
+     <span class="stability" title="Share of passages containing this Greek word where its most frequent nearby context word appears.">recurring nearby word 5%</span>
     </div>
     <ul class="variants">
-     <li class="variant"><blockquote lang="en">bow and arrow he laid by, And to</blockquote><cite>Od. 21.136 · candidate context: arrow</cite></li>
-     <li class="variant"><blockquote lang="en">strongest it comes to be mann’d. For better</blockquote><cite>Od. 21.153 · candidate context: better, comes, mann, strongest</cite></li>
-     <li class="variant"><blockquote lang="en">handsome coat and vest, Shoes to</blockquote><cite>Od. 21.344 · candidate context: coat, handsome, shoes, vest</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">ὣς εἰπὼν τόξον μὲν ἀπὸ ἕο θῆκε χαμᾶζε,</blockquote><cite class="greek-cite">Greek line · Od. 21.136</cite><blockquote lang="en">bow and arrow he laid by, And to</blockquote><cite>Translation passage · Od. 21.136 · nearby words: arrow</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">πολλοὺς γὰρ τόδε τόξον ἀριστῆας κεκαδήσει</blockquote><cite class="greek-cite">Greek line · Od. 21.153</cite><blockquote lang="en">strongest it comes to be mann’d. For better</blockquote><cite>Translation passage · Od. 21.153 · nearby words: better, comes, mann, strongest</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">μῆτερ ἐμή, τόξον μὲν Ἀχαιῶν οὔ τις ἐμεῖο</blockquote><cite class="greek-cite">Greek line · Od. 21.344</cite><blockquote lang="en">handsome coat and vest, Shoes to</blockquote><cite>Translation passage · Od. 21.344 · nearby words: coat, handsome, shoes, vest</cite></li>
     </ul>
    </article>
 <article class="variation-card" data-variation-case="συβωτησ" data-stability="0.060606">
     <div class="term-heading">
      <h3 class="greek-term" lang="grc">συβώτης</h3>
      <span class="transliteration">sybōtēs</span>
-     <span class="stability">stability 6.1%</span>
+     <span class="stability" title="Share of passages containing this Greek word where its most frequent nearby context word appears.">recurring nearby word 6%</span>
     </div>
     <ul class="variants">
-     <li class="variant"><blockquote lang="en">well the art of begging knows. They gave</blockquote><cite>Od. 17.372 · candidate context: art, begging, gave, knows</cite></li>
-     <li class="variant"><blockquote lang="en">The other three ran fiercely bawling</blockquote><cite>Od. 14.33 · candidate context: bawling, fiercely, ran, three</cite></li>
-     <li class="variant"><blockquote lang="en">folded up the fleshy thighs in fat. And</blockquote><cite>Od. 14.432 · candidate context: fat, fleshy, folded, thighs</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">ἦ τοι μέν οἱ δεῦρο συβώτης ἡγεμόνευεν,</blockquote><cite class="greek-cite">Greek line · Od. 17.372</cite><blockquote lang="en">well the art of begging knows. They gave</blockquote><cite>Translation passage · Od. 17.372 · nearby words: art, begging, gave, knows</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">ἀλλὰ συβώτης ὦκα ποσὶ κραιπνοῖσι μετασπὼν</blockquote><cite class="greek-cite">Greek line · Od. 14.33</cite><blockquote lang="en">The other three ran fiercely bawling</blockquote><cite>Translation passage · Od. 14.33 · nearby words: bawling, fiercely, ran, three</cite></li>
+     <li class="variant"><blockquote class="greek-line" lang="grc">βάλλον δʼ εἰν ἐλεοῖσιν ἀολλέα· ἂν δὲ συβώτης</blockquote><cite class="greek-cite">Greek line · Od. 14.432</cite><blockquote lang="en">folded up the fleshy thighs in fat. And</blockquote><cite>Translation passage · Od. 14.432 · nearby words: fat, fleshy, folded, thighs</cite></li>
     </ul>
    </article></div>
-   <aside class="method-note"><strong>Stability is narrow by design.</strong> It is the share of Greek occurrences whose line window contains the modal candidate context token. It does not measure semantic consistency, freedom, fidelity, or quality.</aside>
+   <aside class="method-note"><strong>What “recurring nearby word” measures.</strong> For each Greek word, we look at the words near it in each translation passage, leaving out common words. We find the nearby word that appears in the most passages, then show the percentage of passages where it appears. This measures recurrence in nearby context, not a direct translation or a measure of meaning, fidelity, quality, or intentional choice.</aside>
   </section>
 
   <section class="section-block" aria-labelledby="siblings-heading">
    <p class="section-label">Statistical comparison</p>
    <h2 id="siblings-heading">Against its siblings</h2>
-   <p class="narrative" data-final-narrative>Hobbes approached Homer late in life, after his political works, producing a complete rhymed Odyssey that the atlas characterizes through its direct narrative emphasis. The corpus contains 93977 tokens and 5915 unique forms. Its score-ranked formula list begins with “and to the,” recorded 35 times; this first position does not mean it has the highest raw count. For scale within other English translations, Murray contains 133986 tokens. Read together, the atlas context and corpus evidence show how this version occupies its declared cohort without converting length, vocabulary counts, or recurrence into claims about merit, fidelity, intention, or reception. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora.</p>
+   <p class="narrative" data-final-narrative>Hobbes approached Homer late in life, after his political works, producing a complete rhymed Odyssey that the atlas characterizes through its direct narrative emphasis. The corpus contains 93977 words and 5915 distinct word forms. Its score-ranked formula list begins with “and to the,” recorded 35 times; this first position does not mean it has the highest raw count. For scale within other English translations, Murray contains 133986 words. Read together, the atlas context and corpus evidence show how this version occupies its declared cohort without converting length, vocabulary counts, or recurrence into claims about merit, fidelity, intention, or reception. These measures offer a compact view of the textual evidence available here. The emphasis remains on directly observable features of the supplied corpora.</p>
   </section>
 
   <section class="cta-panel" aria-labelledby="continue-heading">
