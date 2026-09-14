@@ -2246,3 +2246,18 @@ h3 {
     display: block;
   }
 }
+
+.release-preview {
+  margin: 0 0 16px;
+  padding-left: 14px;
+  border-left: 2px solid var(--copper-dark);
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+#notes .section-heading p:not(.eyebrow) {
+  max-width: 760px;
+  margin: 22px auto 0;
+  line-height: 1.7;
+}

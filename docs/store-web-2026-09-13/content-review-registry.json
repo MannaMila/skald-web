@@ -1,0 +1,61 @@
+{
+  "source_main_sha": "6d846a8d46b1467ad68c353c5e489245155465c2",
+  "decision": "APPROVED",
+  "scope": "Complete 0.7.0 App Store and Google Play metadata candidate, complete candidate website copy, all candidate screenshot captions, and the bounded 252-work art-count supplement and candidate deltas in docs/marketing/store-web-2026-09-13.",
+  "roles": [
+    {
+      "role": "Textual accuracy, source anchors, philology, and claims",
+      "agent": "/root/accuracy_review",
+      "model": "gpt-5.6-sol",
+      "effort": "high",
+      "findings": "Verified 24 translation editions in 11 modern languages plus Ancient Greek; 3,288 passage-anchored notes; 252 distinct live historical-art identities across the whole library, comprising a 230-work museum-gallery subset from 48 museums and collections plus 22 chapter-only historical works; and 54 DOI-identified articles represented by 68 citation placements, including 42 with direct full-text URLs. Approved the bounded art-count delta after the original wording corrections.",
+      "decision": "APPROVED_AFTER_CORRECTIONS"
+    },
+    {
+      "role": "Reader usefulness, clarity, art relevance, and provenance",
+      "agent": "/root/reader_review",
+      "model": "gpt-5.6-sol",
+      "effort": "high",
+      "findings": "Approved the candidate voice and reader value after correcting museum-only collection wording, publisher-link wording, and the implication that every gallery record has artist and date metadata. Independently confirmed 252 historical artworks and objects for the whole library, with 230 in the museum-gallery subset and 22 chapter-only works, and required a comma in the Open Graph description plus historical works in place of historical illustrations.",
+      "decision": "APPROVED_AFTER_CORRECTIONS"
+    },
+    {
+      "role": "Final content arbiter",
+      "agent": "/root/content_arbiter",
+      "model": "gpt-5.6-sol",
+      "effort": "high",
+      "findings": "Resolved both base reviews by using museums and collections, DOI links, and collection, source, and rights metadata; adopted the factual 24 translations, to read and compare screenshot caption; and resolved the art supplement as 252 historical artworks and objects across the whole library, including the 230-work museum-gallery subset from 48 museums and collections plus 22 chapter-only historical works. Applied the reader review's comma and historical works edits. The unchanged captions retain 230 because they depict the museum-gallery subset.",
+      "decision": "APPROVED"
+    }
+  ],
+  "reviewed_input_sha256": {
+    "brief.md": "d51987a585c188f6f98ca1c6e1318e50574f576200e9615983638cb152caf131",
+    "review-1-audit.md": "79ae6a163591d8a1cba00dcea427cb10b87eb9862e933daf6ca97e2b28c04b0c",
+    "review-2-audit.md": "4b3b795a89f60203ac9960954a5a64f33991f1b1965e6c54fd1fd0612fe3c826",
+    "candidate-store.json": "1a263818ec896ee6cd3753172cee9d8dad61c7bf9812c11b46144143e8ceb633",
+    "candidate-index.html": "66f0a71be610df9100965ea9059078134cd4751aa101e3a2f14da4f0e8104249",
+    "candidate-captions.json": "8169389b57439446cba84c6e320bc088c8c42a0992d969a7384f62faf6de9d89",
+    "art-count-supplement.md": "866d3a64f2bf304bfbc87c1b405232e40c1057e15c9c87c45f57eb2951f6f73f",
+    "review-1-art-delta.md": "b71b4e1959afabbee29f140c11e236c41bffd35c190663c9af2a04b2da876f3b",
+    "review-2-art-delta.md": "a128815ae1e73932b63d1ef91584356ef3290a30b0bc1c6347708f08c845fcee",
+    "candidate-art-delta-store.json": "54867097241e011066895107a8aff0ada6db0d47b1ed613afbd04da58fd87252",
+    "candidate-art-delta-index.html": "75718a506ddd2aae503541d18b36db5210b247fb17636d77460d838517bb812a"
+  },
+  "resolved_decision_notes": [
+    "Use 48 museums and collections because the 48 catalog groups include museums, galleries, a national library, a palace, and named collections.",
+    "Use DOI link for the 12 citation-only articles; 42 of the 54 distinct articles have direct full-text URLs online in addition to DOI links.",
+    "Describe artwork details as collection, source, and rights because artist and date metadata are not present on every catalog record.",
+    "Use 252 historical artworks and objects for the whole library: 230 belong to the museum gallery from 48 museums and collections, and 22 are chapter-only historical works.",
+    "The promotional text names 252 artworks and objects and remains within the 170-byte limit.",
+    "Use a comma before and references in the Open Graph description, and use historical works rather than historical illustrations for the 22 chapter-only identities.",
+    "Use 24 translations, to read and compare in screenshot captions to keep the claim factual and matter of fact.",
+    "Retain the version 0.7.0 preview notice and all unaffected candidate copy as approved. Store copy remains staged for the upcoming release."
+  ],
+  "retained_candidate_copy": "APPROVED: every base and art-delta candidate byte not superseded by the resolved decision notes is retained and approved.",
+  "registry_amendment": "The final base reports were reread after their last edits. The 68 figure denotes citation-note placements across 59 distinct anchored line spans, not distinct articles; the public copy correctly states 54 distinct DOI-identified articles and 42 direct full-text links online. The later bounded art-count supplement changed the approved store and website bytes to the reviewed 252-work whole-library total while preserving 230 as the museum-gallery caption scope.",
+  "approved_sha256": {
+    "resolved-store.json": "54867097241e011066895107a8aff0ada6db0d47b1ed613afbd04da58fd87252",
+    "resolved-index.html": "0ac014076a0a362a701ab99accd67d956821c58c07d7b4021c76f811739d59ad",
+    "resolved-captions.json": "0e49922c93b8d847b965246605414c5c5bcb2ad2abcf400e7cd7c747bed57eb1"
+  }
+}
