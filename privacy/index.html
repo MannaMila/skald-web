@@ -107,138 +107,179 @@
 <p>English version · <a href="/privacy/fr/">Version française</a></p>
     <main>
     <p class="eyebrow">MannaMila LLC</p>
-    <h1>Skald: Odyssey — Privacy Policy</h1>
-    <p class="meta">
-      <strong>Effective date:</strong> 2026-07-28<br>
-      <strong>Last updated:</strong> 2026-08-14<br>
-      <strong>Canonical URL:</strong> <a href="https://skald.mannamila.com/privacy/">https://skald.mannamila.com/privacy/</a>
-    </p>
-
-    <p><strong>Version applicability:</strong> The no-app-telemetry, advertising-attribution, and content-delivery posture below begins with Skald: Odyssey <strong>0.5.0</strong>. Earlier versions could share the historical telemetry described below. Versions before 0.5.0 contain no Meta SDK, send Meta nothing, and do not contact MannaMila's content-delivery service.</p>
-
-    <h2>Who we are</h2>
-    <p>Skald: Odyssey is a reader for Homer's <em>Odyssey</em>, with source-grounded retellings, historical editions, Greek text, maps, and art. The app is published by <strong>MannaMila LLC</strong> ("MannaMila", "we", "us", or "our").</p>
-    <p>For privacy or data requests, contact <strong>privacy@mannamila.com</strong>. For product support, contact <strong>support@mannamila.com</strong>.</p>
-
-    <h2>At a glance</h2>
-    <ul>
-      <li><strong>What changed in 0.5.0:</strong> Earlier versions could send pseudonymous usage analytics to Amplitude and crash diagnostics to Sentry. Version 0.5.0 sends neither and creates no Analytics ID.</li>
-      <li><strong>Your reading stays on your device:</strong> Skald has no account and no MannaMila server holding your saved place, reading choices, or preferences.</li>
-      <li><strong>Two other app flows remain:</strong> On Android, Meta receives automatic install and app-open events, an SDK identifier, Google's advertising ID where available, and the Play install referrer for campaign measurement; it does not receive what you read. On every platform, Skald asks MannaMila's content service no more than once an hour whether the reviewed library has an update; that request carries no reading data.</li>
-      <li><strong>Data an earlier version already sent:</strong> If this installation still has its legacy Analytics ID, About &amp; Privacy can prepare a deletion-request email.</li>
-      <li><strong>No ads and no reading profile:</strong> Skald displays no ads, sells no data, and builds no advertising profile from what you read.</li>
-    </ul>
-
-    <h2>App data</h2>
-    <p>Skald stores your reading position and preferences on your device. The app has no account and no MannaMila server that syncs this reading data.</p>
-    <p>Beginning with version 0.5.0, Skald does not send usage analytics or crash diagnostics. It does not initialize Amplitude or Sentry, create an Analytics ID, or operate a telemetry upload queue. MannaMila does not receive reading activity or crash diagnostics from version 0.5.0.</p>
-    <p>Together, usage analytics and crash diagnostics are <strong>app telemetry</strong>: records about how the app is used and reports about errors or the device. The separate attribution and delivery flows below are not app telemetry and remain disclosed.</p>
-
-    <h2>Previously shared data</h2>
-    <p>Earlier versions of Skald could send pseudonymous usage analytics to Amplitude and crash or diagnostic records to Sentry. An installation upgraded from an earlier version may retain the random Analytics ID created at that time.</p>
-    <p>Version 0.5.0 reads that existing ID only to display or copy it in About &amp; Privacy and, at your request, place it in a deletion-request email. The app does not transmit the ID or create a replacement. If no earlier ID exists, Skald displays “No Analytics ID exists on this installation. Version 0.5.0 never creates one.”</p>
-    <p>To request deletion of earlier Amplitude and Sentry records, use “Request deletion of previously shared data” in About &amp; Privacy or email privacy@mannamila.com with the Analytics ID. Existing records remain subject to the provider retention described under <strong>Retention and deletion</strong>, and you can request deletion at any time. If no legacy ID is shown, you can still email the privacy address for help, but earlier provider records were pseudonymous and MannaMila may be unable to locate installation-specific records without that ID.</p>
-
-    <h2>What the no-app-telemetry statement does not cover</h2>
-    <p>“Skald does not send usage analytics or crash diagnostics” describes the app's own telemetry. Two other app flows remain: on Android, Meta's advertising SDK reports installs and app opens automatically; on every platform, Skald can make an hourly content-update check. Neither is controlled by a telemetry switch; version 0.5.0 has no telemetry switch. The <strong>Advertising attribution</strong> and <strong>Content-update requests</strong> sections describe these flows and their limits.</p>
-    <p>Separately, if you email support or privacy, submit the public feedback form, join the product-updates list, or obtain Skald through Apple's App Store or Google Play, those services may process information you choose to provide and routine technical or transaction information. The <a href="../feedback/privacy/">feedback</a> and <a href="../updates-privacy/">product-updates</a> notices explain the corresponding MannaMila forms. Apple and Google handle their store services under their own privacy notices. None of those separate activities causes Skald 0.5.0 to send usage analytics or crash diagnostics.</p>
-    <p>The public Skald website is also separate from the app. Its hosting provider may process routine request information needed to deliver the site. Two pages — the Odyssey Art Atlas at <a href="/mosaic/">/mosaic/</a> and the Odyssey Translation Atlas at <a href="/translations/">/translations/</a> — use Google Analytics 4 to count page visits and interactions with content, store links, and outbound links. They set first-party analytics cookies prefixed <code>skm_</code> on this site only, and analytics storage is off by default for visitors in the EEA, the United Kingdom, and Switzerland. The Translation Atlas also carries Amazon affiliate links, which are ordinary outbound links; Amazon processes any subsequent activity under its own privacy notice. No other page of this site deploys an analytics tag, and website measurement is not connected to the app, which sends no usage analytics or crash diagnostics.</p>
-
-    <h2>Local reading data and platform backup</h2>
-    <p>Skald stores your exact saved place and reading settings, such as the selected length, translation, and display options, in the app's private on-device storage. The app has no account, reading-progress backend, or app-operated cloud sync.</p>
-    <p>On Android, encrypted Google backup and device transfer carry only the file recording your purchase (<code>datastore/skald_entitlement.preferences_pb</code>). Reading progress, preferences, legacy telemetry identifiers, and content are excluded. Clearing app data or uninstalling removes the active local reading data; a later Google restore may restore only the purchase entitlement.</p>
-    <p>On iPhone and iPad, Apple's encrypted device or iCloud backup and device-transfer features may preserve app-container data according to your Apple settings. Paid access is re-granted from the App Store receipt. Uninstalling removes the active local copy, although a later Apple restore may restore app-container data.</p>
-
-    <h2>Data version 0.5.0 never sends</h2>
-    <p>Across app telemetry, attribution, and delivery, version 0.5.0 does not send:</p>
-    <ul>
-      <li>your reading position, selected book, tier, translation, or reading activity;</li>
-      <li>product-interaction analytics, an Analytics ID, crash reports, stack traces, or device diagnostics; or</li>
-      <li>your name, contacts, precise location, photos, audio, files, or activity in other apps.</li>
-    </ul>
-    <p>Skald contains no advertising and does not build an advertising profile from what you read. Android advertising attribution and cross-platform content delivery are separate, narrowly described lanes rather than app telemetry.</p>
-    <p>Skald requests no location, camera, microphone, contacts, photos, or storage access. It collects no payment, health, or fitness data, and no lane described in this policy sends your contacts, precise location, photos, audio, or files.</p>
-
-    <h2>Advertising attribution</h2>
-    <p>This section describes Skald: Odyssey <strong>0.5.0 and later</strong>. Earlier versions include no Meta SDK, send Meta nothing, and declare no SKAdNetwork identifiers. Skald does not display ads, but MannaMila advertises the app and measures which campaigns lead to an install.</p>
-
-    <h3>On Android</h3>
-    <p>The Android app includes Meta's advertising SDK, facebook-core 18.3.0. When you install and open Skald, the SDK sends Meta automatic install and app-open events for advertising attribution. It collects and sends Google's advertising identifier to Meta where the operating system makes it available. It also sends an SDK identifier and reads the Google Play install referrer — the campaign or link that led to the download. It does not report what you read, and Phase 1 sends no custom reading-funnel or purchase events.</p>
-    <p>The Android package carries the Play install-referrer permission, Google's <code>AD_ID</code> permission, and four Android Privacy Sandbox permissions for Attribution, Ad ID, Custom Audience, and Topics. Topics and Custom Audience are interest-based-advertising capabilities; Phase 1 does not exercise those APIs. These permissions are part of the Android package whether or not attribution is enabled for a particular release, so disabling initialization does not make the declared permission surface smaller.</p>
-
-    <h3>On iPhone and iPad</h3>
-    <p>SKAdNetwork is the only iOS attribution mechanism. The iPhone and iPad app links no Meta SDK or other advertising SDK, requests no tracking authorization, and does not use IDFA. The iOS app sends no data to Meta. Apple sends Meta an aggregated install postback itself; the app does not collect a new data type for this mechanism.</p>
-    <p>Attribution has no in-app opt-out on either platform. It is separate from app telemetry; version 0.5.0 has no telemetry switch and sends no usage analytics or crash diagnostics.</p>
-
-    <h2>Content-update requests (MannaMila delivery)</h2>
-    <p>Starting with version 0.5.0, Android, iPhone, and iPad can check for reviewed content updates at launch, no more than once an hour. The request goes over HTTPS to <strong>https://delivery.mannamila.com</strong>, a first-party MannaMila endpoint hosted on Cloudflare. This lane has no separate in-app switch and is separate from app telemetry and advertising attribution.</p>
-    <p>The endpoint processes the network IP transiently to enforce per-IP rate limits. The request and any resulting download concern public-domain literature and signed content packs. Skald sends no reading history, exact saved place, story passage, reading choice, Analytics ID, or advertising ID through this lane. If the service is unavailable or a request fails, the app continues with its bundled library without interrupting the reader.</p>
-
-    <h2>How information is processed or shared</h2>
-    <p>We do not sell your data.</p>
-    <ul>
-      <li><strong>Meta</strong> receives the Android install-attribution data described above for its own advertising-measurement purpose.</li>
-      <li><strong>MannaMila's delivery service</strong>, hosted on Cloudflare, processes the transient request IP for rate limiting and serves public-domain content. Cloudflare provides the network infrastructure for this first-party lane.</li>
-    </ul>
-    <p>MannaMila does not share story passages, reading choices, a legacy Analytics ID, or crash diagnostics with Meta. No data flows from the iPhone or iPad app to Meta, and we do not share data with data brokers.</p>
-
-    <h2>International users and where data is processed</h2>
-    <p>Skald is offered in the United States, Canada, Australia, and New Zealand. Meta may process the Android attribution data described above, and Cloudflare may process the transient delivery-request IP, in the United States or other countries under their respective terms. Legacy Amplitude and Sentry records sent by earlier versions may remain subject to those providers' processing locations until the records are deleted or expire.</p>
-    <p>MannaMila does not collect the name or account information needed to identify a reader directly through these app flows. A legacy Analytics ID can help locate earlier Amplitude and Sentry records; it does not identify Meta attribution records.</p>
-
-    <h2>Information you choose to send separately</h2>
-    <p>If you contact support or privacy, we receive the message, contact address, and other information you choose to include. Do not include a story passage, screenshot, log, or other personal information unless it is necessary for the request.</p>
-    <p>The feedback form and product-updates list have separate notices at the point of collection. Apple and Google independently process store-account, transaction, and routine technical information when they provide their store services. Their privacy notices govern that independent processing.</p>
-
-    <h2>Retention and deletion</h2>
-    <p>Records sent by earlier versions remain subject to Amplitude retention of up to 24 months from collection and Sentry retention of 90 days unless they are deleted sooner. These are the approved policy periods. Before release, the owner must recheck both provider consoles and retain dated evidence that the settings still match; if they do not, MannaMila will correct this policy. You do not have to wait for that check to request deletion.</p>
-    <p>Meta attribution data is retained by Meta under its own policies and schedules. It is not linked to Skald's legacy Analytics ID, so a deletion request to MannaMila using that ID cannot locate or remove Meta's records. Delivery request IPs are processed transiently for rate limiting and are not retained by Skald as a reader record or profile.</p>
-    <p>On-device reading data persists until you clear app storage or uninstall the app, subject to the platform-backup behavior described above. Retention for support messages, forms, website delivery, and store records is also pending the documented UK processing-inventory review.</p>
-
-    <h2>Your choices</h2>
-    <ul>
-      <li><strong>On-device data:</strong> clear Android app storage or uninstall. On iPhone or iPad, uninstall the app; Apple backup or transfer may later restore app-container data.</li>
-      <li><strong>Previously shared data:</strong> use “Request deletion of previously shared data” in About &amp; Privacy or email privacy@mannamila.com with the legacy Analytics ID, if one exists, to request deletion of earlier Amplitude and Sentry records. If no ID is shown, you may still contact the privacy address, but MannaMila may be unable to locate installation-specific provider records without it.</li>
-      <li><strong>Advertising attribution:</strong> there is no in-app opt-out. On Android, system advertising controls can reset or delete the advertising ID where the operating system offers that choice. A legacy Analytics-ID deletion request does not reach Meta's records. On iPhone and iPad, Apple's SKAdNetwork report is aggregated and cannot be linked back to you through Skald.</li>
-      <li><strong>Content delivery:</strong> there is no separate switch. The check is fail-silent, no more frequent than once an hour, and the bundled library remains usable offline.</li>
-    </ul>
-
-    <h2>Security</h2>
-    <p>Version 0.5.0 has no app telemetry transport. Android distribution artifacts are scanned for retired Amplitude and Sentry runtime markers, credentials, upload endpoints, and telemetry-named payloads. The iPhone and iPad archive verifier separately rejects retired SDKs, telemetry keys, and unexpected privacy manifests before submission.</p>
-    <p>Network data described in the attribution and delivery sections is sent over encrypted HTTPS, and the Android app does not permit cleartext network traffic. On-device reading progress and preferences remain in the app's private storage. Android build tooling also adds an app-scoped signature permission used only to keep dynamic receivers non-exported; it is not a user-data permission. No security measure is absolute. If you think information you sent through a separate service has been affected by a security incident, contact privacy@mannamila.com.</p>
-
-    <h2>Children</h2>
-    <p>Skald is intended for a <strong>general/adult audience (18+)</strong>. A parent or caregiver may use it for shared reading, but the adult is the intended operator. It is not directed to children under 13 and is not enrolled in Google Play's Designed for Families program.</p>
-    <p>The version 0.5.0 app has no account and sends no usage analytics or crash diagnostics. Separate support, form, website, store, attribution, and delivery services remain subject to the limits and notices stated above.</p>
-
-    <h2>United Kingdom information — pending before UK distribution</h2>
-    <p>MannaMila LLC is identified as the controller for information it receives directly through its privacy and support contacts. The privacy contact is privacy@mannamila.com. A publishable controller address has not yet been verified for this policy.</p>
-    <p>Before Skald is made available in the United Kingdom, the release record must contain dated, owner- or counsel-approved evidence for:</p>
-    <ul>
-      <li>UK territorial scope and establishment status;</li>
-      <li>whether an Article 27 UK representative is required and, if required, the representative's identity, contact details, and written appointment;</li>
-      <li>the ICO data-protection fee self-assessment and its receipt or documented exemption;</li>
-      <li>the complete processing inventory for the app, support email, feedback form, product-updates list, stores, site hosting, and historical telemetry, including data categories, purpose, lawful basis, source, recipients, and retention;</li>
-      <li>each party's role, processor terms, subprocessors, hosting locations, and any restricted-transfer mechanism and transfer-risk assessment;</li>
-      <li>the responsible security and breach owner;</li>
-      <li>the UK copyright and text-rights ledger for every shipped source;</li>
-      <li>Apple and Google marketplace VAT basis, tax category, and UK price evidence;</li>
-      <li>digital-content contract, delivery confirmation, refund, and faulty-content remedy evidence;</li>
-      <li>an Online Safety Act scope assessment for the offline app with no user-generated content or search service;</li>
-      <li>public Apple and Google GB storefront availability evidence; and</li>
-      <li>a live policy hash, effective date, required representative disclosure, platform declaration snapshots, binary and site evidence, limitations, and next review date.</li>
-    </ul>
-    <p>These items are currently <strong>pending</strong>, so the UK release gate remains blocked. No pending item is a claim that MannaMila has appointed a UK representative, completed an ICO assessment, executed a processor agreement, or selected a transfer mechanism.</p>
-    <p>If UK data-protection law applies to information processed through a separate service, you may have rights to request access, correction, deletion, restriction, objection, or portability, and to withdraw consent where consent is the basis. Contact privacy@mannamila.com to make a request. You may also raise a concern with the UK Information Commissioner's Office: <a href="https://ico.org.uk/make-a-complaint/data-protection-complaints/">make a data-protection complaint</a>.</p>
-
-    <h2>Changes to this policy</h2>
-    <p>If our data practices change, we will update this document and revise the Last updated date. Material changes will be reflected in the app, store declarations, and hosted policy before the changed behavior is distributed.</p>
-
-    <h2>Contact us</h2>
-    <p><strong>MannaMila LLC</strong></p>
-    <p>Privacy and data requests: <strong>privacy@mannamila.com</strong><br>
-    Product support: <strong>support@mannamila.com</strong></p>
-    <p>For deletion of records sent by an earlier app version, include the historical Analytics ID shown in About &amp; Privacy, if one exists. Without it, MannaMila may be unable to locate installation-specific provider records. For other questions, include the platform and app version where relevant, but do not include unnecessary personal information.</p>
+<h1>Skald: Odyssey — Privacy Policy</h1>
+<p class="meta"><strong>Effective date:</strong> The date Skald: Odyssey 0.7.0 is first made available<br>
+<strong>Last updated:</strong> 2026-09-13<br>
+<strong>Canonical URL:</strong> https://skald.mannamila.com/privacy/</p>
+<p>This policy applies to <strong>Skald: Odyssey 0.7.0</strong>. See “Earlier versions” for
+the practices of prior releases.</p>
+<h2>Who we are</h2>
+<p>Skald: Odyssey is a reader for Homer's <em>Odyssey</em>, published by <strong>MannaMila LLC</strong>.
+Contact <strong>privacy@mannamila.com</strong> about privacy or data requests, or
+<strong>support@mannamila.com</strong> for product support.</p>
+<h2>At a glance</h2>
+<ul>
+<li>Reading text, your saved place, selected book and translation, and reading
+  preferences are kept in app storage. MannaMila has no Skald account or
+  reading-history server. Platform backup and device transfer are described below.</li>
+<li>Skald uses Meta's SDK on Android to measure MannaMila's advertising. On iPhone
+  and iPad, direct Meta measurement starts only if you allow Apple's tracking
+  permission after actively completing a free book. Skald displays no ads in the reader.</li>
+<li>The app can check MannaMila's content service for reviewed library updates
+  no more than once an hour. That request carries no reading data.</li>
+<li>Reading reminders are scheduled locally. You control them through your
+  device's notification settings.</li>
+<li>Apple or Google handles purchases. Skald receives ownership information,
+  not your payment-card or bank details.</li>
+</ul>
+<h2>Reading data and reminders</h2>
+<p>Your reading progress, preferences and note-interaction history are stored in
+the app's private storage. They let Skald return to your place and adapt which
+notes it shows. MannaMila has no server that receives or synchronizes this history.
+Skald does not run Amplitude or Sentry and has no app-configured crash-diagnostics
+destination.</p>
+<p>Skald can remind you to continue reading after three days away, after a week,
+then at intervals of two weeks. These notifications are scheduled by the app
+on your device, without a push service, after true foreground reading sessions.
+Their quoted reading excerpts stay in app storage. Tapping a reminder resumes
+the saved passage. You can turn reminders off in your device's notification settings.</p>
+<p>On Android, Google backup or device transfer may preserve the file that records
+local full access, depending on your device and backup settings. Reading progress,
+preferences, legacy Analytics IDs, content, and advertising-measurement bookkeeping
+are excluded. Clearing app data or uninstalling removes the active local copy;
+a platform restore may restore the entitlement.</p>
+<p>On iPhone and iPad, Apple backup and device transfer may preserve app-container
+data according to your Apple settings. Uninstalling removes the active local
+copy; a later Apple restore may restore that data. Purchase ownership can also
+be recovered from the same store and store account.</p>
+<h2>Advertising measurement</h2>
+<p>MannaMila advertises Skald and asks Meta's SDK to measure those ads. The SDK
+handles install and app-open activity. After each successful load of a free
+Odyssey book, Skald can ask the SDK to log a <code>ViewedContent</code> event that can repeat
+and does not identify the book. Skald also asks the SDK to log checkout for an
+unlock and a confirmed purchase after a matching locally initiated checkout has
+produced durable full access.</p>
+<p>Checkout and purchase events include the fixed product identifier
+<code>odyssey_full_unlock</code> or <code>odyssey_full_unlock_edu</code>, the price actually displayed
+by the store, and its ISO currency. The product identifier therefore discloses
+whether the standard or educational option was selected.</p>
+<p>A pending state is not logged as a purchase. If a locally initiated pending
+checkout later succeeds, including after restart or an ownership sweep, Skald
+can ask the SDK to log one purchase after the matching verified entitlement is
+durable. Cancellation, failure, ordinary restore, unmatched startup ownership,
+and redelivery after the local claim do not log a purchase. The app keeps only
+the fixed product identifier, offered price, currency and checkout time in local
+purchase-measurement bookkeeping, and consumes a matching eligibility record once.</p>
+<p>Skald does not send Meta a book identifier, translation, reading position,
+story passage, note history, store-account identifier, order ID, transaction ID,
+purchase token or payment method. A free-book event says only that free Odyssey
+content loaded successfully.</p>
+<p>A call from Skald to Meta's SDK does not prove that Meta received, retained or
+attributed the event. Platform and Meta controls can delay, restrict or drop delivery.</p>
+<h3>Android</h3>
+<p>Android includes Meta's facebook-core SDK. It asks the SDK to log the events
+described above. The SDK can use its installation identifier, Google's advertising
+ID where available, and the Google Play install referrer. The referrer describes
+the campaign or link that led to the download.</p>
+<p>The Android package includes the Play install-referrer permission, Google's
+AD_ID permission, and Android Privacy Sandbox permissions for Attribution,
+Ad ID, Custom Audience and Topics. Skald does not use the Topics or Protected
+Audience APIs. These packaged permissions remain present even in a build in
+which Meta initialization is disabled.</p>
+<h3>iPhone and iPad</h3>
+<p>Skald asks for Apple's tracking permission only after you actively finish a free
+book: you started before its final paragraph, scrolled in the reader, and first
+reached the true end in that current session. It does not ask on first launch,
+from historical or restored progress already at the end, when you only open or
+reposition the source or a translation, after a paid book, or without reader interaction.</p>
+<p>If you allow tracking, Skald may share future app opens, successful free-book
+openings, checkout, and confirmed-purchase events with Meta to measure MannaMila's
+ads. It does not share events from before you allow tracking. Meta's SDK uses an
+installation identifier for this measurement; advertiser-ID collection is off,
+and Skald does not send IDFA. Checkout and purchase events include the selected
+standard or educational product identifier, the price displayed by the App Store,
+and its ISO currency. They do not include a receipt, transaction ID, purchase token,
+payment method, reading text, translation, saved place, or book identifier.</p>
+<p>If you decline or cannot authorize tracking, Skald does not send direct measurement
+events to Meta. Reading, purchasing, and restoring purchases work the same. You can
+change this permission later in iOS Settings. If you later turn off tracking permission,
+Skald stops sending new direct measurement events. A request already started while
+permission was present may already be in transit.</p>
+<p>When direct Meta measurement is unavailable at launch, Skald submits conversion
+value <code>0</code> through Apple's SKAdNetwork API. Skald has no custom SKAdNetwork mapping
+for free-book opening, checkout, or purchase. Apple controls whether an aggregated
+postback is generated, its contents, and its delivery. This Apple path does not send
+Meta a store price or currency.</p>
+<h3>Controls, retention and deletion</h3>
+<p>Android advertising measurement has no in-app opt-out. Android's system advertising
+controls can reset or delete the advertising ID where available. On iPhone and iPad,
+Apple's tracking permission controls future direct Meta measurement. Denial does not
+limit the reader or its purchase features.</p>
+<p>Meta controls retention and deletion of direct measurement data it receives under
+its own privacy policy. MannaMila cannot directly locate or delete records tied only
+to Meta's SDK installation identifier, and Skald's old Analytics ID cannot identify
+those records. You can use your platform's advertising or tracking controls to stop
+future collection. See <a href="https://www.facebook.com/privacy/policy/">Meta's privacy policy</a>
+for Meta's data controls, or email privacy@mannamila.com for help routing a privacy
+or deletion request. We cannot promise that Meta can identify a record from the
+information available to Skald.</p>
+<h2>Purchases</h2>
+<p>Books I, II and IX are free. The standard and educational one-time unlocks both
+grant access to the remaining books. The educational option is chosen by
+self-attestation; Skald does not request student documents or proof of employment.</p>
+<p>Apple or Google processes payment and supplies a verified purchase or ownership
+result to the app. Skald saves a local entitlement before acknowledging or finishing
+a transaction. It has no purchase backend and does not receive your card, bank
+account or payment method. The limited checkout and purchase events described above
+use the selected product identifier and actual store price and currency; they do
+not contain a receipt, transaction ID or purchase token.</p>
+<p>Restore purchase uses the same store and store account. Apple and Google process
+their store services under their own privacy notices.</p>
+<h2>Content updates</h2>
+<p>At most once an hour when you open Skald, it can contact
+<strong>https://delivery.mannamila.com</strong>, a MannaMila service hosted on Cloudflare,
+for reviewed library updates. There is no separate in-app switch. Requests
+and downloads use HTTPS. A failed request leaves the existing library available.</p>
+<p>The request carries no reading history, saved place, story passage, selected
+book or translation, legacy Analytics ID, advertising ID or purchase record.
+Routine network information such as the request IP address is processed to serve
+and protect the request. Downloaded content is checked before it can replace the
+active library.</p>
+<h2>Earlier versions</h2>
+<p>Versions before 0.5.0 could send pseudonymous usage analytics to Amplitude and
+crash diagnostics to Sentry. Version 0.5.0 retired those services and stopped
+creating the app's Analytics ID. An upgraded installation may still retain its
+old ID. About &amp; Privacy displays it and can prepare a deletion-request email;
+Skald does not transmit it automatically or create a replacement.</p>
+<p>Historical records remain subject to the providers' terms unless deleted sooner.
+Email the legacy Analytics ID to privacy@mannamila.com to request deletion. If no
+ID remains, you may still contact us, but we may be unable to locate pseudonymous records.</p>
+<p>Android versions 0.5.0–0.6.1 used Meta for install and app-open attribution
+without the custom conversion events added in 0.7.0. iOS versions 0.5.0–0.6.1
+declared SKAdNetwork identifiers but linked no Meta SDK and sent Meta no app events.
+Versions before 0.5.0 included neither Meta SDK nor the content-update service.</p>
+<h2>Separate website, forms and messages</h2>
+<p>If you contact us, we receive your message, address and any information you
+choose to include. Our public website and forms are separate from the app.
+They may process routine web-request information and website analytics; the
+<a href="https://skald.mannamila.com/feedback/privacy/">feedback notice</a> and
+<a href="https://skald.mannamila.com/updates-privacy/">product-updates notice</a> describe
+their respective forms. Opening a museum or other external link uses that
+site's services and privacy terms.</p>
+<h2>Your choices and security</h2>
+<p>Reset reading progress starts your reading again without removing books you have
+unlocked. Clearing app storage or uninstalling removes local app data, subject to
+platform backup and device-transfer settings described above. You can turn local
+reading reminders off in your device's notification settings. On iPhone and iPad,
+you can manage Skald's tracking permission in iOS Settings.</p>
+<p>Network requests described here use encrypted HTTPS. The app does not ask for
+your contacts, location, camera, microphone, photos or general file storage.
+Android permits no cleartext network traffic. No security measure is absolute;
+contact privacy@mannamila.com about a suspected privacy or security problem.</p>
+<p>Skald is intended for an adult or parent-led audience, with the adult as operator.
+It is not directed to children under 13 or enrolled in Google Play's Designed for
+Families program. This release is approved for distribution in the United States,
+Canada, Australia and New Zealand.</p>
 
     <nav class="back-links" aria-label="Related pages">
       <a href="../">&larr; Skald: Odyssey</a>
