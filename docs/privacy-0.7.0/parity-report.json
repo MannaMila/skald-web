@@ -1,0 +1,18 @@
+{
+  "storeUploads": 0,
+  "languages": {
+    "en": {
+      "sourceSha256": "5d8a0792497042116ca72e10a679e1c3de0511c12a250be8d91942ceb66e4787",
+      "htmlSha256": "a16cab8e8610055d123b2482a51e295fd4f48fa90c0ff88a23ba31515c30a967",
+      "visibleTextMatchesReviewedSource": true,
+      "sourceAndDeploymentStagingMatch": true
+    },
+    "fr": {
+      "sourceSha256": "7dbe1796f56470dcf03a8143d2cf8fd8c6d892d7f011fb0b84a7017a3f9433b5",
+      "htmlSha256": "f72504680f81885b072319f352755c80e540338c594be02463338e030c60b7fb",
+      "visibleTextMatchesReviewedSource": true,
+      "sourceAndDeploymentStagingMatch": true
+    }
+  },
+  "verificationStage": "pre-publication"
+}
