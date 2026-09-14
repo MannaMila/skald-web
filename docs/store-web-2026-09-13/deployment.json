@@ -1,0 +1,19 @@
+{
+  "source_repository": "MannaMila/mannamila-web",
+  "source_commit": "3f22926855bdcea24be76b34aac066b886ae9f4e",
+  "source_pr": "https://github.com/MannaMila/mannamila-web/pull/19",
+  "app_source_commit": "6d846a8d46b1467ad68c353c5e489245155465c2",
+  "store_copy_pr": "https://github.com/MannaMila/skald/pull/405",
+  "scope": "Landing page and stylesheet only; .skald-source.json remains the receipt of the older full-tree promotion. Independent Atlas, translation, privacy, availability and support routes preserved.",
+  "files": {
+    "index.html": "0ac014076a0a362a701ab99accd67d956821c58c07d7b4021c76f811739d59ad",
+    "styles.css": "7a65158400d1a09db70230344b051e04f287a93715eb91ffa18c2274475c5d99"
+  },
+  "validation": {
+    "approved_html_hash": true,
+    "desktop": "1440x1000, no overflow or broken hero images",
+    "mobile": "390x844, no overflow or broken hero images",
+    "runtime_exceptions": 0,
+    "release_preview": "0.7.0 expanded library is upcoming"
+  }
+}
