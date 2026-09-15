@@ -1,0 +1,248 @@
+{
+  "registry": "skald-native-screenshots-and-ipad-panels-2026-09-15",
+  "date": "2026-09-15",
+  "decision": "APPROVED",
+  "approvalScope": {
+    "A_website": "Exactly 7 changed files in the Skald site (paths relative to the deploy root, mirrored at mannamila-web skald/): index.html, styles.css, and 5 assets (reader-art.webp, greek-split.webp, museum-guide.webp, nostos-route.webp, skald-odyssey-og-070.jpg). This does NOT authorize copying any other file from the candidate preview tree (work/preview-root or similar), because those are baseline preview dependencies. Body copy is unchanged except the 4 image alt strings, the art figcaption, and the og/twitter image URL+alt. The 0.7.0 upcoming-release notice is retained verbatim, and no EU/UK availability claim is added. The old assets/skald-odyssey-og.jpg stays in place for other routes.",
+    "B_ipad_store_panels": "Exactly 4 App Store iPad 13-inch panels (2752x2064), re-rendered with the renderer fix that sizes the frame from the EXIF-oriented display dimensions. Captions and raw captures are unchanged. The other 22 production panels must stay byte-identical.",
+    "notApproved": [
+      "any other website file or route",
+      "any change to the other 22 store panels",
+      "app 0.7.0 release or store-listing submission (listing stays draft; app 0.7 stays unreleased)",
+      "EU/UK country availability (handled separately by parent)",
+      "legal rights, trader status, or any public-release attestation"
+    ]
+  },
+  "roles": [
+    {
+      "role": "Independent content reviewer 1: accuracy, source anchors, claims",
+      "model": "claude-opus-5",
+      "sessionId": "d7e94db3-4e7a-4cc9-89a0-771bcae6c315",
+      "decision": {
+        "A": "APPROVED",
+        "B": "APPROVED"
+      },
+      "requiredCorrections": [],
+      "report": {
+        "json": "/tmp/skald-opus-20260915/review1.json",
+        "md": "/tmp/skald-opus-20260915/review1.md"
+      }
+    },
+    {
+      "role": "Independent content reviewer 2: reader usefulness, clarity, art relevance, provenance",
+      "model": "claude-opus-5",
+      "sessionId": "812ab667-2aca-4a5c-a84d-904bd9edaee2",
+      "decision": {
+        "A": "APPROVED",
+        "B": "APPROVED"
+      },
+      "requiredCorrections": [],
+      "report": {
+        "json": "/tmp/skald-opus-20260915/review2.json",
+        "md": "/tmp/skald-opus-20260915/review2.md"
+      }
+    },
+    {
+      "role": "Final content arbiter",
+      "model": "claude-opus-5",
+      "sessionId": "9a20fe09-5729-4aa6-b8f0-ee342c4479a2",
+      "decision": {
+        "A": "APPROVED",
+        "B": "APPROVED"
+      },
+      "requiredCorrections": [],
+      "findings": "Compared R1 and R2: both independently approve A and B with no required corrections, and bind identical full-length hashes for all 7 web files and 4 iPad panels. Every hash was recomputed from the actual bytes: the deploy/ and source/skald/ mirrors are byte-identical and contain only the 7 files; web-candidate MANIFEST.sha256 and ipad-candidate MANIFEST.sha256 both pass. The index.html diff against the live baseline (0ac01407...) is limited to the og/twitter image URL+alt, the stylesheet key, the 4 figure class hooks, the 4 img src/size/alt, and the art figcaption. Against the reviewed candidate-native-index.html it differs only in the og/twitter lines and the class hooks. The alts and caption match candidate-native-web.json verbatim, and no EU/UK text is present. The 4-asset source mapping matches candidate-native-web.json. The webps are 1320x2868, 2752x2064, 2752x2064, and 1920x1080, and the OG card is 1200x630. The arbiter viewed the OG card (real 03-parallel capture, whole; only the 3 approved lines), the decoded greek-split and museum-guide webps (upright, complete), and iPad panels 01 and 04 (full landscape capture, nothing cropped). The captions.json app-store-ipad entries equal the MANIFEST lines/sub/source for all 4 panels. The prior registry's 4 iPad hashes equal current production and are superseded; the other 22 production panels equal native-panel-hashes.json. The approval rests on existing candidate bytes; no text was rewritten."
+    }
+  ],
+  "reviewerAgreement": {
+    "scopeA": "both APPROVED, no corrections",
+    "scopeB": "both APPROVED, no corrections",
+    "hashConflicts": [],
+    "proseTypoNonBinding": "review2.md abbreviates ipad_04 as '5b6732b9…8c63'; the actual bytes and both review JSONs are …8f63 (5b6732b90e5a12ed4a5afba8d3d0decd6c6c8cd5c104f362ae1e08ac89cc8f63). The JSON value is authoritative."
+  },
+  "reviewInputSha256": {
+    "/tmp/skald-opus-20260915/review1.json": "c414aeb0fda904e529917259eb2418b72930836ad89e9af711cb510cb1c1a479",
+    "/tmp/skald-opus-20260915/review1.md": "9605fbf771522664c2cd232d123f03de1e77870f9d00c309f62a9cfe02a70136",
+    "/tmp/skald-opus-20260915/review2.json": "a6743ed461a74630328e651ae5555f223c1e441702552ac139048cbbf2d688d4",
+    "/tmp/skald-opus-20260915/review2.md": "771c52b341f01811e5f1c377af5e897e0059eeb119188e57b6af9bb52ddccbda",
+    "/tmp/skald-opus-20260915/review1-task.md": "0dec5af57af9e81743c127570cb12f0ef84e6fcc3dc0c01925f2bceff07e7ae1",
+    "/tmp/skald-opus-20260915/review2-task.md": "f6f503b4c734a3001bbecd1200b89645d2b53a7a9aeafb0cc3d47383c6158c49",
+    "/tmp/skald-opus-20260915/review1-result.json": "130d77870a21ece2af1d850a3fca59ccdd139495b2290c4ebd0e9e1aeb8ffb11",
+    "/tmp/skald-opus-20260915/review2-result.json": "f5c98a88079d65c85a3b6ee24cc6e4f3db0b04749938e3df2dd30d91f9a536c2",
+    "/tmp/skald-opus-20260915/arbitrate-task.md": "b1ffcfc9aad597c3c9362a7acb70c4d7e3aac4b5e280a4f154f831176ee88612",
+    "/tmp/skald-opus-20260915/web-candidate/REPORT.md": "fd2e59959420b18c4c07e8ff17c24845e930bab7f3aa45e79946f5fff733ff28",
+    "/tmp/skald-opus-20260915/web-candidate/MANIFEST.sha256": "8ee73f5dfa797c4cc239113255677d8b98a74dbfa59bfe2f4fe9bff5fea53cf3",
+    "/tmp/skald-opus-20260915/web-candidate/INPUTS.sha256": "4a62cd6f7f79cd3160cb648d0b7bfdad897133d9ed34e3d991e984a47955b7a0",
+    "/tmp/skald-opus-20260915/web-candidate/deploy.patch": "aa11158f88abe0a8b0c0c162d0b0ad9e47cb30051a13cf693140e8febf6e5d57",
+    "/tmp/skald-opus-20260915/web-candidate/source.patch": "e1267d48b8575ee24755b666364c8c4764942bad6ff47a67ca3f932bb6a7ea49",
+    "/tmp/skald-opus-20260915/web-candidate/og-render/og.html": "4196a4d53f5703c22ea8f218e2d886df449654ba476d95aa5026bddbae2be00d",
+    "/tmp/skald-opus-20260915/web-candidate/og-render/03-parallel.png": "0fb91a8696fc916fd73e532b1afe77a7d736266f9c25e241830442acfbec4bf1",
+    "/tmp/skald-opus-20260915/web-candidate/original/deploy/index.html": "0ac014076a0a362a701ab99accd67d956821c58c07d7b4021c76f811739d59ad",
+    "/tmp/skald-opus-20260915/web-candidate/original/deploy/styles.css": "7a65158400d1a09db70230344b051e04f287a93715eb91ffa18c2274475c5d99",
+    "/tmp/skald-opus-20260915/web-candidate/validation/shots/shots-check.json": "c921b48ebd2e6b8d063fb366af071fd8ba0890182b519e4c90104edcb28c9f0c",
+    "/tmp/skald-opus-20260915/web-candidate/validation/landing-render/render-check.json": "0ca9eb714142040d1632d4690a7869aa9e181b057c22046f8e9d3683a96fdf4c",
+    "/tmp/skald-opus-20260915/web-candidate/validation/pixel-parity.json": "894ab280424e3eede218a99ac93a2cdbc77e8bf2d5a9a6e11094e3f543862e1c",
+    "/tmp/skald-opus-20260915/ipad-candidate/MANIFEST.json": "055a662441c4aedf12d70090db7194bda09e122fbb1ee67ded6df7f267e94d55",
+    "/tmp/skald-opus-20260915/ipad-candidate/MANIFEST.sha256": "3e6f6836c7ceb9fb377a4f39d6c292a74daf63a129c511ef5a484d3c0b1e875e",
+    "app:docs/marketing/store-web-2026-09-13/candidate-native-web.json": "b8c1f50dd10a193897f198ebaeff88fc412d866e2462a5689ae87996c0a0c7ad",
+    "app:docs/marketing/store-web-2026-09-13/candidate-native-index.html": "17f9f6601d72ef659548274eeb0be88247391940795b2c3bc800ae8298a5523e",
+    "app:docs/marketing/store-web-2026-09-13/native-capture-review-registry.json": "42cb2b3443a8f4c021a94048c32231be102381a5ae2852f17617d315b7fa6a90",
+    "app:docs/marketing/store-web-2026-09-13/native-panel-hashes.json": "129a356611509945633621f8919bb6a9b11048dc93104ce8e2377f49fcf7bd23",
+    "app:docs/marketing/store-web-2026-09-13/content-review-registry.json": "aa1aec89ed754e35dade01c8d4b01d919db8c1eacd37e807af3da2d8c2135495",
+    "app:docs/store/releases/0.7.0/capture-provenance.json": "6141b4f19ed030a5be72ba4e229d776abd51fc6da6dd87166a72c27a1cc15df5",
+    "app:docs/store/marketing-panels/captions.json": "a85b5c549d2bc7524e843ed07ad29cfae5609194412c697b3beb1eec2bc8bcef"
+  },
+  "websiteFilesSha256": {
+    "index.html": "2d52ae4d23fa614cb735b01920e10c6ea21b5daefb2c09f5aa8e770c24d1be2b",
+    "styles.css": "d6c5c79d4ecc92a044a0b29489d560bb77d76ae3490b0debde2afa43620174b4",
+    "assets/reader-art.webp": "10088bdc800d7d373dc6c9130497b7ddf64333ce5a2477a2bb45bfcc56b505be",
+    "assets/greek-split.webp": "cf2b6955d19f5cda39e6441018ef05dfda9c360bfa05ca444a633d17eb38f3b7",
+    "assets/museum-guide.webp": "fcf9da94ee63fb38886f27156d02680bd0178fdcaf0f522426c3fff7c8095089",
+    "assets/nostos-route.webp": "2a3114e2463d3bba79f849c27f4c5be59a070e95b1c1fbfae6dce16061eb20e3",
+    "assets/skald-odyssey-og-070.jpg": "4600afb1a3311ea361bb50a419887e106a8a1356ea43b879b8ad1ad8d08f6a33"
+  },
+  "websiteRoots": {
+    "deploy": "/Volumes/Dev/Code/skald-web-copy-20260913/",
+    "source": "/Volumes/Dev/Code/mannamila-web-copy-20260913/skald/",
+    "candidateDeploy": "/tmp/skald-opus-20260915/web-candidate/deploy/",
+    "candidateSource": "/tmp/skald-opus-20260915/web-candidate/source/skald/"
+  },
+  "websiteAssetSourceCaptures": {
+    "assets/reader-art.webp": {
+      "source": "docs/store/releases/0.7.0/captures/ios-phone/01-reader.png",
+      "sha256": "11d2aea054c9a133288649ac29238f4b90b28ff701113e4df9a2e05e78cf0bce"
+    },
+    "assets/greek-split.webp": {
+      "source": "docs/store/releases/0.7.0/captures/ios-ipad/03-parallel.png",
+      "sha256": "0fb91a8696fc916fd73e532b1afe77a7d736266f9c25e241830442acfbec4bf1"
+    },
+    "assets/museum-guide.webp": {
+      "source": "docs/store/releases/0.7.0/captures/ios-ipad/07-art.png",
+      "sha256": "b29d853d47e627cce4dd8547009e46bcd72ce3b5f944ca8ccf200a2a2d19555b"
+    },
+    "assets/nostos-route.webp": {
+      "source": "docs/store/releases/0.7.0/captures/android-tablet/08-voyage-map.png",
+      "sha256": "fdce123c1c21f32bec9051d612a0d530db6bbc84fa2f175d51206c01c06f6388"
+    }
+  },
+  "websiteTextBindings": {
+    "hero_alt": "Skald 0.7.0 on iPhone, showing Butler's opening of Book I with reading notes and historical art.",
+    "greek_alt": "Skald 0.7.0 on iPad, with the Ancient Greek beside an English translation.",
+    "art_alt": "Skald 0.7.0 showing Pieter Lastman’s Odysseus and Minerva with its collection details and a reading note.",
+    "map_alt": "Skald 0.7.0 voyage map with locations from the Odyssey.",
+    "art_caption": "Open an artwork alongside the poem.",
+    "og_and_twitter_image_alt": "Skald 0.7.0 on iPad, with the Ancient Greek beside an English translation.",
+    "og_and_twitter_image_url": "https://skald.mannamila.com/assets/skald-odyssey-og-070.jpg?v=070-native-20260915",
+    "og_card_text_lines": [
+      "Skald: Odyssey",
+      "Spend some time with the Odyssey.",
+      "A look at our next app update."
+    ],
+    "retained_release_notice": "A look at our next app update. The expanded library described here is coming in version 0.7.0; the stores currently offer an earlier version."
+  },
+  "approved_sha256": {
+    "resolved-index.html": "2d52ae4d23fa614cb735b01920e10c6ea21b5daefb2c09f5aa8e770c24d1be2b"
+  },
+  "ipadPanelsRoot": "docs/store/marketing-panels",
+  "ipadPanelsSha256": {
+    "app-store/ipad-13/ipad_01_greek_split.png": "3a28db975ba49d67a94aa069b839c6769362d03c5d8a609d1dd862201f2af01e",
+    "app-store/ipad-13/ipad_02_nostos_route.png": "2825a3435f9f86d2ebc7b2071dc971d25138d1b1ec60c654cccdd8a73473e24d",
+    "app-store/ipad-13/ipad_03_translations.png": "1179b88ca10babb13225971e8e6d5183c46a428ccb53715e3f0e565f9652667f",
+    "app-store/ipad-13/ipad_04_museum_art.png": "5b6732b90e5a12ed4a5afba8d3d0decd6c6c8cd5c104f362ae1e08ac89cc8f63"
+  },
+  "ipadPanelPixelSize": [
+    2752,
+    2064
+  ],
+  "captionsSha256": "a85b5c549d2bc7524e843ed07ad29cfae5609194412c697b3beb1eec2bc8bcef",
+  "sourceCaptureSha256": {
+    "docs/store/releases/0.7.0/captures/android-tablet/08-voyage-map.png": "fdce123c1c21f32bec9051d612a0d530db6bbc84fa2f175d51206c01c06f6388",
+    "docs/store/releases/0.7.0/captures/ios-ipad/03-parallel.png": "0fb91a8696fc916fd73e532b1afe77a7d736266f9c25e241830442acfbec4bf1",
+    "docs/store/releases/0.7.0/captures/ios-ipad/05-scholarship.png": "4b93d5fa0d89cd4372f4b8e482e0fc36ddbe06e633fffd3d6713689ea64b8c8a",
+    "docs/store/releases/0.7.0/captures/ios-ipad/06-compare.png": "ae4fc9229f65fb4f30ab1882ebf3237d9e46f54a8d0e8691c63d37b3dcf24bad",
+    "docs/store/releases/0.7.0/captures/ios-ipad/07-art.png": "b29d853d47e627cce4dd8547009e46bcd72ce3b5f944ca8ccf200a2a2d19555b",
+    "docs/store/releases/0.7.0/captures/ios-phone/01-reader.png": "11d2aea054c9a133288649ac29238f4b90b28ff701113e4df9a2e05e78cf0bce"
+  },
+  "captureProvenanceSha256": "6141b4f19ed030a5be72ba4e229d776abd51fc6da6dd87166a72c27a1cc15df5",
+  "otherProductionPanelsMustRemainSha256": {
+    "play/phone/phone_01_greek_split.png": "95728df489f100f313550b5d96df85f5df422779c02fc9304ffad4ec426b9a0f",
+    "play/phone/phone_02_inline_art.png": "205dfd43960ca431ff5fc687df2e5c09905a6a0716e0c7744e0bb615d1360673",
+    "play/phone/phone_03_nostos_route.png": "ff0e1a9df43273e3447c2f0db3fe00e5f92e4aa62c19030d3899d1fc4fedb952",
+    "play/phone/phone_04_translations.png": "4cb3f5531667a3619f0e8e52c3bb0662d0775a8bdfb7ef4eeee69312b732302f",
+    "play/phone/phone_05_museum_art.png": "fd61c28e06be915c8a40c7bd5abdbcc249dde81582939ad06a1130c4c1ec03bc",
+    "play/phone/phone_06_historical_illustration.png": "a2c4b894fe2e48e5b1ffd481416d3705130ad2807b8879a9b65fe8a8ea682d46",
+    "play/phone/phone_07_night_reader.png": "e52c1a5f5eb4bd2eecc7f69a0aa50a1cb0628b51a11f9d0775563f363b3a6e7c",
+    "app-store/iphone-6.9/iphone_01_greek_split.png": "f551d984fcffd2abaa9764ba5721a99f3148dbe2c64d297abb2bc13e38c4a3b1",
+    "app-store/iphone-6.9/iphone_02_inline_art.png": "94b2a1fb3f0fbb31cbc74926d2f893f2a02a049647dacbc35cc693be1d3b3073",
+    "app-store/iphone-6.9/iphone_03_nostos_route.png": "85fd100ef4b48286fcb15c2c0177b7e6767873fd7a0cebe996bd2a6f3939e524",
+    "app-store/iphone-6.9/iphone_04_translations.png": "b4b4864cf9c8c6932f04e133b855c97dd99a4c6a840d70a549f31ddff0908474",
+    "app-store/iphone-6.9/iphone_05_museum_art.png": "06251eb8b97eb90ef17feaafacc0cf1b3928d8dfb255ace934a18ba4cd017a55",
+    "app-store/iphone-6.9/iphone_06_historical_illustration.png": "a13633611db83dab376f1538af9606b5e177fe9c1bb64f9d342f3af52c2c4e7f",
+    "app-store/iphone-6.9/iphone_07_night_reader.png": "3f59f7061f174bdbd5445b4d0e95da818a27ea3366650a682db983a40a093bb2",
+    "play/tablet10/tablet_01_greek_split.png": "c9ae715292d52098f21f02194a73a9a11bdd70edea0e2fa0f6c8b8b68b6927c1",
+    "play/tablet10/tablet_02_nostos_route.png": "c271373bee30fc7e1edca7d4fc3edd2a72793c5422ff3fb69208fecdb565b9e7",
+    "play/tablet10/tablet_03_translations.png": "663ce3928cd1ab1367a47c0770359304f45b9d2d99434c326747b29676bf3be1",
+    "play/tablet10/tablet_04_museum_art.png": "1c20eabedc5fe443f11025c75877d913196d924d566ae4604580e1b4ed0f3544",
+    "play/tablet7/tablet7_01_greek_split.png": "f0b6de5a374b1d5c462cf064037646aad096b04f5780e145906f757acdb5a191",
+    "play/tablet7/tablet7_02_nostos_route.png": "92da924a66e5413d8e240f9e565048164e279d8c272770b9642a7b38f0d4942a",
+    "play/tablet7/tablet7_03_translations.png": "7c7a9af514db30776ae5e3b31bd80fd5a57eb0c7e86b795f3fe72608d7d35fac",
+    "play/tablet7/tablet7_04_museum_art.png": "e43a2a1beb5f2f232f25e71b0679e75d0035259f40a95adb17089bff5fc53e0d"
+  },
+  "supersession": {
+    "priorRegistry": {
+      "path": "docs/marketing/store-web-2026-09-13/native-capture-review-registry.json",
+      "sha256": "42cb2b3443a8f4c021a94048c32231be102381a5ae2852f17617d315b7fa6a90",
+      "supersededEntries": {
+        "renderedPanelSha256": {
+          "app-store/ipad-13/ipad_01_greek_split.png": "7f776fcbb4bd4d1bf88c34bbce9818ff9077f74a05676882fdbf0aad5ad92bf9",
+          "app-store/ipad-13/ipad_02_nostos_route.png": "13927e8cdeefc2955b70860536acd2ee754c20207d0b4314b73decc999b8b789",
+          "app-store/ipad-13/ipad_03_translations.png": "742ecec1e486a4fa2ea7775cd4d6f736fa64ae0716540cc9cff60fb728dd648d",
+          "app-store/ipad-13/ipad_04_museum_art.png": "846874861b90b35d27445e4d5d0a8d49b15c25ac57f1e6aac2beea84477e95ed"
+        }
+      },
+      "note": "The prior approval (gpt-5.6-sol roles) bound the 4 iPad panels that the renderer had cropped: it sized the screen frame from the raw 2064x2752 PNG header and ignored EXIF Orientation=8, so a portrait frame cropped the landscape capture. That approval is retained as history and is superseded only for those 4 entries. Its captions, 22 raw captures, and the other 22 rendered panel hashes remain valid. Do not rewrite or delete the prior record; append or reference this registry."
+    },
+    "priorPanelHashes": {
+      "path": "docs/marketing/store-web-2026-09-13/native-panel-hashes.json",
+      "sha256": "129a356611509945633621f8919bb6a9b11048dc93104ce8e2377f49fcf7bd23",
+      "note": "Its 4 app-store/ipad-13 entries are superseded by ipadPanelsSha256; its 22 other entries are unchanged."
+    },
+    "priorWebsiteRegistry": {
+      "path": "docs/marketing/store-web-2026-09-13/content-review-registry.json",
+      "sha256": "aa1aec89ed754e35dade01c8d4b01d919db8c1eacd37e807af3da2d8c2135495",
+      "supersededEntries": {
+        "approved_sha256.resolved-index.html": "0ac014076a0a362a701ab99accd67d956821c58c07d7b4021c76f811739d59ad"
+      },
+      "replacement": "2d52ae4d23fa614cb735b01920e10c6ea21b5daefb2c09f5aa8e770c24d1be2b",
+      "note": "This supersedes only the landing index hash. resolved-store.json and resolved-captions.json approvals are untouched. Keep the history."
+    },
+    "stalePreviewWebps": {
+      "docs/marketing/store-web-2026-09-13/native-web-preview/greek-split.webp": "840588de4b3dfb268700c09f85b3c770115288ccba273eaafdc3769c957dea1c",
+      "docs/marketing/store-web-2026-09-13/native-web-preview/museum-guide.webp": "ebaaa41fc41037082a8b522dfffcb7c6004d6cb6d2a9a700ea2bbb8d4e2ae7b4",
+      "note": "These were encoded from the unrotated buffer and are NOT approved for publication. They are superseded by websiteFilesSha256 assets/greek-split.webp and assets/museum-guide.webp."
+    }
+  },
+  "evidenceBasis": {
+    "geometryTest": "53/53 with the fixed renderer vs 49/53 with the old one, as reported by the worker; not re-run by R1, R2, or the arbiter (no broad tests, per instruction)",
+    "renderEvidence": "R1 and R2 viewed the images at full resolution plus the 1440 and 390 validation shots and shots-check.json. The arbiter verified hashes, dimensions, and diffs, and spot-viewed the images.",
+    "liveSourceFetch": "not performed (R1 WebFetch denied); Lastman provenance rests on the app repo's records and the visible capture"
+  },
+  "nonBlockingFollowUps": [
+    "Parent must honestly rebind current guards: skald/verify-landing-copy.py registry hash; verify-site.mjs pins (map src/alt with ?v= key, og:image URL; optionally require assets/skald-odyssey-og-070.jpg).",
+    ".skald-source.json in deploy is stale; regenerate via promote-skald.mjs --apply rather than hand-editing.",
+    "Regenerate or mark stale the 2 native-web-preview tablet webps in the app repo.",
+    "App content (not marketing copy, outside this scope): the Lastman note says Odysseus 'hefts a great embossed shield'. R2 read the painted object as a round ribbed vessel; this is worth a separate app-content check. The capture is faithful and no caption/alt relies on it.",
+    "Unchanged pre-existing Greek figcaption '…with linked scrolling' is behavior a still image cannot show; it was previously approved copy.",
+    "Greek capture shows the 'Ἑλληνικά' segment selected, not 'Parallel'; no caption/alt names a mode."
+  ],
+  "claimsNotMade": [
+    "no public release, store publication, or upload has occurred or is certified",
+    "no legal rights, licence, or trader attestation",
+    "no EU/UK availability determination"
+  ],
+  "outputs": {
+    "registry": "/tmp/skald-opus-20260915/final-approval/review-registry.json",
+    "resolvedIndex": "/tmp/skald-opus-20260915/final-approval/resolved-index.html",
+    "operatorNote": "/tmp/skald-opus-20260915/final-approval/approval.md"
+  }
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "webp": "reader-art.webp",
+    "png": "ios-phone/01-reader.png",
+    "webpNatural": [
+      1320,
+      2868
+    ],
+    "pngDisplayed": [
+      1320,
+      2868
+    ],
+    "meanAbsDiff": 0.836,
+    "pctPixelsOver48": 0
+  },
+  {
+    "webp": "greek-split.webp",
+    "png": "ios-ipad/03-parallel.png",
+    "webpNatural": [
+      2752,
+      2064
+    ],
+    "pngDisplayed": [
+      2752,
+      2064
+    ],
+    "meanAbsDiff": 0.726,
+    "pctPixelsOver48": 0
+  },
+  {
+    "webp": "museum-guide.webp",
+    "png": "ios-ipad/07-art.png",
+    "webpNatural": [
+      2752,
+      2064
+    ],
+    "pngDisplayed": [
+      2752,
+      2064
+    ],
+    "meanAbsDiff": 0.733,
+    "pctPixelsOver48": 0
+  },
+  {
+    "webp": "nostos-route.webp",
+    "png": "android-tablet/08-voyage-map.png",
+    "webpNatural": [
+      1920,
+      1080
+    ],
+    "pngDisplayed": [
+      1920,
+      1080
+    ],
+    "meanAbsDiff": 0.698,
+    "pctPixelsOver48": 0
+  }
+]

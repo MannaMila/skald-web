@@ -1,0 +1,24 @@
+{
+  "url": "http://127.0.0.1:50514",
+  "results": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "horizontalOverflow": false,
+      "brokenImages": 0,
+      "missingAnchors": 0,
+      "storeLinks": 4,
+      "preview": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "horizontalOverflow": false,
+      "brokenImages": 0,
+      "missingAnchors": 0,
+      "storeLinks": 4,
+      "preview": true
+    }
+  ],
+  "exceptions": []
+}

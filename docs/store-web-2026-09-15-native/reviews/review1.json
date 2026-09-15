@@ -1,0 +1,176 @@
+{
+  "review": "review1",
+  "role": "Independent content reviewer 1: accuracy, source anchors, claims",
+  "model": "claude-opus-5",
+  "date": "2026-09-15",
+  "independence": "Did not read reviewer2's new report or any other reviewer's conclusions for this round. Candidates and sources inspected directly. No candidate, production, or memory files modified.",
+  "decisions": {
+    "scopeA_website_native_screens_and_social": "APPROVED",
+    "scopeB_ipad_store_panels": "APPROVED"
+  },
+  "required_corrections": [],
+  "scopeA": {
+    "candidate_root": "/tmp/skald-opus-20260915/web-candidate/",
+    "manifest_check": "shasum -c MANIFEST.sha256: all entries OK. shasum -c INPUTS.sha256: all entries OK.",
+    "source_equals_deploy": "diff -r deploy source/skald: identical",
+    "reviewed_artifacts_sha256": {
+      "REPORT.md": "not hashed in manifest; read in full",
+      "deploy/index.html": "2d52ae4d23fa614cb735b01920e10c6ea21b5daefb2c09f5aa8e770c24d1be2b",
+      "deploy/styles.css": "d6c5c79d4ecc92a044a0b29489d560bb77d76ae3490b0debde2afa43620174b4",
+      "deploy/assets/reader-art.webp": "10088bdc800d7d373dc6c9130497b7ddf64333ce5a2477a2bb45bfcc56b505be",
+      "deploy/assets/greek-split.webp": "cf2b6955d19f5cda39e6441018ef05dfda9c360bfa05ca444a633d17eb38f3b7",
+      "deploy/assets/museum-guide.webp": "fcf9da94ee63fb38886f27156d02680bd0178fdcaf0f522426c3fff7c8095089",
+      "deploy/assets/nostos-route.webp": "2a3114e2463d3bba79f849c27f4c5be59a070e95b1c1fbfae6dce16061eb20e3",
+      "deploy/assets/skald-odyssey-og-070.jpg": "4600afb1a3311ea361bb50a419887e106a8a1356ea43b879b8ad1ad8d08f6a33",
+      "deploy.patch": "aa11158f88abe0a8b0c0c162d0b0ad9e47cb30051a13cf693140e8febf6e5d57",
+      "source.patch": "e1267d48b8575ee24755b666364c8c4764942bad6ff47a67ca3f932bb6a7ea49",
+      "og-render/og.html": "4196a4d53f5703c22ea8f218e2d886df449654ba476d95aa5026bddbae2be00d",
+      "og-render/03-parallel.png": "0fb91a8696fc916fd73e532b1afe77a7d736266f9c25e241830442acfbec4bf1",
+      "MANIFEST.sha256": "verified entries as listed above",
+      "original/deploy/index.html": "0ac014076a0a362a701ab99accd67d956821c58c07d7b4021c76f811739d59ad",
+      "original/deploy/styles.css": "7a65158400d1a09db70230344b051e04f287a93715eb91ffa18c2274475c5d99"
+    },
+    "reviewed_inputs_sha256": {
+      "candidate-native-web.json": "b8c1f50dd10a193897f198ebaeff88fc412d866e2462a5689ae87996c0a0c7ad",
+      "candidate-native-index.html": "17f9f6601d72ef659548274eeb0be88247391940795b2c3bc800ae8298a5523e",
+      "captures/ios-phone/01-reader.png": "11d2aea054c9a133288649ac29238f4b90b28ff701113e4df9a2e05e78cf0bce",
+      "captures/ios-ipad/03-parallel.png": "0fb91a8696fc916fd73e532b1afe77a7d736266f9c25e241830442acfbec4bf1",
+      "captures/ios-ipad/07-art.png": "b29d853d47e627cce4dd8547009e46bcd72ce3b5f944ca8ccf200a2a2d19555b",
+      "captures/android-tablet/08-voyage-map.png": "fdce123c1c21f32bec9051d612a0d530db6bbc84fa2f175d51206c01c06f6388",
+      "capture-provenance.json": "6141b4f19ed030a5be72ba4e229d776abd51fc6da6dd87166a72c27a1cc15df5"
+    },
+    "diff_scope": "index.html vs original changes only: OG/Twitter image URL and image alt (4 lines), stylesheet cache key, 4 figure class hooks, 4 img src/width/height/alt, 1 art figcaption. No body copy, headings, counts, FAQ, availability, or notice text changed. styles.css: one appended scoped block (no existing rules modified).",
+    "findings": [
+      {
+        "id": "A1",
+        "topic": "Source mapping",
+        "result": "PASS",
+        "detail": "The 4 webps map to the sources named in candidate-native-web.json asset_sources (reader-art=ios-phone/01-reader, greek-split=ios-ipad/03-parallel, museum-guide=ios-ipad/07-art, nostos-route=android-tablet/08-voyage-map). The three iOS capture hashes match capture-provenance.json (source_main 6d846a8d46b1467ad68c353c5e489245155465c2). The voyage-map hash fdce123c matches CAPTURES.md, which records it as a website capture from the same APK/emulator and outside the store approval. reader-art and nostos-route are byte-identical to the reviewed native-web-preview files."
+      },
+      {
+        "id": "A2",
+        "topic": "Orientation / completeness",
+        "result": "PASS",
+        "detail": "I independently confirmed the iPad PNGs have a 2064x2752 IHDR plus an eXIf Orientation=8 chunk (displayed 2752x2064). The candidate greek-split.webp and museum-guide.webp are 2752x2064 with no EXIF, and I viewed them upright and landscape. They match the rotated source whole: status bar, back chevron, CHAPTERS, and bottom resize handle all present, with no crop and no invented UI. reader-art is 1320x2868 and nostos-route is 1920x1080, both complete. The HTML width/height attributes match the natural display sizes. Rendered 1440 shots show uncropped Greek/art frames. Note: these two tablet webp hashes differ from the reviewed native-web-preview files (840588de…, ebaaa41f…), which were encoded from the unrotated buffer; the arbiter should bind the new hashes."
+      },
+      {
+        "id": "A3",
+        "topic": "Greek image is actually Greek + Butler",
+        "result": "PASS",
+        "detail": "greek-split shows the Ἑλληνικά mode selected, 'Butler (1900) · EN', Book I 'Athena Visits Ithaca', Butler's English prose on the left, and the Ancient Greek Od. 1.1–24 (ἄνδρα μοι ἔννεπε, μοῦσα, πολύτροπον … ἔσχατοι ἀνδρῶν) with line numbers on the right. The alt 'Skald 0.7.0 on iPad, with the Ancient Greek beside an English translation.' is accurate."
+      },
+      {
+        "id": "A4",
+        "topic": "Hero alt",
+        "result": "PASS",
+        "detail": "The iPhone capture shows Butler (1900) · EN, Book I, 'Tell me, O Muse…', a margin reading note (ζή(τει) RARE WORD) and the Lastman art plate. 'showing Butler's opening of Book I with reading notes and historical art' is accurate. The &#x27; entity matches the reviewed candidate-native-index.html byte-for-byte."
+      },
+      {
+        "id": "A5",
+        "topic": "Lastman art: collection/provenance, alt, caption",
+        "result": "PASS",
+        "detail": "The capture shows 'Odysseus and Minerva', 'PIETER LASTMAN, 1625', 'SEE IT IN REAL LIFE → REMBRANDTHUIS · AMSTERDAM, NETHERLANDS', and a passage note. App data agrees. panels.json artifact rembrandthuis-lastman-odysseus-minerva has credit 'Cultural Heritage Agency of the Netherlands, NK collection (NK 1830), on long-term loan to Museum Het Rembrandthuis', certainty_tier confirmed, museum_url wo2.collectienederland.nl/doc/nk/NK1830. Book I master.json has museum_label 'Rembrandthuis · Amsterdam, Netherlands'. The image meta names the Commons file for NK1830, PD-Art. The alt '…Pieter Lastman’s Odysseus and Minerva with its collection details and a reading note.' and caption 'Open an artwork alongside the poem.' are accurate and name no museum or on-view status. Limitation: my live public-source fetch (RCE/Commons) was not permitted in this session, so this check rests on repository records and the visible capture."
+      },
+      {
+        "id": "A6",
+        "topic": "Voyage map: Book I, map uncovered",
+        "result": "PASS",
+        "detail": "The Android tablet capture shows the Nostos Route Map sheet in the Book I state: 'Book I · the marked place is where the story stands now', YOU ARE HERE Ithaca, legend, and the Ithaca card (Strabo 10.2.8). The map is fully visible, with no overlay covering it except the app's own Find me/Whole map controls. The alt 'Skald 0.7.0 voyage map with locations from the Odyssey.' is accurate and makes no device claim. The unchanged figcaption 'Trace the long route toward home without leaving the reader.' is consistent: the map is a sheet over the reader."
+      },
+      {
+        "id": "A7",
+        "topic": "Social preview",
+        "result": "PASS",
+        "detail": "skald-odyssey-og-070.jpg is 1200x630. Viewed: the card text reads 'Skald: Odyssey' / 'Spend some time with the Odyssey.' / 'A look at our next app update.', with no other text. The approved words are exact. The only punctuation is final periods, which match the page's own hero h1 and preview notice. og.html embeds the real ios-ipad/03-parallel.png (same sha 0fb91a86) whole at 668x501 (4:3 = 2752:2064) with CSS only: no overlay, no pixel edits, no invented UI. The paper mount and tilted rule are decorative framing outside the screenshot. og:image and twitter:image point to the new file with cache key; og/twitter image alt = greek_alt verbatim and accurate for the card; width/height 1200/630 correct. The old skald-odyssey-og.jpg is retained for other routes."
+      },
+      {
+        "id": "A8",
+        "topic": "0.7 upcoming notice and availability",
+        "result": "PASS",
+        "detail": "The notice 'A look at our next app update. The expanded library described here is coming in version 0.7.0; the stores currently offer an earlier version.' remains unchanged. The existing availability lines (US, Canada, Australia, NZ FAQ; 'Available now on Android, iPhone, and iPad') are unchanged. The diff adds no EU/UK or other availability claims."
+      },
+      {
+        "id": "A9",
+        "topic": "Pre-existing copy (observation, non-blocking)",
+        "result": "NOTE",
+        "detail": "The unchanged Greek figcaption 'Read the Greek beside a translation, with linked scrolling.' was previously reviewed body copy and is not altered here. A still image cannot show scrolling, but the capture does not contradict it. No change required."
+      },
+      {
+        "id": "A10",
+        "topic": "Process follow-ups for arbiter (not content defects)",
+        "result": "NOTE",
+        "detail": "As REPORT.md states: content-review-registry approved hash and skald/verify-site.mjs pins (map src/alt, og:image) must be updated to the new values before promotion; the native-web-preview tablet webps in the app repo are stale relative to this corrected encoding."
+      }
+    ],
+    "branch_fact_check": "In the app repo, origin/main vs 6d846a8d4 changes docs only (no non-docs paths). The local store branch HEAD cf57ad89a also adds ios/SkaldApp/SkaldAppUITests/TranslationPickerVisualUITests.swift, an opt-in UI capture test; no shipping code is changed."
+  },
+  "scopeB": {
+    "candidate_root": "/tmp/skald-opus-20260915/ipad-candidate/",
+    "manifest_check": "shasum -c MANIFEST.sha256: 4 PNGs + MANIFEST.json OK",
+    "bound_hashes": {
+      "MANIFEST.json": "055a662441c4aedf12d70090db7194bda09e122fbb1ee67ded6df7f267e94d55",
+      "app-store/ipad-13/ipad_01_greek_split.png": "3a28db975ba49d67a94aa069b839c6769362d03c5d8a609d1dd862201f2af01e",
+      "app-store/ipad-13/ipad_02_nostos_route.png": "2825a3435f9f86d2ebc7b2071dc971d25138d1b1ec60c654cccdd8a73473e24d",
+      "app-store/ipad-13/ipad_03_translations.png": "1179b88ca10babb13225971e8e6d5183c46a428ccb53715e3f0e565f9652667f",
+      "app-store/ipad-13/ipad_04_museum_art.png": "5b6732b90e5a12ed4a5afba8d3d0decd6c6c8cd5c104f362ae1e08ac89cc8f63",
+      "docs/store/marketing-panels/captions.json": "a85b5c549d2bc7524e843ed07ad29cfae5609194412c697b3beb1eec2bc8bcef",
+      "sources": {
+        "ios-ipad/03-parallel.png": "0fb91a8696fc916fd73e532b1afe77a7d736266f9c25e241830442acfbec4bf1",
+        "ios-ipad/06-compare.png": "ae4fc9229f65fb4f30ab1882ebf3237d9e46f54a8d0e8691c63d37b3dcf24bad",
+        "ios-ipad/05-scholarship.png": "4b93d5fa0d89cd4372f4b8e482e0fc36ddbe06e633fffd3d6713689ea64b8c8a",
+        "ios-ipad/07-art.png": "b29d853d47e627cce4dd8547009e46bcd72ce3b5f944ca8ccf200a2a2d19555b"
+      },
+      "renderer_files": {
+        "panel.html": "76743808237aff2e8a70366192d192c9b91840954011b438879c0252500b19b9",
+        "render.mjs": "2c9a7b7b3202e844b8a15110bb51afe29fb6105809d05d8a1eb6cb5dbed3ac47",
+        "panel-jobs.mjs": "f1c8bca1e0b831a0e189f730acf57ecc632491bc05396a2276fe7ddeb0684ae1",
+        "geometry.test.mjs": "653956b0333c9a3a043e94c97fe234930d940175f09465419f67a054d5b5e0a5",
+        "pngtools.mjs": "98053c2bcfbebf9b3cbaff4472d09c7dfe2e6664cf49447d3741d80a07cc15ad"
+      },
+      "superseded_production_panels_current_sha256": {
+        "ipad_01_greek_split.png": "7f776fcbb4bd4d1bf88c34bbce9818ff9077f74a05676882fdbf0aad5ad92bf9",
+        "ipad_02_nostos_route.png": "13927e8cdeefc2955b70860536acd2ee754c20207d0b4314b73decc999b8b789",
+        "ipad_03_translations.png": "742ecec1e486a4fa2ea7775cd4d6f736fa64ae0716540cc9cff60fb728dd648d",
+        "ipad_04_museum_art.png": "846874861b90b35d27445e4d5d0a8d49b15c25ac57f1e6aac2beea84477e95ed"
+      }
+    },
+    "findings": [
+      {
+        "id": "B1",
+        "topic": "Captions unchanged and correctly mapped",
+        "result": "PASS",
+        "detail": "The captions.json hash matches MANIFEST.json. For all 4 panels the file, source, lines, and sub in the app-store-ipad set equal the MANIFEST.json entries exactly. The rendered caption text viewed in each PNG matches. The source capture hashes match capture-provenance.json and the renderer file hashes match the working tree."
+      },
+      {
+        "id": "B2",
+        "topic": "Old crop defect confirmed; new panels show whole capture",
+        "result": "PASS",
+        "detail": "Viewed the current production ipad_01: a portrait device frame crops the landscape capture, losing the status bar, left column start, the Greek line ends, and CHAPTERS. The new 4 panels are 2752x2064 RGB, and each shows the full landscape capture: status bar (9:41 AM Sun Sep 13, battery), back chevron, CHAPTERS, and the bottom-right resize handle, with nothing cropped or invented."
+      },
+      {
+        "id": "B3",
+        "topic": "Per-panel claim accuracy",
+        "result": "PASS",
+        "detail": "ipad_01 'Read the Greek beside your translation': Ἑλληνικά mode, Butler English left, Ancient Greek Od. 1.1–24 right. ipad_02 'Compare the choices translators made': 'In other words · Book I · lines 1–10' sheet showing the πολύτροπον crux, Butler/Chapman/Hobbes/Dacier editions, '24 editions · 12 renderings · 11 languages'. ipad_03 'Follow the scholarship… References and full-text links, where available': Bassett 1923 (Public domain, JSTOR, 'Read in full' + 'Open DOI'), McConnell 2026 (Open access CC BY 4.0), Moran 2021. The links are qualified and nothing implies bundled article bodies. ipad_04 'Look closer at the art… sources and collection details': Lastman Odysseus and Minerva 1625, Rembrandthuis · Amsterdam action, passage note; provenance as in A5."
+      },
+      {
+        "id": "B4",
+        "topic": "Renderer change",
+        "result": "PASS",
+        "detail": "Reviewed the git diff. panel.html now sizes the screen box from img.naturalWidth/naturalHeight (browser-oriented) after load, falling back to the header size on first pass. render.mjs moves job building into panel-jobs.mjs without changing caption inputs. No caption, source, or panel-list change. I did not re-run the 53/53 geometry test (instruction: no broad tests); the 53/53 (fix) vs 49/53 (old) result is taken from the worker, and I visually confirmed the 4 iPad crops it targets."
+      },
+      {
+        "id": "B5",
+        "topic": "Other 22 panels / publication claims",
+        "result": "PASS",
+        "detail": "No production panel PNG is modified in the app working tree (git status shows only panel.html and render.mjs modified, plus 2 untracked scripts). The candidate contains only the 4 iPad files. MANIFEST.json status is 'CANDIDATE — not approved, not applied to production, not uploaded' and makes no public store publication claim."
+      }
+    ]
+  },
+  "limitations": [
+    "Live public web verification (RCE NK1830 record, Wikimedia Commons) was attempted but the WebFetch permission was not granted; Lastman provenance was verified against bundled app records and the visible capture.",
+    "Geometry test and landing verifiers were not re-run; worker validation outputs were spot-checked by viewing shots (1440-art, 1440-translations, 390-journey).",
+    "I cannot certify files I did not open; the review is bounded to the changed web screens/social metadata and the 4 iPad panels.",
+    "Temporary decoded view PNGs were created in /tmp/r1view.oGPd for inspection and deleted afterwards."
+  ]
+}
