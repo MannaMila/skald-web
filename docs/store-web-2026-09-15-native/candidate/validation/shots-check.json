@@ -1,0 +1,217 @@
+{
+  "url": "http://127.0.0.1:51062",
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "mobile": false,
+      "scrollWidth": 1425,
+      "preview": "A look at our next app update. The expanded library described here is coming in version 0.7.0; the stores currently offer an earlier version.",
+      "meta": {
+        "og:image": "https://skald.mannamila.com/assets/skald-odyssey-og-070.jpg?v=070-native-20260915",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "Skald 0.7.0 on iPad, with the Ancient Greek beside an English translation.",
+        "twitter:image": "https://skald.mannamila.com/assets/skald-odyssey-og-070.jpg?v=070-native-20260915",
+        "twitter:image:alt": "Skald 0.7.0 on iPad, with the Ancient Greek beside an English translation."
+      },
+      "stylesheet": "./styles.css?v=20260913-native",
+      "shots": [
+        {
+          "section": "hero",
+          "src": "./assets/reader-art.webp?v=070-native-20260913",
+          "attr": [
+            1320,
+            2868
+          ],
+          "natural": [
+            1320,
+            2868
+          ],
+          "box": [
+            339,
+            736.55
+          ],
+          "aspectRatio": "1320 / 2868",
+          "objectFit": "contain",
+          "filter": "none",
+          "alt": "Skald 0.7.0 on iPhone, showing Butler's opening of Book I with reading notes and historical art.",
+          "caption": "Open art alongside the passage you’re reading.",
+          "inViewportWidth": true
+        },
+        {
+          "section": "translations",
+          "src": "./assets/greek-split.webp?v=070-native-20260913",
+          "attr": [
+            2752,
+            2064
+          ],
+          "natural": [
+            2752,
+            2064
+          ],
+          "box": [
+            730.41,
+            547.8
+          ],
+          "aspectRatio": "2752 / 2064",
+          "objectFit": "contain",
+          "filter": "none",
+          "alt": "Skald 0.7.0 on iPad, with the Ancient Greek beside an English translation.",
+          "caption": "Read the Greek beside a translation, with linked scrolling.",
+          "inViewportWidth": true
+        },
+        {
+          "section": "journey",
+          "src": "./assets/nostos-route.webp?v=070-native-20260913",
+          "attr": [
+            1920,
+            1080
+          ],
+          "natural": [
+            1920,
+            1080
+          ],
+          "box": [
+            684.81,
+            385.2
+          ],
+          "aspectRatio": "16 / 9",
+          "objectFit": "contain",
+          "filter": "none",
+          "alt": "Skald 0.7.0 voyage map with locations from the Odyssey.",
+          "caption": "Trace the long route toward home without leaving the reader.",
+          "inViewportWidth": true
+        },
+        {
+          "section": "art",
+          "src": "./assets/museum-guide.webp?v=070-native-20260913",
+          "attr": [
+            2752,
+            2064
+          ],
+          "natural": [
+            2752,
+            2064
+          ],
+          "box": [
+            690.5,
+            517.88
+          ],
+          "aspectRatio": "2752 / 2064",
+          "objectFit": "contain",
+          "filter": "none",
+          "alt": "Skald 0.7.0 showing Pieter Lastman’s Odysseus and Minerva with its collection details and a reading note.",
+          "caption": "Open an artwork alongside the poem.",
+          "inViewportWidth": true
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "mobile": true,
+      "scrollWidth": 390,
+      "preview": "A look at our next app update. The expanded library described here is coming in version 0.7.0; the stores currently offer an earlier version.",
+      "meta": {
+        "og:image": "https://skald.mannamila.com/assets/skald-odyssey-og-070.jpg?v=070-native-20260915",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "Skald 0.7.0 on iPad, with the Ancient Greek beside an English translation.",
+        "twitter:image": "https://skald.mannamila.com/assets/skald-odyssey-og-070.jpg?v=070-native-20260915",
+        "twitter:image:alt": "Skald 0.7.0 on iPad, with the Ancient Greek beside an English translation."
+      },
+      "stylesheet": "./styles.css?v=20260913-native",
+      "shots": [
+        {
+          "section": "hero",
+          "src": "./assets/reader-art.webp?v=070-native-20260913",
+          "attr": [
+            1320,
+            2868
+          ],
+          "natural": [
+            1320,
+            2868
+          ],
+          "box": [
+            292,
+            634.42
+          ],
+          "aspectRatio": "1320 / 2868",
+          "objectFit": "contain",
+          "filter": "none",
+          "alt": "Skald 0.7.0 on iPhone, showing Butler's opening of Book I with reading notes and historical art.",
+          "caption": "Open art alongside the passage you’re reading.",
+          "inViewportWidth": true
+        },
+        {
+          "section": "translations",
+          "src": "./assets/greek-split.webp?v=070-native-20260913",
+          "attr": [
+            2752,
+            2064
+          ],
+          "natural": [
+            2752,
+            2064
+          ],
+          "box": [
+            340,
+            255
+          ],
+          "aspectRatio": "2752 / 2064",
+          "objectFit": "contain",
+          "filter": "none",
+          "alt": "Skald 0.7.0 on iPad, with the Ancient Greek beside an English translation.",
+          "caption": "Read the Greek beside a translation, with linked scrolling.",
+          "inViewportWidth": true
+        },
+        {
+          "section": "journey",
+          "src": "./assets/nostos-route.webp?v=070-native-20260913",
+          "attr": [
+            1920,
+            1080
+          ],
+          "natural": [
+            1920,
+            1080
+          ],
+          "box": [
+            340,
+            191.25
+          ],
+          "aspectRatio": "16 / 9",
+          "objectFit": "contain",
+          "filter": "none",
+          "alt": "Skald 0.7.0 voyage map with locations from the Odyssey.",
+          "caption": "Trace the long route toward home without leaving the reader.",
+          "inViewportWidth": true
+        },
+        {
+          "section": "art",
+          "src": "./assets/museum-guide.webp?v=070-native-20260913",
+          "attr": [
+            2752,
+            2064
+          ],
+          "natural": [
+            2752,
+            2064
+          ],
+          "box": [
+            340,
+            255
+          ],
+          "aspectRatio": "2752 / 2064",
+          "objectFit": "contain",
+          "filter": "none",
+          "alt": "Skald 0.7.0 showing Pieter Lastman’s Odysseus and Minerva with its collection details and a reading note.",
+          "caption": "Open an artwork alongside the poem.",
+          "inViewportWidth": true
+        }
+      ]
+    }
+  ]
+}

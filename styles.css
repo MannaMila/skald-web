@@ -2261,3 +2261,19 @@ h3 {
   margin: 22px auto 0;
   line-height: 1.7;
 }
+
+/* Native 0.7.0 captures keep their full aspect ratios: no crop, no tint. */
+.shot-card-phone.native-shot img {
+  aspect-ratio: 1320 / 2868;
+  object-fit: contain;
+  filter: none;
+}
+
+.landscape-shot.native-shot .shot-mount img {
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+}
+
+.landscape-shot.tablet-shot .shot-mount img {
+  aspect-ratio: 2752 / 2064;
+}

@@ -1,0 +1,32 @@
+{
+  "source_repository": "MannaMila/mannamila-web",
+  "source_commit": "4a52b62811f14e75b66c8a418cbe0a4bc06e8331",
+  "source_pr": "https://github.com/MannaMila/mannamila-web/pull/21",
+  "approval_registry": "docs/store-web-2026-09-15-native/review-registry.json",
+  "app_capture_provenance": "MannaMila/skald docs/store/releases/0.7.0/capture-provenance.json (sha256 6141b4f19ed030a5be72ba4e229d776abd51fc6da6dd87166a72c27a1cc15df5)",
+  "store_assets_pr": "https://github.com/MannaMila/skald/pull/406",
+  "scope": "Scoped copy of exactly 7 landing files from skald/. Every other route and asset is unchanged, including assets/skald-odyssey-og.jpg. .skald-source.json remains the receipt of the older full-tree promotion and does not describe this copy.",
+  "supersedes": {
+    "docs/store-web-2026-09-13/deployment.json files.index.html": "0ac014076a0a362a701ab99accd67d956821c58c07d7b4021c76f811739d59ad",
+    "docs/store-web-2026-09-13/deployment.json files.styles.css": "7a65158400d1a09db70230344b051e04f287a93715eb91ffa18c2274475c5d99"
+  },
+  "files": {
+    "index.html": "2d52ae4d23fa614cb735b01920e10c6ea21b5daefb2c09f5aa8e770c24d1be2b",
+    "styles.css": "d6c5c79d4ecc92a044a0b29489d560bb77d76ae3490b0debde2afa43620174b4",
+    "assets/reader-art.webp": "10088bdc800d7d373dc6c9130497b7ddf64333ce5a2477a2bb45bfcc56b505be",
+    "assets/greek-split.webp": "cf2b6955d19f5cda39e6441018ef05dfda9c360bfa05ca444a633d17eb38f3b7",
+    "assets/museum-guide.webp": "fcf9da94ee63fb38886f27156d02680bd0178fdcaf0f522426c3fff7c8095089",
+    "assets/nostos-route.webp": "2a3114e2463d3bba79f849c27f4c5be59a070e95b1c1fbfae6dce16061eb20e3",
+    "assets/skald-odyssey-og-070.jpg": "4600afb1a3311ea361bb50a419887e106a8a1356ea43b879b8ad1ad8d08f6a33"
+  },
+  "validation": {
+    "approved_hashes_source_and_deploy": true,
+    "source_verify_landing_copy": "PASS",
+    "desktop": "1440x1000, no overflow, 0 broken images, 0 missing anchors, preview notice present",
+    "mobile": "390x844, no overflow, 0 broken images, 0 missing anchors, preview notice present",
+    "native_screenshot_boxes": "shots-check.mjs PASS: each rendered box matches its image's natural aspect ratio, filter none, approved alts, caption and OG meta",
+    "runtime_exceptions": 0,
+    "release_preview": "0.7.0 expanded library is upcoming",
+    "eu_uk_availability_claim": false
+  }
+}
