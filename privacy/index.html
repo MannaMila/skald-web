@@ -109,7 +109,7 @@
     <p class="eyebrow">MannaMila LLC</p>
 <h1>Skald: Odyssey — Privacy Policy</h1>
 <p class="meta"><strong>Effective date:</strong> The date Skald: Odyssey 0.7.0 is first made available<br>
-<strong>Last updated:</strong> 2026-09-13<br>
+<strong>Last updated:</strong> 2026-09-18<br>
 <strong>Canonical URL:</strong> https://skald.mannamila.com/privacy/</p>
 <p>This policy applies to <strong>Skald: Odyssey 0.7.0</strong>. See “Earlier versions” for
 the practices of prior releases.</p>
@@ -124,9 +124,14 @@ Contact <strong>privacy@mannamila.com</strong> about privacy or data requests, o
   reading-history server. Platform backup and device transfer are described below.</li>
 <li>Skald uses Meta's SDK on Android to measure MannaMila's advertising. On iPhone
   and iPad, direct Meta measurement starts only if you allow Apple's tracking
-  permission after actively completing a free book. Skald displays no ads in the reader.</li>
-<li>The app can check MannaMila's content service for reviewed library updates
-  no more than once an hour. That request carries no reading data.</li>
+  permission after actively completing a free book. Where the device's region
+  setting or time zone, or on Android its mobile network or SIM, puts it in the
+  European Union, Skald itself sends nothing to Meta on either platform and never
+  asks. Skald displays no ads in the reader.</li>
+<li>Outside the European Union, the app can check MannaMila's content service for
+  reviewed library updates no more than once an hour. That request carries no
+  reading data. In the European Union it makes no such request and reads the
+  library already on the device.</li>
 <li>Reading reminders are scheduled locally. You control them through your
   device's notification settings.</li>
 <li>Apple or Google handles purchases. Skald receives ownership information,
@@ -154,7 +159,10 @@ copy; a later Apple restore may restore that data. Purchase ownership can also
 be recovered from the same store and store account.</p>
 <h2>Advertising measurement</h2>
 <p>MannaMila advertises Skald and asks Meta's SDK to measure those ads. The SDK
-handles install and app-open activity. After each successful load of a free
+sends an install event for attribution. On Android, Skald turns the SDK's
+automatic event logging off, so it sends no app-open, app-close or
+session-length events; the iPhone and iPad section below says what that platform
+sends. After each successful load of a free
 Odyssey book, Skald can ask the SDK to log a <code>ViewedContent</code> event that can repeat
 and does not identify the book. Skald also asks the SDK to log checkout for an
 unlock and a confirmed purchase after a matching locally initiated checkout has
@@ -210,11 +218,31 @@ value <code>0</code> through Apple's SKAdNetwork API. Skald has no custom SKAdNe
 for free-book opening, checkout, or purchase. Apple controls whether an aggregated
 postback is generated, its contents, and its delivery. This Apple path does not send
 Meta a store price or currency.</p>
+<p>Where your device's region setting or time zone is in the European Union, Skald
+never asks for the tracking permission, shares no events with Meta, and submits
+no SKAdNetwork conversion value. Apple may still send its own anonymous
+ad-attribution postback for an install it attributes to an ad; Skald cannot stop
+that. Skald itself sends Meta nothing.</p>
 <h3>Controls, retention and deletion</h3>
-<p>Android advertising measurement has no in-app opt-out. Android's system advertising
-controls can reset or delete the advertising ID where available. On iPhone and iPad,
-Apple's tracking permission controls future direct Meta measurement. Denial does not
-limit the reader or its purchase features.</p>
+<p>On Android, About &amp; Privacy carries an allow-or-turn-off control for advertising
+measurement, on every device and in every region outside the European Union.
+Skald treats a device as in the European Union when its current mobile network's
+country, its SIM's country, its region setting or its time zone says so; it
+decides that on the device each time it opens, and none of them is stored or
+sent. On such a device measurement is off, there is nothing to allow, and About &amp;
+Privacy says so. Where your connection appears to be in the United States, Canada,
+Australia or New Zealand, and neither your device's current mobile network nor its
+SIM points to a country outside them, measurement starts before you choose, so the
+install event, and any free-book, checkout or purchase events logged in the
+meantime, may already have reached Meta by the time you turn it off. Otherwise,
+outside the European Union, it stays off until you allow it. If your device isn't
+on a mobile network and has no SIM, the connection alone decides whether it
+starts. Turning it off stops new measurement at once, and anything not yet sent is
+deleted at the next launch without being sent; a request already under way or
+already scheduled can still finish. Android's system advertising controls can
+reset or delete the advertising ID where available. On iPhone and iPad, Apple's
+tracking permission controls future direct Meta measurement. Denial does not limit
+the reader or its purchase features.</p>
 <p>Meta controls retention and deletion of direct measurement data it receives under
 its own privacy policy. MannaMila cannot directly locate or delete records tied only
 to Meta's SDK installation identifier, and Skald's old Analytics ID cannot identify
@@ -236,10 +264,17 @@ not contain a receipt, transaction ID or purchase token.</p>
 <p>Restore purchase uses the same store and store account. Apple and Google process
 their store services under their own privacy notices.</p>
 <h2>Content updates</h2>
-<p>At most once an hour when you open Skald, it can contact
-<strong>https://delivery.mannamila.com</strong>, a MannaMila service hosted on Cloudflare,
-for reviewed library updates. There is no separate in-app switch. Requests
-and downloads use HTTPS. A failed request leaves the existing library available.</p>
+<p>At most once an hour when you open Skald outside the European Union, it can
+contact <strong>https://delivery.mannamila.com</strong>, a MannaMila service hosted on
+Cloudflare, for reviewed library updates. There is no separate in-app switch.
+Requests and downloads use HTTPS. A failed request leaves the existing library
+available.</p>
+<p>Skald treats a device as in the European Union when its region setting or time
+zone says so, or on Android when its current mobile network's country or its
+SIM's country does; it decides that on the device each time it opens, without
+storing or sending any of them. Such a device does not contact the content
+service at all and reads the library that shipped with the app or was installed
+earlier.</p>
 <p>The request carries no reading history, saved place, story passage, selected
 book or translation, legacy Analytics ID, advertising ID or purchase record.
 Routine network information such as the request IP address is processed to serve
