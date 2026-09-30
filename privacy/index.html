@@ -109,7 +109,7 @@
     <p class="eyebrow">MannaMila LLC</p>
 <h1>Skald: Odyssey — Privacy Policy</h1>
 <p class="meta"><strong>Effective date:</strong> The date Skald: Odyssey 0.7.0 is first made available<br>
-<strong>Last updated:</strong> 2026-09-18<br>
+<strong>Last updated:</strong> 2026-09-30<br>
 <strong>Canonical URL:</strong> https://skald.mannamila.com/privacy/</p>
 <p>This policy applies to <strong>Skald: Odyssey 0.7.0</strong>. See “Earlier versions” for
 the practices of prior releases.</p>
@@ -213,11 +213,20 @@ events to Meta. Reading, purchasing, and restoring purchases work the same. You 
 change this permission later in iOS Settings. If you later turn off tracking permission,
 Skald stops sending new direct measurement events. A request already started while
 permission was present may already be in transit.</p>
-<p>When direct Meta measurement is unavailable at launch, Skald submits conversion
-value <code>0</code> through Apple's SKAdNetwork API. Skald has no custom SKAdNetwork mapping
-for free-book opening, checkout, or purchase. Apple controls whether an aggregated
-postback is generated, its contents, and its delivery. This Apple path does not send
-Meta a store price or currency.</p>
+<p>Outside the European Union, when tracking is not allowed (before Skald asks, or if
+you decline) or direct measurement is otherwise off, Skald uses Apple's SKAdNetwork.
+This system lets an ad network learn whether its ad led to an install or purchase
+without identifying you. Skald sets its SKAdNetwork conversion value to <code>0</code> when the
+app launches. After a verified standard or educational unlock that follows a
+checkout you started in Skald, it asks Apple to update the conversion value to <code>1</code>
+for one purchase. The value does not identify which unlock you bought or include a
+price, currency, receipt, transaction ID, reading activity, or device identifier.
+For an install Apple attributes to an ad, Apple decides whether to send the ad
+network an anonymous ad-attribution postback and how much conversion detail it
+includes. Skald does not receive that postback. This Apple path sends no direct
+purchase event to Meta; the postback, if Apple sends one, may let Meta measure a
+purchase from its ad. Restores, redelivery, and refunds neither create a new
+purchase value nor withdraw one already recorded.</p>
 <p>Where your device's region setting or time zone is in the European Union, Skald
 never asks for the tracking permission, shares no events with Meta, and submits
 no SKAdNetwork conversion value. Apple may still send its own anonymous
