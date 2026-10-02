@@ -109,12 +109,14 @@
 <p><a href="/privacy/">English version</a> · Version française</p>
 <p class="eyebrow">MannaMila LLC</p>
 <h1>Skald: Odyssey — Politique de confidentialité</h1>
-<p class="meta"><strong>Date d’entrée en vigueur :</strong> la date à laquelle Skald: Odyssey 0.7.0 est mis à disposition pour la première fois<br>
-<strong>Dernière mise à jour :</strong> 2026-09-13<br>
-<strong>URL canonique :</strong> https://skald.mannamila.com/privacy/</p>
-<p>La présente politique s’applique à <strong>Skald: Odyssey 0.7.0</strong>. Consultez la section
-« Versions antérieures » pour connaître les pratiques des versions précédentes.</p>
-<h2>Qui sommes-nous ?</h2>
+<p class="meta"><strong>Date d’entrée en vigueur :</strong> la date à laquelle Skald: Odyssey 0.7.0 est mis à disposition pour la première fois<br>
+<strong>Dernière mise à jour :</strong> 2026-10-02<br>
+<strong>URL canonique :</strong> https://skald.mannamila.com/privacy/fr/</p>
+<p>La présente politique s’applique à <strong>Skald: Odyssey 0.7.0 et aux versions ultérieures</strong>.
+Votre version est indiquée en bas de l’écran « About &amp; Privacy » (À propos et confidentialité).
+Consultez la section « Versions antérieures » pour connaître les pratiques des versions
+précédentes.</p>
+<h2>Qui sommes-nous ?</h2>
 <p>Skald: Odyssey est une application de lecture de l’<em>Odyssée</em> d’Homère, publiée par
 <strong>MannaMila LLC</strong>. Pour toute question relative à la confidentialité ou toute demande
 concernant vos données, écrivez à <strong>privacy@mannamila.com</strong>. Pour l’assistance produit,
@@ -128,10 +130,14 @@ concernant vos données, écrivez à <strong>privacy@mannamila.com</strong>. Pou
 <li>Sur Android, Skald utilise le SDK de Meta pour mesurer les publicités de MannaMila.
   Sur iPhone et iPad, la mesure directe par Meta ne commence que si vous accordez
   l’autorisation de suivi d’Apple après avoir activement terminé un livre gratuit.
+  Lorsque le réglage de région ou le fuseau horaire de l’appareil, ou, sur Android, son
+  réseau mobile ou sa carte SIM, le situe dans l’Union européenne, Skald lui-même n’envoie
+  rien à Meta, sur aucune des deux plateformes, et ne pose jamais la question.
   Skald n’affiche aucune publicité dans l’application de lecture.</li>
-<li>L’application peut rechercher auprès du service de contenu de MannaMila des
-  mises à jour révisées de la bibliothèque, au plus une fois par heure. Cette requête
-  ne contient aucune donnée de lecture.</li>
+<li>Hors de l’Union européenne, l’application peut rechercher auprès du service de contenu de
+  MannaMila des mises à jour révisées de la bibliothèque, au plus une fois par heure. Cette
+  requête ne contient aucune donnée de lecture. Dans l’Union européenne, l’application
+  n’effectue aucune requête de ce type et lit la bibliothèque déjà présente sur l’appareil.</li>
 <li>Les rappels de lecture sont programmés localement. Vous les contrôlez dans les
   réglages de notification de votre appareil.</li>
 <li>Apple ou Google gère les achats. Skald reçoit des informations sur vos droits
@@ -154,21 +160,24 @@ désactiver les rappels dans les réglages de notification de votre appareil.</p
 qui enregistre le droit d’accès intégral local, selon votre appareil et vos réglages de
 sauvegarde. La progression de lecture, les préférences, les anciens identifiants Analytics,
 le contenu et les données locales de suivi de la mesure publicitaire en sont exclus.
-Effacer les données de l’application ou la désinstaller supprime la copie locale active ;
+Effacer les données de l’application ou la désinstaller supprime la copie locale active ;
 une restauration de la plateforme peut rétablir le droit d’accès.</p>
 <p>Sur iPhone et iPad, les sauvegardes et transferts d’appareil Apple peuvent conserver
 les données du conteneur de l’application selon vos réglages Apple. La désinstallation
-supprime la copie locale active ; une restauration Apple ultérieure peut restaurer ces
+supprime la copie locale active ; une restauration Apple ultérieure peut restaurer ces
 données. Les droits liés aux achats peuvent également être récupérés auprès de la même
 boutique et avec le même compte de boutique.</p>
 <h2>Mesure publicitaire</h2>
-<p>MannaMila fait la promotion de Skald et demande au SDK de Meta de mesurer ces publicités.
-Le SDK gère l’activité liée à l’installation et à l’ouverture de l’application. Après
-chaque chargement réussi d’un livre gratuit de l’<em>Odyssée</em>, Skald peut demander au SDK
-d’enregistrer un événement <code>ViewedContent</code>. Cet événement peut se répéter et n’identifie
-pas le livre. Skald demande également au SDK d’enregistrer le passage au paiement pour un
-déverrouillage, puis un achat confirmé après qu’un passage au paiement correspondant,
-lancé localement, a produit un droit d’accès intégral enregistré de façon durable.</p>
+<p>MannaMila fait la promotion de Skald et demande au SDK de Meta de mesurer ces publicités. Le SDK
+envoie un événement d’installation à des fins d’attribution. Sur Android, Skald désactive
+l’enregistrement automatique des événements du SDK, de sorte qu’il n’envoie aucun événement
+d’ouverture de l’application, de fermeture de l’application ou de durée de session ; la section
+« iPhone et iPad » ci-dessous indique ce que cette plateforme envoie. Après chaque chargement
+réussi d’un livre gratuit de l’<em>Odyssée</em>, Skald peut demander au SDK d’enregistrer un événement
+<code>ViewedContent</code>. Cet événement peut se répéter et n’identifie pas le livre. Skald demande
+également au SDK d’enregistrer le passage au paiement pour un déverrouillage, puis un achat
+confirmé après qu’un passage au paiement correspondant, lancé localement, a produit un droit
+d’accès intégral enregistré de façon durable.</p>
 <p>Les événements de passage au paiement et d’achat comprennent l’identifiant de produit fixe
 <code>odyssey_full_unlock</code> ou <code>odyssey_full_unlock_edu</code>, le prix réellement affiché par la
 boutique et son code de devise ISO. L’identifiant du produit indique donc si l’option
@@ -198,13 +207,13 @@ d’installation, l’identifiant publicitaire de Google lorsqu’il est disponi
 référent d’installation Google Play. Ce référent décrit la campagne ou le lien qui a
 conduit au téléchargement.</p>
 <p>Le paquet Android comprend l’autorisation relative au référent d’installation Google
-Play, l’autorisation <code>AD_ID</code> de Google et les autorisations du Privacy Sandbox d’Android
+Play, l’autorisation AD_ID de Google et les autorisations du Privacy Sandbox d’Android
 pour Attribution, Ad ID, Custom Audience et Topics. Skald n’utilise ni l’API Topics ni
 l’API Protected Audience. Ces autorisations restent présentes dans le paquet même dans
 une version où l’initialisation de Meta est désactivée.</p>
 <h3>iPhone et iPad</h3>
 <p>Skald ne demande l’autorisation de suivi d’Apple qu’après que vous avez activement terminé
-un livre gratuit : vous avez commencé avant son dernier paragraphe, fait défiler le texte
+un livre gratuit : vous avez commencé avant son dernier paragraphe, fait défiler le texte
 dans l’application de lecture et atteint pour la première fois la fin réelle au cours de
 cette même session. L’autorisation n’est pas demandée au premier lancement, à partir
 d’une progression antérieure ou restaurée déjà située à la fin, lorsque vous vous contentez
@@ -214,7 +223,7 @@ ou sans interaction de votre part dans l’application de lecture.</p>
 l’application, les ouvertures réussies de livres gratuits, les passages au paiement et les
 événements d’achat confirmé afin de mesurer les publicités de MannaMila. Skald ne partage
 aucun événement antérieur à votre autorisation. Le SDK de Meta utilise un identifiant
-d’installation pour cette mesure ; la collecte de l’identifiant publicitaire est
+d’installation pour cette mesure ; la collecte de l’identifiant publicitaire est
 désactivée et Skald n’envoie pas l’IDFA. Les événements de passage au paiement et d’achat
 comprennent l’identifiant du produit standard ou éducatif sélectionné, le prix affiché
 par l’App Store et son code de devise ISO. Ils ne comprennent ni reçu, ni identifiant de
@@ -226,16 +235,47 @@ de la même manière. Vous pouvez modifier cette autorisation ultérieurement da
 Réglages d’iOS. Si vous désactivez ensuite l’autorisation de suivi, Skald cesse d’envoyer
 de nouveaux événements de mesure directs. Une requête déjà lancée pendant que
 l’autorisation était accordée peut être encore en cours de transmission.</p>
-<p>Lorsque la mesure directe par Meta n’est pas disponible au lancement, Skald soumet la
-valeur de conversion <code>0</code> au moyen de l’API SKAdNetwork d’Apple. Skald ne dispose d’aucune
-configuration SKAdNetwork personnalisée pour l’ouverture d’un livre gratuit, le passage au
-paiement ou l’achat. Apple détermine si un postback agrégé est généré, ainsi que son
-contenu et sa transmission. Ce flux Apple n’envoie à Meta ni prix ni devise de la boutique.</p>
+<p>Hors de l’Union européenne, lorsque le suivi n’est pas autorisé (avant que Skald ne pose
+la question, ou si vous refusez) ou que la mesure directe est désactivée pour une autre
+raison, Skald utilise SKAdNetwork d’Apple. Ce système permet à un réseau publicitaire de
+savoir si sa publicité a conduit à une installation ou à un achat, sans vous identifier.
+Skald fixe sa valeur de conversion SKAdNetwork à <code>0</code> au lancement de l’application. Après
+un déverrouillage standard ou éducatif vérifié qui fait suite à un passage au paiement
+que vous avez lancé dans Skald, il demande à Apple de porter la valeur de conversion à <code>1</code>
+pour un seul achat. La valeur n’identifie pas le déverrouillage que vous avez acheté et ne
+comprend ni prix, ni devise, ni reçu, ni identifiant de transaction, ni activité de
+lecture, ni identifiant d’appareil. Pour une installation qu’Apple attribue à une
+publicité, Apple décide d’envoyer ou non au réseau publicitaire un postback anonyme
+d’attribution publicitaire et décide du niveau de détail de conversion qu’il contient.
+Skald ne reçoit pas ce postback. Ce flux Apple n’envoie à Meta aucun événement d’achat direct ; le
+postback, si Apple en envoie un, peut permettre à Meta de mesurer un achat issu de sa
+publicité. Les restaurations, les nouvelles livraisons et les remboursements ne créent pas
+de nouvelle valeur d’achat et n’en retirent aucune déjà enregistrée.</p>
+<p>Lorsque le réglage de région ou le fuseau horaire de votre appareil le situe dans l’Union
+européenne, Skald ne demande jamais l’autorisation de suivi, ne partage aucun événement avec
+Meta et ne soumet aucune valeur de conversion SKAdNetwork. Apple peut tout de même envoyer son
+propre postback anonyme d’attribution publicitaire pour une installation qu’Apple attribue à une
+publicité ; Skald ne peut pas l’empêcher. Skald lui-même n’envoie rien à Meta.</p>
 <h3>Contrôles, conservation et suppression</h3>
-<p>Sur Android, la mesure publicitaire ne comporte aucune option de désactivation dans
-l’application. Les contrôles publicitaires du système Android peuvent réinitialiser ou
-supprimer l’identifiant publicitaire lorsqu’il est disponible. Sur iPhone et iPad,
-l’autorisation de suivi d’Apple contrôle la future mesure directe par Meta. Un refus ne
+<p>Sur Android, l’écran « About &amp; Privacy » comporte une option permettant d’autoriser ou de
+désactiver la mesure publicitaire, sur tous les appareils et dans toutes les régions hors de
+l’Union européenne. Skald considère un appareil comme situé dans l’Union européenne lorsque le
+pays de son réseau mobile actuel, le pays de sa carte SIM, son réglage de région ou son fuseau
+horaire l’indique ; il en décide sur l’appareil à chaque ouverture, et aucun de ces éléments
+n’est enregistré ni envoyé. Sur un tel appareil, la mesure est désactivée, il n’y a rien à
+autoriser, et l’écran « About &amp; Privacy » l’indique. Lorsque votre connexion semble située aux
+États-Unis, au Canada, en Australie ou en Nouvelle-Zélande, et que ni le réseau mobile actuel de
+votre appareil ni sa carte SIM ne désigne un pays autre que ceux-ci, la mesure commence avant
+que vous ayez choisi, de sorte que l’événement d’installation et les éventuels événements de
+livre gratuit, de passage au paiement ou d’achat enregistrés entre-temps peuvent déjà être
+parvenus à Meta au moment où vous désactivez la mesure. Sinon, hors de l’Union européenne, elle
+reste désactivée jusqu’à ce que vous l’autorisiez. Si votre appareil n’est connecté à aucun
+réseau mobile et n’a pas de carte SIM, la connexion seule décide si la mesure commence. La
+désactivation arrête immédiatement toute nouvelle mesure, et tout ce qui n’a pas encore été
+envoyé est supprimé au lancement suivant, sans être envoyé ; une requête déjà en cours ou déjà
+programmée peut encore s’achever. Les contrôles publicitaires du système Android peuvent
+réinitialiser ou supprimer l’identifiant publicitaire lorsqu’il est disponible. Sur iPhone et
+iPad, l’autorisation de suivi d’Apple contrôle la future mesure directe par Meta. Un refus ne
 limite ni l’application de lecture ni ses fonctions d’achat.</p>
 <p>Meta contrôle la conservation et la suppression des données de mesure directe qu’elle
 reçoit, conformément à sa propre politique de confidentialité. MannaMila ne peut pas
@@ -251,23 +291,29 @@ informations dont dispose Skald.</p>
 <h2>Achats</h2>
 <p>Les livres I, II et IX sont gratuits. Les déverrouillages uniques standard et éducatif
 donnent tous deux accès aux autres livres. L’option éducative repose sur une déclaration
-sur l’honneur ; Skald ne demande ni justificatif étudiant ni preuve d’emploi.</p>
+sur l’honneur ; Skald ne demande ni justificatif étudiant ni preuve d’emploi.</p>
 <p>Apple ou Google traite le paiement et fournit à l’application un résultat vérifié d’achat
 ou de droit d’accès. Skald enregistre un droit d’accès local avant d’accuser réception d’une
 transaction ou de la terminer. L’application ne dispose d’aucun serveur d’achat et ne reçoit
 ni les données de votre carte, ni votre compte bancaire, ni votre moyen de paiement. Les événements
 limités de passage au paiement et d’achat décrits ci-dessus utilisent l’identifiant du produit
-sélectionné ainsi que le prix et la devise réels de la boutique ; ils ne contiennent ni
+sélectionné ainsi que le prix et la devise réels de la boutique ; ils ne contiennent ni
 reçu, ni identifiant de transaction, ni jeton d’achat.</p>
 <p>La fonction de restauration des achats utilise la même boutique et le même compte de
 boutique. Apple et Google traitent leurs services de boutique conformément à leurs propres
 avis de confidentialité.</p>
 <h2>Mises à jour du contenu</h2>
-<p>Au plus une fois par heure lorsque vous ouvrez Skald, l’application peut contacter
-<strong>https://delivery.mannamila.com</strong>, un service de MannaMila hébergé sur Cloudflare,
-afin de rechercher des mises à jour révisées de la bibliothèque. Il n’existe aucun
-contrôle distinct dans l’application. Les requêtes et téléchargements utilisent HTTPS.
-En cas d’échec, la bibliothèque existante reste disponible.</p>
+<p>Au plus une fois par heure lorsque vous ouvrez Skald hors de l’Union européenne,
+l’application peut contacter <strong>https://delivery.mannamila.com</strong>, un service de MannaMila
+hébergé sur Cloudflare, afin de rechercher des mises à jour révisées de la bibliothèque.
+Il n’existe aucun contrôle distinct dans l’application. Les requêtes et téléchargements
+utilisent HTTPS. En cas d’échec, la bibliothèque existante reste disponible.</p>
+<p>Skald considère un appareil comme situé dans l’Union européenne lorsque son réglage de
+région ou son fuseau horaire l’indique, ou, sur Android, lorsque le pays de son réseau
+mobile actuel ou celui de sa carte SIM l’indique ; il en décide sur l’appareil à chaque
+ouverture, sans enregistrer ni envoyer aucun de ces éléments. Un tel appareil ne contacte
+pas du tout le service de contenu et lit la bibliothèque fournie avec l’application ou
+installée précédemment.</p>
 <p>La requête ne contient aucun historique de lecture, aucune position enregistrée, aucun
 passage de l’œuvre, aucun livre ou traduction sélectionné, aucun ancien identifiant
 Analytics, aucun identifiant publicitaire et aucun enregistrement d’achat. Les informations
@@ -279,8 +325,8 @@ la bibliothèque active.</p>
 pseudonymisées à Amplitude et des diagnostics de plantage à Sentry. La version 0.5.0 a
 retiré ces services et cessé de créer l’identifiant Analytics de l’application. Une
 installation mise à jour depuis une version antérieure peut encore conserver son ancien
-identifiant. La section À propos et confidentialité l’affiche et peut préparer un courriel
-de demande de suppression ; Skald ne le transmet pas automatiquement et n’en crée pas de
+identifiant. L’écran « About &amp; Privacy » l’affiche et peut préparer un courriel
+de demande de suppression ; Skald ne le transmet pas automatiquement et n’en crée pas de
 remplacement.</p>
 <p>Les enregistrements historiques restent soumis aux conditions des prestataires, sauf s’ils
 sont supprimés plus tôt. Pour demander leur suppression, envoyez l’ancien identifiant
@@ -297,7 +343,7 @@ jour du contenu.</p>
 <p>Si vous nous contactez, nous recevons votre message, votre adresse et toute information
 que vous choisissez d’y inclure. Notre site web public et nos formulaires sont distincts
 de l’application. Ils peuvent traiter les informations courantes liées aux requêtes web
-et les données d’analyse du site ; l’<a href="https://skald.mannamila.com/feedback/privacy/">avis relatif aux commentaires</a>
+et les données d’analyse du site ; l’<a href="https://skald.mannamila.com/feedback/privacy/">avis relatif aux commentaires</a>
 et l’<a href="https://skald.mannamila.com/updates-privacy/">avis relatif aux mises à jour produit</a>
 décrivent leurs formulaires respectifs. L’ouverture d’un lien vers un musée ou un autre
 site externe utilise les services et la politique de confidentialité de ce site.</p>
@@ -311,13 +357,103 @@ l’autorisation de suivi de Skald dans les Réglages d’iOS.</p>
 <p>Les requêtes réseau décrites ici utilisent le protocole HTTPS chiffré. L’application ne
 demande aucun accès à vos contacts, votre localisation, votre appareil photo, votre
 microphone, vos photos ou le stockage général de fichiers. Android n’autorise aucun trafic
-réseau en clair. Aucune mesure de sécurité n’est absolue ; écrivez à privacy@mannamila.com
+réseau en clair. Aucune mesure de sécurité n’est absolue ; écrivez à privacy@mannamila.com
 si vous soupçonnez un problème de confidentialité ou de sécurité.</p>
 <p>Skald est destiné à un public adulte ou à une lecture guidée par un parent, l’adulte étant
-l’utilisateur de l’application. Skald ne s’adresse pas aux enfants de moins de 13 ans et
-ne participe pas au programme Designed for Families de Google Play. Cette version est
-approuvée pour une distribution aux États-Unis, au Canada, en Australie et en
-Nouvelle-Zélande.</p>
+l’utilisateur de l’application. Skald ne s’adresse pas aux enfants de moins de 13 ans et ne
+participe pas au programme Designed for Families de Google Play.</p>
+<p>Skald: Odyssey est proposé sur Google Play et sur l’App Store aux États-Unis, au Canada, en
+Australie, en Nouvelle-Zélande et dans les 27 États membres de l’Union européenne.</p>
+<h2>Si vous êtes dans l’Union européenne</h2>
+<p>Sur un appareil que Skald considère comme situé dans l’Union européenne, Skald lui-même
+n’envoie rien à Meta et ne contacte aucun serveur de MannaMila. Skald considère un appareil
+comme situé dans l’Union européenne lorsque l’un de ces signes l’indique : son réglage de
+région ou son fuseau horaire, ou, sur Android, le pays de son réseau mobile actuel ou celui
+de sa carte SIM.</p>
+<p>MannaMila LLC, une société située aux États-Unis, est responsable des données personnelles
+qu’elle reçoit ou dont elle décide l’utilisation. C’est ce que le droit de l’Union européenne
+appelle le « responsable du traitement ». MannaMila n’a pas de bureau dans l’Union européenne et
+n’y a pas désigné de représentant. Pour toute question ou demande relative à la confidentialité,
+écrivez à privacy@mannamila.com.</p>
+<h3>Ce que MannaMila peut tout de même recevoir</h3>
+<ul>
+<li><strong>Messages que vous nous envoyez :</strong> votre adresse électronique et ce que vous écrivez.
+  Nous les utilisons pour vous répondre et pour garder une trace de ce qui a été demandé
+  et de ce qui a été fait. La base juridique est notre intérêt légitime à répondre aux
+  personnes qui nous écrivent ; lorsque vous exercez un droit mentionné ci-dessous, la loi
+  nous oblige à agir. Nous conservons un message jusqu’à ce que votre question ou votre
+  demande soit réglée, puis aussi longtemps que nous avons besoin d’en garder une trace,
+  et nous le supprimons ensuite. Google héberge notre boîte de messagerie.</li>
+<li><strong>Relevés de ventes, si vous achetez le déverrouillage.</strong> Apple ou Google vous vend le
+  déverrouillage et communique ses ventes à MannaMila, comme dans tous les pays. Apple
+  communique des totaux. Google Play communique chaque commande : son numéro, la date et
+  l’heure, le produit, le prix et la taxe, le modèle de l’appareil et le pays, parfois l’État,
+  la ville et le code postal. Ses rapports ne contiennent ni votre nom, ni votre adresse
+  électronique, ni vos données de paiement, mais nous pouvons retrouver une commande à partir de
+  son numéro ou de votre adresse électronique. Nous conservons nos copies aussi longtemps que
+  les règles fiscales des États-Unis nous imposent de conserver des documents comptables. La
+  base juridique est notre intérêt légitime à tenir des comptes en bonne et due forme.</li>
+<li><strong>Avis dans les boutiques.</strong> Un avis que vous publiez sur l’App Store ou sur Google Play est
+  public, et nous pouvons y répondre. Google Play nous montre aussi le modèle de l’appareil, la
+  version d’Android et la langue associés à cet avis.</li>
+<li><strong>Le site web, ses formulaires et ses données d’analyse.</strong> Ils sont distincts de
+  l’application ; consultez la section « Site web, formulaires et messages distincts ».</li>
+</ul>
+<h3>Ce que vous pouvez demander, et comment</h3>
+<p>Vous pouvez nous demander une copie des données personnelles que nous détenons à votre sujet,
+nous demander de les corriger ou de les supprimer, ou d’en limiter le traitement (nous les
+conservons mais cessons de les utiliser). Lorsque nous les utilisons avec votre consentement,
+vous pouvez les demander sous une forme que vous pourrez emporter ailleurs.</p>
+<p>Lorsque la base juridique est notre intérêt légitime, vous pouvez vous opposer à cette
+utilisation à tout moment.</p>
+<p>Écrivez à privacy@mannamila.com depuis l’adresse que vous avez utilisée auparavant et indiquez
+ce que vous demandez. Pour un achat sur Google Play, ajoutez le numéro de commande figurant sur
+votre reçu. Nous répondons dans un délai d’un mois.</p>
+<p>Vous pouvez aussi déposer une réclamation auprès de l’autorité de protection des données du lieu
+où vous vivez ou travaillez, ou du lieu où vous pensez que la loi a été enfreinte. Le Comité
+européen de la protection des données publie la liste des autorités à l’adresse
+<a href="https://www.edpb.europa.eu/about-edpb/about-edpb/members_fr">https://www.edpb.europa.eu/about-edpb/about-edpb/members_fr</a>.</p>
+<h3>Si aucun de ces signes ne situe votre appareil dans l’Union européenne</h3>
+<p>Cette partie ne concerne qu’un appareil qui se trouve dans l’Union européenne alors qu’aucun des
+signes ci-dessus ne l’indique. Un fuseau horaire réglé sur un lieu de l’Union européenne exclut
+ce cas. Skald considère un tel appareil comme situé hors de l’Union européenne :</p>
+<ul>
+<li><strong>Service de contenu.</strong> Skald peut rechercher des mises à jour de la bibliothèque. Sur
+  Android, tant que vous n’avez ni autorisé ni désactivé la mesure, Skald demande aussi au même
+  service, à chaque ouverture, si la mesure peut commencer là où votre connexion semble se
+  trouver. La base juridique est notre intérêt légitime à ce que la bibliothèque soit à jour et
+  à ce que nous sachions où poser d’abord la question.</li>
+<li><strong>Mesure que vous autorisez.</strong> Sur Android, là où Skald pose la question, la mesure ne
+  commence que si vous choisissez « Allow » (Autoriser). Sur iPhone et iPad, la mesure directe
+  par Meta ne commence que si vous accordez l’autorisation de suivi d’Apple. La base juridique
+  est votre consentement, et vous pouvez le retirer sur l’écran « About &amp; Privacy » (À propos et
+  confidentialité) ou dans les Réglages d’iOS.</li>
+<li><strong>Mesure pour laquelle Skald ne pose pas la question.</strong> Sur Android, lorsque votre connexion
+  semble située aux États-Unis, au Canada, en Australie ou en Nouvelle-Zélande, la mesure peut
+  commencer avant que vous ayez choisi, comme le décrit la section « Contrôles, conservation et
+  suppression » ; vous pouvez la désactiver sur l’écran « About &amp; Privacy ». Sur iPhone et iPad,
+  sans l’autorisation de suivi, Skald donne à SKAdNetwork d’Apple une valeur de conversion de 0
+  ou 1 qui ne comporte aucun identifiant, comme le décrit la section « iPhone et iPad ».</li>
+</ul>
+<p>Désactiver la mesure n’annule pas ce qui a déjà été envoyé. Pour ne plus être dans ce cas,
+réglez le fuseau horaire ou la région de votre appareil sur le lieu où vous vous trouvez, puis
+fermez complètement Skald et rouvrez-le. Skald considère alors l’appareil comme situé dans
+l’Union européenne et, sur Android, supprime tout ce que le SDK de Meta n’avait pas encore
+envoyé.</p>
+<p><strong>Le rôle de Meta.</strong> Les conditions de Meta définissent ses rôles là où le droit de l’Union
+européenne s’applique. Meta Platforms Ireland Limited mesure les publicités de MannaMila sur
+instruction de MannaMila (en tant que son « sous-traitant »). MannaMila et Meta Ireland décident
+ensemble de la collecte des données au moyen du SDK de Meta et de leur envoi à Meta Ireland (en
+tant que « responsables conjoints du traitement »). Meta Ireland utilise ensuite les données à
+ses propres fins (en tant que « responsable indépendant du traitement »), notamment pour cibler,
+diffuser et personnaliser des publicités et des contenus. Elle peut conserver les données
+pendant deux ans au maximum. C’est Meta Ireland, et non MannaMila, qui répond aux demandes
+concernant les données qu’elle stocke. Ses coordonnées, sa base juridique, ses transferts vers
+les États-Unis et vos droits à son égard figurent dans la
+<a href="https://www.facebook.com/privacy/policy/">politique de confidentialité de Meta</a>, dans les
+<a href="https://www.facebook.com/legal/terms/businesstools">Conditions générales des Outils Meta Business</a>,
+dans l’<a href="https://www.facebook.com/legal/controller_addendum">Avenant relatif aux responsables du traitement</a>
+et dans l’<a href="https://www.facebook.com/legal/EU_data_transfer_addendum">avenant sur le transfert de données</a>.</p>
 <p><a href="/">Skald</a> · <a href="/privacy/">English version</a></p>
 </main>
 </body>
