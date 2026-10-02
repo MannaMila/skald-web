@@ -60,7 +60,7 @@ const normalizeAvailability = (value) => ({
 
 const availabilityCopy = () => ({
   status: "Available now on Android, iPhone, and iPad.",
-  faq: "Skald is available on Android, iPhone, and iPad in the United States, Canada, Australia, and New Zealand.",
+  faq: "Skald is available on Android, iPhone, and iPad in the United States, Canada, Australia, and New Zealand. On iPhone and iPad it is also available in the 27 member states of the European Union.",
   kicker: "Available on Android, iPhone, and iPad",
 });
 
