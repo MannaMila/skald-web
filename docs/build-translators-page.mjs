@@ -197,24 +197,43 @@ const page = `<!doctype html>
  <script type="application/json" id="translators-data">${jsonForHtml({ translators })}</script>
  <script>
  const GA_ID="G-K0V3J9TLBF";
+ /* Analytics: never for European visitors (owner decision 2026-10-02), nor when
+    Global Privacy Control or Do Not Track is set. Decided here, in the browser,
+    before any request to Google: no tag, no gtag call, no cookie, no banner.
+    "European" is every Europe/* zone plus the EU and EEA zones outside it (the
+    app's EuTimeZones list); an unreadable or location-less zone counts as
+    European. */
  window.dataLayer=window.dataLayer||[];
  function gtag(){dataLayer.push(arguments)}
- /* Region-scoped consent defaults — same pattern as the translation atlas:
-    analytics denied by default across EU/EEA/UK/CH (Google resolves region),
-    granted elsewhere; /assets/consent.js layers the opt-in banner. */
- gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',
-  ad_user_data:'denied',ad_personalization:'denied',
-  region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE',
-   'IS','IT','LI','LT','LU','LV','MT','NL','NO','PL','PT','RO','SE','SI','SK',
-   'ES','CH','GB']});
- gtag('consent','default',{analytics_storage:'granted',ad_storage:'denied',
-  ad_user_data:'denied',ad_personalization:'denied'});
- const gaScript=document.createElement('script');gaScript.async=true;
- gaScript.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(GA_ID);
- document.head.appendChild(gaScript);
- gtag('js',new Date());
- gtag('config',GA_ID,{page_title:'Skald Translators',cookie_prefix:'skm'});
- function track(name,params){if(GA_ID)gtag('event',name,params)}
+ const EUROPEAN_ZONES_OUTSIDE_EUROPE=['asia/nicosia','asia/famagusta','asia/istanbul',
+  'atlantic/canary','atlantic/madeira','atlantic/azores','atlantic/reykjavik',
+  'atlantic/faroe','atlantic/faeroe','atlantic/jan_mayen','arctic/longyearbyen',
+  'africa/ceuta','america/cayenne','america/guadeloupe','america/martinique',
+  'america/marigot','indian/reunion','indian/mayotte'];
+ function analyticsAllowed(){
+  try{
+   if(!GA_ID)return false;
+   if(navigator.globalPrivacyControl||navigator.doNotTrack==='1'||
+    navigator.msDoNotTrack==='1'||window.doNotTrack==='1')return false;
+   const tz=Intl.DateTimeFormat().resolvedOptions().timeZone;
+   if(typeof tz!=='string'||tz.indexOf('/')<1)return false;
+   const zone=tz.toLowerCase();
+   if(zone.indexOf('europe/')===0||zone.indexOf('etc/')===0)return false;
+   return EUROPEAN_ZONES_OUTSIDE_EUROPE.indexOf(zone)<0;
+  }catch(e){return false}
+ }
+ const ANALYTICS_ON=analyticsAllowed();
+ if(ANALYTICS_ON){
+  gtag('consent','default',{analytics_storage:'granted',ad_storage:'denied',
+   ad_user_data:'denied',ad_personalization:'denied'});
+  const s=document.createElement('script');s.async=true;
+  s.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(GA_ID);
+  document.head.appendChild(s);
+  gtag('js',new Date());
+  /* skm_ prefix keeps the site's retire-analytics.js from expiring these cookies. */
+  gtag('config',GA_ID,{page_title:'Skald Translators',cookie_prefix:'skm'});
+ }
+ function track(name,params){if(ANALYTICS_ON)gtag('event',name,params)}
  const DATA=JSON.parse(document.getElementById('translators-data').textContent);
  const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
  const grid=document.getElementById('tr-grid');

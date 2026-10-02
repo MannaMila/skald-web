@@ -267,15 +267,33 @@ const APP_STORE_URL='https://apps.apple.com/app/id6790579937';
 const PLAY_PACKAGE='com.mannamila.skald';
 const UTM_SOURCE='odyssey-translation-atlas',UTM_CAMPAIGN='translations-2026';
 
-/* Analytics: same consent-mode pattern as the art atlas. */
+/* Analytics: never for European visitors (owner decision 2026-10-02), nor when
+   Global Privacy Control or Do Not Track is set. Decided here, in the browser,
+   before any request to Google: no tag, no gtag call, no cookie, no banner.
+   "European" is every Europe/* zone plus the EU and EEA zones outside it (the
+   app's EuTimeZones list); an unreadable or location-less zone counts as
+   European. */
 window.dataLayer=window.dataLayer||[];
 function gtag(){dataLayer.push(arguments)}
-if(GA_ID){
- gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',
-  ad_user_data:'denied',ad_personalization:'denied',
-  region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE',
-   'IS','IT','LI','LT','LU','LV','MT','NL','NO','PL','PT','RO','SE','SI','SK',
-   'ES','CH','GB']});
+const EUROPEAN_ZONES_OUTSIDE_EUROPE=['asia/nicosia','asia/famagusta','asia/istanbul',
+ 'atlantic/canary','atlantic/madeira','atlantic/azores','atlantic/reykjavik',
+ 'atlantic/faroe','atlantic/faeroe','atlantic/jan_mayen','arctic/longyearbyen',
+ 'africa/ceuta','america/cayenne','america/guadeloupe','america/martinique',
+ 'america/marigot','indian/reunion','indian/mayotte'];
+function analyticsAllowed(){
+ try{
+  if(!GA_ID)return false;
+  if(navigator.globalPrivacyControl||navigator.doNotTrack==='1'||
+   navigator.msDoNotTrack==='1'||window.doNotTrack==='1')return false;
+  const tz=Intl.DateTimeFormat().resolvedOptions().timeZone;
+  if(typeof tz!=='string'||tz.indexOf('/')<1)return false;
+  const zone=tz.toLowerCase();
+  if(zone.indexOf('europe/')===0||zone.indexOf('etc/')===0)return false;
+  return EUROPEAN_ZONES_OUTSIDE_EUROPE.indexOf(zone)<0;
+ }catch(e){return false}
+}
+const ANALYTICS_ON=analyticsAllowed();
+if(ANALYTICS_ON){
  gtag('consent','default',{analytics_storage:'granted',ad_storage:'denied',
   ad_user_data:'denied',ad_personalization:'denied'});
  const s=document.createElement('script');s.async=true;
@@ -285,7 +303,7 @@ if(GA_ID){
  /* skm_ prefix keeps the site's retire-analytics.js from expiring these cookies. */
  gtag('config',GA_ID,{page_title:'Skald Odyssey Translation Atlas',cookie_prefix:'skm'});
 }
-function track(name,params){if(GA_ID)gtag('event',name,params)}
+function track(name,params){if(ANALYTICS_ON)gtag('event',name,params)}
 
 const compass=document.getElementById('compass');
 const NOHOVER=matchMedia('(hover: none)').matches;
@@ -863,6 +881,5 @@ addEventListener('hashchange',()=>{
  if(byId.has(id))openModal(id,'deeplink');
 });
 </script>
-<script src="/assets/consent.js" defer></script>
 </body>
 </html>
