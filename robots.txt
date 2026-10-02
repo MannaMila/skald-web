@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /docs/
 
 Sitemap: https://skald.mannamila.com/sitemap.xml
 Sitemap: https://skald.mannamila.com/mosaic/sitemap.xml

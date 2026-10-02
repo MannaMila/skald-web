@@ -15,7 +15,7 @@ const LAUNCHED_AVAILABILITY = Object.freeze({
   },
   ios: {
     state: "available",
-    storeUrl: "https://apps.apple.com/us/app/skald-odyssey/id6790579937",
+    storeUrl: "https://apps.apple.com/app/id6790579937",
   },
   lastVerifiedAt: "2026-07-22T00:00:00-04:00",
 });
@@ -60,7 +60,7 @@ const normalizeAvailability = (value) => ({
 
 const availabilityCopy = () => ({
   status: "Available now on Android, iPhone, and iPad.",
-  faq: "Skald is available on Android, iPhone, and iPad in the United States, Canada, Australia, and New Zealand.",
+  faq: "Skald is available on Android, iPhone, and iPad in the United States, Canada, Australia, New Zealand, and the 27 member states of the European Union.",
   kicker: "Available on Android, iPhone, and iPad",
 });
 
