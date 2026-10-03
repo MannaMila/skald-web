@@ -42,6 +42,12 @@
       .art-slide figcaption { font-size: 0.8rem; line-height: 1.45; margin-top: 0.55rem; opacity: 0.9; max-width: 24rem; }
       .art-inskald { display: block; margin-top: 0.3rem; font-weight: 550; color: #743915; }
       .art-credit { display: block; margin-top: 0.25rem; opacity: 0.65; }
+      .shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.1rem; margin: 1.4rem auto 1.2rem; max-width: 36rem; padding: 0; list-style: none; }
+      .shots-one { grid-template-columns: 1fr; max-width: 17.5rem; }
+      .shots figure { margin: 0; }
+      .shots img { display: block; width: 100%; height: auto; aspect-ratio: 1320 / 2868; border-radius: 10px; border: 1px solid rgba(78, 60, 38, 0.18); box-shadow: 0 10px 24px rgba(60, 42, 22, 0.12); background: #f5ead6; }
+      .shots figcaption { font-size: 0.8rem; line-height: 1.45; margin-top: 0.55rem; opacity: 0.9; }
+      @media (max-width: 640px) { .shots { grid-template-columns: 1fr; max-width: 17.5rem; } }
       .art-nav { display: flex; gap: 0.5rem; justify-content: flex-end; padding: 0 1.25rem; }
       .art-nav button { border: 1px solid rgba(78, 60, 38, 0.35); background: rgba(255, 252, 244, 0.85); border-radius: 999px; width: 2.4rem; height: 2.4rem; font-size: 1.05rem; cursor: pointer; }
       .art-nav button:hover { background: #fffbf1; }
@@ -85,10 +91,29 @@
 
         <h3>A simpler reading screen</h3>
         <p>Most notes show as an underlined word or a small mark in the margin; tap one to read it. The voyage map, the fleet and the museum open from notes at their passages, and the row of five buttons above the text is gone. The &Sigma; button lists every note in the book and shows which you have opened.</p>
+        <p>The marks are short Greek abbreviations: ση~, for σημείωσαι, &ldquo;take note&rdquo;, is how Byzantine readers marked their margins.</p>
+
+        <div class="shots" role="group" aria-label="Two screenshots of the reading screen and an opened note">
+          <figure>
+            <img src="./shots/reader-marks.webp" width="990" height="2151" loading="lazy" alt="Reading screen, Book I in Butler: &ldquo;ingenious hero&rdquo; underlined with a small Greek mark above it; a Greek mark labelled NOTE in the right margin.">
+            <figcaption><strong>The reading screen</strong> Book I, in Butler&rsquo;s translation. The underlined &ldquo;ingenious hero&rdquo; carries γ~, short for γλ~, a note on a word. ση~ in the margin marks a note on the passage. Tap either to read it.</figcaption>
+          </figure>
+          <figure>
+            <img src="./shots/note-nostos.webp" width="990" height="2151" loading="lazy" alt="A note card over the text, labelled CONCEPT, titled &ldquo;Nostos: return home&rdquo;, with two short paragraphs and a sources line.">
+            <figcaption><strong>A word note opened</strong> A few lines on. γλ~ stands for γλῶσσα, &ldquo;gloss&rdquo;. At &ldquo;bring his men safely home&rdquo; the Greek is νόστον, return home, the poem&rsquo;s first use of the word.</figcaption>
+          </figure>
+        </div>
 
         <h3>Notes, and the articles they point to</h3>
         <p>One note, in Book II, tells you why Homer calls barley meal &ldquo;the marrow of men.&rdquo; Since version 0.7.0, most notes in Books I, II and IX have been rewritten in plainer language, and hundreds more revised.</p>
         <p>Some notes point to scholarship, as a short reference beneath the passage: 52 journal articles, 40 with a link to the full text, each with a line on why it matters there. At &ldquo;rosy-fingered&rdquo; Dawn in Book II, one cites Milman Parry&rsquo;s 1930 study of Homer&rsquo;s repeated phrases. In the Cyclops&rsquo;s cave in Book IX, another cites Ethan K. Smilie&rsquo;s &ldquo;Odysseus and 007&rdquo; (2025), which finds in Odysseus and James Bond the same courage, cunning and dangerous curiosity.</p>
+
+        <div class="shots shots-one" role="group" aria-label="A screenshot of the scholarship sheet">
+          <figure>
+            <img src="./shots/scholarship-sheet.webp" width="990" height="2151" loading="lazy" alt="A sheet labelled SCHOLARSHIP listing journal articles on Book I&rsquo;s opening lines, each with a &ldquo;Why here&rdquo; line and Read in full and Open DOI buttons.">
+            <figcaption><strong>Scholarship at the passage</strong> βιβ~ stands for βιβλίον, &ldquo;book&rdquo;. At the opening lines of Book I the sheet lists several articles, among them Samuel E. Bassett&rsquo;s of 1923, each with a line on why it is cited and buttons to read it in full or open its DOI.</figcaption>
+          </figure>
+        </div>
 
         <h3>Six ancient Greek coins</h3>
         <p>The newest art is six coins from the Art Institute of Chicago and the Cleveland Museum of Art. Coins came after Homer, and nobody in the <em>Odyssey</em> has one. Four appear in the text. In Book II, after Athena tells Telemachus to pack barley meal, comes a coin of Metapontion with an ear of barley on both faces. In Book IX, after Maron&rsquo;s gift of wine, comes a coin of Maroneia, a town said to be named after him, showing Dionysos, the god of wine.</p>
