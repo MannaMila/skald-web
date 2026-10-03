@@ -3,7 +3,7 @@
 // reaches Google Play as an install-referrer UTM and the App Store as a campaign token.
 // Nothing is stored and no request is made; the stores do their own counting.
 (function () {
-  var APPLE_PROVIDER_TOKEN = ""; // App Store Connect → Analytics → Campaigns → provider id (pt); empty = ct only
+  var APPLE_PROVIDER_TOKEN = "129159233"; // App Store Connect → Analytics → Campaigns → provider id (pt)
   var SAFE = /^[A-Za-z0-9_.-]{1,64}$/;
   var KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
 
