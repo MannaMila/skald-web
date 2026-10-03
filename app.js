@@ -81,7 +81,20 @@ const applyAvailability = (value) => {
   document.querySelectorAll('[data-store-link="ios"]').forEach((link) => {
     link.href = availability.ios.storeUrl;
   });
+  campaignLinksReady.then(() => {
+    if (typeof window.skaldCampaignLinks === "function") window.skaldCampaignLinks();
+  });
 };
+
+// campaign-links.js carries ?utm_* from the page URL into the store links (index.html is
+// hash-pinned by the landing-copy review, so the script is loaded here rather than from a tag).
+const campaignLinksReady = new Promise((resolve) => {
+  const script = document.createElement("script");
+  script.src = "./campaign-links.js?v=20261002";
+  script.onload = resolve;
+  script.onerror = resolve;
+  document.head.appendChild(script);
+});
 
 const loadAvailability = () =>
   fetch("./availability.json", { cache: "no-store" })
