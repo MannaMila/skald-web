@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Privacy policy for Skald: Odyssey, an Odyssey reader app by MannaMila LLC">
+    <meta name="description" content="Privacy policy for Skald: the Greeks, an Odyssey reader app by MannaMila LLC">
     <link rel="canonical" href="https://skald.mannamila.com/privacy/">
-    <title>Skald: Odyssey — Privacy Policy | MannaMila LLC</title>
+    <title>Skald: the Greeks — Privacy Policy | MannaMila LLC</title>
     <script src="../retire-analytics.js" defer></script>
     <style>
       :root {
@@ -107,15 +107,15 @@
 <p>English version · <a href="/privacy/fr/">Version française</a></p>
     <main>
     <p class="eyebrow">MannaMila LLC</p>
-<h1>Skald: Odyssey — Privacy Policy</h1>
+<h1>Skald: the Greeks — Privacy Policy</h1>
 <p class="meta"><strong>Effective date:</strong> The date Skald: Odyssey 0.7.0 is first made available<br>
-<strong>Last updated:</strong> 2026-10-02<br>
+<strong>Last updated:</strong> 2026-11-05<br>
 <strong>Canonical URL:</strong> https://skald.mannamila.com/privacy/</p>
-<p>This policy applies to <strong>Skald: Odyssey 0.7.0 and later versions</strong>. Your version is
-shown at the bottom of About &amp; Privacy. See “Earlier versions” for the practices of
-prior releases.</p>
+<p>This policy applies to <strong>Skald: Odyssey 0.7.0 and later versions, including Skald: the Greeks from 0.8.0</strong>. Your version is shown at the bottom of About &amp; Privacy.
+See “Earlier versions” for the practices of prior releases.</p>
 <h2>Who we are</h2>
-<p>Skald: Odyssey is a reader for Homer's <em>Odyssey</em>, published by <strong>MannaMila LLC</strong>.
+<p>Skald: the Greeks is a reader for Homer's <em>Odyssey</em> and other ancient Greek works,
+published by <strong>MannaMila LLC</strong>.
 Contact <strong>privacy@mannamila.com</strong> about privacy or data requests, or
 <strong>support@mannamila.com</strong> for product support.</p>
 <h2>At a glance</h2>
@@ -125,7 +125,7 @@ Contact <strong>privacy@mannamila.com</strong> about privacy or data requests, o
   reading-history server. Platform backup and device transfer are described below.</li>
 <li>Skald uses Meta's SDK on Android to measure MannaMila's advertising. On iPhone
   and iPad, direct Meta measurement starts only if you allow Apple's tracking
-  permission after actively completing a free book. Where the device's region
+  permission after actively finishing a free Odyssey book or the free first entry of another work in the app's Library. Where the device's region
   setting or time zone, or on Android its mobile network or SIM, puts it in the
   European Union, Skald itself sends nothing to Meta on either platform and never
   asks. Skald displays no ads in the reader.</li>
@@ -163,9 +163,10 @@ be recovered from the same store and store account.</p>
 sends an install event for attribution. On Android, Skald turns the SDK's
 automatic event logging off, so it sends no app-open, app-close or
 session-length events; the iPhone and iPad section below says what that platform
-sends. After each successful load of a free
-Odyssey book, Skald can ask the SDK to log a <code>ViewedContent</code> event that can repeat
-and does not identify the book. Skald also asks the SDK to log checkout for an
+sends. After each successful load of a free Odyssey book or the first entry
+in another work shown in the app's Library, Skald can ask the SDK to log a
+<code>ViewedContent</code> event that can repeat and does not identify the book or Library
+entry. Skald also asks the SDK to log checkout for an
 unlock and a confirmed purchase after a matching locally initiated checkout has
 produced durable full access.</p>
 <p>Checkout and purchase events include the fixed product identifier
@@ -181,8 +182,9 @@ the fixed product identifier, offered price, currency and checkout time in local
 purchase-measurement bookkeeping, and consumes a matching eligibility record once.</p>
 <p>Skald does not send Meta a book identifier, translation, reading position,
 story passage, note history, store-account identifier, order ID, transaction ID,
-purchase token or payment method. A free-book event says only that free Odyssey
-content loaded successfully.</p>
+purchase token or payment method. A free-book event indicates that eligible
+free content loaded successfully; Skald does not attach a book, Library-entry,
+or work identifier to it. Meta's SDK can also use the identifiers described below.</p>
 <p>A call from Skald to Meta's SDK does not prove that Meta received, retained or
 attributed the event. Platform and Meta controls can delay, restrict or drop delivery.</p>
 <h3>Android</h3>
@@ -197,12 +199,14 @@ Audience APIs. These packaged permissions remain present even in a build in
 which Meta initialization is disabled.</p>
 <h3>iPhone and iPad</h3>
 <p>Skald asks for Apple's tracking permission only after you actively finish a free
-book: you started before its final paragraph, scrolled in the reader, and first
+book of the Odyssey or the free first entry of another work in the app's Library: you started before its final paragraph, scrolled in the
+reader, and first
 reached the true end in that current session. It does not ask on first launch,
 from historical or restored progress already at the end, when you only open or
-reposition the source or a translation, after a paid book, or without reader interaction.</p>
-<p>If you allow tracking, Skald may share future app opens, successful free-book
-openings, checkout, and confirmed-purchase events with Meta to measure MannaMila's
+reposition the source or a translation, after a paid Odyssey book or a paid Library entry, or without reader interaction.</p>
+<p>If you allow tracking, Skald may share future app opens, successful openings of
+a free Odyssey book or the first entry in another work shown in the app's Library,
+checkout, and confirmed-purchase events with Meta to measure MannaMila's
 ads. It does not share events from before you allow tracking. Meta's SDK uses an
 installation identifier for this measurement; advertiser-ID collection is off,
 and Skald does not send IDFA. Checkout and purchase events include the selected
@@ -262,8 +266,10 @@ for Meta's data controls, or email privacy@mannamila.com for help routing a priv
 or deletion request. We cannot promise that Meta can identify a record from the
 information available to Skald.</p>
 <h2>Purchases</h2>
-<p>Books I, II and IX are free. The standard and educational one-time unlocks both
-grant access to the remaining books. The educational option is chosen by
+<p>Books I, II and IX of the Odyssey and the first entry of each other work shown
+in the app's Library are free. A Library entry may be a book, hymn, or play. The
+standard and educational one-time unlocks both grant access to the remaining
+Odyssey books and Library entries. The educational option is chosen by
 self-attestation; Skald does not request student documents or proof of employment.</p>
 <p>Apple or Google processes payment and supplies a verified purchase or ownership
 result to the app. Skald saves a local entitlement before acknowledging or finishing
@@ -324,7 +330,7 @@ contact privacy@mannamila.com about a suspected privacy or security problem.</p>
 <p>Skald is intended for an adult or parent-led audience, with the adult as operator.
 It is not directed to children under 13 or enrolled in Google Play's Designed for
 Families program.</p>
-<p>Skald: Odyssey is offered on Google Play and the App Store in the United States,
+<p>Skald: the Greeks is offered on Google Play and the App Store in the United States,
 Canada, Australia, New Zealand and the 27 member states of the European Union.</p>
 <h2>If you are in the European Union</h2>
 <p>On a device that Skald treats as in the European Union, Skald itself sends nothing to
@@ -408,7 +414,7 @@ your rights against it are in
 <a href="https://www.facebook.com/legal/EU_data_transfer_addendum">data transfer addendum</a>.</p>
 
     <nav class="back-links" aria-label="Related pages">
-      <a href="../">&larr; Skald: Odyssey</a>
+      <a href="../">&larr; Skald: the Greeks</a>
       <a href="../updates-privacy/">Product updates privacy</a>
       <a href="../support/">Support</a>
     </nav>
