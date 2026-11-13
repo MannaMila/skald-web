@@ -446,7 +446,7 @@ test("the CTA is passage-specific and the free edition is live", () => {
   assert.doesNotMatch(html, /across ten translations/);
 });
 
-test("all 200 artworks have permanent index pages and social cards", async () => {
+test("all artworks have permanent index pages and social cards", async () => {
   const dataJson = html.match(/const data=(\{.*\});\nconst passages=/)?.[1];
   const routesScript = await readFile(
     new URL("./art-routes.js", import.meta.url),
@@ -490,4 +490,36 @@ test("all 200 artworks have permanent index pages and social cards", async () =>
   const sitemap = await readFile(new URL("./sitemap.xml", import.meta.url), "utf8");
   assert.ok(sitemap.includes(`<loc>${canonical}</loc>`));
   assert.equal((sitemap.match(/<url>/g) || []).length, artworks.length + 1);
+});
+
+test("Greek library keeps Iliad and Odyssey book navigation and artwork routes", async () => {
+  const data = JSON.parse(html.match(/const data=(\{.*\});\nconst passages=/s)?.[1]);
+  const passages = JSON.parse(html.match(/const passages=(\{.*\});\nconst SCREENS=/s)?.[1]);
+  const routesScript = await readFile(new URL("./art-routes.js", import.meta.url), "utf8");
+  const routes = JSON.parse(routesScript.match(/globalThis\.MOSAIC_ART_ROUTES=(\{.*\});/)?.[1]);
+  const library = data.artworks.filter((artwork) => artwork.work_id);
+  const odyssey = data.artworks.filter((artwork) => !artwork.work_id);
+  const iliadGroups = data.groups.filter((group) => group.work_id === "iliad");
+  const otherGroups = data.groups.filter((group) => group.work_id && group.work_id !== "iliad");
+
+  assert.equal(data.artworks.length, 550);
+  assert.equal(odyssey.length, 252);
+  assert.equal(library.length, 298);
+  assert.equal(data.groups.filter((group) => group.book).length, 24);
+  assert.equal(iliadGroups.length, 24);
+  assert.equal(otherGroups.length, 15);
+  assert.deepEqual(iliadGroups.map((group) => group.family_title),
+    ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XXI", "XXII", "XXIII", "XXIV"].map((n) => `Book ${n}`));
+  assert.deepEqual([...new Set(otherGroups.map((group) => group.phase))], [4, 5, 6, 7, 8]);
+  assert.equal(new Set(data.artworks.map((artwork) => artwork.id)).size, 550);
+  assert.equal(Object.keys(routes).length, 550);
+  assert.equal(library.filter((artwork) => !passages.anchors[artwork.id]?.text).length, 2);
+  assert.match(html, /lib-\$\{w\.work_id\}-\$\{w\.id\}/);
+  assert.match(html, /if\(!w\.work_id&&ART_SCREENS\.has\(w\.id\)\)/);
+
+  for (const artwork of library) {
+    await access(new URL(`./art/${routes[artwork.id]}/index.html`, import.meta.url));
+    await access(new URL(`./social/${artwork.id}.jpg`, import.meta.url));
+  }
+  assert.ok(routes["ngv-waterhouse-ulysses-sirens"]);
 });
