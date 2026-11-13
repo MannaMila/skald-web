@@ -21,8 +21,10 @@ test("shield map has all groups, unique pictures, and bounded pyramid tiles", as
   assert.equal(map.groups.filter((g) => g.work_id && g.work_id !== "iliad").length, 15);
   assert.equal(map.artworks.length, 550);
   assert.equal(new Set(map.artworks.map((a) => a.id)).size, 550);
-  assert.deepEqual(new Set(map.tiles.map((t) => t.level)), new Set([1, 2]));
-  assert.ok(map.tiles.every((t) => t.width * (t.level === 1 ? 2 / 3 : 1) <= 516.01));
+  assert.deepEqual(new Set(map.tiles.map((t) => t.level)), new Set([1, 2, 3]));
+  assert.ok(map.tiles.filter((t) => t.level < 3).every((t) => t.width * (t.level === 1 ? 2 / 3 : 1) <= 516.01));
+  assert.equal(map.tiles.filter((t) => t.level === 3).length, 550);
+  assert.ok(map.artworks.every((a) => Math.max(a.width, a.height) * 8 >= 700));
   await Promise.all(map.artworks.map((a) => access(new URL(`./assets/art/${a.id}.webp`, import.meta.url))));
   await Promise.all(map.tiles.map((t) => access(new URL(`./${t.path}`, import.meta.url))));
 });
