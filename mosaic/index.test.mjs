@@ -154,7 +154,6 @@ test("nested screenshot modal overlays both tracked store links", () => {
     html,
     /trackStoreClick\(link\.dataset\.store,shotArtwork,'reader_screenshot'\)/,
   );
-  assert.match(html, /track\('view_reader_screenshot'/);
   assert.match(
     html,
     /if\(e\.key==='Escape'\)\{\s*if\(shotModal\.classList\.contains\('open'\)\)closeScreenshotModal\(\);\s*else closeModal\(\);/,
@@ -339,15 +338,23 @@ test("desktop canvas recovers when a pointer release is missed", () => {
   );
 });
 
-test("GA4 is privacy-scoped and covers detail engagement", () => {
+test("GA4 is scoped to this page and gated outside Europe", () => {
   assert.match(html, /const GA_ID="G-K0V3J9TLBF"/);
   assert.match(html, /cookie_domain:'none'/);
   assert.match(html, /cookie_path:'\/mosaic\/'/);
   assert.match(html, /allow_google_signals:false/);
   assert.match(html, /allow_ad_personalization_signals:false/);
+  assert.match(html, /const ANALYTICS_ON=analyticsAllowed\(\)/);
+  assert.match(html, /if\(ANALYTICS_ON\)/);
+});
+
+// The current privacy page describes website analytics generally, but does not
+// disclose detail zoom/pan, screenshot-view, or share telemetry.
+test.skip("detail, screenshot, and share engagement events", () => {
   assert.match(html, /trackDetail\('zoom_artwork'/);
   assert.match(html, /trackDetail\('pan_artwork'/);
-  assert.match(html, /let detailEngagement=\{zoom:false,pan:false\}/);
+  assert.match(html, /track\('view_reader_screenshot'/);
+  assert.match(html, /track\('share_artwork'/);
 });
 
 test("every artwork click sends the exact artwork identity to GA4", () => {
@@ -416,7 +423,6 @@ test("artwork modal offers native sharing and copyable permanent links", () => {
   assert.match(html, /navigator\.share\(shareData\)/);
   assert.match(html, /function copyArtworkLink\(w,trigger/);
   assert.match(html, /navigator\.clipboard\.writeText\(url\)/);
-  assert.match(html, /track\('share_artwork'/);
 });
 
 test("store clicks preserve inbound campaign dimensions and artwork context", () => {
@@ -442,7 +448,7 @@ test("the CTA is passage-specific and the free edition is live", () => {
   assert.match(html, /Free download · Books I, II and IX included/);
   // The paid string stays in the ternary as the flag's other branch; it must no
   // longer be the one a reader sees.
-  assert.match(html, /availability:FREE_EDITION_LIVE\?'Free download/);
+  assert.match(html, /availability:w\.work_id\?'Free download · first Library entry included':FREE_EDITION_LIVE\?'Free download/);
   assert.doesNotMatch(html, /across ten translations/);
 });
 

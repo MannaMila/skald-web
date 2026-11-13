@@ -8,7 +8,7 @@ python="$skald_repo/.venv-ad-assets/bin/python"
 scratch=$(mktemp -d "${TMPDIR:-/tmp}/skald-mosaic-main.XXXXXX")
 cleanup() {
   git -C "$skald_repo" worktree remove --force "$scratch/repo" 2>/dev/null || true
-  rmdir "$scratch" 2>/dev/null || true
+  rm -rf "$scratch"
 }
 trap cleanup EXIT
 
@@ -21,11 +21,16 @@ SKALD_REPO_ROOT="$scratch/repo" "$python" ../../mosaic/viewer/build-passages.py
 "$python" build_viewer_v2.py
 
 viewer="$pkg/mosaic/viewer"
-rsync -a --delete "$viewer/tiles-v2/" "$site_root/mosaic/tiles-v2/"
-rsync -a "$viewer/screens/" "$site_root/mosaic/screens/"
-rsync -a "$viewer/fonts/" "$site_root/mosaic/fonts/"
-rsync -a "$viewer/assets/" "$site_root/mosaic/assets/"
-cp "$viewer/index-v2.html" "$site_root/mosaic/index.html"
-cd "$site_root"
-node mosaic/generate-art-pages.mjs --social --force-social
-node --test --test-name-pattern='Greek library' mosaic/index.test.mjs
+mkdir "$scratch/site"
+cp -a "$site_root/mosaic" "$scratch/site/mosaic"
+staged="$scratch/site/mosaic"
+rsync -a --delete "$viewer/tiles-v2/" "$staged/tiles-v2/"
+rsync -a "$viewer/screens/" "$staged/screens/"
+rsync -a "$viewer/fonts/" "$staged/fonts/"
+rsync -a "$viewer/assets/" "$staged/assets/"
+cp "$viewer/index-v2.html" "$staged/index.html"
+cp "$viewer/art-resolutions.js" "$staged/art-resolutions.js"
+node "$staged/generate-art-pages.mjs" --social --force-social
+node --test "$staged/index.test.mjs"
+# The site is untouched until every test passes. Keep this publish step last.
+rsync -a --delete "$staged/" "$site_root/mosaic/"
