@@ -30,7 +30,7 @@ rsync -a "$viewer/fonts/" "$staged/fonts/"
 rsync -a "$viewer/assets/" "$staged/assets/"
 cp "$viewer/index-v2.html" "$staged/index.html"
 cp "$viewer/art-resolutions.js" "$staged/art-resolutions.js"
-node "$staged/generate-art-pages.mjs" --social --force-social
+node "$staged/generate-art-pages.mjs" --social
 node --test "$staged/index.test.mjs"
 # The site is untouched until every test passes. Keep this publish step last.
 rsync -a --delete "$staged/" "$site_root/mosaic/"

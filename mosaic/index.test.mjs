@@ -13,6 +13,20 @@ const resolutionsScript = await readFile(
 );
 const inlineScript = html.match(/<script>([\s\S]*)<\/script>/)?.[1];
 
+test("shield map has all groups, unique pictures, and bounded pyramid tiles", async () => {
+  const map = JSON.parse(html.match(/const data=(\{[\s\S]*?\});\nconst passages=/)[1]);
+  assert.equal(map.arrangement, "shield");
+  assert.equal(map.groups.filter((g) => g.book).length, 24);
+  assert.equal(map.groups.filter((g) => g.work_id === "iliad").length, 24);
+  assert.equal(map.groups.filter((g) => g.work_id && g.work_id !== "iliad").length, 15);
+  assert.equal(map.artworks.length, 550);
+  assert.equal(new Set(map.artworks.map((a) => a.id)).size, 550);
+  assert.deepEqual(new Set(map.tiles.map((t) => t.level)), new Set([1, 2]));
+  assert.ok(map.tiles.every((t) => t.width * (t.level === 1 ? 2 / 3 : 1) <= 516.01));
+  await Promise.all(map.artworks.map((a) => access(new URL(`./assets/art/${a.id}.webp`, import.meta.url))));
+  await Promise.all(map.tiles.map((t) => access(new URL(`./${t.path}`, import.meta.url))));
+});
+
 test("inline viewer script parses", () => {
   assert.ok(inlineScript);
   assert.doesNotThrow(() => new Function(inlineScript));
@@ -192,7 +206,7 @@ test("modal zoom readout shows current scale and the useful-detail ceiling", () 
   assert.match(html, /function usefulDetailScale\(w,width,height\)/);
   assert.match(
     html,
-    /const deliveredPixels=Math\.min\(Math\.max\(w\.width,w\.height\),Math\.max\(source\[0\],source\[1\]\)\)/,
+    /const deliveredPixels=Math\.min\(1400,Math\.max\(source\[0\],source\[1\]\)\)/,
   );
   assert.match(
     html,
