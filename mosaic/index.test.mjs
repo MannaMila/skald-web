@@ -433,7 +433,7 @@ test("every artwork click sends the exact artwork identity to GA4", () => {
     /function trackArtworkView\(w\)/,
   );
   assert.match(html, /artwork_id:w\.id,artwork_title:w\.title,book:w\.book\|\|0/);
-  assert.match(html, /museum:w\.museum\|\|w\.source_provider,mosaic_index:w\.index/);
+  assert.match(html, /museum:museumName\(w\),mosaic_index:w\.index/);
   assert.match(html, /track\('view_artwork',params\)/);
 });
 
@@ -507,6 +507,87 @@ test("store clicks preserve inbound campaign dimensions and artwork context", ()
   assert.match(html, /apple\.searchParams\.set\('ct',appleCampaignToken\(campaign\)\)/);
   assert.match(html, /utm_source:campaign\.get\('utm_source'\)/);
   assert.match(html, /utm_content:campaign\.get\('utm_content'\)/);
+});
+
+test("every event names the work and section a picture or group belongs to", () => {
+  const source = html.match(/function workContext\(x\)\{[\s\S]*?\n\}/)?.[0];
+  assert.ok(source, "workContext is defined");
+  const workContext = new Function(`${source};return workContext`)();
+  assert.deepEqual(
+    { ...workContext({ book: 9, work_id: null, family_id: null, shelf: null }) },
+    { work_id: "odyssey", section_id: "", shelf: "epic" },
+  );
+  assert.deepEqual(
+    { ...workContext({ book: null, work_id: "iliad", family_id: "iliad-09-book-9", shelf: "epic" }) },
+    { work_id: "iliad", section_id: "iliad-09-book-9", shelf: "epic" },
+  );
+  assert.deepEqual(
+    { ...workContext({ book: null, work_id: "sappho", family_id: null, shelf: "lyric" }) },
+    { work_id: "sappho", section_id: "", shelf: "lyric" },
+  );
+  assert.deepEqual(
+    { ...workContext({ book: null, work_id: null }) },
+    { work_id: "museum-catalog", section_id: "", shelf: "" },
+  );
+  assert.match(html, /mosaic_index:w\.index,\.\.\.workContext\(w\),/);
+  assert.match(html, /store_surface:surface,\.\.\.workContext\(w\),/);
+  assert.match(
+    html,
+    /track\('select_book',\{book:g\.book\|\|0,book_roman:g\.book\?g\.roman:'',book_title:g\.title,\.\.\.workContext\(g\)\}\)/,
+  );
+  assert.match(
+    html,
+    /track\('click_source_record',\{artwork_id:w\.id,museum:museumName\(w\),url:a\.href,\.\.\.workContext\(w\)\}\)/,
+  );
+  const map = JSON.parse(html.match(/const data=(\{[\s\S]*?\});\nconst passages=/)[1]);
+  for (const artwork of map.artworks) {
+    const context = workContext(artwork);
+    assert.ok(context.work_id, `${artwork.id} has a work`);
+    if (artwork.work_id) assert.ok(context.section_id, `${artwork.id} has a section`);
+  }
+});
+
+test("events name each museum one way, never by a provider code", () => {
+  const source = html.match(/const PROVIDER_NAMES=\{[\s\S]*?\n\}/)?.[0];
+  assert.ok(source, "museumName is defined");
+  const museumName = new Function(`${source};return museumName`)();
+  const map = JSON.parse(html.match(/const data=(\{[\s\S]*?\});\nconst passages=/)[1]);
+  const names = new Set(map.artworks.map(museumName));
+  for (const name of names) assert.match(name, /^[A-Z].{5,}/, `"${name}" reads as a museum name`);
+  for (const code of ["met", "cma", "rijksmuseum", "commons", "Art Institute of Chicago"])
+    assert.ok(!names.has(code), `${code} is folded into its museum`);
+  assert.equal(museumName({ museum: "", source_provider: "met" }), "The Metropolitan Museum of Art");
+  assert.equal(museumName({ museum: "Musée du Louvre", source_provider: "Wikimedia Commons" }), "Musée du Louvre");
+  assert.match(html, /museum:museumName\(w\),store_surface:surface/);
+});
+
+test("App Store links carry the provider token and one campaign token for the mosaic", async () => {
+  const source = html.match(/function appleCampaignToken\(campaign\)\{[\s\S]*?\n\}/)?.[0];
+  assert.ok(source, "appleCampaignToken is defined");
+  const tokenFor = (inbound, campaign) =>
+    new Function("inboundCampaign", "UTM_CAMPAIGN", `${source};return appleCampaignToken`)(
+      new URLSearchParams(inbound),
+      "mosaic-2026",
+    )(new URLSearchParams(campaign));
+  const own =
+    "utm_source=odyssey-art-atlas&utm_medium=referral&utm_campaign=mosaic-2026&utm_content=lib-herodotus-met-1";
+  assert.equal(tokenFor("", own), "mosaic-2026");
+  assert.equal(
+    tokenFor(
+      "utm_source=linkedin&utm_campaign=linkedin-2026-10&utm_content=post1",
+      "utm_source=linkedin&utm_medium=social&utm_campaign=linkedin-2026-10&utm_content=post1",
+    ),
+    "linkedin-2026-10-post1",
+  );
+  const long = tokenFor(
+    "utm_source=newsletter&utm_campaign=a-very-long-campaign-name-for-the-autumn&utm_content=x",
+    "utm_source=newsletter&utm_campaign=a-very-long-campaign-name-for-the-autumn&utm_content=x",
+  );
+  assert.ok(long.length <= 40 && !/^-|-$/.test(long), long);
+  assert.match(html, /const APPLE_PROVIDER_TOKEN='129159233'/);
+  assert.match(html, /apple\.searchParams\.set\('pt',APPLE_PROVIDER_TOKEN\)/);
+  const siteLinks = await readFile(new URL("../campaign-links.js", import.meta.url), "utf8");
+  assert.match(siteLinks, /APPLE_PROVIDER_TOKEN = "129159233"/, "same provider token as the site");
 });
 
 test("the CTA is passage-specific and the free edition is live", () => {

@@ -1158,6 +1158,7 @@ const MUSEUM_SHOTS=new Set(["aic-111044", "aic-2104", "aic-268597", "aic-333", "
 const BOOK_SHOT_ART={"1": "rembrandthuis-lastman-odysseus-minerva", "2": "rijks-tilliard-athena-protects-telemachus", "3": "man-meleager-nestor-sacrifice", "4": "rijks-tilliard-athena-protects-telemachus", "5": "odyssey-source-brueghel_calypso", "6": "met-247898", "7": "pinakothek-lastman-odysseus-nausicaa", "8": "odyssey-source-hayez_alcinous_court", "9": "aic-110760", "10": "tesse-moillon-aeolus-winds", "11": "bnf-dolon-tiresias-krater", "12": "odyssey-source-draper_sirens", "13": "cooperhewitt-giani-return-ulysses", "14": "malaspina-bottani-odysseus-beggar", "16": "rembrandthuis-lastman-odysseus-minerva", "17": "odyssey-source-penelope", "18": "malaspina-bottani-odysseus-beggar", "19": "malaspina-bottani-odysseus-beggar", "20": "rembrandthuis-lastman-odysseus-minerva", "21": "bm-cromek-penelope-bow", "22": "malaspina-bottani-odysseus-beggar", "23": "odyssey-source-penelope", "24": "cooperhewitt-giani-return-ulysses"};
 const GA_ID="G-K0V3J9TLBF";
 const APP_STORE_URL='https://apps.apple.com/app/id6790579937';
+const APPLE_PROVIDER_TOKEN='129159233';
 const PLAY_PACKAGE='com.mannamila.skald';
 const UTM_SOURCE='odyssey-art-atlas',UTM_CAMPAIGN='mosaic-2026';
 const FREE_EDITION_LIVE=true;
@@ -1220,9 +1221,25 @@ if(ANALYTICS_ON){
 }
 function track(name,params){if(ANALYTICS_ON)gtag('event',name,params)}
 const actionContext={sequence:0,artworksViewed:0,storeClicks:0,lastArtwork:null};
+/* Which work and section a picture or group belongs to. `book` on the events
+   stays the Odyssey book number (0 elsewhere), as earlier reports read it. */
+function workContext(x){
+ return{work_id:x.work_id||(x.book?'odyssey':'museum-catalog'),
+  section_id:x.family_id||'',shelf:x.shelf||(x.book?'epic':'')};
+}
+/* Library pictures carry a provider code where Odyssey pictures carry the
+   museum's name; the events name each museum one way. */
+const PROVIDER_NAMES={met:'The Metropolitan Museum of Art',rijksmuseum:'Rijksmuseum',
+ cma:'Cleveland Museum of Art',commons:'Wikimedia Commons',
+ 'Art Institute of Chicago':'The Art Institute of Chicago',
+ 'Wikimedia Commons (PD-Art)':'Wikimedia Commons','Wikimedia Commons (PD scan)':'Wikimedia Commons'};
+function museumName(w){
+ const name=w.museum||w.source_provider||'';
+ return PROVIDER_NAMES[name]||name;
+}
 function trackArtworkView(w){
  const params={artwork_id:w.id,artwork_title:w.title,book:w.book||0,
-  museum:w.museum||w.source_provider,mosaic_index:w.index,
+  museum:museumName(w),mosaic_index:w.index,...workContext(w),
   interaction_sequence:++actionContext.sequence,
   store_clicks_before_event:actionContext.storeClicks,
   store_timing:actionContext.storeClicks>0?'after_store_click':'before_store_click'};
@@ -1233,7 +1250,7 @@ function trackStoreClick(store,w,surface='artwork_modal'){
  const last=actionContext.lastArtwork;
  const campaign=campaignForArtwork(w);
  const params={store,artwork_id:w.id,artwork_title:w.title,book:w.book||0,
-  museum:w.museum||w.source_provider,store_surface:surface,
+  museum:museumName(w),store_surface:surface,...workContext(w),
   utm_id:campaign.get('utm_id')||'',utm_source:campaign.get('utm_source'),
   utm_medium:campaign.get('utm_medium'),utm_campaign:campaign.get('utm_campaign'),
   utm_content:campaign.get('utm_content'),utm_term:campaign.get('utm_term')||'',
@@ -1254,13 +1271,20 @@ function campaignForArtwork(w){
  for(const [key,value] of inboundCampaign)campaign.set(key,value);
  return campaign;
 }
+/* App Store Connect counts a campaign only when the link carries the provider
+   token, and shows it only after several installs, so the mosaic uses one
+   token, not one per picture. A visitor who arrived on a campaign link keeps
+   that campaign and its content, as in the site's /campaign-links.js. */
 function appleCampaignToken(campaign){
- const parts=['utm_source','utm_campaign','utm_content'].map(key=>campaign.get(key)).filter(Boolean);
- return parts.join('-').toLowerCase().replace(/[^a-z0-9_-]+/g,'-').replace(/^-|-$/g,'').slice(0,30);
+ let token=campaign.get('utm_campaign')||campaign.get('utm_source')||UTM_CAMPAIGN;
+ const content=inboundCampaign.get('utm_content');
+ if(content)token+='-'+content;
+ return token.replace(/[^A-Za-z0-9_.-]+/g,'-').slice(0,40).replace(/^-+|-+$/g,'');
 }
 function storeLinks(w){
  const campaign=campaignForArtwork(w);
  const apple=new URL(APP_STORE_URL),play=new URL('https://play.google.com/store/apps/details');
+ apple.searchParams.set('pt',APPLE_PROVIDER_TOKEN);
  apple.searchParams.set('ct',appleCampaignToken(campaign));apple.searchParams.set('mt','8');
  for(const key of INBOUND_CAMPAIGN_KEYS){const value=campaign.get(key);if(value)apple.searchParams.set(key,value)}
  play.searchParams.set('id',PLAY_PACKAGE);
@@ -1440,7 +1464,7 @@ for(const category of categories){
    choice.onclick=()=>{
     setActiveGroup(index);flyToGroup(g);closeNav();
     if(g.book){updateExplorationUrl({book:g.book});resetMetadata()}
-    track('select_book',{book:g.book||0,book_roman:g.roman,book_title:g.title,work_id:g.work_id||''});
+    track('select_book',{book:g.book||0,book_roman:g.book?g.roman:'',book_title:g.title,...workContext(g)});
     b.focus();
    };
    navPanel.appendChild(choice);
@@ -1795,7 +1819,7 @@ function openModal(w,{historyMode='push'}={}){
  infoPane.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
   const store=a.dataset.store;
   if(store)trackStoreClick(store,w);
-  else track('click_source_record',{artwork_id:w.id,museum:w.museum||w.source_provider,url:a.href});
+  else track('click_source_record',{artwork_id:w.id,museum:museumName(w),url:a.href,...workContext(w)});
  }));
  infoPane.querySelectorAll('[data-reader-shot]').forEach(trigger=>
   trigger.addEventListener('click',()=>openScreenshotModal(trigger,w,shot,bookLabel)));
