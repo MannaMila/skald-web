@@ -16,7 +16,7 @@ const inlineScript = html.match(/<script>([\s\S]*)<\/script>/)?.[1];
 test("timeline map has all groups in chronological reading order, unique pictures, and bounded pyramid tiles", async () => {
   const map = JSON.parse(html.match(/const data=(\{[\s\S]*?\});\nconst passages=/)[1]);
   assert.equal(map.arrangement, "timeline");
-  assert.ok(map.width / map.height >= 1 && map.width / map.height <= 1.5, "canvas is wider than tall");
+  assert.ok(map.width / map.height >= 1.6 && map.width / map.height <= 1.8, "canvas aspect is 1.6 to 1.8");
   assert.equal(map.groups.filter((g) => g.book).length, 24);
   assert.equal(map.groups.filter((g) => g.work_id === "iliad").length, 24);
   assert.equal(map.groups.filter((g) => g.work_id && g.work_id !== "iliad").length, 15);
@@ -51,7 +51,8 @@ test("timeline reads like a page of text: groups in the chronological order, no 
   assert.deepEqual(iliadBooks, Array.from({ length: 24 }, (_, i) => i + 1));
   assert.deepEqual(map.groups.map(id), rowsOf.map(id), "map.groups is stored in reading order");
   assert.equal(sequence.length, 24);
-  assert.deepEqual([0, 1, 2].map((r) => map.groups.filter((g) => g.work_id === "iliad" && g.row === r).length), [8, 8, 8]);
+  const unit = map.scale;
+  assert.deepEqual([0, 1].map((r) => map.groups.filter((g) => g.work_id === "iliad" && g.row === r).length), [12, 12]);
   // Homer ends cleanly: Odyssey XXIV closes its row and Hesiod starts the next.
   const last = rowsOf.filter((g) => g.book).at(-1);
   const hesiod = map.groups.find((g) => g.work_id === "hesiod");
@@ -64,7 +65,7 @@ test("timeline reads like a page of text: groups in the chronological order, no 
     for (let j = i + 1; j < map.artworks.length; j++)
       assert.ok(apart(cell(map.artworks[i]), cell(map.artworks[j]), 0), "pictures never overlap");
   const frames = map.groups.map(cell);
-  frames.forEach((p, i) => frames.slice(i + 1).forEach((q) => assert.ok(apart(p, q, 3 * 5 / 2), "clusters keep air between them")));
+  frames.forEach((p, i) => frames.slice(i + 1).forEach((q) => assert.ok(apart(p, q, 9 * unit), "clusters keep air between them")));
   for (const a of map.artworks) {
     const g = map.groups.find((g) => (a.work_id ? g.work_id === a.work_id && (a.work_id !== "iliad" || g.family_id === a.family_id) : a.book ? g.book === a.book && !g.work_id : !g.book && !g.work_id));
     const f = cell(g);
@@ -78,7 +79,7 @@ test("timeline reads like a page of text: groups in the chronological order, no 
       const p = rowGroups[i];
       (work(p) === work(g) ? bookGaps : workGaps).push(g.x - (p.x + p.width));
     });
-  assert.ok(Math.min(...bookGaps) >= 1.5 * 3 * 6, "book gaps are at least 1.5x the gap inside a cluster");
+  assert.ok(Math.min(...bookGaps) >= 1.5 * 6 * unit, "book gaps are at least 1.5x the gap inside a cluster");
   assert.ok(Math.min(...workGaps) > 2 * Math.max(...bookGaps) - 1, "works are clearly further apart than books");
 });
 
