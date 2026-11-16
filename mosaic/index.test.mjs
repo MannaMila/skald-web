@@ -13,12 +13,14 @@ const resolutionsScript = await readFile(
 );
 const inlineScript = html.match(/<script>([\s\S]*)<\/script>/)?.[1];
 
-test("shield map has all groups, unique pictures, and bounded pyramid tiles", async () => {
+test("timeline map has all groups in chronological reading order, unique pictures, and bounded pyramid tiles", async () => {
   const map = JSON.parse(html.match(/const data=(\{[\s\S]*?\});\nconst passages=/)[1]);
-  assert.equal(map.arrangement, "shield");
+  assert.equal(map.arrangement, "timeline");
+  assert.ok(map.width / map.height >= 1 && map.width / map.height <= 1.5, "canvas is wider than tall");
   assert.equal(map.groups.filter((g) => g.book).length, 24);
   assert.equal(map.groups.filter((g) => g.work_id === "iliad").length, 24);
   assert.equal(map.groups.filter((g) => g.work_id && g.work_id !== "iliad").length, 15);
+  assert.equal(map.groups.filter((g) => !g.book && !g.work_id).length, 1);
   assert.equal(map.artworks.length, 550);
   assert.equal(new Set(map.artworks.map((a) => a.id)).size, 550);
   assert.deepEqual(new Set(map.tiles.map((t) => t.level)), new Set([1, 2, 3]));
@@ -27,6 +29,57 @@ test("shield map has all groups, unique pictures, and bounded pyramid tiles", as
   assert.ok(map.artworks.every((a) => Math.max(a.width, a.height) * 8 >= 700));
   await Promise.all(map.artworks.map((a) => access(new URL(`./assets/art/${a.id}.webp`, import.meta.url))));
   await Promise.all(map.tiles.map((t) => access(new URL(`./${t.path}`, import.meta.url))));
+});
+
+test("timeline reads like a page of text: groups in the chronological order, no overlaps, clear gaps", () => {
+  const map = JSON.parse(html.match(/const data=(\{[\s\S]*?\});\nconst passages=/)[1]);
+  const id = (g) => (g.book ? `odyssey-${g.book}` : g.work_id === "iliad" ? `iliad-${g.family_id}` : g.work_id || "catalog");
+  const sequence = [
+    ...map.groups.filter((g) => g.work_id === "iliad").sort((a, b) => a.x - b.x || a.y - b.y),
+  ];
+  const order = ["iliad", "odyssey", "hesiod", "homeric-hymns", "sappho", "aeschylus", "sophocles",
+    "herodotus", "euripides", "thucydides", "plato", "plato-republic", "aristotle-ethics",
+    "aristotle-politics", "aristotle-rhetoric", "aristotle-poetics", "epicurus", "catalog"];
+  const work = (g) => (g.book ? "odyssey" : g.work_id || "catalog");
+  // Reading order: row, then left edge.
+  const rowsOf = [...map.groups].sort((a, b) => a.row - b.row || a.x - b.x);
+  const seen = [];
+  for (const g of rowsOf) if (seen.at(-1) !== work(g)) seen.push(work(g));
+  assert.deepEqual(seen, order);
+  assert.deepEqual(rowsOf.filter((g) => g.book).map((g) => g.book), Array.from({ length: 24 }, (_, i) => i + 1));
+  const iliadBooks = rowsOf.filter((g) => g.work_id === "iliad").map((g) => Number(g.family_id.match(/book-(\d+)$/)[1]));
+  assert.deepEqual(iliadBooks, Array.from({ length: 24 }, (_, i) => i + 1));
+  assert.deepEqual(map.groups.map(id), rowsOf.map(id), "map.groups is stored in reading order");
+  assert.equal(sequence.length, 24);
+  assert.deepEqual([0, 1, 2].map((r) => map.groups.filter((g) => g.work_id === "iliad" && g.row === r).length), [8, 8, 8]);
+  // Homer ends cleanly: Odyssey XXIV closes its row and Hesiod starts the next.
+  const last = rowsOf.filter((g) => g.book).at(-1);
+  const hesiod = map.groups.find((g) => g.work_id === "hesiod");
+  assert.ok(map.groups.filter((g) => g.row === last.row).every((g) => g.x <= last.x));
+  assert.ok(hesiod.row > last.row);
+  assert.ok(map.groups.filter((g) => g.row === hesiod.row).every((g) => g.x >= hesiod.x));
+  const cell = (a) => [a.x, a.y, a.x + a.width, a.y + a.height];
+  const apart = (p, q, gap) => p[0] >= q[2] + gap || q[0] >= p[2] + gap || p[1] >= q[3] + gap || q[1] >= p[3] + gap;
+  for (let i = 0; i < map.artworks.length; i++)
+    for (let j = i + 1; j < map.artworks.length; j++)
+      assert.ok(apart(cell(map.artworks[i]), cell(map.artworks[j]), 0), "pictures never overlap");
+  const frames = map.groups.map(cell);
+  frames.forEach((p, i) => frames.slice(i + 1).forEach((q) => assert.ok(apart(p, q, 3 * 5 / 2), "clusters keep air between them")));
+  for (const a of map.artworks) {
+    const g = map.groups.find((g) => (a.work_id ? g.work_id === a.work_id && (a.work_id !== "iliad" || g.family_id === a.family_id) : a.book ? g.book === a.book && !g.work_id : !g.book && !g.work_id));
+    const f = cell(g);
+    assert.ok(a.x >= f[0] && a.y >= f[1] && a.x + a.width <= f[2] && a.y + a.height <= f[3], "picture lies inside its group frame");
+  }
+  const works = rowsOf.filter((g) => g.row === rowsOf[0].row);
+  assert.equal(works[0].family_id.match(/book-(\d+)$/)[1], "1");
+  const bookGaps = [], workGaps = [];
+  for (const [, rowGroups] of Map.groupBy(rowsOf, (g) => g.row))
+    rowGroups.slice(1).forEach((g, i) => {
+      const p = rowGroups[i];
+      (work(p) === work(g) ? bookGaps : workGaps).push(g.x - (p.x + p.width));
+    });
+  assert.ok(Math.min(...bookGaps) >= 1.5 * 3 * 6, "book gaps are at least 1.5x the gap inside a cluster");
+  assert.ok(Math.min(...workGaps) > 2 * Math.max(...bookGaps) - 1, "works are clearly further apart than books");
 });
 
 test("inline viewer script parses", () => {
@@ -532,7 +585,7 @@ test("Greek library keeps Iliad and Odyssey book navigation and artwork routes",
   assert.equal(otherGroups.length, 15);
   assert.deepEqual(iliadGroups.map((group) => group.family_title),
     ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XXI", "XXII", "XXIII", "XXIV"].map((n) => `Book ${n}`));
-  assert.deepEqual([...new Set(otherGroups.map((group) => group.phase))], [4, 5, 6, 7, 8]);
+  assert.deepEqual([...new Set(otherGroups.map((group) => group.phase))].sort(), [4, 5, 6, 7, 8]);
   assert.equal(new Set(data.artworks.map((artwork) => artwork.id)).size, 550);
   assert.equal(Object.keys(routes).length, 550);
   assert.equal(library.filter((artwork) => !passages.anchors[artwork.id]?.text).length, 2);
