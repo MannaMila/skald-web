@@ -13,6 +13,76 @@ const resolutionsScript = await readFile(
 );
 const inlineScript = html.match(/<script>([\s\S]*)<\/script>/)?.[1];
 
+test("timeline map has all groups in chronological reading order, unique pictures, and bounded pyramid tiles", async () => {
+  const map = JSON.parse(html.match(/const data=(\{[\s\S]*?\});\nconst passages=/)[1]);
+  assert.equal(map.arrangement, "timeline");
+  assert.ok(map.width / map.height >= 1.6 && map.width / map.height <= 1.8, "canvas aspect is 1.6 to 1.8");
+  assert.equal(map.groups.filter((g) => g.book).length, 24);
+  assert.equal(map.groups.filter((g) => g.work_id === "iliad").length, 24);
+  assert.equal(map.groups.filter((g) => g.work_id && g.work_id !== "iliad").length, 15);
+  assert.equal(map.groups.filter((g) => !g.book && !g.work_id).length, 1);
+  assert.equal(map.artworks.length, 550);
+  assert.equal(new Set(map.artworks.map((a) => a.id)).size, 550);
+  assert.deepEqual(new Set(map.tiles.map((t) => t.level)), new Set([1, 2, 3]));
+  assert.ok(map.tiles.filter((t) => t.level < 3).every((t) => t.width * (t.level === 1 ? 2 / 3 : 1) <= 516.01));
+  assert.equal(map.tiles.filter((t) => t.level === 3).length, 550);
+  assert.ok(map.artworks.every((a) => Math.max(a.width, a.height) * 8 >= 700));
+  await Promise.all(map.artworks.map((a) => access(new URL(`./assets/art/${a.id}.webp`, import.meta.url))));
+  await Promise.all(map.tiles.map((t) => access(new URL(`./${t.path}`, import.meta.url))));
+});
+
+test("timeline reads like a page of text: groups in the chronological order, no overlaps, clear gaps", () => {
+  const map = JSON.parse(html.match(/const data=(\{[\s\S]*?\});\nconst passages=/)[1]);
+  const id = (g) => (g.book ? `odyssey-${g.book}` : g.work_id === "iliad" ? `iliad-${g.family_id}` : g.work_id || "catalog");
+  const sequence = [
+    ...map.groups.filter((g) => g.work_id === "iliad").sort((a, b) => a.x - b.x || a.y - b.y),
+  ];
+  const order = ["iliad", "odyssey", "hesiod", "homeric-hymns", "sappho", "aeschylus", "sophocles",
+    "herodotus", "euripides", "thucydides", "plato", "plato-republic", "aristotle-ethics",
+    "aristotle-politics", "aristotle-rhetoric", "aristotle-poetics", "epicurus", "catalog"];
+  const work = (g) => (g.book ? "odyssey" : g.work_id || "catalog");
+  // Reading order: row, then left edge.
+  const rowsOf = [...map.groups].sort((a, b) => a.row - b.row || a.x - b.x);
+  const seen = [];
+  for (const g of rowsOf) if (seen.at(-1) !== work(g)) seen.push(work(g));
+  assert.deepEqual(seen, order);
+  assert.deepEqual(rowsOf.filter((g) => g.book).map((g) => g.book), Array.from({ length: 24 }, (_, i) => i + 1));
+  const iliadBooks = rowsOf.filter((g) => g.work_id === "iliad").map((g) => Number(g.family_id.match(/book-(\d+)$/)[1]));
+  assert.deepEqual(iliadBooks, Array.from({ length: 24 }, (_, i) => i + 1));
+  assert.deepEqual(map.groups.map(id), rowsOf.map(id), "map.groups is stored in reading order");
+  assert.equal(sequence.length, 24);
+  const unit = map.scale;
+  assert.deepEqual([0, 1].map((r) => map.groups.filter((g) => g.work_id === "iliad" && g.row === r).length), [12, 12]);
+  // Homer ends cleanly: Odyssey XXIV closes its row and Hesiod starts the next.
+  const last = rowsOf.filter((g) => g.book).at(-1);
+  const hesiod = map.groups.find((g) => g.work_id === "hesiod");
+  assert.ok(map.groups.filter((g) => g.row === last.row).every((g) => g.x <= last.x));
+  assert.ok(hesiod.row > last.row);
+  assert.ok(map.groups.filter((g) => g.row === hesiod.row).every((g) => g.x >= hesiod.x));
+  const cell = (a) => [a.x, a.y, a.x + a.width, a.y + a.height];
+  const apart = (p, q, gap) => p[0] >= q[2] + gap || q[0] >= p[2] + gap || p[1] >= q[3] + gap || q[1] >= p[3] + gap;
+  for (let i = 0; i < map.artworks.length; i++)
+    for (let j = i + 1; j < map.artworks.length; j++)
+      assert.ok(apart(cell(map.artworks[i]), cell(map.artworks[j]), 0), "pictures never overlap");
+  const frames = map.groups.map(cell);
+  frames.forEach((p, i) => frames.slice(i + 1).forEach((q) => assert.ok(apart(p, q, 9 * unit), "clusters keep air between them")));
+  for (const a of map.artworks) {
+    const g = map.groups.find((g) => (a.work_id ? g.work_id === a.work_id && (a.work_id !== "iliad" || g.family_id === a.family_id) : a.book ? g.book === a.book && !g.work_id : !g.book && !g.work_id));
+    const f = cell(g);
+    assert.ok(a.x >= f[0] && a.y >= f[1] && a.x + a.width <= f[2] && a.y + a.height <= f[3], "picture lies inside its group frame");
+  }
+  const works = rowsOf.filter((g) => g.row === rowsOf[0].row);
+  assert.equal(works[0].family_id.match(/book-(\d+)$/)[1], "1");
+  const bookGaps = [], workGaps = [];
+  for (const [, rowGroups] of Map.groupBy(rowsOf, (g) => g.row))
+    rowGroups.slice(1).forEach((g, i) => {
+      const p = rowGroups[i];
+      (work(p) === work(g) ? bookGaps : workGaps).push(g.x - (p.x + p.width));
+    });
+  assert.ok(Math.min(...bookGaps) >= 1.5 * 6 * unit, "book gaps are at least 1.5x the gap inside a cluster");
+  assert.ok(Math.min(...workGaps) > 2 * Math.max(...bookGaps) - 1, "works are clearly further apart than books");
+});
+
 test("inline viewer script parses", () => {
   assert.ok(inlineScript);
   assert.doesNotThrow(() => new Function(inlineScript));
@@ -154,7 +224,6 @@ test("nested screenshot modal overlays both tracked store links", () => {
     html,
     /trackStoreClick\(link\.dataset\.store,shotArtwork,'reader_screenshot'\)/,
   );
-  assert.match(html, /track\('view_reader_screenshot'/);
   assert.match(
     html,
     /if\(e\.key==='Escape'\)\{\s*if\(shotModal\.classList\.contains\('open'\)\)closeScreenshotModal\(\);\s*else closeModal\(\);/,
@@ -193,7 +262,7 @@ test("modal zoom readout shows current scale and the useful-detail ceiling", () 
   assert.match(html, /function usefulDetailScale\(w,width,height\)/);
   assert.match(
     html,
-    /const deliveredPixels=Math\.min\(Math\.max\(w\.width,w\.height\),Math\.max\(source\[0\],source\[1\]\)\)/,
+    /const deliveredPixels=Math\.min\(1400,Math\.max\(source\[0\],source\[1\]\)\)/,
   );
   assert.match(
     html,
@@ -339,15 +408,23 @@ test("desktop canvas recovers when a pointer release is missed", () => {
   );
 });
 
-test("GA4 is privacy-scoped and covers detail engagement", () => {
+test("GA4 is scoped to this page and gated outside Europe", () => {
   assert.match(html, /const GA_ID="G-K0V3J9TLBF"/);
   assert.match(html, /cookie_domain:'none'/);
   assert.match(html, /cookie_path:'\/mosaic\/'/);
   assert.match(html, /allow_google_signals:false/);
   assert.match(html, /allow_ad_personalization_signals:false/);
+  assert.match(html, /const ANALYTICS_ON=analyticsAllowed\(\)/);
+  assert.match(html, /if\(ANALYTICS_ON\)/);
+});
+
+// The current privacy page describes website analytics generally, but does not
+// disclose detail zoom/pan, screenshot-view, or share telemetry.
+test.skip("detail, screenshot, and share engagement events", () => {
   assert.match(html, /trackDetail\('zoom_artwork'/);
   assert.match(html, /trackDetail\('pan_artwork'/);
-  assert.match(html, /let detailEngagement=\{zoom:false,pan:false\}/);
+  assert.match(html, /track\('view_reader_screenshot'/);
+  assert.match(html, /track\('share_artwork'/);
 });
 
 test("every artwork click sends the exact artwork identity to GA4", () => {
@@ -356,7 +433,7 @@ test("every artwork click sends the exact artwork identity to GA4", () => {
     /function trackArtworkView\(w\)/,
   );
   assert.match(html, /artwork_id:w\.id,artwork_title:w\.title,book:w\.book\|\|0/);
-  assert.match(html, /museum:w\.museum\|\|w\.source_provider,mosaic_index:w\.index/);
+  assert.match(html, /museum:museumName\(w\),mosaic_index:w\.index/);
   assert.match(html, /track\('view_artwork',params\)/);
 });
 
@@ -416,7 +493,6 @@ test("artwork modal offers native sharing and copyable permanent links", () => {
   assert.match(html, /navigator\.share\(shareData\)/);
   assert.match(html, /function copyArtworkLink\(w,trigger/);
   assert.match(html, /navigator\.clipboard\.writeText\(url\)/);
-  assert.match(html, /track\('share_artwork'/);
 });
 
 test("store clicks preserve inbound campaign dimensions and artwork context", () => {
@@ -433,6 +509,87 @@ test("store clicks preserve inbound campaign dimensions and artwork context", ()
   assert.match(html, /utm_content:campaign\.get\('utm_content'\)/);
 });
 
+test("every event names the work and section a picture or group belongs to", () => {
+  const source = html.match(/function workContext\(x\)\{[\s\S]*?\n\}/)?.[0];
+  assert.ok(source, "workContext is defined");
+  const workContext = new Function(`${source};return workContext`)();
+  assert.deepEqual(
+    { ...workContext({ book: 9, work_id: null, family_id: null, shelf: null }) },
+    { work_id: "odyssey", section_id: "", shelf: "epic" },
+  );
+  assert.deepEqual(
+    { ...workContext({ book: null, work_id: "iliad", family_id: "iliad-09-book-9", shelf: "epic" }) },
+    { work_id: "iliad", section_id: "iliad-09-book-9", shelf: "epic" },
+  );
+  assert.deepEqual(
+    { ...workContext({ book: null, work_id: "sappho", family_id: null, shelf: "lyric" }) },
+    { work_id: "sappho", section_id: "", shelf: "lyric" },
+  );
+  assert.deepEqual(
+    { ...workContext({ book: null, work_id: null }) },
+    { work_id: "museum-catalog", section_id: "", shelf: "" },
+  );
+  assert.match(html, /mosaic_index:w\.index,\.\.\.workContext\(w\),/);
+  assert.match(html, /store_surface:surface,\.\.\.workContext\(w\),/);
+  assert.match(
+    html,
+    /track\('select_book',\{book:g\.book\|\|0,book_roman:g\.book\?g\.roman:'',book_title:g\.title,\.\.\.workContext\(g\)\}\)/,
+  );
+  assert.match(
+    html,
+    /track\('click_source_record',\{artwork_id:w\.id,museum:museumName\(w\),url:a\.href,\.\.\.workContext\(w\)\}\)/,
+  );
+  const map = JSON.parse(html.match(/const data=(\{[\s\S]*?\});\nconst passages=/)[1]);
+  for (const artwork of map.artworks) {
+    const context = workContext(artwork);
+    assert.ok(context.work_id, `${artwork.id} has a work`);
+    if (artwork.work_id) assert.ok(context.section_id, `${artwork.id} has a section`);
+  }
+});
+
+test("events name each museum one way, never by a provider code", () => {
+  const source = html.match(/const PROVIDER_NAMES=\{[\s\S]*?\n\}/)?.[0];
+  assert.ok(source, "museumName is defined");
+  const museumName = new Function(`${source};return museumName`)();
+  const map = JSON.parse(html.match(/const data=(\{[\s\S]*?\});\nconst passages=/)[1]);
+  const names = new Set(map.artworks.map(museumName));
+  for (const name of names) assert.match(name, /^[A-Z].{5,}/, `"${name}" reads as a museum name`);
+  for (const code of ["met", "cma", "rijksmuseum", "commons", "Art Institute of Chicago"])
+    assert.ok(!names.has(code), `${code} is folded into its museum`);
+  assert.equal(museumName({ museum: "", source_provider: "met" }), "The Metropolitan Museum of Art");
+  assert.equal(museumName({ museum: "Musée du Louvre", source_provider: "Wikimedia Commons" }), "Musée du Louvre");
+  assert.match(html, /museum:museumName\(w\),store_surface:surface/);
+});
+
+test("App Store links carry the provider token and one campaign token for the mosaic", async () => {
+  const source = html.match(/function appleCampaignToken\(campaign\)\{[\s\S]*?\n\}/)?.[0];
+  assert.ok(source, "appleCampaignToken is defined");
+  const tokenFor = (inbound, campaign) =>
+    new Function("inboundCampaign", "UTM_CAMPAIGN", `${source};return appleCampaignToken`)(
+      new URLSearchParams(inbound),
+      "mosaic-2026",
+    )(new URLSearchParams(campaign));
+  const own =
+    "utm_source=odyssey-art-atlas&utm_medium=referral&utm_campaign=mosaic-2026&utm_content=lib-herodotus-met-1";
+  assert.equal(tokenFor("", own), "mosaic-2026");
+  assert.equal(
+    tokenFor(
+      "utm_source=linkedin&utm_campaign=linkedin-2026-10&utm_content=post1",
+      "utm_source=linkedin&utm_medium=social&utm_campaign=linkedin-2026-10&utm_content=post1",
+    ),
+    "linkedin-2026-10-post1",
+  );
+  const long = tokenFor(
+    "utm_source=newsletter&utm_campaign=a-very-long-campaign-name-for-the-autumn&utm_content=x",
+    "utm_source=newsletter&utm_campaign=a-very-long-campaign-name-for-the-autumn&utm_content=x",
+  );
+  assert.ok(long.length <= 40 && !/^-|-$/.test(long), long);
+  assert.match(html, /const APPLE_PROVIDER_TOKEN='129159233'/);
+  assert.match(html, /apple\.searchParams\.set\('pt',APPLE_PROVIDER_TOKEN\)/);
+  const siteLinks = await readFile(new URL("../campaign-links.js", import.meta.url), "utf8");
+  assert.match(siteLinks, /APPLE_PROVIDER_TOKEN = "129159233"/, "same provider token as the site");
+});
+
 test("the CTA is passage-specific and the free edition is live", () => {
   assert.match(html, /const FREE_EDITION_LIVE=true/);
   assert.match(html, /const FREE_BOOKS=new Set\(\[1,2,9\]\)/);
@@ -442,11 +599,11 @@ test("the CTA is passage-specific and the free edition is live", () => {
   assert.match(html, /Free download · Books I, II and IX included/);
   // The paid string stays in the ternary as the flag's other branch; it must no
   // longer be the one a reader sees.
-  assert.match(html, /availability:FREE_EDITION_LIVE\?'Free download/);
+  assert.match(html, /availability:w\.work_id\?'Free download · first Library entry included':FREE_EDITION_LIVE\?'Free download/);
   assert.doesNotMatch(html, /across ten translations/);
 });
 
-test("all 200 artworks have permanent index pages and social cards", async () => {
+test("all artworks have permanent index pages and social cards", async () => {
   const dataJson = html.match(/const data=(\{.*\});\nconst passages=/)?.[1];
   const routesScript = await readFile(
     new URL("./art-routes.js", import.meta.url),
@@ -490,4 +647,36 @@ test("all 200 artworks have permanent index pages and social cards", async () =>
   const sitemap = await readFile(new URL("./sitemap.xml", import.meta.url), "utf8");
   assert.ok(sitemap.includes(`<loc>${canonical}</loc>`));
   assert.equal((sitemap.match(/<url>/g) || []).length, artworks.length + 1);
+});
+
+test("Greek library keeps Iliad and Odyssey book navigation and artwork routes", async () => {
+  const data = JSON.parse(html.match(/const data=(\{.*\});\nconst passages=/s)?.[1]);
+  const passages = JSON.parse(html.match(/const passages=(\{.*\});\nconst SCREENS=/s)?.[1]);
+  const routesScript = await readFile(new URL("./art-routes.js", import.meta.url), "utf8");
+  const routes = JSON.parse(routesScript.match(/globalThis\.MOSAIC_ART_ROUTES=(\{.*\});/)?.[1]);
+  const library = data.artworks.filter((artwork) => artwork.work_id);
+  const odyssey = data.artworks.filter((artwork) => !artwork.work_id);
+  const iliadGroups = data.groups.filter((group) => group.work_id === "iliad");
+  const otherGroups = data.groups.filter((group) => group.work_id && group.work_id !== "iliad");
+
+  assert.equal(data.artworks.length, 550);
+  assert.equal(odyssey.length, 252);
+  assert.equal(library.length, 298);
+  assert.equal(data.groups.filter((group) => group.book).length, 24);
+  assert.equal(iliadGroups.length, 24);
+  assert.equal(otherGroups.length, 15);
+  assert.deepEqual(iliadGroups.map((group) => group.family_title),
+    ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XXI", "XXII", "XXIII", "XXIV"].map((n) => `Book ${n}`));
+  assert.deepEqual([...new Set(otherGroups.map((group) => group.phase))].sort(), [4, 5, 6, 7, 8]);
+  assert.equal(new Set(data.artworks.map((artwork) => artwork.id)).size, 550);
+  assert.equal(Object.keys(routes).length, 550);
+  assert.equal(library.filter((artwork) => !passages.anchors[artwork.id]?.text).length, 2);
+  assert.match(html, /lib-\$\{w\.work_id\}-\$\{w\.id\}/);
+  assert.match(html, /if\(!w\.work_id&&ART_SCREENS\.has\(w\.id\)\)/);
+
+  for (const artwork of library) {
+    await access(new URL(`./art/${routes[artwork.id]}/index.html`, import.meta.url));
+    await access(new URL(`./social/${artwork.id}.jpg`, import.meta.url));
+  }
+  assert.ok(routes["ngv-waterhouse-ulysses-sirens"]);
 });

@@ -14,6 +14,10 @@ const data = JSON.parse(dataMatch[1]);
 const site = "https://skald.mannamila.com";
 const makeSocial = process.argv.includes("--social");
 const forceSocial = process.argv.includes("--force-social");
+const existingRoutes = JSON.parse(
+  (await readFile(path.join(mosaicDir, "art-routes.js"), "utf8"))
+    .match(/globalThis\.MOSAIC_ART_ROUTES=(\{.*\});/)?.[1] || "{}",
+);
 
 function slugify(value) {
   return value
@@ -38,12 +42,20 @@ function artworkRoutes(artworks) {
   const routes = {};
   const used = new Set();
   for (const artwork of artworks) {
+    if (existingRoutes[artwork.id]) {
+      routes[artwork.id] = existingRoutes[artwork.id];
+      used.add(routes[artwork.id]);
+    }
+  }
+  for (const artwork of artworks) {
+    if (routes[artwork.id]) continue;
     const base = slugify(artwork.title) || artwork.id;
     let route = base;
     if (bases.get(base).length > 1) {
       route = `${base}-${slugify(artwork.creator || artwork.museum || artwork.id)}`;
     }
     if (used.has(route)) route = `${route}-${slugify(artwork.id)}`;
+    if (used.has(route)) throw new Error(`Duplicate artwork route: ${route}`);
     used.add(route);
     routes[artwork.id] = route;
   }
@@ -60,14 +72,16 @@ function escapeHtml(value) {
 
 function descriptionFor(artwork) {
   const context = artwork.blurb || artwork.caption || `${artwork.title} by ${artwork.creator}.`;
-  const book = artwork.book ? ` Explore its place in Book ${data.groups.find(({ book: id }) => id === artwork.book)?.roman} of the Odyssey.` : "";
+  const book = artwork.work_id
+    ? ` Explore its place in ${artwork.work_author}'s ${artwork.work_title}, ${artwork.family_title}, ${artwork.citation_unit === "line" ? "line" : ["herodotus", "thucydides"].includes(artwork.work_id) ? "chapter" : "section"} ${artwork.line_anchor}.`
+    : artwork.book ? ` Explore its place in Book ${data.groups.find(({ book: id }) => id === artwork.book)?.roman} of the Odyssey.` : "";
   return `${context}${book}`.slice(0, 260);
 }
 
 function routePage(artwork, route) {
   const canonical = `${site}/mosaic/art/${route}/`;
   const image = `${site}/mosaic/social/${encodeURIComponent(artwork.id)}.jpg`;
-  const title = `${artwork.title} — ${artwork.creator} · The Odyssey in Art`;
+  const title = `${artwork.title} — ${artwork.creator} · ${artwork.work_id ? "The Greek Library" : "The Odyssey"} in Art`;
   const description = descriptionFor(artwork);
   const location = [artwork.museum || artwork.source_provider, artwork.city].filter(Boolean).join(" · ");
   const structured = {
@@ -94,7 +108,7 @@ function routePage(artwork, route) {
 <meta name="description" content="${escapeHtml(description)}">
 <link rel="canonical" href="${canonical}">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Skald: Odyssey">
+<meta property="og:site_name" content="Skald: The Greek Library">
 <meta property="og:title" content="${escapeHtml(title)}">
 <meta property="og:description" content="${escapeHtml(description)}">
 <meta property="og:url" content="${canonical}">
@@ -117,7 +131,7 @@ function routePage(artwork, route) {
  <h1>${escapeHtml(artwork.title)}</h1>
  <p>${escapeHtml(artwork.creator)}${artwork.date ? ` · ${escapeHtml(artwork.date)}` : ""}${location ? ` · ${escapeHtml(location)}` : ""}</p>
  <p>${escapeHtml(description)}</p>
- <p><a href="../../?work=${encodeURIComponent(artwork.id)}">Open this artwork in the Odyssey Mosaic</a></p>
+ <p><a href="../../?work=${encodeURIComponent(artwork.id)}">Open this artwork in the Mosaic</a></p>
 </main>
 <script>
 const target=new URL('/mosaic/',location.origin);
