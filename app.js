@@ -132,7 +132,7 @@ const mountUpdates = (config) => {
   const frame = document.createElement("iframe");
   frame.className = "form-frame";
   frame.src = embeddedUrl.toString();
-  frame.title = "Join the Skald: Odyssey product updates list";
+  frame.title = "Join the Skald: the Greeks product updates list";
   frame.loading = "lazy";
   frame.referrerPolicy = "strict-origin-when-cross-origin";
 
